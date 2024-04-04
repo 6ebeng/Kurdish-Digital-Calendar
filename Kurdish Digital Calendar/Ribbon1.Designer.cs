@@ -34,213 +34,236 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
             this.tab1 = this.Factory.CreateRibbonTab();
-            this.group1 = this.Factory.CreateRibbonGroup();
-            this.tab2 = this.Factory.CreateRibbonTab();
-            this.group2 = this.Factory.CreateRibbonGroup();
-            this.group3 = this.Factory.CreateRibbonGroup();
+            this.group4 = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
-            this.button2 = this.Factory.CreateRibbonButton();
-            this.button3 = this.Factory.CreateRibbonButton();
+            this.group1 = this.Factory.CreateRibbonGroup();
+            this.dropDown1 = this.Factory.CreateRibbonDropDown();
+            this.checkBox7 = this.Factory.CreateRibbonCheckBox();
+            this.group3 = this.Factory.CreateRibbonGroup();
+            this.dropDown2 = this.Factory.CreateRibbonDropDown();
+            this.dropDown3 = this.Factory.CreateRibbonDropDown();
+            this.dropDown4 = this.Factory.CreateRibbonDropDown();
             this.separator1 = this.Factory.CreateRibbonSeparator();
-            this.button4 = this.Factory.CreateRibbonButton();
-            this.button5 = this.Factory.CreateRibbonButton();
-            this.separator2 = this.Factory.CreateRibbonSeparator();
-            this.button6 = this.Factory.CreateRibbonButton();
-            this.button7 = this.Factory.CreateRibbonButton();
-            this.button8 = this.Factory.CreateRibbonButton();
-            this.comboBox1 = this.Factory.CreateRibbonComboBox();
-            this.comboBox2 = this.Factory.CreateRibbonComboBox();
-            this.comboBox3 = this.Factory.CreateRibbonComboBox();
+            this.splitButton2 = this.Factory.CreateRibbonSplitButton();
+            this.toggleButton1 = this.Factory.CreateRibbonToggleButton();
+            this.group2 = this.Factory.CreateRibbonGroup();
+            this.splitButton1 = this.Factory.CreateRibbonSplitButton();
             this.checkBox1 = this.Factory.CreateRibbonCheckBox();
-            this.button9 = this.Factory.CreateRibbonButton();
-            this.separator3 = this.Factory.CreateRibbonSeparator();
+            this.checkBox2 = this.Factory.CreateRibbonCheckBox();
+            this.checkBox3 = this.Factory.CreateRibbonCheckBox();
+            this.checkBox4 = this.Factory.CreateRibbonCheckBox();
+            this.checkBox5 = this.Factory.CreateRibbonCheckBox();
+            this.checkBox6 = this.Factory.CreateRibbonCheckBox();
+            this.splitButton3 = this.Factory.CreateRibbonSplitButton();
             this.tab1.SuspendLayout();
-            this.tab2.SuspendLayout();
-            this.group2.SuspendLayout();
+            this.group4.SuspendLayout();
+            this.group1.SuspendLayout();
             this.group3.SuspendLayout();
+            this.group2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
-            this.tab1.ControlId.ControlIdType = Microsoft.Office.Tools.Ribbon.RibbonControlIdType.Office;
+            this.tab1.Groups.Add(this.group4);
             this.tab1.Groups.Add(this.group1);
-            this.tab1.Label = "TabAddIns";
+            this.tab1.Groups.Add(this.group3);
+            this.tab1.Groups.Add(this.group2);
+            this.tab1.Label = "Kurdish Calendar";
             this.tab1.Name = "tab1";
             // 
-            // group1
+            // group4
             // 
-            this.group1.Label = "group1";
-            this.group1.Name = "group1";
-            // 
-            // tab2
-            // 
-            this.tab2.Groups.Add(this.group2);
-            this.tab2.Groups.Add(this.group3);
-            this.tab2.Label = "Kurdish Calendar";
-            this.tab2.Name = "tab2";
-            // 
-            // group2
-            // 
-            this.group2.Items.Add(this.button1);
-            this.group2.Items.Add(this.button2);
-            this.group2.Items.Add(this.button3);
-            this.group2.Items.Add(this.separator1);
-            this.group2.Items.Add(this.button4);
-            this.group2.Items.Add(this.button5);
-            this.group2.Items.Add(this.separator2);
-            this.group2.Items.Add(this.button6);
-            this.group2.Items.Add(this.button7);
-            this.group2.Items.Add(this.button8);
-            this.group2.Label = "Insert date";
-            this.group2.Name = "group2";
-            // 
-            // group3
-            // 
-            this.group3.Items.Add(this.comboBox1);
-            this.group3.Items.Add(this.comboBox2);
-            this.group3.Items.Add(this.comboBox3);
-            this.group3.Items.Add(this.checkBox1);
-            this.group3.Items.Add(this.separator3);
-            this.group3.Items.Add(this.button9);
-            this.group3.Label = "Date conversion (selected)";
-            this.group3.Name = "group3";
+            this.group4.Items.Add(this.splitButton3);
+            this.group4.Label = " ";
+            this.group4.Name = "group4";
             // 
             // button1
             // 
-            this.button1.Label = "dddd, dd MMMM, yyyy";
+            this.button1.Label = "Credits";
             this.button1.Name = "button1";
+            this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
-            // button2
+            // group1
             // 
-            this.button2.Label = "dddd, dd/MM/yyyy";
-            this.button2.Name = "button2";
-            this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button2_Click);
+            this.group1.Items.Add(this.dropDown1);
+            this.group1.Items.Add(this.checkBox7);
+            this.group1.Label = "Choose Dialect";
+            this.group1.Name = "group1";
             // 
-            // button3
+            // dropDown1
             // 
-            this.button3.Label = "dd MMMM, yyyy";
-            this.button3.Name = "button3";
-            this.button3.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button3_Click);
+            this.dropDown1.Label = "dropDown1";
+            this.dropDown1.Name = "dropDown1";
+            this.dropDown1.ShowItemImage = false;
+            this.dropDown1.ShowLabel = false;
+            this.dropDown1.SizeString = "MY_MAX_LENGTH_STRING";
+            this.dropDown1.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dropDown1_SelectionChanged);
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.Label = "Add suffix";
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.checkBox7_Click);
+            // 
+            // group3
+            // 
+            this.group3.Items.Add(this.dropDown2);
+            this.group3.Items.Add(this.dropDown3);
+            this.group3.Items.Add(this.dropDown4);
+            this.group3.Items.Add(this.separator1);
+            this.group3.Items.Add(this.splitButton2);
+            this.group3.Label = "Converter";
+            this.group3.Name = "group3";
+            // 
+            // dropDown2
+            // 
+            this.dropDown2.Label = "Calendar";
+            this.dropDown2.Name = "dropDown2";
+            this.dropDown2.ShowItemImage = false;
+            this.dropDown2.SizeString = "MY_MAX_LENGTH_STRING";
+            this.dropDown2.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dropDown2_SelectionChanged);
+            // 
+            // dropDown3
+            // 
+            this.dropDown3.Label = "from";
+            this.dropDown3.Name = "dropDown3";
+            this.dropDown3.ShowItemImage = false;
+            this.dropDown3.SizeString = "MY_MAX_LENGTH_STRING";
+            this.dropDown3.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dropDown3_SelectionChanged);
+            // 
+            // dropDown4
+            // 
+            this.dropDown4.Label = "to";
+            this.dropDown4.Name = "dropDown4";
+            this.dropDown4.ShowItemImage = false;
+            this.dropDown4.SizeString = "MY_MAX_LENGTH_STRING";
+            this.dropDown4.SelectionChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.dropDown4_SelectionChanged);
             // 
             // separator1
             // 
             this.separator1.Name = "separator1";
             // 
-            // button4
+            // splitButton2
             // 
-            this.button4.Label = "MM/yyyy";
-            this.button4.Name = "button4";
-            this.button4.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button4_Click);
+            this.splitButton2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.splitButton2.Image = ((System.Drawing.Image)(resources.GetObject("splitButton2.Image")));
+            this.splitButton2.Items.Add(this.toggleButton1);
+            this.splitButton2.Label = "Convert";
+            this.splitButton2.Name = "splitButton2";
+            this.splitButton2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.splitButton2_Click);
             // 
-            // button5
+            // toggleButton1
             // 
-            this.button5.Label = "dd/MM";
-            this.button5.Name = "button5";
-            this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button5_Click);
+            this.toggleButton1.Label = "Reverse";
+            this.toggleButton1.Name = "toggleButton1";
+            this.toggleButton1.ShowImage = true;
+            this.toggleButton1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.toggleButton1_Click);
             // 
-            // separator2
+            // group2
             // 
-            this.separator2.Name = "separator2";
+            this.group2.Items.Add(this.splitButton1);
+            this.group2.Label = "Insert date";
+            this.group2.Name = "group2";
             // 
-            // button6
+            // splitButton1
             // 
-            this.button6.Label = "dd";
-            this.button6.Name = "button6";
-            this.button6.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.Label = "MMMM";
-            this.button7.Name = "button7";
-            this.button7.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button7_Click);
-            // 
-            // button8
-            // 
-            this.button8.Label = "yyyy";
-            this.button8.Name = "button8";
-            this.button8.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button8_Click);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Label = "Calendar type";
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.comboBox1_TextChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Label = "from";
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.comboBox2_TextChanged);
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.Label = "to";
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.comboBox3_TextChanged);
+            this.splitButton1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.splitButton1.Image = ((System.Drawing.Image)(resources.GetObject("splitButton1.Image")));
+            this.splitButton1.Items.Add(this.checkBox1);
+            this.splitButton1.Items.Add(this.checkBox2);
+            this.splitButton1.Items.Add(this.checkBox3);
+            this.splitButton1.Items.Add(this.checkBox4);
+            this.splitButton1.Items.Add(this.checkBox5);
+            this.splitButton1.Items.Add(this.checkBox6);
+            this.splitButton1.Label = "Select";
+            this.splitButton1.Name = "splitButton1";
+            this.splitButton1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.splitButton1_Click_1);
             // 
             // checkBox1
             // 
-            this.checkBox1.Label = "Reverse";
+            this.checkBox1.Label = "dddd, dd MMMM, yyyy";
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.checkBox1_Click);
             // 
-            // button9
+            // checkBox2
             // 
-            this.button9.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button9.Image = global::Kurdish_Digital_Calendar.Properties.Resources.free_convert_icon_3209_thumb;
-            this.button9.Label = "Convert";
-            this.button9.Name = "button9";
-            this.button9.ShowImage = true;
-            this.button9.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button9_Click);
+            this.checkBox2.Label = "dddd, dd/MM/yyyy";
+            this.checkBox2.Name = "checkBox2";
             // 
-            // separator3
+            // checkBox3
             // 
-            this.separator3.Name = "separator3";
+            this.checkBox3.Label = "dd MMMM, yyyy";
+            this.checkBox3.Name = "checkBox3";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.Label = "dd/MM/yyyy";
+            this.checkBox4.Name = "checkBox4";
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.Label = "MM/dd/yyyy";
+            this.checkBox5.Name = "checkBox5";
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.Label = "yyyy/MM/dd";
+            this.checkBox6.Name = "checkBox6";
+            // 
+            // splitButton3
+            // 
+            this.splitButton3.ButtonEnabled = false;
+            this.splitButton3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.splitButton3.Image = ((System.Drawing.Image)(resources.GetObject("splitButton3.Image")));
+            this.splitButton3.Items.Add(this.button1);
+            this.splitButton3.Label = "Help";
+            this.splitButton3.Name = "splitButton3";
             // 
             // Ribbon1
             // 
             this.Name = "Ribbon1";
             this.RibbonType = "Microsoft.Word.Document";
             this.Tabs.Add(this.tab1);
-            this.Tabs.Add(this.tab2);
             this.Load += new Microsoft.Office.Tools.Ribbon.RibbonUIEventHandler(this.Ribbon1_Load);
             this.tab1.ResumeLayout(false);
             this.tab1.PerformLayout();
-            this.tab2.ResumeLayout(false);
-            this.tab2.PerformLayout();
-            this.group2.ResumeLayout(false);
-            this.group2.PerformLayout();
+            this.group4.ResumeLayout(false);
+            this.group4.PerformLayout();
+            this.group1.ResumeLayout(false);
+            this.group1.PerformLayout();
             this.group3.ResumeLayout(false);
             this.group3.PerformLayout();
+            this.group2.ResumeLayout(false);
+            this.group2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-        private Microsoft.Office.Tools.Ribbon.RibbonTab tab2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button3;
-        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button4;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button5;
-        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button6;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button7;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button8;
+        private Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group3;
-        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBox1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBox2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonComboBox comboBox3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDown1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDown2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDown3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonDropDown dropDown4;
+        internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton toggleButton1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox7;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSplitButton splitButton2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSplitButton splitButton1;
         internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox1;
-        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator3;
-        internal Microsoft.Office.Tools.Ribbon.RibbonButton button9;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox3;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox4;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox5;
+        internal Microsoft.Office.Tools.Ribbon.RibbonCheckBox checkBox6;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup group4;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSplitButton splitButton3;
     }
 
     partial class ThisRibbonCollection
