@@ -13,19 +13,6 @@ namespace Kurdish_Digital_Calendar
 {
     public partial class ThisAddIn
     {
-
-        public void InsertKurdishDate(int formatChoice, string dialect, bool isAddSuffix)
-        {
-            DateTime todayGregorian = DateTime.Today; // Today's Gregorian date
-            string todayKurdish = KurdishDate.fromGregorianToKurdish(todayGregorian, formatChoice, dialect, isAddSuffix);
-
-            // Ensure there's a selection or a place to insert the text
-            if (this.Application.Selection != null)
-            {
-                this.Application.Selection.TypeText(todayKurdish);
-            }
-        }
-
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
         }

@@ -12,7 +12,7 @@ namespace Kurdish_Digital_Calendar.DateConversionLibrary
 {
     internal class DateConversion
     {
-        public static void ConvertDateBasedOnUserSelection(bool isReverse, string targetDialect, string fromFormat, string toFormat, string targetCalendar, bool isAddSuffix)
+        public static string ConvertDateBasedOnUserSelection(string selectedText, bool isReverse, string targetDialect, string fromFormat, string toFormat, string targetCalendar, bool isAddSuffix)
         {
 
 
@@ -24,12 +24,12 @@ namespace Kurdish_Digital_Calendar.DateConversionLibrary
             int formatChoice;
             string resultDate;
 
-            string selectedText = CleanSelectedText(Globals.ThisAddIn.Application.Selection.Text);
+            selectedText = CleanSelectedText(selectedText);
 
             if (string.IsNullOrEmpty(selectedText))
             {
                 MessageBox.Show("No text selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return "";
             }
 
             if(fromDateFormat == "dd/MM/yyyy" || fromDateFormat == "MM/dd/yyyy" || fromDateFormat == "yyyy/MM/dd")
@@ -42,7 +42,7 @@ namespace Kurdish_Digital_Calendar.DateConversionLibrary
             if (parsedDate == DateTime.MinValue)
             {
                 MessageBox.Show("Invalid date format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return "";
             }
 
             targetDate = ConvertTargetCalendarToGregorian(parsedDate, calendarType);
@@ -51,7 +51,7 @@ namespace Kurdish_Digital_Calendar.DateConversionLibrary
 
             resultDate = isReverse ? ConvertGregorianToTargetCalendar(targetDate, formatChoice, targetCalendar, isAddSuffix) : KurdishDate.fromGregorianToKurdish(targetDate, formatChoice, targetDialect, isAddSuffix);
 
-            Globals.ThisAddIn.Application.Selection.Text = resultDate;
+            return resultDate;
 
 
         }

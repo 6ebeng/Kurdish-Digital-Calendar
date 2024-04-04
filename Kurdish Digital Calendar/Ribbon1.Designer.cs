@@ -37,6 +37,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ribbon1));
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group4 = this.Factory.CreateRibbonGroup();
+            this.splitButton3 = this.Factory.CreateRibbonSplitButton();
             this.button1 = this.Factory.CreateRibbonButton();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.dropDown1 = this.Factory.CreateRibbonDropDown();
@@ -56,7 +57,6 @@
             this.checkBox4 = this.Factory.CreateRibbonCheckBox();
             this.checkBox5 = this.Factory.CreateRibbonCheckBox();
             this.checkBox6 = this.Factory.CreateRibbonCheckBox();
-            this.splitButton3 = this.Factory.CreateRibbonSplitButton();
             this.tab1.SuspendLayout();
             this.group4.SuspendLayout();
             this.group1.SuspendLayout();
@@ -78,6 +78,15 @@
             this.group4.Items.Add(this.splitButton3);
             this.group4.Label = " ";
             this.group4.Name = "group4";
+            // 
+            // splitButton3
+            // 
+            this.splitButton3.ButtonEnabled = false;
+            this.splitButton3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.splitButton3.Image = ((System.Drawing.Image)(resources.GetObject("splitButton3.Image")));
+            this.splitButton3.Items.Add(this.button1);
+            this.splitButton3.Label = "Help";
+            this.splitButton3.Name = "splitButton3";
             // 
             // button1
             // 
@@ -211,15 +220,6 @@
             // 
             this.checkBox6.Label = "yyyy/MM/dd";
             this.checkBox6.Name = "checkBox6";
-            // 
-            // splitButton3
-            // 
-            this.splitButton3.ButtonEnabled = false;
-            this.splitButton3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.splitButton3.Image = ((System.Drawing.Image)(resources.GetObject("splitButton3.Image")));
-            this.splitButton3.Items.Add(this.button1);
-            this.splitButton3.Label = "Help";
-            this.splitButton3.Name = "splitButton3";
             // 
             // Ribbon1
             // 

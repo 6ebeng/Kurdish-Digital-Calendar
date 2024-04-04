@@ -1,6 +1,7 @@
 ﻿using Kurdish_Digital_Calendar.DateConversionLibrary;
 using Microsoft.Office.Tools.Ribbon;
 using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -204,8 +205,10 @@ namespace Kurdish_Digital_Calendar
                 string dialect = dropDown1.SelectedItem.Label;
                 bool isAddSuffix = checkBox7.Checked;
 
-                // Call InsertKurdishDate with the determined formatChoice and dialect
-                Globals.ThisAddIn.InsertKurdishDate(formatChoice, dialect, isAddSuffix);
+
+                // Call Insert Kurdish Date with the determined formatChoice and dialect and isAddSuffix
+                Globals.ThisAddIn.Application.Selection.TypeText(InsertDate.Kurdish(formatChoice, dialect, isAddSuffix));
+
             }
             else
             {
@@ -298,7 +301,8 @@ namespace Kurdish_Digital_Calendar
 
         private void splitButton2_Click(object sender, RibbonControlEventArgs e)
         {
-           DateConversion.ConvertDateBasedOnUserSelection(toggleButton1.Checked, dropDown1.SelectedItem.Label, dropDown3.SelectedItem.Label, dropDown4.SelectedItem.Label, dropDown2.SelectedItem.Label, checkBox7.Checked);
+
+            Globals.ThisAddIn.Application.Selection.Text = DateConversion.ConvertDateBasedOnUserSelection(Globals.ThisAddIn.Application.Selection.Text, toggleButton1.Checked, dropDown1.SelectedItem.Label, dropDown3.SelectedItem.Label, dropDown4.SelectedItem.Label, dropDown2.SelectedItem.Label, checkBox7.Checked);
         }
 
         private void splitButton1_Click_1(object sender, RibbonControlEventArgs e)

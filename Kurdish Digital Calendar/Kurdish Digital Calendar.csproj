@@ -184,6 +184,7 @@
     <Compile Include="DateConversionLibrary\GregorianDate.cs" />
     <Compile Include="DateConversionLibrary\Helpers.cs" />
     <Compile Include="DateConversionLibrary\HijriDate.cs" />
+    <Compile Include="DateConversionLibrary\InsertDate.cs" />
     <Compile Include="DateConversionLibrary\KurdishDate.cs" />
     <Compile Include="DateConversionLibrary\UmmAlQuraDate.cs" />
     <Compile Include="Form1.cs">

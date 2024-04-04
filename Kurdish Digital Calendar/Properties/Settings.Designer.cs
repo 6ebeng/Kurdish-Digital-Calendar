@@ -22,17 +22,5 @@ namespace Kurdish_Digital_Calendar.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool NotVisible {
-            get {
-                return ((bool)(this["NotVisible"]));
-            }
-            set {
-                this["NotVisible"] = value;
-            }
-        }
     }
 }
