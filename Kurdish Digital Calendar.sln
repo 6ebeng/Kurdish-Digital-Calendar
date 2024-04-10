@@ -1,9 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29318.209
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kurdish Digital Calendar", "Kurdish Digital Calendar\Kurdish Digital Calendar.csproj", "{0FCD98FD-E9F8-49D5-B359-3C5B9BA66B95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Word", "KDC Word\KDC Word.csproj", "{0FCD98FD-E9F8-49D5-B359-3C5B9BA66B95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Excel", "KDC Excel\KDC Excel.csproj", "{829AF0C4-37FC-43DE-91DA-74C3D788A05A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC PowerPoint", "KDC PowerPoint\KDC PowerPoint.csproj", "{0B138AD6-2E7D-482B-91D8-13D3551460D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Outlook", "KDC Outlook\KDC Outlook.csproj", "{114E74BC-38FA-4E9E-9099-4B4058D935C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Viso", "KDC Viso\KDC Viso.csproj", "{786FE1B9-FEC9-48E9-9A11-64314C82E953}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Project", "KDC Project\KDC Project.csproj", "{0334ECEA-ABE2-4359-BEE2-806A39A3580A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Library", "KDCLibrary\KDCLibrary\KDC Library.csproj", "{82053250-D09A-409F-A34C-8EFDDBF8C90F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +27,30 @@ Global
 		{0FCD98FD-E9F8-49D5-B359-3C5B9BA66B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FCD98FD-E9F8-49D5-B359-3C5B9BA66B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FCD98FD-E9F8-49D5-B359-3C5B9BA66B95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829AF0C4-37FC-43DE-91DA-74C3D788A05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829AF0C4-37FC-43DE-91DA-74C3D788A05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829AF0C4-37FC-43DE-91DA-74C3D788A05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829AF0C4-37FC-43DE-91DA-74C3D788A05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B138AD6-2E7D-482B-91D8-13D3551460D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B138AD6-2E7D-482B-91D8-13D3551460D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B138AD6-2E7D-482B-91D8-13D3551460D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B138AD6-2E7D-482B-91D8-13D3551460D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114E74BC-38FA-4E9E-9099-4B4058D935C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114E74BC-38FA-4E9E-9099-4B4058D935C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114E74BC-38FA-4E9E-9099-4B4058D935C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114E74BC-38FA-4E9E-9099-4B4058D935C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0334ECEA-ABE2-4359-BEE2-806A39A3580A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0334ECEA-ABE2-4359-BEE2-806A39A3580A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0334ECEA-ABE2-4359-BEE2-806A39A3580A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0334ECEA-ABE2-4359-BEE2-806A39A3580A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82053250-D09A-409F-A34C-8EFDDBF8C90F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82053250-D09A-409F-A34C-8EFDDBF8C90F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82053250-D09A-409F-A34C-8EFDDBF8C90F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82053250-D09A-409F-A34C-8EFDDBF8C90F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

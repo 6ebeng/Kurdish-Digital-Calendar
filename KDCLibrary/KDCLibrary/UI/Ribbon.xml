@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI onLoad="Ribbon_Load" xmlns="http://schemas.microsoft.com/office/2006/01/customui">
+  <ribbon>
+    <tabs>
+      <tab id="tab1" label="KD Calendar">
+        <group id="group4" label=" ">
+          <splitButton id="splitButton3" size="large">
+            <button id="splitButton3__btn" enabled="false" label="Help" showImage="true" getImage="GetImage" />
+            <menu id="splitButton3__mnu">
+              <button id="button1" onAction="button1_Click" label="Credits" />
+            </menu>
+          </splitButton>
+        </group>
+        <group id="group2" label="Choose Dialect">
+          <separator id="separator9" visible="false"/>
+          <dropDown id="dropDown1" getSelectedItemIndex="getSelectedDialectIndex" getItemCount="getDialectCount" getItemLabel="getDialectLabel" onAction="onDropDownAction" label="dropDown1" showLabel="false" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
+          <checkBox id="checkBox7" onAction="checkBox7_Click" label="Add suffix" getPressed="restoreisAddSuffixState"/>
+          <separator id="separator10" visible="false"/>
+        </group>
+        <group id="group3" label="Converter">
+          <separator id="separator8" visible="false"/>
+          <dropDown id="dropDown2" getSelectedItemIndex="getSelectedCalendarIndex" getItemCount="getCalendarCount" getItemLabel="getCalendarLabel" onAction="onDropDownAction" label="Calendar" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
+          <dropDown id="dropDown3" getSelectedItemIndex="getSelectedFromFormatIndex" getItemCount="getFromFormatCount" getItemLabel="getFromFormatLabel" onAction="onDropDownAction" label="from" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
+          <dropDown id="dropDown4" getSelectedItemIndex="getSelectedToFormatIndex" getItemCount="getToFormatCount" getItemLabel="getToFormatLabel" onAction="onDropDownAction" label="to" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
+          <separator id="separator1" visible="false" />
+          <separator id="separator2" />
+          <splitButton id="splitButton2" size="large">
+            <button id="splitButton2__btn" label="Convert" onAction="splitButton2_Click" showImage="true" getImage="GetImage" />
+            <menu id="splitButton2__mnu">
+              <toggleButton id="toggleButton1" onAction="toggleButton1_Click" label="Reverse" getPressed="restoreIsReverseState" />
+            </menu>
+          </splitButton>
+        </group>
+        <group id="group5" label="Insert date">
+          <separator id="separator4" visible="false"/>
+          <splitButton id="splitButton1" size="large">
+            <button id="splitButton1__btn" label="Select" onAction="splitButton1_Click" showImage="true" getImage="GetImage" />
+            <menu id="splitButton1__mnu" >
+              <checkBox id="checkBox1" onAction="onCheckBoxAction" label="dddd, dd MMMM, yyyy" getPressed="getCheckBoxPressed" />
+              <checkBox id="checkBox2" onAction="onCheckBoxAction" label="dddd, dd/MM/yyyy" getPressed="getCheckBoxPressed" />
+              <checkBox id="checkBox3" onAction="onCheckBoxAction" label="dd MMMM, yyyy" getPressed="getCheckBoxPressed" />
+              <checkBox id="checkBox4" onAction="onCheckBoxAction" label="dd/MM/yyyy" getPressed="getCheckBoxPressed" />
+              <checkBox id="checkBox5" onAction="onCheckBoxAction" label="MM/dd/yyyy" getPressed="getCheckBoxPressed" />
+              <checkBox id="checkBox6" onAction="onCheckBoxAction" label="yyyy/MM/dd" getPressed="getCheckBoxPressed" />
+            </menu>
+          </splitButton>
+          <separator id="separator7" visible="false"/>
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
