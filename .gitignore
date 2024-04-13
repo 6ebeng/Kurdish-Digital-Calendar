@@ -365,3 +365,5 @@ FodyWeavers.xsd
 
 # Exclude AI Setup Project
 /AI Setup Project/AI Setup Project.aiproj
+
+publish
