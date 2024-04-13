@@ -119,5 +119,15 @@ namespace KDCLibrary.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon KDC_Only {
+            get {
+                object obj = ResourceManager.GetObject("KDC_Only", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

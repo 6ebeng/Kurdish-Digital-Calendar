@@ -136,4 +136,7 @@
   <data name="KDC_Framed1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\KDC Framed.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="KDC_Only" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KDC Only.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

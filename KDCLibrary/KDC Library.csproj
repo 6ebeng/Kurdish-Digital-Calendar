@@ -82,19 +82,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DateConversion.cs" />
-    <Compile Include="DateFormatting.cs" />
+    <Compile Include="Services\DateConversion.cs" />
+    <Compile Include="Services\DateFormatting.cs" />
     <Compile Include="Calendars\GregorianDate.cs" />
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="Calendars\HijriDate.cs" />
-    <Compile Include="DateInsertion.cs" />
+    <Compile Include="Services\DateInsertion.cs" />
     <Compile Include="Calendars\KurdishDate.cs" />
     <Compile Include="Calendars\UmmAlQuraDate.cs" />
     <Compile Include="Helpers\RegistryHelper.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
-    <Compile Include="IKDCService.cs" />
-    <Compile Include="KDCConstants.cs" />
-    <Compile Include="KDCServiceImplementation.cs" />
+    <Compile Include="Interfaces\IKDCService.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Interfaces\KDCServiceImplementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -109,7 +109,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="KDC Only.ico" />
+    <Content Include="Resources\KDC Only.ico" />
     <Content Include="Resources\calendar.png" />
     <Content Include="Resources\convert.png" />
     <Content Include="Resources\help.ico" />

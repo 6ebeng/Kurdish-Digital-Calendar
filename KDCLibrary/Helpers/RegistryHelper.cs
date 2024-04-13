@@ -4,7 +4,7 @@ namespace KDCLibrary.Helpers
 {
     internal class RegistryHelper
     {
-        private const string RegistryPath = @"SOFTWARE\RekbinDevs\KurdishDigitalCalendar";
+        private const string RegistryPath = @"SOFTWARE\Rekbin Devs\Kurdish Digital Calendar";
 
         public void SaveSetting(string keyName, string value, string appName)
         {

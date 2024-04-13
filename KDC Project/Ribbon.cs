@@ -21,23 +21,19 @@ namespace KDC_Project
 
         IKDCService kDCService = new KDCServiceImplementation();
         private Office.IRibbonUI ribbon;
-        private const string IsReverseKeyName = KDCConstants.KeyNames.IsReverse;
-        private const string SelectedDialectKeyName = KDCConstants.KeyNames.SelectedDialect;
-        private const string SelectedFormat1KeyName = KDCConstants.KeyNames.SelectedFormat1;
-        private const string SelectedFormat2KeyName = KDCConstants.KeyNames.SelectedFormat2;
-        private const string LastSelectionGroup1KeyName = KDCConstants.KeyNames.LastSelectionGroup1;
-        private const string LastSelectionGroup2KeyName = KDCConstants.KeyNames.LastSelectionGroup2;
-        private const string CheckBoxStatesKeyName = KDCConstants.KeyNames.CheckBoxStates;
-        private const string isAddSuffixKeyName = KDCConstants.KeyNames.IsAddSuffix;
+        private const string IsReverseKeyName = Constants.KeyNames.IsReverse;
+        private const string SelectedDialectKeyName = Constants.KeyNames.SelectedDialect;
+        private const string SelectedFormat1KeyName = Constants.KeyNames.SelectedFormat1;
+        private const string SelectedFormat2KeyName = Constants.KeyNames.SelectedFormat2;
+        private const string LastSelectionGroup1KeyName = Constants.KeyNames.LastSelectionGroup1;
+        private const string LastSelectionGroup2KeyName = Constants.KeyNames.LastSelectionGroup2;
+        private const string CheckBoxStatesKeyName = Constants.KeyNames.CheckBoxStates;
+        private const string isAddSuffixKeyName = Constants.KeyNames.IsAddSuffix;
 
-        private readonly List<string> _dialectsList = KDCConstants.DefaultValues.Dialects;
-        private readonly List<string> _formatsList = KDCConstants.DefaultValues.Formats;
-        private readonly List<string> _calendarGroup1List = KDCConstants
-            .DefaultValues
-            .CalendarGroup1;
-        private readonly List<string> _calendarGroup2List = KDCConstants
-            .DefaultValues
-            .CalendarGroup2;
+        private readonly List<string> _dialectsList = Constants.DefaultValues.Dialects;
+        private readonly List<string> _formatsList = Constants.DefaultValues.Formats;
+        private readonly List<string> _calendarGroup1List = Constants.DefaultValues.CalendarGroup1;
+        private readonly List<string> _calendarGroup2List = Constants.DefaultValues.CalendarGroup2;
         private readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
 
         private string _selectedDialect { get; set; }
