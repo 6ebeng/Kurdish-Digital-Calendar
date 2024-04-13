@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Office = Microsoft.Office.Core;
-using Visio = Microsoft.Office.Interop.Visio;
+﻿using Office = Microsoft.Office.Core;
 
 namespace KDC_Viso
 {

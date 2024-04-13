@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Office = Microsoft.Office.Core;
-using Outlook = Microsoft.Office.Interop.Outlook;
-
-namespace KDC_Outlook
+﻿namespace KDC_Outlook
 {
     public partial class ThisAddIn
     {

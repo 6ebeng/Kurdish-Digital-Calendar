@@ -1,5 +1,4 @@
-﻿using KDCLibrary;
-using Office = Microsoft.Office.Core;
+﻿using Office = Microsoft.Office.Core;
 
 namespace KDC_PowerPoint
 {

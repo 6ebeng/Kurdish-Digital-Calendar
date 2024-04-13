@@ -1,6 +1,4 @@
-﻿using KDCLibrary;
-using Microsoft.Office.Core;
-using Microsoft.Office.Interop.Word;
+﻿using Microsoft.Office.Core;
 
 namespace KDC_Word
 {

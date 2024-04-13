@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using KDCLibrary;
@@ -37,6 +38,7 @@ namespace KDC_Project
         private readonly List<string> _calendarGroup2List = KDCConstants
             .DefaultValues
             .CalendarGroup2;
+        private readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
 
         private string _selectedDialect { get; set; }
         private string _selectedCalendar { get; set; }
@@ -67,28 +69,34 @@ namespace KDC_Project
             this.ribbon = ribbonUI;
 
             // Restore the _isReverse state from the registry when the ribbon loads
-            this._isReverse = Convert.ToBoolean(kDCService.LoadSetting(IsReverseKeyName, "false"));
+            this._isReverse = Convert.ToBoolean(
+                kDCService.LoadSetting(IsReverseKeyName, "false", AppName)
+            );
             string savedCalendarKeyName = _isReverse
                 ? LastSelectionGroup2KeyName
                 : LastSelectionGroup1KeyName;
             this._selectedCalendar = kDCService.LoadSetting(
                 savedCalendarKeyName,
-                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0]
+                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
+                AppName
             );
             this._selectedDialect = kDCService.LoadSetting(
                 SelectedDialectKeyName,
-                _dialectsList[0]
+                _dialectsList[0],
+                AppName
             );
             this._selectedFromFormat = kDCService.LoadSetting(
                 SelectedFormat1KeyName,
-                _formatsList[0]
+                _formatsList[0],
+                AppName
             );
             this._selectedToFormat = kDCService.LoadSetting(
                 SelectedFormat2KeyName,
-                _formatsList[0]
+                _formatsList[0],
+                AppName
             );
             this._isAddSuffix = Convert.ToBoolean(
-                kDCService.LoadSetting(isAddSuffixKeyName, "false")
+                kDCService.LoadSetting(isAddSuffixKeyName, "false", AppName)
             );
             this._selectedInsertFormat = getSelectedCheckBox();
 
@@ -109,14 +117,19 @@ namespace KDC_Project
 
         private void SaveCheckBoxStates(Dictionary<string, bool> states)
         {
-            kDCService.SaveSetting(CheckBoxStatesKeyName, JsonConvert.SerializeObject(states));
+            kDCService.SaveSetting(
+                CheckBoxStatesKeyName,
+                JsonConvert.SerializeObject(states),
+                AppName
+            );
         }
 
         private Dictionary<string, bool> LoadCheckBoxStates()
         {
             var serializedState = kDCService.LoadSetting(
                 CheckBoxStatesKeyName,
-                "{ 'checkBox1', true }"
+                "{ 'checkBox1', true }",
+                AppName
             );
             Debug.WriteLine($"Loaded serialized state: {serializedState}");
 
@@ -144,7 +157,7 @@ namespace KDC_Project
         {
             if (control.Id == "toggleButton1")
             {
-                kDCService.SaveSetting(IsReverseKeyName, isPressed.ToString());
+                kDCService.SaveSetting(IsReverseKeyName, isPressed.ToString(), AppName);
                 // Invalidate dropdown2 to refresh its items based on the new IsReverse state
                 ribbon.InvalidateControl("dropDown2");
             }
@@ -158,7 +171,11 @@ namespace KDC_Project
             {
                 case "dropDown1":
                     this._selectedDialect = _dialectsList[selectedIndex];
-                    kDCService.SaveSetting(SelectedDialectKeyName, _dialectsList[selectedIndex]);
+                    kDCService.SaveSetting(
+                        SelectedDialectKeyName,
+                        _dialectsList[selectedIndex],
+                        AppName
+                    );
                     break;
 
                 case "dropDown2":
@@ -168,17 +185,17 @@ namespace KDC_Project
                     var keyName = _isReverse
                         ? LastSelectionGroup2KeyName
                         : LastSelectionGroup1KeyName;
-                    kDCService.SaveSetting(keyName, _selectedCalendar);
+                    kDCService.SaveSetting(keyName, _selectedCalendar, AppName);
                     break;
 
                 case "dropDown3":
                     this._selectedFromFormat = _formatsList[selectedIndex];
-                    kDCService.SaveSetting(SelectedFormat1KeyName, _selectedFromFormat);
+                    kDCService.SaveSetting(SelectedFormat1KeyName, _selectedFromFormat, AppName);
                     break;
 
                 case "dropDown4":
                     this._selectedToFormat = _formatsList[selectedIndex];
-                    kDCService.SaveSetting(SelectedFormat2KeyName, _selectedToFormat);
+                    kDCService.SaveSetting(SelectedFormat2KeyName, _selectedToFormat, AppName);
                     break;
             }
         }
@@ -263,14 +280,16 @@ namespace KDC_Project
         public bool restoreisAddSuffixState(IRibbonControl control)
         {
             this._isAddSuffix = Convert.ToBoolean(
-                kDCService.LoadSetting(isAddSuffixKeyName, "false")
+                kDCService.LoadSetting(isAddSuffixKeyName, "false", AppName)
             );
             return _isAddSuffix;
         }
 
         public bool restoreIsReverseState(IRibbonControl control)
         {
-            this._isReverse = Convert.ToBoolean(kDCService.LoadSetting(IsReverseKeyName, "false"));
+            this._isReverse = Convert.ToBoolean(
+                kDCService.LoadSetting(IsReverseKeyName, "false", AppName)
+            );
             return _isReverse;
         }
 
@@ -381,13 +400,13 @@ namespace KDC_Project
         public void checkBox7_Click(IRibbonControl control, bool isPressed)
         {
             this._isAddSuffix = isPressed;
-            kDCService.SaveSetting(isAddSuffixKeyName, isPressed.ToString());
+            kDCService.SaveSetting(isAddSuffixKeyName, isPressed.ToString(), AppName);
         }
 
         public void toggleButton1_Click(IRibbonControl control, bool isPressed)
         {
             this._isReverse = isPressed;
-            kDCService.SaveSetting(IsReverseKeyName, _isReverse.ToString());
+            kDCService.SaveSetting(IsReverseKeyName, _isReverse.ToString(), AppName);
             this.ribbon.InvalidateControl("dropDown2");
         }
 
@@ -568,7 +587,8 @@ namespace KDC_Project
             // Load the saved dialect name from your settings
             this._selectedDialect = kDCService.LoadSetting(
                 SelectedDialectKeyName,
-                _dialectsList[0]
+                _dialectsList[0],
+                AppName
             );
 
             int index = _dialectsList.IndexOf(_selectedDialect);
@@ -604,7 +624,8 @@ namespace KDC_Project
                 : LastSelectionGroup1KeyName;
             this._selectedCalendar = kDCService.LoadSetting(
                 savedCalendarKeyName,
-                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0]
+                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
+                AppName
             );
             List<string> selectedList = _isReverse ? _calendarGroup2List : _calendarGroup1List;
             int index = selectedList.IndexOf(_selectedCalendar);
@@ -637,7 +658,8 @@ namespace KDC_Project
             // Load the saved format name from your settings
             this._selectedFromFormat = kDCService.LoadSetting(
                 SelectedFormat1KeyName,
-                _formatsList[0]
+                _formatsList[0],
+                AppName
             );
             int index = _formatsList.IndexOf(_selectedFromFormat);
             // Return the index of the saved format or default to the first item if not found
@@ -665,7 +687,11 @@ namespace KDC_Project
         public int getSelectedToFormatIndex(IRibbonControl control)
         {
             // Load the saved format name from your settings
-            _selectedToFormat = kDCService.LoadSetting(SelectedFormat2KeyName, _formatsList[0]);
+            _selectedToFormat = kDCService.LoadSetting(
+                SelectedFormat2KeyName,
+                _formatsList[0],
+                AppName
+            );
             int index = _formatsList.IndexOf(_selectedToFormat);
             return index >= 0 ? index : 0; // Ensure we return an integer
         }

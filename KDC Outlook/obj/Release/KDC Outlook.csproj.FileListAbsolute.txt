@@ -1,0 +1,15 @@
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\KDC_Outlook.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\KDC_Outlook.pdb
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\KDC_Outlook.dll.manifest
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\KDC_Outlook.vsto
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\KDC_Library.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\Newtonsoft.Json.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\KDC_Library.pdb
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\bin\Release\Newtonsoft.Json.xml
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\obj\Release\KDC Outlook.csproj.AssemblyReference.cache
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\obj\Release\KDC Outlook.csproj.CoreCompileInputs.cache
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\obj\Release\KDC Outl.5ECB554D.Up2Date
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\obj\Release\KDC_Outlook.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDC Outlook\obj\Release\KDC_Outlook.pdb

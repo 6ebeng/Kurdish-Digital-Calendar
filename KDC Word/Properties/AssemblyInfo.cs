@@ -1,19 +1,17 @@
 ﻿using System.Reflection;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("KDC Word")]
+[assembly: AssemblyTitle("Kurdish Digital Calendar")]
 [assembly: AssemblyDescription(
     "A VSTO add-in for Word that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars."
 )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Tishko Rasoul")]
-[assembly: AssemblyProduct("KDC Word")]
+[assembly: AssemblyCompany("Rekbin Devs")]
+[assembly: AssemblyProduct("KDC Word Add-in")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

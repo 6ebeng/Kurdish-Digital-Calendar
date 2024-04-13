@@ -1,0 +1,16 @@
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\KDC_Library.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\KDC_Library.pdb
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\Microsoft.Office.Tools.v4.0.Framework.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\Newtonsoft.Json.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\Microsoft.VisualStudio.Tools.Applications.Runtime.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\bin\Release\Newtonsoft.Json.xml
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC Library.csproj.AssemblyReference.cache
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC Library.csproj.ResolveComReference.cache
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDCLibrary.Properties.Resources.resources
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDCLibrary.CreditsForm.resources
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC Library.csproj.GenerateResource.cache
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC Library.csproj.CoreCompileInputs.cache
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC Libr.732DCB93.Up2Date
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC_Library.dll
+C:\Users\Tishko\source\repos\Kurdish Digital Calendar\KDCLibrary\obj\Release\KDC_Library.pdb
