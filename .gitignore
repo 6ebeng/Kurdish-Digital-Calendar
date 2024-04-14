@@ -362,8 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-
-# Exclude AI Setup Project
-/AI Setup Project/AI Setup Project.aiproj
-
+# exclude publish folder
 publish
+/AI Setup Project/AI Setup Project.aiproj
+/AI Setup Project/AI Setup Project.aiproj

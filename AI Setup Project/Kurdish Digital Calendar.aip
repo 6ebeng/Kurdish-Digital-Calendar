@@ -25,10 +25,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release:KDCFramed.ico" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{D549F03A-9649-47FF-84EA-A5B0B3080A7C} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{961A4BE9-0DA8-4F68-9832-9C2809772442} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Options="32"/>
+    <ROW Property="ProductVersion" Value="1.0.1" Options="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release:Windows 9x/ME" ValueLocId="-"/>
@@ -53,7 +53,7 @@
     <ROW Directory="Word_Dir" Directory_Parent="APPDIR" DefaultDir="Word"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{F7F1A6B1-B8EB-4E25-8A28-76982099D199}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{4BF4DCB5-9204-42FB-9647-A7B8CB57E348}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_DisableModify" ComponentId="{7DEB9305-8839-4A4F-92E2-1CECC47E48C9}" Directory_="APPDIR" Attributes="4" KeyPath="NoModify" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{F2393282-B50E-4668-92FC-E8FB7F5E24DC}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{EED61065-CB1D-45B8-9C95-F67AACFCCF3A}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
@@ -618,12 +618,12 @@
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
     <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Excel" Root="-1" Key="Software\Microsoft\Office\Excel" Name="+" Component_="Excel"/>
-    <ROW Registry="FriendlyName" Root="-1" Key="Software\Microsoft\Office\Excel\Addins\KDC_Excel" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName"/>
-    <ROW Registry="FriendlyName_1" Root="-1" Key="Software\Microsoft\Office\MS Project\Addins\KDC_Project" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_1"/>
-    <ROW Registry="FriendlyName_2" Root="-1" Key="Software\Microsoft\Office\Outlook\Addins\KDC_Outlook" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_2"/>
-    <ROW Registry="FriendlyName_3" Root="-1" Key="Software\Microsoft\Office\PowerPoint\Addins\KDC_PowerPoint" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_3"/>
-    <ROW Registry="FriendlyName_4" Root="-1" Key="Software\Microsoft\Office\Visio\Addins\KDC_Visio" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_4"/>
-    <ROW Registry="FriendlyName_5" Root="-1" Key="Software\Microsoft\Office\Word\Addins\KDC_Word" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_5"/>
+    <ROW Registry="FriendlyName" Root="-1" Key="Software\Microsoft\Office\Excel\Addins\KDC_Excel" Name="FriendlyName" Value="KDC_Excel" Component_="FriendlyName"/>
+    <ROW Registry="FriendlyName_1" Root="-1" Key="Software\Microsoft\Office\MS Project\Addins\KDC_Project" Name="FriendlyName" Value="KDC_Project" Component_="FriendlyName_1"/>
+    <ROW Registry="FriendlyName_2" Root="-1" Key="Software\Microsoft\Office\Outlook\Addins\KDC_Outlook" Name="FriendlyName" Value="KDC_Outlook" Component_="FriendlyName_2"/>
+    <ROW Registry="FriendlyName_3" Root="-1" Key="Software\Microsoft\Office\PowerPoint\Addins\KDC_PowerPoint" Name="FriendlyName" Value="KDC_PowerPoint" Component_="FriendlyName_3"/>
+    <ROW Registry="FriendlyName_4" Root="-1" Key="Software\Microsoft\Office\Visio\Addins\KDC_Visio" Name="FriendlyName" Value="KDC_Visio" Component_="FriendlyName_4"/>
+    <ROW Registry="FriendlyName_5" Root="-1" Key="Software\Microsoft\Office\Word\Addins\KDC_Word" Name="FriendlyName" Value="KDC_Word" Component_="FriendlyName_5"/>
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
