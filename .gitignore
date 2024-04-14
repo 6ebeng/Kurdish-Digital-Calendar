@@ -364,5 +364,5 @@ FodyWeavers.xsd
 
 # exclude publish folder
 publish
-/AI Setup Project/AI Setup Project.aiproj
-/AI Setup Project/AI Setup Project.aiproj
+/AI Setup Project/AI Setup Project.aiproj/*
+
