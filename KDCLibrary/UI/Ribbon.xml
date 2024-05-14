@@ -3,48 +3,45 @@
   <ribbon>
     <tabs>
       <tab id="tab1" label="KD Calendar">
-        <group id="group4" label=" ">
-          <splitButton id="splitButton3" size="large">
-            <button id="splitButton3__btn" enabled="false" label="Help" showImage="true" getImage="GetImage" />
-            <menu id="splitButton3__mnu">
-              <button id="button1" onAction="button1_Click" label="Credits" />
+        <group id="group1" label=" ">
+          <splitButton id="splitButton1" size="large">
+            <button id="splitButton1__btn" enabled="false" label="Help" showImage="true" getImage="OnGetImage" />
+            <menu id="splitButton1__mnu">
+              <button id="button1" onAction="OnButtonAction_Click" label="Credits" showImage="true" getImage="OnGetImage" />
             </menu>
           </splitButton>
+          <button id="button6" supertip="Open the settings dialog to configure the calendar settings." label="Settings" onAction="OnButtonAction_Click" showImage="true" getImage="OnGetImage" size="large" />
+          <button id="button2" supertip="Update all date entries in the document to reflect changes made in calendar settings or formats." label="Update Dates" onAction="OnButtonAction_Click" showImage="true" getImage="OnGetImage" size="large" getVisible="OnGetVisible" />
         </group>
-        <group id="group2" label="Choose Dialect">
+        <!--<group id="group2" label="Settings">
           <separator id="separator9" visible="false"/>
-          <dropDown id="dropDown1" getSelectedItemIndex="getSelectedDialectIndex" getItemCount="getDialectCount" getItemLabel="getDialectLabel" onAction="onDropDownAction" label="dropDown1" showLabel="false" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
-          <checkBox id="checkBox7" onAction="checkBox7_Click" label="Add suffix" getPressed="restoreisAddSuffixState"/>
+          <dropDown id="dropDown1" label="Dialect"  onAction="OnDropDownAction" supertip="Choose a dialect" getSelectedItemIndex="OnGetSelectedItemIndex" getItemCount="OnGetItemCount" getItemLabel="OnGetItemLabel" showLabel="true" showImage="false" sizeString="wwwwwwwwwwwww" showItemImage="false"  />
+          <checkBox id="checkBox1" onAction="OnCheckAction_Click" label="Add suffix" getPressed="OnGetPressed" supertip="Enable this to append a suffix to the calendar name" />
+          <checkBox id="checkBox2" onAction="OnCheckAction_Click" label="EAUDOLD" getPressed="OnGetPressed" supertip="Enable auto update dates on load document: Automatically update the dates in the document upon loading if this is enabled." getVisible="OnGetVisible" />
           <separator id="separator10" visible="false"/>
-        </group>
-        <group id="group3" label="Converter">
+        </group>-->
+        <group id="group3" label="Converter (Selected Date)">
           <separator id="separator8" visible="false"/>
-          <dropDown id="dropDown2" getSelectedItemIndex="getSelectedCalendarIndex" getItemCount="getCalendarCount" getItemLabel="getCalendarLabel" onAction="onDropDownAction" label="Calendar" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
-          <dropDown id="dropDown3" getSelectedItemIndex="getSelectedFromFormatIndex" getItemCount="getFromFormatCount" getItemLabel="getFromFormatLabel" onAction="onDropDownAction" label="from" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
-          <dropDown id="dropDown4" getSelectedItemIndex="getSelectedToFormatIndex" getItemCount="getToFormatCount" getItemLabel="getToFormatLabel" onAction="onDropDownAction" label="to" showImage="false" sizeString="MY_MAX_LENGTH_STRING" showItemImage="false" />
+          <dropDown id="dropDown2" label="Calendar" supertip="Select the type of calendar system (e.g., Gregorian, Hijri, Umm Al-Qura)" onAction="OnDropDownAction" getSelectedItemIndex="OnGetSelectedItemIndex" getItemCount="OnGetItemCount" getItemLabel="OnGetItemLabel"  showImage="false" sizeString="wwwwwwwwwwwwww" showItemImage="false" />
+          <dropDown id="dropDown3" label="Format" supertip="Select the original format for conversion" onAction="OnDropDownAction" getSelectedItemIndex="OnGetSelectedItemIndex" getItemCount="OnGetItemCount" getItemLabel="OnGetItemLabel" showImage="false" sizeString="wwwwwwwwwwwwww" showItemImage="false" />
+          <labelControl id="label1" getLabel="OnGetLabel" />
           <separator id="separator1" visible="false" />
           <separator id="separator2" />
-          <splitButton id="splitButton2" size="large">
-            <button id="splitButton2__btn" label="Convert" onAction="splitButton2_Click" showImage="true" getImage="GetImage" />
-            <menu id="splitButton2__mnu">
-              <toggleButton id="toggleButton1" onAction="toggleButton1_Click" label="Reverse" getPressed="restoreIsReverseState" />
-            </menu>
-          </splitButton>
+          <separator id="separator16" visible="false" />
+          <toggleButton id="checkBox4" onAction="OnCheckAction_Click" label="  Switch" getPressed="OnGetPressed" showImage="true" getImage="OnGetImage" />
+          <dropDown id="dropDown4" label="Format" supertip="Select the target format for conversion" onAction="OnDropDownAction" getSelectedItemIndex="OnGetSelectedItemIndex" getItemCount="OnGetItemCount" getItemLabel="OnGetItemLabel" showImage="false" sizeString="wwwwwwwwwwwwww" showItemImage="false" />
+          <labelControl id="label2" getLabel="OnGetLabel" />
+          <separator id="separator15" visible="false" />
+          <button id="button5" label="Convert" supertip="Convert the selected date to the Kurdish calendar date or vice versa" onAction="OnButtonAction_Click" showImage="true" getImage="OnGetImage" size="large" />
         </group>
-        <group id="group5" label="Insert date">
+        <group id="group4" label="Insert date">
           <separator id="separator4" visible="false"/>
-          <splitButton id="splitButton1" size="large">
-            <button id="splitButton1__btn" label="Select" onAction="splitButton1_Click" showImage="true" getImage="GetImage" />
-            <menu id="splitButton1__mnu" >
-              <checkBox id="checkBox1" onAction="onCheckBoxAction" label="dddd, dd MMMM, yyyy" getPressed="getCheckBoxPressed" />
-              <checkBox id="checkBox2" onAction="onCheckBoxAction" label="dddd, dd/MM/yyyy" getPressed="getCheckBoxPressed" />
-              <checkBox id="checkBox3" onAction="onCheckBoxAction" label="dd MMMM, yyyy" getPressed="getCheckBoxPressed" />
-              <checkBox id="checkBox4" onAction="onCheckBoxAction" label="dd/MM/yyyy" getPressed="getCheckBoxPressed" />
-              <checkBox id="checkBox5" onAction="onCheckBoxAction" label="MM/dd/yyyy" getPressed="getCheckBoxPressed" />
-              <checkBox id="checkBox6" onAction="onCheckBoxAction" label="yyyy/MM/dd" getPressed="getCheckBoxPressed" />
-            </menu>
-          </splitButton>
-          <separator id="separator7" visible="false"/>
+          <checkBox id="checkBox3" label="Update automatically" supertip="Automatically update the date field whenever the document is opened or refreshed." onAction="OnCheckAction_Click" getPressed="OnGetPressed" getVisible="OnGetVisible" />
+          <dropDown id="dropDown5" label="Format" supertip="Select a date format to use when inserting dates into your document." getSelectedItemIndex="OnGetSelectedItemIndex" getItemCount="OnGetItemCount" getItemLabel="OnGetItemLabel" onAction="OnDropDownAction"  showImage="false" sizeString="wwwwwwwwwwwwww" showItemImage="false" />
+          <separator id="separator11" visible="false"/>
+          <button id="button3" label="Today" supertip="Insert today's date into the selected field." onAction="OnButtonAction_Click" showImage="true" getImage="OnGetImage" size="large" />
+          <separator id="separator14" />
+          <button id="button4" label="Choose" supertip="Open a date picker to select and insert a specific date." onAction="OnButtonAction_Click" showImage="true" getImage="OnGetImage" size="large" />
         </group>
       </tab>
     </tabs>

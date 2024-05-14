@@ -2,99 +2,116 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Windows.Forms;
-using KDCLibrary;
 using KDCLibrary.Calendars;
+using KDCLibrary.CustomControls;
 using KDCLibrary.Helpers;
+using KDCLibrary.UI;
 using Microsoft.Office.Core;
-using Newtonsoft.Json;
+using Microsoft.Office.Interop.Outlook;
+using Microsoft.Office.Interop.PowerPoint;
+using Microsoft.Office.Interop.Word;
+using Bookmark = Microsoft.Office.Interop.Word.Bookmark;
+using Document = Microsoft.Office.Interop.Word.Document;
 using Excel = Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
+using MSProject = Microsoft.Office.Interop.MSProject;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
-using Project = Microsoft.Office.Interop.MSProject;
 using Visio = Microsoft.Office.Interop.Visio;
 using Word = Microsoft.Office.Interop.Word;
-
-// TODO:  Follow these steps to enable the Ribbon (XML) item:
-
-// 1: Copy the following code block into the ThisAddin, ThisWorkbook, or ThisDocument class.
-
-//  protected override Microsoft.Office.Core.IRibbonExtensibility CreateRibbonExtensibilityObject()
-//  {
-//      return new Ribbon();
-//  }
-
-// 2. Create callback methods in the "Ribbon Callbacks" region of this class to handle user
-//    actions, such as clicking a button. Note: if you have exported this Ribbon from the Ribbon designer,
-//    move your code from the event handlers to the callback methods and modify the code to work with the
-//    Ribbon extensibility (RibbonX) programming model.
-
-// 3. Assign attributes to the control tags in the Ribbon XML file to identify the appropriate callback methods in your code.
-
-// For more information, see the Ribbon XML documentation in the Visual Studio Tools for Office Help.
-
+using Workbook = Microsoft.Office.Interop.Excel.Workbook;
 
 namespace KDCLibrary
 {
     [ComVisible(true)]
     public class Ribbon : IRibbonExtensibility
     {
-        private Office.IRibbonUI ribbon;
-        private const string IsReverseKeyName = KDCConstants.KeyNames.IsReverse;
-        private const string SelectedDialectKeyName = KDCConstants.KeyNames.SelectedDialect;
-        private const string SelectedFormat1KeyName = KDCConstants.KeyNames.SelectedFormat1;
-        private const string SelectedFormat2KeyName = KDCConstants.KeyNames.SelectedFormat2;
-        private const string LastSelectionGroup1KeyName = KDCConstants.KeyNames.LastSelectionGroup1;
-        private const string LastSelectionGroup2KeyName = KDCConstants.KeyNames.LastSelectionGroup2;
-        private const string CheckBoxStatesKeyName = KDCConstants.KeyNames.CheckBoxStates;
-        private const string isAddSuffixKeyName = KDCConstants.KeyNames.IsAddSuffix;
+        #region Intializers
 
-        private readonly List<string> _dialectsList = KDCConstants.DefaultValues.Dialects;
-        private readonly List<string> _formatsList = KDCConstants.DefaultValues.Formats;
-        private readonly List<string> _calendarGroup1List = KDCConstants
-            .DefaultValues
-            .CalendarGroup1;
-        private readonly List<string> _calendarGroup2List = KDCConstants
-            .DefaultValues
-            .CalendarGroup2;
+        public static IRibbonUI ribbon;
+        private const string IsReverseKeyName = "IsReverse";
+        public const string SelectedDialectKeyName = "SelectedDialect";
+        private const string SelectedFormat1KeyName = "SelectedFormat1";
+        private const string SelectedFormat2KeyName = "SelectedFormat2";
+        private const string LastSelectionGroup1KeyName = "LastSelectionGroup1";
+        private const string LastSelectionGroup2KeyName = "LastSelectionGroup2";
+        public const string isAddSuffixKeyName = "IsAddSuffix";
+        private const string isAutoUpdateKeyName = "IsAutoUpdate";
+        private const string InsertFormatKeyName = "insertFormat";
+        public const string isAutoUpdateOnLoadDocKeyName = "IsAutoUpdateOnLoadDoc";
+        public const string ThemeColorKeyName = "ThemeMode";
 
-        private string _selectedDialect { get; set; }
-        private string _selectedCalendar { get; set; }
-        private string _selectedFromFormat { get; set; }
-        private string _selectedToFormat { get; set; }
-        private bool _isReverse { get; set; }
-        private bool _isAddSuffix { get; set; }
-        private string _selectedInsertFormat { get; set; }
-
-        private readonly Outlook.Application _outlookApp = null;
-        private readonly Word.Application _wordApp = null;
-        private readonly Excel.Application _excelApp = null;
-        private readonly PowerPoint.Application _powerPointApp = null;
-        private readonly Visio.Application _visioApp = null;
-        private readonly Project.Application _projectApp = null;
-        private readonly IRibbonControl _control = null;
-
-        public Ribbon(
-            Outlook.Application outlookApp,
-            Word.Application wordApp,
-            Excel.Application excelApp,
-            PowerPoint.Application powerPointApp,
-            Visio.Application visioApp,
-            Project.Application projectApp
-        )
+        public static readonly List<string> _dialectsList = new List<string>
         {
-            _outlookApp = outlookApp;
-            _wordApp = wordApp;
-            _excelApp = excelApp;
-            _powerPointApp = powerPointApp;
-            _visioApp = visioApp;
-            _projectApp = projectApp;
-        }
+            "Kurdish (Central)",
+            "Kurdish (Northern)"
+        };
+
+        public static readonly List<string> _themesList = new List<string> { "Light", "Dark" };
+
+        private readonly List<string> _formatsList = new List<string>
+        {
+            "dddd, dd MMMM, yyyy",
+            "dddd, dd/MM/yyyy",
+            "dd MMMM, yyyy",
+            "MMMM dd, yyyy",
+            "dd/MM/yyyy",
+            "MM/dd/yyyy",
+            "yyyy/MM/dd",
+            "MMMM yyyy",
+            "MM/yyyy",
+            "MMMM",
+            "yyyy"
+        };
+        private readonly List<string> _calendarGroup1List = new List<string>
+        {
+            "Gregorian",
+            "Hijri",
+            "Umm al-Qura"
+        };
+        private readonly List<string> _calendarGroup2List = new List<string>
+        {
+            "Gregorian (English)",
+            "Gregorian (Arabic)",
+            "Gregorian (Kurdish Central)",
+            "Gregorian (Kurdish Northern)",
+            "Hijri (English)",
+            "Hijri (Arabic)",
+            "Hijri (Kurdish Central)",
+            "Hijri (Kurdish Northern)",
+            "Umm al-Qura (English)",
+            "Umm al-Qura (Arabic)",
+            "Umm al-Qura (Kurdish Central)",
+            "Umm al-Qura (Kurdish Northern)",
+            "Kurdish (Central)",
+            "Kurdish (Northern)"
+        };
+
+        public static string AppName { set; get; }
+
+        public static string SelectedDialect { get; set; }
+        private string SelectedCalendar { get; set; }
+        private string SelectedFromFormat { get; set; }
+        private string SelectedToFormat { get; set; }
+        private bool IsReverse { get; set; } = false;
+        public static bool IsAddSuffix { get; set; } = false;
+        private bool IsAutoUpdate { get; set; } = false;
+        private string SelectedInsertFormat { get; set; }
+        public static bool IsAutoUpdateOnLoadDoc { get; set; }
+        public static string SelectedTheme { get; set; }
+
+        public Outlook.Application OutlookApp { get; set; }
+        public Word.Application WordApp { get; set; }
+        public Excel.Application ExcelApp { get; set; }
+        public PowerPoint.Application PowerPointApp { get; set; }
+        public static MSProject.Application ProjectApp { get; set; }
+        public static Visio.Application VisioApp { get; set; }
+
+        #endregion
+
+        public Ribbon() { }
 
         #region IRibbonExtensibility Members
 
@@ -106,268 +123,1054 @@ namespace KDCLibrary
         #endregion
 
         #region Ribbon Callbacks
-        //Create callback methods here. For more information about adding callback methods, visit https://go.microsoft.com/fwlink/?LinkID=271226
 
         public void Ribbon_Load(IRibbonUI ribbonUI)
         {
-            this.ribbon = ribbonUI;
+            ribbon = ribbonUI;
 
-            // Restore the _isReverse state from the registry when the ribbon loads
-            this._isReverse = Convert.ToBoolean(
-                RegistryHelper.LoadSetting(IsReverseKeyName, "false")
+            IsReverse = Convert.ToBoolean(
+                new RegistryHelper().LoadSetting(IsReverseKeyName, "false", AppName)
             );
-            string savedCalendarKeyName = _isReverse
-                ? LastSelectionGroup2KeyName
-                : LastSelectionGroup1KeyName;
-            this._selectedCalendar = RegistryHelper.LoadSetting(
-                savedCalendarKeyName,
-                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0]
+            SelectedCalendar = new RegistryHelper().LoadSetting(
+                IsReverse ? LastSelectionGroup2KeyName : LastSelectionGroup1KeyName,
+                IsReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
+                AppName
             );
-            this._selectedDialect = RegistryHelper.LoadSetting(
+            SelectedDialect = new RegistryHelper().LoadSetting(
                 SelectedDialectKeyName,
-                _dialectsList[0]
+                _dialectsList[0],
+                AppName
             );
-            this._selectedFromFormat = RegistryHelper.LoadSetting(
+            SelectedFromFormat = new RegistryHelper().LoadSetting(
                 SelectedFormat1KeyName,
-                _formatsList[0]
+                _formatsList[0],
+                AppName
             );
-            this._selectedToFormat = RegistryHelper.LoadSetting(
+            SelectedToFormat = new RegistryHelper().LoadSetting(
                 SelectedFormat2KeyName,
-                _formatsList[0]
+                _formatsList[0],
+                AppName
             );
-            this._isAddSuffix = Convert.ToBoolean(
-                RegistryHelper.LoadSetting(isAddSuffixKeyName, "false")
+            IsAddSuffix = Convert.ToBoolean(
+                new RegistryHelper().LoadSetting(isAddSuffixKeyName, "false", AppName)
             );
-            this._selectedInsertFormat = getSelectedCheckBox();
+            IsAutoUpdate = Convert.ToBoolean(
+                new RegistryHelper().LoadSetting(isAutoUpdateKeyName, "false", AppName)
+            );
+            IsAutoUpdateOnLoadDoc = Convert.ToBoolean(
+                new RegistryHelper().LoadSetting(isAutoUpdateOnLoadDocKeyName, "false", AppName)
+            );
+            SelectedInsertFormat = new RegistryHelper().LoadSetting(
+                InsertFormatKeyName,
+                _formatsList[0],
+                AppName
+            );
 
-            // Invalidate the controls that depend on the _isReverse state, if necessary
-            // This ensures that UI elements reflect the correct state from the beginning
-            ribbon.InvalidateControl("toggleButton1");
-            ribbon.InvalidateControl("dropDown2");
+            SelectedTheme = new RegistryHelper().LoadSetting(ThemeColorKeyName, "Dark", AppName);
+
+            ribbon.Invalidate();
         }
 
-        public bool getCheckBoxPressed(Office.IRibbonControl control)
+        #region Callbacks for Ribbon Controls
+
+        public bool OnGetVisible(IRibbonControl control)
         {
-            // Load the saved states
-            var states = LoadCheckBoxStates();
-
-            // Return the state for the specified control
-            return states.TryGetValue(control.Id, out bool isPressed) && isPressed;
-        }
-
-        private void SaveCheckBoxStates(Dictionary<string, bool> states)
-        {
-            RegistryHelper.SaveSetting(CheckBoxStatesKeyName, JsonConvert.SerializeObject(states));
-        }
-
-        private Dictionary<string, bool> LoadCheckBoxStates()
-        {
-            var serializedState = RegistryHelper.LoadSetting(CheckBoxStatesKeyName, "{}");
-            Debug.WriteLine($"Loaded serialized state: {serializedState}");
-
-            try
-            {
-                var states = JsonConvert.DeserializeObject<Dictionary<string, bool>>(
-                    serializedState
-                );
-                // If the dictionary is empty, default to first checkbox checked
-                if (states == null || !states.Any())
-                {
-                    return new Dictionary<string, bool> { { "checkBox1", true } };
-                }
-                return states;
-            }
-            catch (Newtonsoft.Json.JsonReaderException ex)
-            {
-                Debug.WriteLine($"JSON parsing error: {ex.Message}");
-                // If parsing fails, default to first checkbox checked
-                return new Dictionary<string, bool> { { "checkBox1", true } };
-            }
-        }
-
-        public void onToggleButtonAction(Office.IRibbonControl control, bool isPressed)
-        {
-            if (control.Id == "toggleButton1")
-            {
-                RegistryHelper.SaveSetting(IsReverseKeyName, isPressed.ToString());
-                // Invalidate dropdown2 to refresh its items based on the new IsReverse state
-                ribbon.InvalidateControl("dropDown2");
-            }
-        }
-
-        public void onDropDownAction(
-            Office.IRibbonControl control,
-            string selectedId,
-            int selectedIndex
-        )
-        {
-            Debug.WriteLine("Selected DropDown Index: " + selectedIndex);
-
             switch (control.Id)
             {
-                case "dropDown1":
-                    this._selectedDialect = _dialectsList[selectedIndex];
-                    RegistryHelper.SaveSetting(
-                        SelectedDialectKeyName,
-                        _dialectsList[selectedIndex]
-                    );
-                    break;
+                case "button2":
+                case "checkBox2":
+                case "checkBox3":
+                    if (ProjectApp != null || VisioApp != null)
+                        return false;
 
-                case "dropDown2":
-                    this._selectedCalendar = _isReverse
-                        ? _calendarGroup2List[selectedIndex]
-                        : _calendarGroup1List[selectedIndex];
-                    var keyName = _isReverse
-                        ? LastSelectionGroup2KeyName
-                        : LastSelectionGroup1KeyName;
-                    RegistryHelper.SaveSetting(keyName, _selectedCalendar);
-                    break;
+                    return true;
 
-                case "dropDown3":
-                    this._selectedFromFormat = _formatsList[selectedIndex];
-                    RegistryHelper.SaveSetting(SelectedFormat1KeyName, _selectedFromFormat);
-                    break;
-
-                case "dropDown4":
-                    this._selectedToFormat = _formatsList[selectedIndex];
-                    RegistryHelper.SaveSetting(SelectedFormat2KeyName, _selectedToFormat);
-                    break;
+                default:
+                    return true;
             }
         }
 
-        public void onCheckBoxAction(Office.IRibbonControl control, bool isPressed)
+        public string OnGetLabel(IRibbonControl control)
         {
-            // Load the current states of checkboxes
-            var states = LoadCheckBoxStates();
-
-            // Count how many checkboxes are currently checked
-            int checkedCount = states.Count(kvp => kvp.Value);
-
-            if (isPressed)
+            switch (control.Id)
             {
-                // If the checkbox is being checked, ensure all others are unchecked
-                foreach (var key in states.Keys.ToList())
-                {
-                    states[key] = false;
-                }
-                // Check the current checkbox
-                states[control.Id] = true;
+                case "label1":
+                    return IsReverse
+                        ? "                        to Target"
+                        : "                      from Source";
+                case "label2":
+                    return IsReverse
+                        ? "                    from Source (Kurdish)"
+                        : "                      to Target (Kurdish)";
+                //case "dropDown3":
+                //    return IsReverse ? "to" : "from";
+                //case "dropDown4":
+                //    return IsReverse ? "from" : "to";
+                default:
+                    return "";
             }
-            else if (!isPressed && checkedCount <= 1)
-            {
-                // If the checkbox is being unchecked but it's the only one checked, prevent this action
-                // Essentially, do nothing to keep the current checkbox checked
-                // This block can be empty or display a message if desired
-            }
-            else
-            {
-                // If unchecking and other checkboxes are checked, allow unchecking
-                states[control.Id] = false;
-            }
-
-            // Save the updated states
-            SaveCheckBoxStates(states);
-
-            this._selectedInsertFormat = getSelectedCheckBox();
-            // Invalidate all checkboxes to update their states in the UI
-            ribbon.Invalidate(); // This will refresh the whole ribbon, alternatively, you could invalidate each control individually
-            populateInsertDate();
         }
 
-        public string getSelectedCheckBox()
-        {
-            // Load the current states of checkboxes
-            var checkBoxStates = LoadCheckBoxStates();
-
-            if (checkBoxStates.Count == 0 || !checkBoxStates.Values.Any(v => v))
-            {
-                // If no checkboxes are checked or if the states dictionary is empty, default to the first checkbox being selected
-                // Optionally, you could ensure that the first checkbox's state is set to true in checkBoxStates here
-                return _formatsList[0];
-            }
-
-            foreach (var checkBoxState in checkBoxStates)
-            {
-                if (checkBoxState.Value) // If the checkbox is selected
-                {
-                    // Extract the numeric part of the checkBox ID and use it to index into _formats
-                    if (
-                        int.TryParse(checkBoxState.Key.Replace("checkBox", ""), out int index)
-                        && index <= _formatsList.Count
-                    )
-                    {
-                        // Adjust for zero-based indexing if necessary
-                        int adjustedIndex = index - 1; // Assuming checkBox1 corresponds to _formats[0]
-
-                        if (adjustedIndex >= 0 && adjustedIndex < _formatsList.Count)
-                        {
-                            return _formatsList[adjustedIndex];
-                        }
-                    }
-                }
-            }
-
-            // Return null or an empty string if no checkbox is selected
-            // This line should never be reached with the new logic added above, but is kept for safety
-            return null;
-        }
-
-        public bool restoreisAddSuffixState(Office.IRibbonControl control)
-        {
-            this._isAddSuffix = Convert.ToBoolean(
-                RegistryHelper.LoadSetting(isAddSuffixKeyName, "false")
-            );
-            return _isAddSuffix;
-        }
-
-        public bool restoreIsReverseState(Office.IRibbonControl control)
-        {
-            this._isReverse = Convert.ToBoolean(
-                RegistryHelper.LoadSetting(IsReverseKeyName, "false")
-            );
-            return _isReverse;
-        }
-
-        public Bitmap GetImage(IRibbonControl control)
+        public Bitmap OnGetImage(IRibbonControl control)
         {
             switch (control.Id)
             {
                 case "splitButton1__btn":
-                    return KDCLibrary.Properties.Resources.calendar;
-                case "splitButton3__btn":
-                    return KDCLibrary.Properties.Resources.help;
-                case "splitButton2__btn":
-                    return KDCLibrary.Properties.Resources.convert;
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Help_Black
+                        : Properties.Resources.Help_White;
+                case "button5":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Convert_Black
+                        : Properties.Resources.Convert_White;
+                case "button3":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Insert_Black
+                        : Properties.Resources.Insert_White;
+                case "button2":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Update_Black
+                        : Properties.Resources.Update_White;
+                case "button4":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Choose_Black
+                        : Properties.Resources.Choose_White;
+                case "checkBox4":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Reverse_Black
+                        : Properties.Resources.Reverse_White;
+                case "button6":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Settings_Black
+                        : Properties.Resources.Settings_White;
+                case "button1":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Credits_Black
+                        : Properties.Resources.Credits_White;
                 default:
                     return null;
             }
         }
 
-        public string GetCheckBoxLabelById(string CheckBoxId)
+        public bool OnGetPressed(IRibbonControl control)
         {
-            Debug.WriteLine(CheckBoxId);
-            switch (CheckBoxId)
+            Debug.WriteLine("Check pressed: " + control.Id);
+            switch (control.Id)
             {
-                case "checkBox1":
-                    return _formatsList[0];
-                case "checkBox2":
-                    return _formatsList[1];
-                case "checkBox3":
-                    return _formatsList[2];
                 case "checkBox4":
-                    return _formatsList[3];
-                case "checkBox15":
-                    return _formatsList[4];
-                case "checkBox6":
-                    return _formatsList[5];
+                    this.IsReverse = Convert.ToBoolean(
+                        new RegistryHelper().LoadSetting(IsReverseKeyName, "false", AppName)
+                    );
+                    return IsReverse;
+                case "checkBox1":
+                    IsAddSuffix = Convert.ToBoolean(
+                        new RegistryHelper().LoadSetting(isAddSuffixKeyName, "false", AppName)
+                    );
+                    return IsAddSuffix;
+                case "checkBox2":
+                    IsAutoUpdateOnLoadDoc = Convert.ToBoolean(
+                        new RegistryHelper().LoadSetting(
+                            isAutoUpdateOnLoadDocKeyName,
+                            "false",
+                            AppName
+                        )
+                    );
+                    return IsAutoUpdateOnLoadDoc;
+                case "checkBox3":
+                    this.IsAutoUpdate = Convert.ToBoolean(
+                        new RegistryHelper().LoadSetting(isAutoUpdateKeyName, "false", AppName)
+                    );
+                    return IsAutoUpdate;
                 default:
-                    return "Unknown";
+                    return false;
             }
         }
 
-        private void populateInsertDate()
+        public void OnCheckAction_Click(IRibbonControl control, bool isPressed)
         {
-            if (_selectedInsertFormat == null)
+            switch (control.Id)
+            {
+                //case "checkBox1":
+                //    IsAddSuffix = isPressed;
+                //    new RegistryHelper().SaveSetting(
+                //        isAddSuffixKeyName,
+                //        isPressed.ToString(),
+                //        AppName
+                //    );
+                //    break;
+                //case "checkBox2":
+                //    IsAutoUpdateOnLoadDoc = isPressed;
+                //    new RegistryHelper().SaveSetting(
+                //        isAutoUpdateOnLoadDocKeyName,
+                //        isPressed.ToString(),
+                //        AppName
+                //    );
+                //    break;
+                case "checkBox3":
+                    this.IsAutoUpdate = isPressed;
+                    new RegistryHelper().SaveSetting(
+                        isAutoUpdateKeyName,
+                        isPressed.ToString(),
+                        AppName
+                    );
+                    break;
+                case "checkBox4": // Reverse the conversion direction
+                    this.IsReverse = isPressed;
+                    new RegistryHelper().SaveSetting(
+                        IsReverseKeyName,
+                        IsReverse.ToString(),
+                        AppName
+                    );
+
+                    // Exchange label of dropdown3 with dropdown4 and vice versa
+
+                    //(SelectedToFormat, SelectedFromFormat) = (SelectedFromFormat, SelectedToFormat);
+
+                    new RegistryHelper().SaveSetting(
+                        SelectedFormat1KeyName,
+                        SelectedFromFormat,
+                        AppName
+                    );
+                    new RegistryHelper().SaveSetting(
+                        SelectedFormat2KeyName,
+                        SelectedToFormat,
+                        AppName
+                    );
+
+                    //this.ribbon.InvalidateControl("dropDown3");
+                    //this.ribbon.InvalidateControl("dropDown4");
+                    ribbon.InvalidateControl("dropDown2");
+                    ribbon.InvalidateControl("label1");
+                    ribbon.InvalidateControl("label2");
+                    break;
+            }
+        }
+
+        public void OnDropDownAction(IRibbonControl control, string selectedId, int selectedIndex)
+        {
+            switch (control.Id)
+            {
+                //case "dropDown1":
+                //    SelectedDialect = _dialectsList[selectedIndex];
+                //    new RegistryHelper().SaveSetting(
+                //        SelectedDialectKeyName,
+                //        _dialectsList[selectedIndex],
+                //        AppName
+                //    );
+                //    break;
+
+                case "dropDown2":
+                    this.SelectedCalendar = IsReverse
+                        ? _calendarGroup2List[selectedIndex]
+                        : _calendarGroup1List[selectedIndex];
+                    var keyName = IsReverse
+                        ? LastSelectionGroup2KeyName
+                        : LastSelectionGroup1KeyName;
+                    new RegistryHelper().SaveSetting(keyName, SelectedCalendar, AppName);
+                    break;
+
+                case "dropDown3":
+                    this.SelectedFromFormat = _formatsList[selectedIndex];
+                    new RegistryHelper().SaveSetting(
+                        SelectedFormat1KeyName,
+                        SelectedFromFormat,
+                        AppName
+                    );
+                    break;
+
+                case "dropDown4":
+                    this.SelectedToFormat = _formatsList[selectedIndex];
+                    new RegistryHelper().SaveSetting(
+                        SelectedFormat2KeyName,
+                        SelectedToFormat,
+                        AppName
+                    );
+                    break;
+                case "dropDown5":
+                    this.SelectedInsertFormat = _formatsList[selectedIndex];
+                    new RegistryHelper().SaveSetting(
+                        InsertFormatKeyName,
+                        SelectedInsertFormat,
+                        AppName
+                    );
+                    break;
+            }
+        }
+
+        public int OnGetSelectedItemIndex(IRibbonControl control)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    SelectedDialect = new RegistryHelper().LoadSetting(
+                        SelectedDialectKeyName,
+                        _dialectsList[0],
+                        AppName
+                    );
+
+                    return _dialectsList.IndexOf(SelectedDialect);
+                case "dropDown2":
+                    string savedCalendarKeyName = IsReverse
+                        ? LastSelectionGroup2KeyName
+                        : LastSelectionGroup1KeyName;
+                    this.SelectedCalendar = new RegistryHelper().LoadSetting(
+                        savedCalendarKeyName,
+                        IsReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
+                        AppName
+                    );
+                    List<string> selectedList = IsReverse
+                        ? _calendarGroup2List
+                        : _calendarGroup1List;
+                    return selectedList.IndexOf(SelectedCalendar);
+                case "dropDown3":
+                    this.SelectedFromFormat = new RegistryHelper().LoadSetting(
+                        SelectedFormat1KeyName,
+                        _formatsList[0],
+                        AppName
+                    );
+                    return _formatsList.IndexOf(SelectedFromFormat);
+                case "dropDown4":
+                    SelectedToFormat = new RegistryHelper().LoadSetting(
+                        SelectedFormat2KeyName,
+                        _formatsList[0],
+                        AppName
+                    );
+                    return _formatsList.IndexOf(SelectedToFormat);
+                case "dropDown5":
+                    this.SelectedInsertFormat = new RegistryHelper().LoadSetting(
+                        InsertFormatKeyName,
+                        _formatsList[0],
+                        AppName
+                    );
+                    return _formatsList.IndexOf(SelectedInsertFormat);
+                default:
+                    return 0;
+            }
+        }
+
+        public int OnGetItemCount(IRibbonControl control)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    return _dialectsList.Count;
+                case "dropDown2":
+                    return IsReverse ? _calendarGroup2List.Count : _calendarGroup1List.Count;
+                case "dropDown3":
+                case "dropDown4":
+                case "dropDown5":
+                    return _formatsList.Count;
+                default:
+                    return 0;
+            }
+        }
+
+        public string OnGetItemLabel(IRibbonControl control, int index)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    return _dialectsList[index];
+                case "dropDown2":
+                    List<string> selectedList = IsReverse
+                        ? _calendarGroup2List
+                        : _calendarGroup1List;
+                    return selectedList[index];
+                case "dropDown3":
+                case "dropDown4":
+                case "dropDown5":
+                    return _formatsList[index];
+                default:
+                    return "";
+            }
+        }
+
+        public void OnButtonAction_Click(IRibbonControl control)
+        {
+            switch (control.Id)
+            {
+                case "button1": // Open the credits form
+                    new CreditsForm().ShowDialog();
+                    break;
+                case "button2": // Update all dates
+
+                    if (OutlookApp != null)
+                    {
+                        UpdateDatesFromCustomXmlPartsForWordOutlook(
+                            GetWordEditorItem(OutlookApp.ActiveInspector().CurrentItem)
+                        );
+                    }
+
+                    if (WordApp != null)
+                    {
+                        UpdateDatesFromCustomXmlPartsForWordOutlook(WordApp.ActiveDocument);
+                    }
+
+                    if (ExcelApp != null)
+                    {
+                        UpdateDatesFromCustomXmlPartsForExcel(ExcelApp.ActiveWorkbook);
+                    }
+
+                    if (PowerPointApp != null)
+                    {
+                        UpdateDatesFromCustomXmlPartsForPowerPoint(
+                            PowerPointApp.ActivePresentation
+                        );
+                    }
+
+                    // Update dates in MS Project is not supported yet
+                    // Update dates in Visio is not supported yet
+
+                    break;
+                case "button3":
+                    PopulateInsertDate();
+                    break;
+                case "button4": // Open the calendar control form
+                    Form form = new DateForm();
+                    form.FormClosed += (sender, e) =>
+                    {
+                        if (CustomXtraEditorsCalendarControl._isClosedByDoubleClick)
+                        {
+                            DateTime gDate =
+                                CustomXtraEditorsCalendarControl._gregorianSelectedDate;
+
+                            if (gDate == DateTime.MinValue)
+                            {
+                                return;
+                            }
+
+                            if (OutlookApp != null)
+                            {
+                                Document wordEditor = GetWordEditorItem(
+                                    OutlookApp.ActiveInspector().CurrentItem
+                                );
+                                if (wordEditor != null && wordEditor.Application.Selection != null)
+                                {
+                                    wordEditor.Application.Selection.Text =
+                                        new DateConversion().ConvertDateBasedOnUserSelection(
+                                            gDate.ToString("dd/MM/yyyy"),
+                                            false,
+                                            SelectedDialect,
+                                            "dd/MM/yyyy",
+                                            SelectedInsertFormat,
+                                            "Gregorian",
+                                            IsAddSuffix
+                                        );
+                                    wordEditor.Application.Selection.Collapse(
+                                        WdCollapseDirection.wdCollapseEnd
+                                    );
+                                }
+                            }
+
+                            if (WordApp != null)
+                            {
+                                WordApp.Selection.Text =
+                                    new DateConversion().ConvertDateBasedOnUserSelection(
+                                        gDate.ToString("dd/MM/yyyy"),
+                                        false,
+                                        SelectedDialect,
+                                        "dd/MM/yyyy",
+                                        SelectedInsertFormat,
+                                        "Gregorian",
+                                        IsAddSuffix
+                                    );
+                                WordApp.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
+                            }
+
+                            if (ExcelApp != null)
+                            {
+                                // Insert Kurdish Date with the determined formatChoice, dialect, and isAddSuffix
+                                foreach (Excel.Range cell in ExcelApp.Selection.Cells)
+                                {
+                                    cell.Value =
+                                        new DateConversion().ConvertDateBasedOnUserSelection(
+                                            gDate.ToString("dd/MM/yyyy"),
+                                            false,
+                                            SelectedDialect,
+                                            "dd/MM/yyyy",
+                                            SelectedInsertFormat,
+                                            "Gregorian",
+                                            IsAddSuffix
+                                        );
+                                }
+                            }
+
+                            if (PowerPointApp != null)
+                            {
+                                if (PowerPointApp.ActiveWindow.Selection == null)
+                                {
+                                    MessageBox.Show(
+                                        "No selection detected.",
+                                        "Info",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information
+                                    );
+                                    return;
+                                }
+
+                                switch (PowerPointApp.ActiveWindow.Selection.Type)
+                                {
+                                    case PpSelectionType.ppSelectionShapes:
+                                        foreach (
+                                            PowerPoint.Shape shape in PowerPointApp
+                                                .ActiveWindow
+                                                .Selection
+                                                .ShapeRange
+                                        )
+                                        {
+                                            if (shape.HasTextFrame == MsoTriState.msoTrue)
+                                            {
+                                                shape.TextFrame.TextRange.Text =
+                                                    new DateConversion().ConvertDateBasedOnUserSelection(
+                                                        gDate.ToString("dd/MM/yyyy"),
+                                                        false,
+                                                        SelectedDialect,
+                                                        "dd/MM/yyyy",
+                                                        SelectedInsertFormat,
+                                                        "Gregorian",
+                                                        IsAddSuffix
+                                                    );
+                                            }
+                                        }
+                                        break;
+
+                                    case PpSelectionType.ppSelectionText:
+                                        var textRange = PowerPointApp
+                                            .ActiveWindow
+                                            .Selection
+                                            .TextRange;
+                                        PowerPoint.Shape parentShape =
+                                            textRange.Parent as PowerPoint.Shape;
+                                        if (parentShape != null)
+                                        {
+                                            parentShape.TextFrame.TextRange.Text =
+                                                new DateConversion().ConvertDateBasedOnUserSelection(
+                                                    gDate.ToString("dd/MM/yyyy"),
+                                                    false,
+                                                    SelectedDialect,
+                                                    "dd/MM/yyyy",
+                                                    SelectedInsertFormat,
+                                                    "Gregorian",
+                                                    IsAddSuffix
+                                                );
+                                        }
+                                        break;
+
+                                    default:
+                                        MessageBox.Show(
+                                            "Unsupported selection type.",
+                                            "Error",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Error
+                                        );
+                                        break;
+                                }
+                            }
+
+                            if (ProjectApp != null)
+                            {
+                                var selection = ProjectApp.ActiveSelection;
+                                var activeCell = ProjectApp.ActiveCell;
+                                string activeFieldName = activeCell.FieldName; // This is the field related to the user's current selection/interaction.
+
+                                if (selection.Tasks == null || selection.Tasks.Count == 0)
+                                {
+                                    MessageBox.Show(
+                                        "Please select one or more tasks.",
+                                        "No Task Selected",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning
+                                    );
+                                    return;
+                                }
+
+                                // Update only the field corresponding to the active cell across all selected tasks.
+                                foreach (MSProject.Task task in selection.Tasks)
+                                {
+                                    if (task != null)
+                                    {
+                                        SetTaskFieldValue(
+                                            task,
+                                            activeFieldName,
+                                            new DateConversion().ConvertDateBasedOnUserSelection(
+                                                gDate.ToString("dd/MM/yyyy"),
+                                                false,
+                                                SelectedDialect,
+                                                "dd/MM/yyyy",
+                                                SelectedInsertFormat,
+                                                "Gregorian",
+                                                IsAddSuffix
+                                            )
+                                        );
+                                    }
+                                }
+                            }
+
+                            if (VisioApp != null)
+                            {
+                                // Get the active Visio window.
+                                Visio.Window activeWindow = VisioApp.ActiveWindow;
+
+                                // Check if there are selected shapes.
+                                if (activeWindow.Selection.Count > 0)
+                                {
+                                    foreach (Visio.Shape shape in activeWindow.Selection)
+                                    {
+                                        // Insert text into the selected shape(s) with the determined formatChoice, dialect, and isAddSuffix
+                                        shape.Text = gDate.ToString("dd/MM/yyyy");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show(
+                                        "No shapes selected.",
+                                        "Information",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information
+                                    );
+                                }
+                            }
+                        }
+                    };
+                    form.ShowDialog();
+                    break;
+                case "button5": // Convert selected text
+
+                    if (OutlookApp != null)
+                    {
+                        Document wordEditor = GetWordEditorItem(
+                            OutlookApp.ActiveInspector().CurrentItem
+                        );
+                        if (wordEditor != null && wordEditor.Application.Selection != null)
+                        {
+                            wordEditor.Application.Selection.Text =
+                                new DateConversion().ConvertDateBasedOnUserSelection(
+                                    wordEditor.Application.Selection.Text,
+                                    IsReverse,
+                                    SelectedDialect,
+                                    SelectedFromFormat,
+                                    SelectedToFormat,
+                                    SelectedCalendar,
+                                    IsAddSuffix
+                                );
+                        }
+                    }
+
+                    if (WordApp != null)
+                    {
+                        WordApp.Selection.Text =
+                            new DateConversion().ConvertDateBasedOnUserSelection(
+                                WordApp.Selection.Text,
+                                IsReverse,
+                                SelectedDialect,
+                                SelectedFromFormat,
+                                SelectedToFormat,
+                                SelectedCalendar,
+                                IsAddSuffix
+                            );
+                    }
+
+                    if (ExcelApp != null)
+                    {
+                        foreach (Excel.Range cell in ExcelApp.Selection.Cells)
+                        {
+                            Object selectedText = cell.Value;
+
+                            if (selectedText is DateTime dateTime)
+                            {
+                                selectedText = dateTime.ToString("d"); // Short date pattern
+                            }
+                            string dateString = selectedText.ToString();
+
+                            string result = new DateConversion().ConvertDateBasedOnUserSelection(
+                                dateString,
+                                IsReverse,
+                                SelectedDialect,
+                                SelectedFromFormat,
+                                SelectedToFormat,
+                                SelectedCalendar,
+                                IsAddSuffix
+                            );
+
+                            if (result != dateString && !string.IsNullOrEmpty(result))
+                            {
+                                cell.Interior.ColorIndex = Excel.Constants.xlNone; // Reset color if changed
+                                cell.Borders.LineStyle = Excel.XlLineStyle.xlLineStyleNone; // Reset border style
+                                cell.Value = result; // Set new date value
+                            }
+                            else
+                            {
+                                cell.Interior.Color = ColorTranslator.ToOle(Color.Red); // Highlight the cell with red color if conversion failed
+                            }
+                        }
+                    }
+
+                    if (PowerPointApp != null)
+                    {
+                        if (PowerPointApp.ActiveWindow.Selection != null)
+                        {
+                            var selection = PowerPointApp.ActiveWindow.Selection;
+                            switch (selection.Type)
+                            {
+                                case PpSelectionType.ppSelectionShapes:
+                                    // Handle shape selections
+                                    foreach (PowerPoint.Shape shape in selection.ShapeRange)
+                                    {
+                                        if (
+                                            shape.HasTextFrame == MsoTriState.msoTrue
+                                            && shape.TextFrame.HasText == MsoTriState.msoTrue
+                                        )
+                                        {
+                                            // Apply conversion on the shape's text
+                                            shape.TextFrame.TextRange.Text =
+                                                new DateConversion().ConvertDateBasedOnUserSelection(
+                                                    shape.TextFrame.TextRange.Text,
+                                                    IsReverse,
+                                                    SelectedDialect,
+                                                    SelectedFromFormat,
+                                                    SelectedToFormat,
+                                                    SelectedCalendar,
+                                                    IsAddSuffix
+                                                );
+                                        }
+                                    }
+                                    break;
+
+                                case PpSelectionType.ppSelectionText:
+                                    // Directly handle text selections without iterating over ShapeRange
+                                    var textRange = selection.TextRange;
+                                    if (textRange != null && textRange.Length > 0)
+                                    {
+                                        // Apply conversion on the selected text
+                                        textRange.Text =
+                                            new DateConversion().ConvertDateBasedOnUserSelection(
+                                                textRange.Text,
+                                                IsReverse,
+                                                SelectedDialect,
+                                                SelectedFromFormat,
+                                                SelectedToFormat,
+                                                SelectedCalendar,
+                                                IsAddSuffix
+                                            );
+                                    }
+                                    break;
+
+                                default:
+                                    MessageBox.Show(
+                                        "Please select a shape or text.",
+                                        "Selection Not Supported",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning
+                                    );
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                "Nothing is selected.",
+                                "No Selection",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+                    }
+
+                    if (ProjectApp != null)
+                    {
+                        var selection = ProjectApp.ActiveSelection;
+
+                        if (
+                            selection == null
+                            || selection.Tasks == null
+                            || selection.Tasks.Count == 0
+                        )
+                        {
+                            MessageBox.Show(
+                                "Please select one or more tasks.",
+                                "Selection Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                            return;
+                        }
+
+                        var activeCell = ProjectApp.ActiveCell;
+                        string fieldName = activeCell.FieldName;
+
+                        foreach (MSProject.Task task in selection.Tasks)
+                        {
+                            if (task == null)
+                                continue;
+
+                            // Extract the text based on the active field name
+                            string fieldText = GetTaskFieldValue(task, fieldName);
+                            string result = new DateConversion().ConvertDateBasedOnUserSelection(
+                                fieldText,
+                                IsReverse,
+                                SelectedDialect,
+                                SelectedFromFormat,
+                                SelectedToFormat,
+                                SelectedCalendar,
+                                IsAddSuffix
+                            );
+
+                            if (!string.IsNullOrEmpty(result))
+                            {
+                                SetTaskFieldValue(task, fieldName, result);
+                            }
+                        }
+                    }
+
+                    if (VisioApp != null)
+                    {
+                        // Get the active Visio window and its selection
+                        Visio.Selection selection = VisioApp.ActiveWindow.Selection;
+
+                        if (selection.Count == 0)
+                        {
+                            MessageBox.Show(
+                                "No shapes selected.",
+                                "Warning",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning
+                            );
+                            return;
+                        }
+
+                        foreach (Visio.Shape shape in selection)
+                        {
+                            // Check if the shape has text
+                            if (!string.IsNullOrEmpty(shape.Text))
+                            {
+                                string selectedText = shape.Text;
+
+                                string result =
+                                    new DateConversion().ConvertDateBasedOnUserSelection(
+                                        selectedText,
+                                        IsReverse,
+                                        SelectedDialect,
+                                        SelectedFromFormat,
+                                        SelectedToFormat,
+                                        SelectedCalendar,
+                                        IsAddSuffix
+                                    );
+
+                                Debug.WriteLine(result);
+
+                                shape.Text = result;
+                            }
+                        }
+                    }
+
+                    break;
+                case "button6":
+                    new Settings().ShowDialog();
+                    break;
+            }
+        }
+
+        #endregion
+
+        #region Helper Methods
+
+        private string GetTaskFieldValue(MSProject.Task task, string fieldName)
+        {
+            // Ideally, extend this to cover more fields as per your requirement
+            switch (fieldName)
+            {
+                case "Name":
+                    return task.Name;
+                case "Notes":
+                    return task.Notes;
+                //case "Resource Names":         // This field is remove all spaces causes parse error
+                //    return task.ResourceNames;
+                case "Text1":
+                    return task.Text1;
+                case "Text2":
+                    return task.Text2;
+                case "Text3":
+                    return task.Text3;
+                case "Text4":
+                    return task.Text4;
+                case "Text5":
+                    return task.Text5;
+                case "Text6":
+                    return task.Text6;
+                case "Text7":
+                    return task.Text7;
+                case "Text8":
+                    return task.Text8;
+                case "Text9":
+                    return task.Text9;
+                case "Text10":
+                    return task.Text10;
+                case "Text11":
+                    return task.Text11;
+                case "Text12":
+                    return task.Text12;
+                default:
+                    return "";
+            }
+        }
+
+        private void SetTaskFieldValue(MSProject.Task task, string fieldName, string value)
+        {
+            // Similarly, extend this method to handle other fields
+            switch (fieldName)
+            {
+                case "Name":
+                    task.Name = value;
+                    break;
+                case "Notes":
+                    task.Notes = value;
+                    break;
+                case "Resource Names":
+                    task.ResourceNames = value;
+                    break;
+                case "Text1":
+                    task.Text1 = value;
+                    break;
+                case "Text2":
+                    task.Text2 = value;
+                    break;
+                case "Text3":
+                    task.Text3 = value;
+                    break;
+                case "Text4":
+                    task.Text4 = value;
+                    break;
+                case "Text5":
+                    task.Text5 = value;
+                    break;
+                case "Text6":
+                    task.Text6 = value;
+                    break;
+                case "Text7":
+                    task.Text7 = value;
+                    break;
+                case "Text8":
+                    task.Text8 = value;
+                    break;
+                case "Text9":
+                    task.Text9 = value;
+                    break;
+                case "Text10":
+                    task.Text10 = value;
+                    break;
+                case "Text11":
+                    task.Text11 = value;
+                    break;
+                case "Text12":
+                    task.Text12 = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CleanOrphanBookmarksOutlook(object outlookItem)
+        {
+            if (outlookItem == null)
+            {
+                MessageBox.Show(
+                    "No Mail Item provided.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            Document wordEditor = GetWordEditorItem(outlookItem);
+            if (wordEditor == null)
+            {
+                MessageBox.Show(
+                    $"This {outlookItem} does not support Word editing.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            CleanOrphanBookmarksWord(wordEditor);
+        }
+
+        private void CleanOrphanBookmarksWord(Document wordEditor)
+        {
+            List<string> bookmarksToRemove = new List<string>();
+
+            foreach (Bookmark mark in wordEditor.Bookmarks)
+            {
+                if (mark.Name.StartsWith("KDate"))
+                {
+                    // Check if the bookmark's content is valid
+                    if (IsBookmarkOrphan(mark))
+                    {
+                        bookmarksToRemove.Add(mark.Name);
+                    }
+                }
+            }
+
+            // Remove identified orphan bookmarks
+            foreach (string bookmarkName in bookmarksToRemove)
+            {
+                wordEditor.Bookmarks[bookmarkName].Delete();
+            }
+        }
+
+        private bool IsBookmarkOrphan(Bookmark bookmark)
+        {
+            string content = bookmark.Range.Text;
+            if (string.IsNullOrWhiteSpace(content)) // Assuming dates have '/' character
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void CleanOrphanNamedExcelRanges(Workbook workbook)
+        {
+            List<Excel.Name> namesToRemove = new List<Excel.Name>();
+
+            foreach (Excel.Name name in workbook.Names)
+            {
+                if (name.Name.StartsWith("KDate") && IsNamedRangeOrphan(name))
+                {
+                    namesToRemove.Add(name);
+                }
+            }
+
+            // Remove identified orphan named ranges
+            foreach (Excel.Name name in namesToRemove)
+            {
+                name.Delete();
+            }
+        }
+
+        private bool IsNamedRangeOrphan(Excel.Name namedRange)
+        {
+            try
+            {
+                Excel.Range range = namedRange.RefersToRange;
+                // Assuming 'orphan' means the range is empty or not used
+                if (range.Cells.Count == 1 && range.Value == null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                // If we cannot get the range, it might be referring to a non-existing range
+                return true;
+            }
+        }
+
+        public void PopulateInsertDate()
+        {
+            if (SelectedInsertFormat == null)
             {
                 MessageBox.Show(
                     "No format selected.",
@@ -378,10 +1181,8 @@ namespace KDCLibrary
                 return;
             }
 
-            // Determine the format choice based on the label of the checked checkbox.
-            int formatChoice = DetermineFormatChoiceFromCheckbox(_selectedInsertFormat);
-
-            if (formatChoice == -1) // If the format is unsupported or not found
+            int formatChoice = new Helper().SelectFormatChoice(SelectedInsertFormat);
+            if (formatChoice == -1)
             {
                 MessageBox.Show(
                     "No valid format selected.",
@@ -389,496 +1190,544 @@ namespace KDCLibrary
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation
                 );
-                return; // Exit the method if no valid format is selected
+                return;
             }
 
-            if (_outlookApp != null)
+            string kurdishDate = new DateInsertion().Kurdish(
+                formatChoice,
+                SelectedDialect,
+                IsAddSuffix
+            );
+
+            try
             {
-                var inspector = _outlookApp.Application.ActiveInspector();
-                if (
-                    inspector != null
-                    && inspector.CurrentItem is Microsoft.Office.Interop.Outlook.MailItem mailItem
-                )
+                if (OutlookApp != null)
                 {
-                    var wordEditor = mailItem.GetInspector.WordEditor as Word.Document;
-                    if (wordEditor != null && wordEditor.Application.Selection != null)
+                    var inspector = OutlookApp.ActiveInspector();
+                    if (inspector == null || inspector.CurrentItem == null)
                     {
-                        // Insert Kurdish Date with the determined formatChoice, dialect, and isAddSuffix
-                        wordEditor.Application.Selection.TypeText(
-                            new DateInsertion().Kurdish(
-                                formatChoice,
-                                _selectedDialect,
-                                _isAddSuffix
-                            )
-                        );
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(
-                        "No checkbox selected.",
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                }
-            }
-
-            if (_wordApp != null)
-            {
-                _wordApp.Application.Selection.TypeText(
-                    new DateInsertion().Kurdish(formatChoice, _selectedDialect, _isAddSuffix)
-                );
-            }
-
-            if (_powerPointApp != null)
-            {
-                // Get the active application
-
-                if (_powerPointApp.ActiveWindow.Selection == null)
-                {
-                    MessageBox.Show(
-                        "No selection detected.",
-                        "Info",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                    return;
-                }
-
-                // Handle different selection types
-                switch (_powerPointApp.ActiveWindow.Selection.Type)
-                {
-                    case PowerPoint.PpSelectionType.ppSelectionShapes:
-                        // For shape selection, insert at the end of the text in the first shape
-                        foreach (
-                            PowerPoint.Shape shape in _powerPointApp
-                                .ActiveWindow
-                                .Selection
-                                .ShapeRange
-                        )
-                        {
-                            if (
-                                shape.HasTextFrame == Microsoft.Office.Core.MsoTriState.msoTrue
-                                && shape.TextFrame.HasText
-                                    == Microsoft.Office.Core.MsoTriState.msoTrue
-                            )
-                            {
-                                shape.TextFrame.TextRange.InsertAfter(
-                                    new DateInsertion().Kurdish(
-                                        formatChoice,
-                                        _selectedDialect,
-                                        _isAddSuffix
-                                    )
-                                );
-                            }
-                            else if (
-                                shape.HasTextFrame == Microsoft.Office.Core.MsoTriState.msoTrue
-                            )
-                            {
-                                shape.TextFrame.TextRange.Text = new DateInsertion().Kurdish(
-                                    formatChoice,
-                                    _selectedDialect,
-                                    _isAddSuffix
-                                );
-                            }
-                        }
-                        break;
-
-                    case PowerPoint.PpSelectionType.ppSelectionText:
-                        // For text selection, replace the selected text
-                        var selectedTextRange = _powerPointApp.ActiveWindow.Selection.TextRange;
-                        selectedTextRange.Text = new DateInsertion().Kurdish(
-                            formatChoice,
-                            _selectedDialect,
-                            _isAddSuffix
-                        );
-                        break;
-
-                    default:
                         MessageBox.Show(
-                            "Unsupported selection type.",
+                            "No active item found.",
                             "Error",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error
                         );
-                        break;
+                        return;
+                    }
+
+                    ProcessItemInsertOutlook(inspector.CurrentItem, kurdishDate, formatChoice);
                 }
-            }
 
-            if (_excelApp != null)
-            {
-                // Get the selected range
-                Excel.Range selectedRange = _excelApp.Application.Selection;
-                foreach (Excel.Range cell in selectedRange.Cells)
+                if (WordApp != null)
                 {
-                    // Insert Kurdish Date with the determined formatChoice, dialect, and isAddSuffix
-                    cell.Value = new DateInsertion().Kurdish(
-                        formatChoice,
-                        _selectedDialect,
-                        _isAddSuffix
-                    );
-                }
-            }
-        }
-
-        private int DetermineFormatChoiceFromCheckbox(string checkboxLabel)
-        {
-            switch (checkboxLabel)
-            {
-                case "dd/MM/yyyy":
-                    return 4;
-                case "MM/dd/yyyy":
-                    return 10;
-                case "yyyy/MM/dd":
-                    return 11;
-                case "dddd, dd MMMM, yyyy":
-                    return 1;
-                case "dddd, dd/MM/yyyy":
-                    return 2;
-                case "dd MMMM, yyyy":
-                    return 3;
-                default:
-                    MessageBox.Show(
-                        "Unsupported target format selected.",
-                        "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation
-                    );
-                    return -1; // Indicates an unsupported format
-            }
-        }
-
-        #endregion
-
-        #region Callbacks for Ribbon Controls
-
-
-
-        public void checkBox7_Click(Office.IRibbonControl control, bool isPressed)
-        {
-            this._isAddSuffix = isPressed;
-            RegistryHelper.SaveSetting(isAddSuffixKeyName, isPressed.ToString());
-        }
-
-        public void toggleButton1_Click(Office.IRibbonControl control, bool isPressed)
-        {
-            this._isReverse = isPressed;
-            RegistryHelper.SaveSetting(IsReverseKeyName, _isReverse.ToString());
-            this.ribbon.InvalidateControl("dropDown2");
-        }
-
-        public void splitButton1_Click(Office.IRibbonControl control)
-        {
-            populateInsertDate();
-        }
-
-        public void splitButton2_Click(Office.IRibbonControl control)
-        {
-            if (_outlookApp != null)
-            {
-                var inspector = _outlookApp.Application.ActiveInspector();
-                if (
-                    inspector != null
-                    && inspector.CurrentItem is Microsoft.Office.Interop.Outlook.MailItem mailItem
-                )
-                {
-                    var wordEditor = mailItem.GetInspector.WordEditor as Word.Document;
-                    if (wordEditor != null && wordEditor.Application.Selection != null)
+                    if (IsAutoUpdate)
                     {
-                        // Assuming ConvertDateBasedOnUserSelection returns the converted date as a string
-                        string convertedDate = new DateConversion().ConvertDateBasedOnUserSelection(
-                            wordEditor.Application.Selection.Text,
-                            _isReverse,
-                            RegistryHelper.LoadSetting(SelectedDialectKeyName, ""),
-                            RegistryHelper.LoadSetting(SelectedFormat1KeyName, ""),
-                            RegistryHelper.LoadSetting(SelectedFormat2KeyName, ""),
-                            _selectedCalendar,
-                            _isAddSuffix
-                        );
+                        CleanOrphanBookmarksWord(WordApp.ActiveDocument); // Remove orphan bookmarks before inserting a new date
 
-                        wordEditor.Application.Selection.Text = convertedDate;
+                        Range currentRange = WordApp.Selection.Range;
+                        currentRange.Text = kurdishDate; // This replaces the selected text with the Kurdish date
+
+                        int start = currentRange.Start;
+                        int end = start + kurdishDate.Length;
+
+                        currentRange.SetRange(start, end);
+
+                        // Add a bookmark for future reference
+                        try
+                        {
+                            string bookmarkName =
+                                "KDate" + Guid.NewGuid().ToString().Replace("-", ""); // Clean and valid bookmark name
+                            if (!WordApp.ActiveDocument.Bookmarks.Exists(bookmarkName))
+                            {
+                                WordApp.ActiveDocument.Bookmarks.Add(bookmarkName, currentRange);
+
+                                // Save parameters to Custom XML Part
+                                AddCustomXmlPartForWordOutlook(
+                                    bookmarkName,
+                                    SelectedDialect,
+                                    formatChoice,
+                                    IsAddSuffix,
+                                    WordApp.ActiveDocument
+                                );
+
+                                // select inserted date
+                                currentRange.Select();
+                            }
+                        }
+                        catch (COMException ex)
+                        {
+                            MessageBox.Show(
+                                "Failed to create bookmark: " + ex.Message,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+                    }
+                    else
+                    {
+                        WordApp.Selection.Text = kurdishDate;
+                        WordApp.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
                     }
                 }
-            }
 
-            if (_powerPointApp != null)
-            {
-                if (_powerPointApp.ActiveWindow.Selection != null)
+                if (ExcelApp != null)
                 {
-                    var selection = _powerPointApp.ActiveWindow.Selection;
-                    switch (selection.Type)
+                    // Get the currently selected range in Excel
+                    Excel.Range selectedRange = ExcelApp.Selection;
+
+                    // Insert the Kurdish date into each cell in the selected range
+                    foreach (Excel.Range cell in selectedRange.Cells)
                     {
-                        case PowerPoint.PpSelectionType.ppSelectionShapes:
-                            // Handle shape selections
-                            foreach (PowerPoint.Shape shape in selection.ShapeRange)
+                        cell.Value = kurdishDate;
+
+                        // If IsAutoUpdate is true, tag the cell for future updates
+                        if (IsAutoUpdate)
+                        {
+                            CleanOrphanNamedExcelRanges(ExcelApp.ActiveWorkbook);
+
+                            string tagName = "KDate" + Guid.NewGuid().ToString().Replace("-", ""); // Generate a unique name for the cell
+                            cell.Name = tagName; // Assign a unique name to the cell which can be used to identify it later for updates.
+
+                            // Optionally store custom metadata if needed
+                            AddCustomXmlPartForExcel(
+                                ExcelApp.ActiveWorkbook,
+                                tagName,
+                                formatChoice,
+                                SelectedDialect,
+                                IsAddSuffix
+                            );
+                        }
+                    }
+                }
+
+                if (PowerPointApp != null)
+                {
+                    if (PowerPointApp.ActiveWindow.Selection == null)
+                    {
+                        MessageBox.Show(
+                            "No selection detected.",
+                            "Info",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                        return;
+                    }
+
+                    switch (PowerPointApp.ActiveWindow.Selection.Type)
+                    {
+                        case PpSelectionType.ppSelectionShapes:
+                            foreach (
+                                PowerPoint.Shape shape in PowerPointApp
+                                    .ActiveWindow
+                                    .Selection
+                                    .ShapeRange
+                            )
                             {
-                                if (
-                                    shape.HasTextFrame == Microsoft.Office.Core.MsoTriState.msoTrue
-                                    && shape.TextFrame.HasText
-                                        == Microsoft.Office.Core.MsoTriState.msoTrue
-                                )
+                                if (shape.HasTextFrame == MsoTriState.msoTrue)
                                 {
-                                    Debug.WriteLine(
-                                        "PowerPoint.PpSelectionType.ppSelectionShapes",
-                                        shape.TextFrame.TextRange.Text
-                                    );
-                                    // Apply conversion on the shape's text
-                                    shape.TextFrame.TextRange.Text =
-                                        new DateConversion().ConvertDateBasedOnUserSelection(
-                                            shape.TextFrame.TextRange.Text,
-                                            _isReverse,
-                                            _selectedDialect,
-                                            _selectedFromFormat,
-                                            _selectedToFormat,
-                                            _selectedCalendar,
-                                            _isAddSuffix
+                                    if (IsAutoUpdate)
+                                    {
+                                        // Tag the shape with custom metadata
+                                        AddCustomTagForPowerPointShape(
+                                            shape,
+                                            SelectedDialect,
+                                            formatChoice,
+                                            IsAddSuffix
                                         );
+                                    }
+                                    shape.TextFrame.TextRange.Text = kurdishDate;
                                 }
                             }
                             break;
 
-                        case PowerPoint.PpSelectionType.ppSelectionText:
-                            // Directly handle text selections without iterating over ShapeRange
-                            var textRange = selection.TextRange;
-                            if (textRange != null && textRange.Length > 0)
+                        case PpSelectionType.ppSelectionText:
+                            var textRange = PowerPointApp.ActiveWindow.Selection.TextRange;
+                            PowerPoint.Shape parentShape = textRange.Parent as PowerPoint.Shape;
+                            if (parentShape != null && IsAutoUpdate)
                             {
-                                Debug.WriteLine(
-                                    "PowerPoint.PpSelectionType.ppSelectionText",
-                                    textRange.Text
+                                // Tag the parent shape of the text range
+                                AddCustomTagForPowerPointShape(
+                                    parentShape,
+                                    SelectedDialect,
+                                    formatChoice,
+                                    IsAddSuffix
                                 );
-                                // Apply conversion on the selected text
-                                textRange.Text =
-                                    new DateConversion().ConvertDateBasedOnUserSelection(
-                                        textRange.Text,
-                                        _isReverse,
-                                        _selectedDialect,
-                                        _selectedFromFormat,
-                                        _selectedToFormat,
-                                        _selectedCalendar,
-                                        _isAddSuffix
-                                    );
                             }
+                            textRange.Text = kurdishDate;
                             break;
 
                         default:
                             MessageBox.Show(
-                                "Please select a shape or text.",
-                                "Selection Not Supported",
+                                "Unsupported selection type.",
+                                "Error",
                                 MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning
+                                MessageBoxIcon.Error
                             );
                             break;
                     }
                 }
-                else
+
+                if (ProjectApp != null)
                 {
-                    MessageBox.Show(
-                        "Nothing is selected.",
-                        "No Selection",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                }
-            }
+                    var selection = ProjectApp.ActiveSelection;
+                    var activeCell = ProjectApp.ActiveCell;
+                    string activeFieldName = activeCell.FieldName; // This is the field related to the user's current selection/interaction.
 
-            if (_wordApp != null)
-            {
-                _wordApp.Application.Selection.Text =
-                    new DateConversion().ConvertDateBasedOnUserSelection(
-                        _wordApp.Application.Selection.Text,
-                        _isReverse,
-                        _selectedDialect,
-                        _selectedFromFormat,
-                        _selectedToFormat,
-                        _selectedCalendar,
-                        _isAddSuffix
-                    );
-            }
-
-            if (_excelApp != null)
-            {
-                // Get the selected range
-                Excel.Range selectedRange = _excelApp.Application.Selection;
-                foreach (Excel.Range cell in selectedRange.Cells)
-                {
-                    Object selectedText = cell.Value;
-
-                    // if the object is DateTime then make toString("d") to get the short date pattern
-                    if (selectedText is DateTime)
+                    if (selection.Tasks == null || selection.Tasks.Count == 0)
                     {
-                        selectedText = ((DateTime)selectedText).ToString("d");
-                    }
-                    string dateString = selectedText.ToString(); // 'd' format string returns the short date pattern
-
-                    string result = new DateConversion().ConvertDateBasedOnUserSelection(
-                        dateString,
-                        _isReverse,
-                        _selectedDialect,
-                        _selectedFromFormat,
-                        _selectedToFormat,
-                        _selectedCalendar,
-                        _isAddSuffix
-                    );
-
-                    Debug.WriteLine(result);
-                    // if result is empty break the loop
-                    if (result == dateString || string.IsNullOrEmpty(result))
-                    {
-                        //if(selectedRange.Cells.Count > 1) MessageBox.Show("Some cells were not converted.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        // Highlight the cell with red color
-                        cell.Interior.Color = System.Drawing.ColorTranslator.ToOle(
-                            System.Drawing.Color.Red
+                        MessageBox.Show(
+                            "Please select one or more tasks.",
+                            "No Task Selected",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
                         );
+                        return;
+                    }
+
+                    // Update only the field corresponding to the active cell across all selected tasks.
+                    foreach (MSProject.Task task in selection.Tasks)
+                    {
+                        if (task != null)
+                        {
+                            SetTaskFieldValue(task, activeFieldName, kurdishDate);
+                        }
+                    }
+                }
+
+                if (VisioApp != null)
+                {
+                    // Get the active Visio window.
+                    Visio.Window activeWindow = VisioApp.ActiveWindow;
+
+                    // Check if there are selected shapes.
+                    if (activeWindow.Selection.Count > 0)
+                    {
+                        foreach (Visio.Shape shape in activeWindow.Selection)
+                        {
+                            // Insert text into the selected shape(s) with the determined formatChoice, dialect, and isAddSuffix
+                            shape.Text = kurdishDate;
+                        }
                     }
                     else
                     {
-                        // delete highlight color set it to no Fill and set to no border
-                        cell.Interior.ColorIndex = Excel.Constants.xlNone;
-                        // set no border
-                        cell.Borders.LineStyle = Excel.XlLineStyle.xlLineStyleNone;
+                        MessageBox.Show(
+                            "No shapes selected.",
+                            "Information",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(
+                    "Failed to insert date: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
 
-                        // set the value of the cell to the result
-                        cell.Value = result;
+        private Document GetWordEditorItem(object item)
+        {
+            switch (item)
+            {
+                case MailItem mailItem:
+                    return mailItem.GetInspector.WordEditor;
+                case AppointmentItem appointmentItem:
+                    return appointmentItem.GetInspector.WordEditor;
+                case TaskItem taskItem:
+                    return taskItem.GetInspector.WordEditor;
+                case ContactItem contactItem:
+                    return contactItem.GetInspector.WordEditor;
+                default:
+                    return null;
+            }
+        }
+
+        private void ProcessItemInsertOutlook(object item, string kurdishDate, int formatChoice)
+        {
+            Document wordEditor = GetWordEditorItem(item);
+
+            if (wordEditor == null || wordEditor.Application.Selection == null)
+            {
+                MessageBox.Show(
+                    "This item does not support Word editing.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            if (IsAutoUpdate)
+            {
+                Range currentRange = wordEditor.Application.Selection.Range;
+                currentRange.Text = kurdishDate;
+                currentRange.SetRange(currentRange.Start, currentRange.Start + kurdishDate.Length);
+
+                string bookmarkName = "KDate" + Guid.NewGuid().ToString().Replace("-", "");
+                if (!wordEditor.Bookmarks.Exists(bookmarkName))
+                {
+                    wordEditor.Bookmarks.Add(bookmarkName, currentRange);
+                    AddCustomXmlPartForWordOutlook(
+                        bookmarkName,
+                        SelectedDialect,
+                        formatChoice,
+                        IsAddSuffix,
+                        wordEditor
+                    );
+                }
+                currentRange.Select();
+            }
+            else
+            {
+                wordEditor.Application.Selection.TypeText(kurdishDate);
+                wordEditor.Application.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
+            }
+        }
+
+        private void AddCustomTagForPowerPointShape(
+            PowerPoint.Shape shape,
+            string dialect,
+            int formatChoice,
+            bool isAddSuffix
+        )
+        {
+            // Set custom tags on the shape to store the date format and other relevant data
+            shape.Tags.Add("kDateShape", "true");
+            shape.Tags.Add("Dialect", dialect);
+            shape.Tags.Add("FormatChoice", formatChoice.ToString());
+            shape.Tags.Add("IsAddSuffix", isAddSuffix.ToString());
+        }
+
+        private void AddCustomXmlPartForWordOutlook(
+            string bookmarkName,
+            string dialect,
+            int formatChoice,
+            bool isAddSuffix,
+            Document WordEditor
+        )
+        {
+            string customXml =
+                $@"<KurdishDateInsertion>
+                     <DateInfo>
+                        <Dialect>{dialect}</Dialect>
+                        <FormatChoice>{formatChoice}</FormatChoice>
+                        <IsAddSuffix>{isAddSuffix}</IsAddSuffix>
+                        <BookmarkName>{bookmarkName}</BookmarkName>
+                     </DateInfo>
+                   </KurdishDateInsertion>";
+            WordEditor.CustomXMLParts.Add(customXml);
+        }
+
+        private void AddCustomXmlPartForExcel(
+            Workbook workbook,
+            string tagName,
+            int formatChoice,
+            string dialect,
+            bool isAddSuffix
+        )
+        {
+            string customXml =
+                $@"<KurdishDateInsertion>
+                    <CellInfo>
+                        <TagName>{SecurityElement.Escape(tagName)}</TagName>
+                        <FormatChoice>{formatChoice}</FormatChoice>
+                        <Dialect>{SecurityElement.Escape(dialect)}</Dialect>
+                        <IsAddSuffix>{isAddSuffix.ToString().ToLower()}</IsAddSuffix>
+                    </CellInfo>
+                  </KurdishDateInsertion>";
+
+            workbook.CustomXMLParts.Add(customXml);
+        }
+
+        public void UpdateDatesFromCustomXmlPartsForWordOutlook(Document wordEditor)
+        {
+            List<Bookmark> bookmarksToUpdate = new List<Bookmark>();
+
+            // Collect all relevant bookmarks to update
+            foreach (Bookmark bookmark in wordEditor.Bookmarks)
+            {
+                if (bookmark.Name.StartsWith("KDate"))
+                {
+                    bookmarksToUpdate.Add(bookmark);
+                }
+            }
+
+            // Process each bookmark to update its content
+            foreach (Bookmark bookmark in bookmarksToUpdate)
+            {
+                Range bookmarkRange = bookmark.Range;
+                string bookmarkName = bookmark.Name;
+                CustomXMLPart part = FindCustomXmlPartForBookmarkForWordOutlook(
+                    bookmarkName,
+                    wordEditor
+                );
+
+                if (part != null)
+                {
+                    var dialect = part.SelectSingleNode(
+                        "/KurdishDateInsertion/DateInfo/Dialect"
+                    )?.Text;
+                    var formatChoice = int.Parse(
+                        part.SelectSingleNode("/KurdishDateInsertion/DateInfo/FormatChoice")?.Text
+                            ?? "0"
+                    );
+                    var isAddSuffix = bool.Parse(
+                        part.SelectSingleNode("/KurdishDateInsertion/DateInfo/IsAddSuffix")?.Text
+                            ?? "false"
+                    );
+
+                    string newDate = new DateInsertion().Kurdish(
+                        formatChoice,
+                        dialect,
+                        isAddSuffix
+                    );
+
+                    // Replace old content and reset the bookmark
+                    bookmarkRange.Text = newDate;
+
+                    // Create a new range for the new text
+                    int newStart = bookmarkRange.Start;
+                    int newEnd = newStart + newDate.Length;
+
+                    // update bookmark range
+                    bookmarkRange.SetRange(newStart, newEnd);
+                    wordEditor.Bookmarks.Add(bookmarkName, bookmarkRange);
+                }
+                else
+                {
+                    Debug.WriteLine($"No matching XML part found for bookmark: {bookmarkName}");
+                }
+            }
+        }
+
+        public void UpdateDatesFromCustomXmlPartsForExcel(Workbook workbook)
+        {
+            // Assuming a specific named range or mechanism to identify cells with dates to update
+            foreach (Excel.Name name in workbook.Names)
+            {
+                if (name.Name.Contains("KDate"))
+                {
+                    Excel.Range range = workbook.Application.Range[name.RefersTo];
+                    CustomXMLPart part = FindCustomXmlPartForRangeForExcel(name.Name, workbook);
+
+                    if (part != null)
+                    {
+                        string dialect = part.SelectSingleNode(
+                            "/KurdishDateInsertion/CellInfo/Dialect"
+                        )?.Text;
+                        int formatChoice = int.Parse(
+                            part.SelectSingleNode(
+                                "/KurdishDateInsertion/CellInfo/FormatChoice"
+                            )?.Text ?? "0"
+                        );
+                        bool isAddSuffix = bool.Parse(
+                            part.SelectSingleNode(
+                                "/KurdishDateInsertion/CellInfo/IsAddSuffix"
+                            )?.Text ?? "false"
+                        );
+
+                        string newDate = new DateInsertion().Kurdish(
+                            formatChoice,
+                            dialect,
+                            isAddSuffix
+                        );
+                        range.Value = newDate;
+                    }
+                    else
+                    {
+                        Debug.WriteLine($"No matching XML part found for range named: {name.Name}");
                     }
                 }
             }
         }
 
+        public void UpdateDatesFromCustomXmlPartsForPowerPoint(Presentation presentation)
+        {
+            try
+            {
+                foreach (Slide slide in presentation.Slides)
+                {
+                    foreach (PowerPoint.Shape shape in slide.Shapes)
+                    {
+                        if (
+                            shape.HasTextFrame == MsoTriState.msoTrue
+                            && shape.TextFrame.HasText == MsoTriState.msoTrue
+                        )
+                        {
+                            // Check if this shape has a tag indicating it contains a date needing updates
+                            if (shape.Tags["kDateShape"] == "true")
+                            {
+                                string dialect = shape.Tags["Dialect"];
+                                int formatChoice = int.Parse(shape.Tags["FormatChoice"]);
+                                bool isAddSuffix = bool.Parse(shape.Tags["IsAddSuffix"]);
+
+                                string newDate = new DateInsertion().Kurdish(
+                                    formatChoice,
+                                    dialect,
+                                    isAddSuffix
+                                );
+
+                                // Update the text in the shape
+                                shape.TextFrame.TextRange.Text = newDate;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(
+                    "Failed to update dates: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        private CustomXMLPart FindCustomXmlPartForBookmarkForWordOutlook(
+            string bookmarkName,
+            Document doc
+        )
+        {
+            foreach (CustomXMLPart part in doc.CustomXMLParts)
+            {
+                if (part.NamespaceURI == string.Empty)
+                {
+                    var nameNode = part.SelectSingleNode(
+                        "/KurdishDateInsertion/DateInfo/BookmarkName"
+                    );
+                    if (nameNode != null && nameNode.Text == bookmarkName)
+                    {
+                        return part;
+                    }
+                }
+            }
+            return null;
+        }
+
+        private CustomXMLPart FindCustomXmlPartForRangeForExcel(string nameRef, Workbook workbook)
+        {
+            foreach (CustomXMLPart part in workbook.CustomXMLParts)
+            {
+                if (part.NamespaceURI == string.Empty)
+                {
+                    var nameNode = part.SelectSingleNode("/KurdishDateInsertion/CellInfo/TagName");
+                    if (nameNode != null && nameNode.Text == nameRef)
+                    {
+                        return part;
+                    }
+                }
+            }
+            return null;
+        }
         #endregion
-
-
-        #region Load current List of Dialects, Formats, and Calendar Groups
-
-        public string getDialectLabel(Office.IRibbonControl control, int index)
-        {
-            // Return the label of the dialect at the specified index
-            return _dialectsList[index];
-        }
-
-        public int getDialectCount(Office.IRibbonControl control)
-        {
-            // Return the number of dialects available
-            return _dialectsList.Count;
-        }
-
-        public int getSelectedDialectIndex(Office.IRibbonControl control)
-        {
-            // Load the saved dialect name from your settings
-            this._selectedDialect = RegistryHelper.LoadSetting(
-                SelectedDialectKeyName,
-                _dialectsList[0]
-            );
-
-            int index = _dialectsList.IndexOf(_selectedDialect);
-            // Return the index of the saved dialect or default to the first item if not found
-            return index >= 0 ? index : 0;
-        }
-
-        public string getSelectedDialectLabel(Office.IRibbonControl control)
-        {
-            this._selectedDialect = _dialectsList[getSelectedDialectIndex(control)];
-            return _selectedDialect;
-        }
-
-        public string getCalendarLabel(Office.IRibbonControl control, int index)
-        {
-            // Check the _isReverse state to decide which list to use
-            List<string> selectedList = _isReverse ? _calendarGroup2List : _calendarGroup1List;
-            // Return the label of the calendar at the specified index from the appropriate list
-            return selectedList[index];
-        }
-
-        public int getCalendarCount(Office.IRibbonControl control)
-        {
-            // Return the number of calendars available based on the _isReverse state
-            return _isReverse ? _calendarGroup2List.Count : _calendarGroup1List.Count;
-        }
-
-        public int getSelectedCalendarIndex(Office.IRibbonControl control)
-        {
-            // Determine the correct key name based on the _isReverse state
-            string savedCalendarKeyName = _isReverse
-                ? LastSelectionGroup2KeyName
-                : LastSelectionGroup1KeyName;
-            this._selectedCalendar = RegistryHelper.LoadSetting(
-                savedCalendarKeyName,
-                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0]
-            );
-            List<string> selectedList = _isReverse ? _calendarGroup2List : _calendarGroup1List;
-            int index = selectedList.IndexOf(_selectedCalendar);
-            // Default to the first item if the saved calendar is not found
-            return index >= 0 ? index : 0;
-        }
-
-        public string getSelectedCalendarLabel(Office.IRibbonControl control)
-        {
-            this._selectedCalendar = _isReverse
-                ? _calendarGroup2List[getSelectedCalendarIndex(control)]
-                : _calendarGroup1List[getSelectedCalendarIndex(control)];
-            return _selectedCalendar;
-        }
-
-        public string getFromFormatLabel(Office.IRibbonControl control, int index)
-        {
-            // Return the label of the format at the specified index
-            return _formatsList[index];
-        }
-
-        public int getFromFormatCount(Office.IRibbonControl control)
-        {
-            // Return the number of formats available
-            return _formatsList.Count;
-        }
-
-        public int getSelectedFromFormatIndex(Office.IRibbonControl control)
-        {
-            // Load the saved format name from your settings
-            this._selectedFromFormat = RegistryHelper.LoadSetting(
-                SelectedFormat1KeyName,
-                _formatsList[0]
-            );
-            int index = _formatsList.IndexOf(_selectedFromFormat);
-            // Return the index of the saved format or default to the first item if not found
-            return index >= 0 ? index : 0; // Ensure we return an integer
-        }
-
-        public string getSelectedFromFormatLabel(Office.IRibbonControl control)
-        {
-            this._selectedFromFormat = _formatsList[getSelectedFromFormatIndex(control)];
-            return _selectedFromFormat;
-        }
-
-        public string getToFormatLabel(Office.IRibbonControl control, int index)
-        {
-            // Return the label of the format at the specified index
-            return _formatsList[index];
-        }
-
-        public int getToFormatCount(Office.IRibbonControl control)
-        {
-            // Return the number of formats available
-            return _formatsList.Count;
-        }
-
-        public int getSelectedToFormatIndex(Office.IRibbonControl control)
-        {
-            // Load the saved format name from your settings
-            _selectedToFormat = RegistryHelper.LoadSetting(SelectedFormat2KeyName, _formatsList[0]);
-            int index = _formatsList.IndexOf(_selectedToFormat);
-            return index >= 0 ? index : 0; // Ensure we return an integer
-        }
-
-        public string getSelectedToFormatLabel(Office.IRibbonControl control)
-        {
-            this._selectedToFormat = _formatsList[getSelectedToFormatIndex(control)];
-            return _selectedToFormat;
-        }
-
-        public void button1_Click(Office.IRibbonControl control)
-        {
-            new CreditsForm();
-        }
 
         #endregion
     }

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using KDCLibrary.Helpers;
 
 namespace KDCLibrary.Calendars
 {
     internal class DateConversion
     {
+        string[] delimiters = new string[] { "/", "-", "\\", "_", "\t", "\u060C" }; // Including tab and Arabic comma
+
         public string ConvertDateBasedOnUserSelection(
             string selectedText,
             bool isReverse,
@@ -29,15 +33,23 @@ namespace KDCLibrary.Calendars
 
             String selectedTextCleaned = CleanSelectedText(selectedText);
 
+            //List<string> UTF16 = new List<string> { };
+            //foreach (char c in selectedTextCleaned)
+            //{
+            //    UTF16.Add(Convert.ToInt32(c).ToString("X4"));
+            //}
+
+            //Debug.WriteLine(string.Join("\\u", UTF16));
+
             if (string.IsNullOrEmpty(selectedTextCleaned))
             {
                 MessageBox.Show(
-                    "No text selected.",
+                    "No date text selected.",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-                return selectedText;
+                return "";
             }
 
             // Extract and remove suffix from selectedTextCleaned
@@ -47,7 +59,10 @@ namespace KDCLibrary.Calendars
             );
             if (!string.IsNullOrEmpty(suffixString))
             {
-                selectedTextCleaned = selectedTextCleaned.Replace(suffixString, "");
+                selectedTextCleaned = selectedTextCleaned.Substring(
+                    0,
+                    selectedTextCleaned.Length - suffixString.Length
+                );
             }
             ;
 
@@ -55,6 +70,8 @@ namespace KDCLibrary.Calendars
                 fromDateFormat == "dd/MM/yyyy"
                 || fromDateFormat == "MM/dd/yyyy"
                 || fromDateFormat == "yyyy/MM/dd"
+                || fromDateFormat == "MM/yyyy"
+                || fromDateFormat == "yyyy"
             )
             {
                 parsedDate = ExtractSimpleDate(selectedTextCleaned, fromDateFormat, calendarType);
@@ -72,7 +89,7 @@ namespace KDCLibrary.Calendars
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-                return selectedText;
+                return selectedText.Replace("\r", ""); // Return original text without carriage return (causes issues insert new line)
             }
 
             targetDate = ConvertTargetCalendarToGregorian(parsedDate, calendarType);
@@ -130,7 +147,7 @@ namespace KDCLibrary.Calendars
                     suffixStrings = new List<string>
                     {
                         " AD",
-                        " م",
+                        "م",
                         "ی زایینی",
                         " Zayînî",
                         " میلادی"
@@ -199,13 +216,22 @@ namespace KDCLibrary.Calendars
 
                     dateString = tempParts[1].Trim(); // Assume format includes day name prefix, which we ignore
 
+                    // split the only first space to get the day and month
+
+
+
                     var tempPartMD = dateString.Split(' ');
-                    if (tempPartMD.Length != 2)
+                    if (!(tempPartMD.Length > 1 && tempPartMD.Length <= 3))
                         return DateTime.MinValue; // Invalid format if not split into 2 parts
 
                     isDayParsed = int.TryParse(tempPartMD[0], out dayPart);
 
-                    if (monthNames.TryGetValue(FormatMonthName(tempPartMD[1]), out var monthValue))
+                    string joinedString =
+                        tempPartMD.Length == 2
+                            ? tempPartMD[1]
+                            : string.Join(" ", tempPartMD.Skip(1));
+
+                    if (monthNames.TryGetValue(FormatMonthName(joinedString), out var monthValue))
                     {
                         monthPart = monthValue;
                         isMonthParsed = true; // Successfully retrieved month from dictionary
@@ -245,6 +271,57 @@ namespace KDCLibrary.Calendars
 
                     isYearParsed = int.TryParse(tempParts[2], out yearPart);
                     break;
+                case "MMMM dd, yyyy":
+                    tempParts = dateString.Split(' ');
+                    if (tempParts.Length != 3)
+                        return DateTime.MinValue; // Invalid format if not split into 3 parts
+
+                    if (monthNames.TryGetValue(FormatMonthName(tempParts[0]), out monthValue))
+                    {
+                        monthPart = monthValue;
+                        isMonthParsed = true; // Successfully retrieved month from dictionary
+                    }
+
+                    isDayParsed = int.TryParse(tempParts[1].Trim(','), out dayPart);
+                    isYearParsed = int.TryParse(tempParts[2], out yearPart);
+                    break;
+                case "MMMM yyyy":
+                    tempParts = dateString.Split(' ');
+                    if (tempParts.Length != 2)
+                        return DateTime.MinValue; // Invalid format if not split into 2 parts
+
+                    if (monthNames.TryGetValue(FormatMonthName(tempParts[0]), out monthValue))
+                    {
+                        monthPart = monthValue;
+                        isMonthParsed = true; // Successfully retrieved month from dictionary
+                    }
+                    dayPart = 1; // Assume first day of the month
+                    isDayParsed = true; // Assume first day of the month
+                    isYearParsed = int.TryParse(tempParts[1], out yearPart);
+                    break;
+                case "MMMM":
+                    if (monthNames.TryGetValue(FormatMonthName(dateString), out monthValue))
+                    {
+                        monthPart = monthValue;
+                        isMonthParsed = true; // Successfully retrieved month from dictionary
+                    }
+                    dayPart = 1; // Assume first day of the month
+                    isDayParsed = true; // Assume first day of the month
+                    yearPart = targetCalendarType.Contains("Gregorian")
+                        ? DateTime.Now.Year
+                        : targetCalendarType.Contains("Hijri")
+                        || targetCalendarType.Contains("Umm al-Qura")
+                            ? new HijriCalendar().GetYear(DateTime.Now)
+                            : int.Parse(
+                                new KurdishDate().FromGregorianToKurdish(
+                                    DateTime.Now,
+                                    6,
+                                    targetCalendarType,
+                                    false
+                                )
+                            );
+                    isYearParsed = true; // Assume current year
+                    break;
 
                 default:
                     return DateTime.MinValue; // Unsupported format
@@ -281,29 +358,36 @@ namespace KDCLibrary.Calendars
             }
         }
 
-        public DateTime ExtractSimpleDate(
-            string dateString,
-            string dateFormat,
-            string targetCalendarType
-        )
+        public DateTime ExtractSimpleDate(string dateString, string dateFormat, string calendarType)
         {
             int dayPart,
                 monthPart,
                 yearPart;
             string[] dateParts;
+            string delimiter = "";
 
             // Identify delimiter and split the date string
-            string delimiter = IdentifyDelimiter(dateString);
-            if (string.IsNullOrEmpty(delimiter))
+
+            // check if all characters if it has a any character delimiter
+            if (delimiters.Any(d => dateString.Contains(d)))
             {
-                return DateTime.MinValue; // Equivalent to '0' in VBA
+                delimiter = IdentifyDelimiter(dateString);
+
+                if (string.IsNullOrEmpty(delimiter))
+                {
+                    return DateTime.MinValue; // Equivalent to '0' in VBA
+                }
+
+                dateParts = dateString.Split(new string[] { delimiter }, StringSplitOptions.None);
+
+                //if (dateParts.Length != 3) // Ensure array has three components
+                //{
+                //    return DateTime.MinValue;
+                //}
             }
-
-            dateParts = dateString.Split(new string[] { delimiter }, StringSplitOptions.None);
-
-            if (dateParts.Length != 3) // Ensure array has three components
+            else
             {
-                return DateTime.MinValue;
+                dateParts = new string[] { dateString };
             }
 
             // Using int.TryParse for safer parsing
@@ -327,6 +411,20 @@ namespace KDCLibrary.Calendars
                     isMonthParsed = int.TryParse(dateParts[1], out monthPart);
                     isDayParsed = int.TryParse(dateParts[2], out dayPart);
                     break;
+                case "MM/yyyy":
+                    dayPart = 1;
+                    isDayParsed = true;
+                    isMonthParsed = int.TryParse(dateParts[0], out monthPart);
+                    isYearParsed = int.TryParse(dateParts[1], out yearPart);
+                    break;
+                case "yyyy":
+                    dayPart = 1;
+                    isDayParsed = true;
+                    monthPart = 1;
+                    isMonthParsed = true;
+                    isYearParsed = int.TryParse(dateParts[0], out yearPart);
+                    break;
+
                 default:
                     // For unsupported formats, return DateTime.MinValue
                     return DateTime.MinValue;
@@ -338,7 +436,7 @@ namespace KDCLibrary.Calendars
                 return DateTime.MinValue;
             }
 
-            if (ValidateDateComponents(dayPart, monthPart, yearPart, targetCalendarType))
+            if (ValidateDateComponents(dayPart, monthPart, yearPart, calendarType))
             {
                 return new DateTime(yearPart, monthPart, dayPart);
             }
@@ -351,8 +449,6 @@ namespace KDCLibrary.Calendars
         private string IdentifyDelimiter(string text)
         {
             // Define an array of known delimiters
-            char[] delimiters = new char[] { '/', '-', '\\', '_', '\t', '\u060C' }; // Including tab and Arabic comma
-
             foreach (var delimiter in delimiters)
             {
                 if (text.Contains(delimiter.ToString()))
@@ -427,33 +523,10 @@ namespace KDCLibrary.Calendars
 
                 case "Kurdish (Central)":
                 case "Kurdish (Northern)":
-                    if (month < 1 || month > 12 || year < 2622)
+                    if (month < 1 || month > 12 || year < 700)
                         return false; // Kurdish calendar year for Gregorian year 1
 
-                    isLeapYear =
-                        ((year + 1) % 4 == 0 && (year + 1) % 100 != 0) || ((year + 1) % 400 == 0);
-                    switch (month)
-                    {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                            daysInMonth = 31;
-                            break;
-                        case 7:
-                        case 8:
-                        case 9:
-                        case 10:
-                        case 11:
-                            daysInMonth = 30;
-                            break;
-                        case 12:
-                            daysInMonth = isLeapYear ? 29 : 28;
-                            break;
-                    }
-                    return day >= 1 && day <= daysInMonth;
+                    return day >= 1 && day <= new KurdishDate().GetDaysInKurdishMonth(year, month);
 
                 default:
                     return false;
@@ -523,7 +596,7 @@ namespace KDCLibrary.Calendars
                     monthNames.Add("Şubat", 2); // February
                     monthNames.Add("Adar", 3); // March
                     monthNames.Add("Nîsan", 4); // April
-                    monthNames.Add("Ayar", 5); // May
+                    monthNames.Add("Gulan", 5); // May
                     monthNames.Add("Hezîran", 6); // June
                     monthNames.Add("Temûz", 7); // July
                     monthNames.Add("Ab", 8); // August
@@ -539,8 +612,7 @@ namespace KDCLibrary.Calendars
                     //monthNames.Add("Şubat", 2);
                     monthNames.Add("Sibat", 2);
 
-                    //monthNames.Add("Nîsan", 4);
-
+                    monthNames.Add("Ayar", 5); // May
                     //monthNames.Add("Hezîran", 6);
 
                     monthNames.Add("Tîrmeh", 7);
@@ -767,6 +839,7 @@ namespace KDCLibrary.Calendars
         {
             return selectedText
                 .Trim()
+                .Replace("\u200F", "") // RTL mark
                 .Replace("\a", "") // Bell
                 .Replace("\n", "") // New line
                 .Replace("\r", "") // Carriage return

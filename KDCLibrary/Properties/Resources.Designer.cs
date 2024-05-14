@@ -63,9 +63,9 @@ namespace KDCLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap calendar {
+        public static System.Drawing.Bitmap Calendar_Black {
             get {
-                object obj = ResourceManager.GetObject("calendar", resourceCulture);
+                object obj = ResourceManager.GetObject("Calendar_Black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace KDCLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap convert {
+        public static System.Drawing.Bitmap Calendar_White {
             get {
-                object obj = ResourceManager.GetObject("convert", resourceCulture);
+                object obj = ResourceManager.GetObject("Calendar_White", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,20 +83,100 @@ namespace KDCLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap help {
+        public static System.Drawing.Bitmap Choose_Black {
             get {
-                object obj = ResourceManager.GetObject("help", resourceCulture);
+                object obj = ResourceManager.GetObject("Choose_Black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Icon help1 {
+        public static System.Drawing.Bitmap Choose_White {
             get {
-                object obj = ResourceManager.GetObject("help1", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("Choose_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Convert_Black {
+            get {
+                object obj = ResourceManager.GetObject("Convert_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Convert_White {
+            get {
+                object obj = ResourceManager.GetObject("Convert_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Credits_Black {
+            get {
+                object obj = ResourceManager.GetObject("Credits_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Credits_White {
+            get {
+                object obj = ResourceManager.GetObject("Credits_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Help_Black {
+            get {
+                object obj = ResourceManager.GetObject("Help_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Help_White {
+            get {
+                object obj = ResourceManager.GetObject("Help_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Insert_Black {
+            get {
+                object obj = ResourceManager.GetObject("Insert_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Insert_White {
+            get {
+                object obj = ResourceManager.GetObject("Insert_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -113,20 +193,70 @@ namespace KDCLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        public static System.Drawing.Icon KDC_Framed1 {
+        public static System.Drawing.Icon KDC_Only {
             get {
-                object obj = ResourceManager.GetObject("KDC_Framed1", resourceCulture);
+                object obj = ResourceManager.GetObject("KDC_Only", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Icon KDC_Only {
+        public static System.Drawing.Bitmap Reverse_Black {
             get {
-                object obj = ResourceManager.GetObject("KDC_Only", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("Reverse_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Reverse_White {
+            get {
+                object obj = ResourceManager.GetObject("Reverse_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Settings_Black {
+            get {
+                object obj = ResourceManager.GetObject("Settings_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Settings_White {
+            get {
+                object obj = ResourceManager.GetObject("Settings_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Update_Black {
+            get {
+                object obj = ResourceManager.GetObject("Update_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Update_White {
+            get {
+                object obj = ResourceManager.GetObject("Update_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using KDCLibrary.Helpers;
 
 namespace KDCLibrary.Calendars
 {
-    internal class KurdishDate
+    [ComVisible(false)]
+    public class KurdishDate
     {
+        public static readonly int ADEra = 1;
+
+        // Convert Gregorian date to Kurdish date
         public string FromGregorianToKurdish(
             DateTime gDate,
             int formatChoice,
@@ -12,7 +18,6 @@ namespace KDCLibrary.Calendars
         )
         {
             var gYear = gDate.Year;
-            bool isGregorianLeapYear = DateTime.IsLeapYear(gYear);
             int[] daysInMonth =
             {
                 31,
@@ -26,7 +31,7 @@ namespace KDCLibrary.Calendars
                 30,
                 30,
                 30,
-                isGregorianLeapYear ? 30 : 29
+                DateTime.IsLeapYear(gYear) ? 30 : 29 //The kurdish leap year occur in last months which is almost new gregorian year (I followed the logic every greorian leap year is the previous year of kurdish leap year + 700)
             };
 
             DateTime referenceDate = new DateTime(gYear, 3, 21);
@@ -82,11 +87,10 @@ namespace KDCLibrary.Calendars
             );
         }
 
-        // Implementation of ConvertKurdishToGregorian method
+        // Convert Kurdish date to Gregorian date
         public DateTime FromKurdishToGregorian(int kDay, int kMonth, int kYear)
         {
             int gYear = kYear - 700; // Adjusting the Kurdish year to the Gregorian year
-            bool isGregorianLeapYear = DateTime.IsLeapYear(gYear);
             int[] daysInMonth =
             {
                 31,
@@ -100,7 +104,7 @@ namespace KDCLibrary.Calendars
                 30,
                 30,
                 30,
-                isGregorianLeapYear ? 30 : 29
+                DateTime.IsLeapYear(gYear) ? 30 : 29
             };
 
             DateTime referenceDate = new DateTime(gYear, 3, 21);
@@ -117,72 +121,110 @@ namespace KDCLibrary.Calendars
 
         public string KurdishWeekdayNameCentral(int index)
         {
-            string[] weekdays = new string[]
-            {
-                "یەکشەممە", // Sunday
-                "دووشەممە", // Monday
-                "سێشەممە", // Tuesday
-                "چوارشەممە", // Wednesday
-                "پێنجشەممە", // Thursday
-                "هەینی", // Friday
-                "شەممە" // Saturday
-            };
-            return weekdays[index - 1];
+            return KurdishWeekdayNameCentralArray()[index - 1];
         }
 
         public string KurdishMonthNameCentral(int index)
         {
-            string[] months = new string[]
-            {
-                "نەورۆز", // March
-                "گوڵان", // April
-                "جۆزەردان", // May
-                "پووشپەر", // June
-                "گەلاوێژ", // July
-                "خەرمانان", // August
-                "رەزبەر", // September
-                "گەلاڕێزان", // October
-                "سەرماوەز", // November
-                "بەفرانبار", // December
-                "رێبەندان", // January
-                "رەشەمە" // February
-            };
-            return months[index - 1];
+            return KurdishMonthNameCentralArray()[index - 1];
         }
 
         public string KurdishWeekdayNameNorthern(int index)
         {
-            string[] weekdays = new string[]
-            {
-                "Yekşem", // Sunday
-                "Duşem", // Monday
-                "Sêşem", // Tuesday
-                "Çarşem", // Wednesday
-                "Pêncşem", // Thursday
-                "Înê", // Friday
-                "Şemî" // Saturday
-            };
-            return weekdays[index - 1];
+            return KurdishWeekdayNameNorthernArray()[index - 1];
         }
 
         public string KurdishMonthNameNorthern(int index)
         {
-            string[] months = new string[]
+            return KurdishMonthNameNorthernArray()[index - 1];
+        }
+
+        public string[] KurdishMonthNameCentralArray()
+        {
+            return new string[]
             {
-                "Nêwroz", // March
-                "Gullan", // April
-                "Avrêl", // May (Note: "Avrêl" is not traditionally a Kurdish name but often used for May in absence of a widely accepted Kurdish equivalent, reflecting April in Gregorian. Adjust as per actual usage or replace with the traditional Kurdish name for May if applicable.)
-                "Pusper", // June
-                "Tîrmeh", // July
-                "Gelawêj", // August
-                "Rezber", // September
-                "Kewçêr", // October
-                "Sermawez", // November
-                "Berfanbar", // December
-                "Rêbendan", // January
-                "Resheme" // February
+                "نەورۆز",
+                "گوڵان",
+                "جۆزەردان",
+                "پووشپەڕ",
+                "گەلاوێژ",
+                "خەرمانان",
+                "رەزبەر",
+                "گەڵاڕێزان",
+                "سەرماوەز",
+                "بەفرانبار",
+                "ڕێبەندان",
+                "ڕه‌شه‌مێ",
+                ""
             };
-            return months[index - 1];
+        }
+
+        public string[] KurdishWeekdayNameCentralArray()
+        {
+            return new string[]
+            {
+                "یەکشەممە",
+                "دووشەممە",
+                "سێشەممە",
+                "چوارشەممە",
+                "پێنجشەممە",
+                "هەینی",
+                "شەممە"
+            };
+        }
+
+        public string[] KurdishMonthNameNorthernArray()
+        {
+            return new string[]
+            {
+                "Nêwroz",
+                "Gullan",
+                "Avrêl",
+                "Pusper",
+                "Tîrmeh",
+                "Gelawêj",
+                "Rezber",
+                "Kewçêr",
+                "Sermawez",
+                "Berfanbar",
+                "Rêbendan",
+                "Resheme",
+                ""
+            };
+        }
+
+        public string[] KurdishWeekdayNameNorthernArray()
+        {
+            return new string[] { "Yekşem", "Duşem", "Sêşem", "Çarşem", "Pêncşem", "Înê", "Şemî" };
+        }
+
+        public int GetDaysInKurdishMonth(int year, int month)
+        {
+            switch (month)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    return 31;
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    return 30;
+                case 12:
+                    return DateTime.IsLeapYear(year) ? 30 : 29; //The kurdish leap year occur in last months which is almost new gregorian year (I followed the logic every greorian leap year is the previous year of kurdish leap year + 700)
+                default:
+                    return 0;
+            }
+        }
+
+        public DateTime GetFirstDayOfYear(int year)
+        {
+            return new DateTime(year, 3, 21);
         }
     }
 }

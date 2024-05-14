@@ -41,6 +41,16 @@
                     return $"{monthFormatted}/{dayFormatted}/{Year}{suffix}";
                 case 11:
                     return $"{Year}/{monthFormatted}/{dayFormatted}{suffix}";
+                case 12:
+                    return $"{dayFormatted} {Year}";
+                case 13:
+                    return $"{Day}/{Month}/{Year}";
+                case 14:
+                    return $"{monthName}{separator}{Year}{suffix}";
+                case 15:
+                    return $"{monthName} {dayFormatted}{separator}{Year}{suffix}";
+                case 16:
+                    return $"{monthName} {Year}{suffix}";
                 default:
                     return "Invalid Format Choice";
             }

@@ -1,15 +1,43 @@
-﻿using Office = Microsoft.Office.Core;
+﻿using System.Reflection;
+using KDCLibrary;
+using Microsoft.Office.Core;
+using Microsoft.Office.Interop.PowerPoint;
 
 namespace KDC_PowerPoint
 {
     public partial class ThisAddIn
     {
-        protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
+        private Ribbon ribbon;
+
+        protected override IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-            return new Ribbon();
+            Ribbon.AppName = Assembly.GetExecutingAssembly().GetName().Name;
+            ribbon = new Ribbon();
+            return ribbon;
         }
 
-        private void ThisAddIn_Startup(object sender, System.EventArgs e) { }
+        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        {
+            ribbon.PowerPointApp = Globals.ThisAddIn.Application;
+            this.Application.PresentationOpen += Application_PresentationOpen;
+            this.Application.AfterNewPresentation += Application_AfterNewPresentation;
+        }
+
+        private void Application_PresentationOpen(Presentation Pres)
+        {
+            HandlePresentationLoad(Pres);
+        }
+
+        private void Application_AfterNewPresentation(Presentation Pres)
+        {
+            HandlePresentationLoad(Pres);
+        }
+
+        private void HandlePresentationLoad(Presentation Pres)
+        {
+            if (Ribbon.IsAutoUpdateOnLoadDoc)
+                ribbon.UpdateDatesFromCustomXmlPartsForPowerPoint(Pres);
+        }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e) { }
 

@@ -5,9 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Kurdish Digital Calendar")]
-[assembly: AssemblyDescription(
-    "A class library for VSTO apps that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars."
-)]
+[assembly: AssemblyDescription("Kurdish Digital Calendar Library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Rekbin Devs")]
 [assembly: AssemblyProduct("KDC Library")]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using KDCLibrary.Helpers;
 
 namespace KDCLibrary.Calendars
 {
@@ -60,7 +61,22 @@ namespace KDCLibrary.Calendars
 
         public string GregorianMonthNameArabic(int index)
         {
-            string[] months = new string[]
+            return GregorianMonthNameArabicArray()[index - 1];
+        }
+
+        public string GregorianMonthNameKurdishCentral(int index)
+        {
+            return GregorianMonthNameKurdishCentralArray()[index - 1];
+        }
+
+        public string GregorianMonthNameKurdishNorthern(int index)
+        {
+            return GregorianMonthNameKurdishNorthernArray()[index - 1];
+        }
+
+        public string[] GregorianMonthNameArabicArray()
+        {
+            return new string[]
             {
                 "يناير", // January
                 "فبراير", // February
@@ -75,12 +91,11 @@ namespace KDCLibrary.Calendars
                 "نوفمبر", // November
                 "ديسمبر" // December
             };
-            return months[index - 1];
         }
 
-        public string GregorianMonthNameKurdishCentral(int index)
+        public string[] GregorianMonthNameKurdishCentralArray()
         {
-            string[] months = new string[]
+            return new string[]
             {
                 "کانونی دووەم",
                 "شوبات",
@@ -95,13 +110,11 @@ namespace KDCLibrary.Calendars
                 "تشرینی دووەم",
                 "كانونی یەکەم"
             };
-
-            return months[index - 1];
         }
 
-        public string GregorianMonthNameKurdishNorthern(int index)
+        public string[] GregorianMonthNameKurdishNorthernArray()
         {
-            string[] months = new string[]
+            return new string[]
             {
                 "Çile",
                 "Şibat",
@@ -116,8 +129,6 @@ namespace KDCLibrary.Calendars
                 "Mijdar",
                 "Kanûn"
             };
-
-            return months[index - 1];
         }
     }
 }

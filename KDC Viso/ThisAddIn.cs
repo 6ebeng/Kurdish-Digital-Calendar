@@ -1,15 +1,24 @@
-﻿using Office = Microsoft.Office.Core;
+﻿using System.Reflection;
+using KDCLibrary;
+using Office = Microsoft.Office.Core;
 
 namespace KDC_Viso
 {
     public partial class ThisAddIn
     {
+        private Ribbon ribbon;
+
         protected override Office.IRibbonExtensibility CreateRibbonExtensibilityObject()
         {
-            return new Ribbon();
+            Ribbon.AppName = Assembly.GetExecutingAssembly().GetName().Name;
+            ribbon = new Ribbon();
+            return ribbon;
         }
 
-        private void ThisAddIn_Startup(object sender, System.EventArgs e) { }
+        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        {
+            Ribbon.VisioApp = Globals.ThisAddIn.Application;
+        }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e) { }
 

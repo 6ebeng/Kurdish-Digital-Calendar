@@ -3,9 +3,9 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace KDCLibrary.Calendars
+namespace KDCLibrary.Helpers
 {
-    public class Helper
+    internal class Helper
     {
         public string GetCultureInfoFromLanguage(string language)
         {
@@ -85,12 +85,22 @@ namespace KDCLibrary.Calendars
                     return 2;
                 case "dd MMMM, yyyy":
                     return 3;
+                case "MMMM dd, yyyy":
+                    return 15;
                 case "dd/MM/yyyy":
                     return 4;
                 case "MM/dd/yyyy":
                     return 10;
                 case "yyyy/MM/dd":
                     return 11;
+                case "MMMM yyyy":
+                    return 16;
+                case "MM/yyyy":
+                    return 5;
+                case "MMMM":
+                    return 8;
+                case "yyyy":
+                    return 6;
                 default:
                     MessageBox.Show(
                         "Unsupported format selected.",
@@ -99,33 +109,6 @@ namespace KDCLibrary.Calendars
                         MessageBoxIcon.Exclamation
                     );
                     return -1;
-            }
-        }
-
-        public int DetermineFormatChoiceFromCheckbox(string checkboxLabel)
-        {
-            switch (checkboxLabel)
-            {
-                case "dd/MM/yyyy":
-                    return 4;
-                case "MM/dd/yyyy":
-                    return 10;
-                case "yyyy/MM/dd":
-                    return 11;
-                case "dddd, dd MMMM, yyyy":
-                    return 1;
-                case "dddd, dd/MM/yyyy":
-                    return 2;
-                case "dd MMMM, yyyy":
-                    return 3;
-                default:
-                    MessageBox.Show(
-                        "Unsupported target format selected.",
-                        "Warning",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Exclamation
-                    );
-                    return -1; // Indicates an unsupported format
             }
         }
 

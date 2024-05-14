@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using KDCLibrary;
+using KDCLibrary.UI;
 using Microsoft.Office.Core;
-using Newtonsoft.Json;
-using Office = Microsoft.Office.Core;
+using Microsoft.Office.Interop.Word;
+using Bookmark = Microsoft.Office.Interop.Word.Bookmark;
+using Document = Microsoft.Office.Interop.Word.Document;
 
 namespace KDC_Word
 {
@@ -18,16 +19,20 @@ namespace KDC_Word
     {
         #region Intializers
 
-        IKDCService kDCService = new KDCServiceImplementation();
-        private Office.IRibbonUI ribbon;
+        readonly IKDCService kDCService = new KDCServiceImplementation();
+        private IRibbonUI ribbon;
         private const string IsReverseKeyName = Constants.KeyNames.IsReverse;
         private const string SelectedDialectKeyName = Constants.KeyNames.SelectedDialect;
         private const string SelectedFormat1KeyName = Constants.KeyNames.SelectedFormat1;
         private const string SelectedFormat2KeyName = Constants.KeyNames.SelectedFormat2;
         private const string LastSelectionGroup1KeyName = Constants.KeyNames.LastSelectionGroup1;
         private const string LastSelectionGroup2KeyName = Constants.KeyNames.LastSelectionGroup2;
-        private const string CheckBoxStatesKeyName = Constants.KeyNames.CheckBoxStates;
         private const string isAddSuffixKeyName = Constants.KeyNames.IsAddSuffix;
+        private const string isAutoUpdateKeyName = Constants.KeyNames.IsAutoUpdate;
+        private const string InsertFormatKeyName = Constants.KeyNames.insertFormat;
+        private const string isAutoUpdateOnLoadDocKeyName = Constants
+            .KeyNames
+            .IsAutoUpdateOnLoadDoc;
 
         private readonly List<string> _dialectsList = Constants.DefaultValues.Dialects;
         private readonly List<string> _formatsList = Constants.DefaultValues.Formats;
@@ -35,13 +40,15 @@ namespace KDC_Word
         private readonly List<string> _calendarGroup2List = Constants.DefaultValues.CalendarGroup2;
         private readonly string AppName = Assembly.GetExecutingAssembly().GetName().Name;
 
-        private string _selectedDialect { get; set; }
-        private string _selectedCalendar { get; set; }
-        private string _selectedFromFormat { get; set; }
-        private string _selectedToFormat { get; set; }
-        private bool _isReverse { get; set; }
-        private bool _isAddSuffix { get; set; }
-        private string _selectedInsertFormat { get; set; }
+        private string SelectedDialect { get; set; }
+        private string SelectedCalendar { get; set; }
+        private string SelectedFromFormat { get; set; }
+        private string SelectedToFormat { get; set; }
+        private bool IsReverse { get; set; } = false;
+        private bool IsAddSuffix { get; set; } = false;
+        private bool IsAutoUpdate { get; set; } = false;
+        private string SelectedInsertFormat { get; set; }
+        public bool IsAutoUpdateOnLoadDoc { get; set; }
 
         #endregion
 
@@ -57,238 +64,55 @@ namespace KDC_Word
         #endregion
 
         #region Ribbon Callbacks
-        //Create callback methods here. For more information about adding callback methods, visit https://go.microsoft.com/fwlink/?LinkID=271226
 
         public void Ribbon_Load(IRibbonUI ribbonUI)
         {
-            this.ribbon = ribbonUI;
+            ribbon = ribbonUI;
 
-            // Restore the _isReverse state from the registry when the ribbon loads
-            this._isReverse = Convert.ToBoolean(
+            IsReverse = Convert.ToBoolean(
                 kDCService.LoadSetting(IsReverseKeyName, "false", AppName)
             );
-            string savedCalendarKeyName = _isReverse
-                ? LastSelectionGroup2KeyName
-                : LastSelectionGroup1KeyName;
-            this._selectedCalendar = kDCService.LoadSetting(
-                savedCalendarKeyName,
-                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
+            SelectedCalendar = kDCService.LoadSetting(
+                IsReverse ? LastSelectionGroup2KeyName : LastSelectionGroup1KeyName,
+                IsReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
                 AppName
             );
-            this._selectedDialect = kDCService.LoadSetting(
+            SelectedDialect = kDCService.LoadSetting(
                 SelectedDialectKeyName,
                 _dialectsList[0],
                 AppName
             );
-            this._selectedFromFormat = kDCService.LoadSetting(
+            SelectedFromFormat = kDCService.LoadSetting(
                 SelectedFormat1KeyName,
                 _formatsList[0],
                 AppName
             );
-            this._selectedToFormat = kDCService.LoadSetting(
+            SelectedToFormat = kDCService.LoadSetting(
                 SelectedFormat2KeyName,
                 _formatsList[0],
                 AppName
             );
-            this._isAddSuffix = Convert.ToBoolean(
+            IsAddSuffix = Convert.ToBoolean(
                 kDCService.LoadSetting(isAddSuffixKeyName, "false", AppName)
             );
-            this._selectedInsertFormat = getSelectedCheckBox();
-
-            // Invalidate the controls that depend on the _isReverse state, if necessary
-            // This ensures that UI elements reflect the correct state from the beginning
+            IsAutoUpdate = Convert.ToBoolean(
+                kDCService.LoadSetting(isAutoUpdateKeyName, "false", AppName)
+            );
+            IsAutoUpdateOnLoadDoc = Convert.ToBoolean(
+                kDCService.LoadSetting(isAutoUpdateOnLoadDocKeyName, "false", AppName)
+            );
+            SelectedInsertFormat = kDCService.LoadSetting(
+                InsertFormatKeyName,
+                _formatsList[0],
+                AppName
+            );
             ribbon.InvalidateControl("toggleButton1");
             ribbon.InvalidateControl("dropDown2");
         }
 
-        public bool getCheckBoxPressed(IRibbonControl control)
-        {
-            // Load the saved states
-            var states = LoadCheckBoxStates();
+        #region Callbacks for Ribbon Controls
 
-            // Return the state for the specified control
-            return states.TryGetValue(control.Id, out bool isPressed) && isPressed;
-        }
-
-        private void SaveCheckBoxStates(Dictionary<string, bool> states)
-        {
-            kDCService.SaveSetting(
-                CheckBoxStatesKeyName,
-                JsonConvert.SerializeObject(states),
-                AppName
-            );
-        }
-
-        private Dictionary<string, bool> LoadCheckBoxStates()
-        {
-            var serializedState = kDCService.LoadSetting(
-                CheckBoxStatesKeyName,
-                "{ 'checkBox1', true }",
-                AppName
-            );
-            Debug.WriteLine($"Loaded serialized state: {serializedState}");
-
-            try
-            {
-                var states = JsonConvert.DeserializeObject<Dictionary<string, bool>>(
-                    serializedState
-                );
-                // If the dictionary is empty, default to first checkbox checked
-                if (states == null || !states.Any())
-                {
-                    return new Dictionary<string, bool> { { "checkBox1", true } };
-                }
-                return states;
-            }
-            catch (Newtonsoft.Json.JsonReaderException ex)
-            {
-                Debug.WriteLine($"JSON parsing error: {ex.Message}");
-                // If parsing fails, default to first checkbox checked
-                return new Dictionary<string, bool> { { "checkBox1", true } };
-            }
-        }
-
-        public void onToggleButtonAction(IRibbonControl control, bool isPressed)
-        {
-            if (control.Id == "toggleButton1")
-            {
-                kDCService.SaveSetting(IsReverseKeyName, isPressed.ToString(), AppName);
-                // Invalidate dropdown2 to refresh its items based on the new IsReverse state
-                ribbon.InvalidateControl("dropDown2");
-            }
-        }
-
-        public void onDropDownAction(IRibbonControl control, string selectedId, int selectedIndex)
-        {
-            Debug.WriteLine("Selected DropDown Index: " + selectedIndex);
-
-            switch (control.Id)
-            {
-                case "dropDown1":
-                    this._selectedDialect = _dialectsList[selectedIndex];
-                    kDCService.SaveSetting(
-                        SelectedDialectKeyName,
-                        _dialectsList[selectedIndex],
-                        AppName
-                    );
-                    break;
-
-                case "dropDown2":
-                    this._selectedCalendar = _isReverse
-                        ? _calendarGroup2List[selectedIndex]
-                        : _calendarGroup1List[selectedIndex];
-                    var keyName = _isReverse
-                        ? LastSelectionGroup2KeyName
-                        : LastSelectionGroup1KeyName;
-                    kDCService.SaveSetting(keyName, _selectedCalendar, AppName);
-                    break;
-
-                case "dropDown3":
-                    this._selectedFromFormat = _formatsList[selectedIndex];
-                    kDCService.SaveSetting(SelectedFormat1KeyName, _selectedFromFormat, AppName);
-                    break;
-
-                case "dropDown4":
-                    this._selectedToFormat = _formatsList[selectedIndex];
-                    kDCService.SaveSetting(SelectedFormat2KeyName, _selectedToFormat, AppName);
-                    break;
-            }
-        }
-
-        public void onCheckBoxAction(IRibbonControl control, bool isPressed)
-        {
-            // Load the current states of checkboxes
-            var states = LoadCheckBoxStates();
-
-            // Count how many checkboxes are currently checked
-            int checkedCount = states.Count(kvp => kvp.Value);
-
-            if (isPressed)
-            {
-                // If the checkbox is being checked, ensure all others are unchecked
-                foreach (var key in states.Keys.ToList())
-                {
-                    states[key] = false;
-                }
-                // Check the current checkbox
-                states[control.Id] = true;
-            }
-            else if (!isPressed && checkedCount <= 1)
-            {
-                // If the checkbox is being unchecked but it's the only one checked, prevent this action
-                // Essentially, do nothing to keep the current checkbox checked
-                // This block can be empty or display a message if desired
-            }
-            else
-            {
-                // If unchecking and other checkboxes are checked, allow unchecking
-                states[control.Id] = false;
-            }
-
-            // Save the updated states
-            SaveCheckBoxStates(states);
-
-            this._selectedInsertFormat = getSelectedCheckBox();
-            // Invalidate all checkboxes to update their states in the UI
-            ribbon.Invalidate(); // This will refresh the whole ribbon, alternatively, you could invalidate each control individually
-            populateInsertDate();
-        }
-
-        public string getSelectedCheckBox()
-        {
-            // Load the current states of checkboxes
-            var checkBoxStates = LoadCheckBoxStates();
-
-            if (checkBoxStates.Count == 0 || !checkBoxStates.Values.Any(v => v))
-            {
-                // If no checkboxes are checked or if the states dictionary is empty, default to the first checkbox being selected
-                // Optionally, you could ensure that the first checkbox's state is set to true in checkBoxStates here
-                return _formatsList[0];
-            }
-
-            foreach (var checkBoxState in checkBoxStates)
-            {
-                if (checkBoxState.Value) // If the checkbox is selected
-                {
-                    // Extract the numeric part of the checkBox ID and use it to index into _formats
-                    if (
-                        int.TryParse(checkBoxState.Key.Replace("checkBox", ""), out int index)
-                        && index <= _formatsList.Count
-                    )
-                    {
-                        // Adjust for zero-based indexing if necessary
-                        int adjustedIndex = index - 1; // Assuming checkBox1 corresponds to _formats[0]
-
-                        if (adjustedIndex >= 0 && adjustedIndex < _formatsList.Count)
-                        {
-                            return _formatsList[adjustedIndex];
-                        }
-                    }
-                }
-            }
-
-            // Return null or an empty string if no checkbox is selected
-            // This line should never be reached with the new logic added above, but is kept for safety
-            return null;
-        }
-
-        public bool restoreisAddSuffixState(IRibbonControl control)
-        {
-            this._isAddSuffix = Convert.ToBoolean(
-                kDCService.LoadSetting(isAddSuffixKeyName, "false", AppName)
-            );
-            return _isAddSuffix;
-        }
-
-        public bool restoreIsReverseState(IRibbonControl control)
-        {
-            this._isReverse = Convert.ToBoolean(
-                kDCService.LoadSetting(IsReverseKeyName, "false", AppName)
-            );
-            return _isReverse;
-        }
-
-        public Bitmap GetImage(IRibbonControl control)
+        public Bitmap OnGetImage(IRibbonControl control)
         {
             switch (control.Id)
             {
@@ -298,36 +122,306 @@ namespace KDC_Word
                     return KDCLibrary.Properties.Resources.help;
                 case "splitButton2__btn":
                     return KDCLibrary.Properties.Resources.convert;
+                case "button3":
+                    return KDCLibrary.Properties.Resources.calendar;
+                case "button2":
+                    return KDCLibrary.Properties.Resources.update;
+                case "button4":
+                    return KDCLibrary.Properties.Resources.Choose_Date;
                 default:
                     return null;
             }
         }
 
-        public string GetCheckBoxLabelById(string CheckBoxId)
+        public bool OnGetPressed(IRibbonControl control)
         {
-            Debug.WriteLine(CheckBoxId);
-            switch (CheckBoxId)
+            Debug.WriteLine("Check pressed: " + control.Id);
+            switch (control.Id)
             {
+                case "toggleButton1":
+                    this.IsReverse = Convert.ToBoolean(
+                        kDCService.LoadSetting(IsReverseKeyName, "false", AppName)
+                    );
+                    return IsReverse;
                 case "checkBox1":
-                    return _formatsList[0];
+                    this.IsAddSuffix = Convert.ToBoolean(
+                        kDCService.LoadSetting(isAddSuffixKeyName, "false", AppName)
+                    );
+                    return IsAddSuffix;
                 case "checkBox2":
-                    return _formatsList[1];
+                    this.IsAutoUpdateOnLoadDoc = Convert.ToBoolean(
+                        kDCService.LoadSetting(isAutoUpdateOnLoadDocKeyName, "false", AppName)
+                    );
+                    return IsAutoUpdateOnLoadDoc;
                 case "checkBox3":
-                    return _formatsList[2];
-                case "checkBox4":
-                    return _formatsList[3];
-                case "checkBox15":
-                    return _formatsList[4];
-                case "checkBox6":
-                    return _formatsList[5];
+                    this.IsAutoUpdate = Convert.ToBoolean(
+                        kDCService.LoadSetting(isAutoUpdateKeyName, "false", AppName)
+                    );
+                    return IsAutoUpdate;
                 default:
-                    return "Unknown";
+                    return false;
             }
         }
 
-        private void populateInsertDate()
+        public void OnCheckAction_Click(IRibbonControl control, bool isPressed)
         {
-            if (_selectedInsertFormat == null)
+            switch (control.Id)
+            {
+                case "checkBox1":
+                    this.IsAddSuffix = isPressed;
+                    kDCService.SaveSetting(isAddSuffixKeyName, isPressed.ToString(), AppName);
+                    break;
+                case "checkBox2":
+                    this.IsAutoUpdateOnLoadDoc = isPressed;
+                    kDCService.SaveSetting(
+                        isAutoUpdateOnLoadDocKeyName,
+                        isPressed.ToString(),
+                        AppName
+                    );
+                    break;
+                case "checkBox3":
+                    this.IsAutoUpdate = isPressed;
+                    kDCService.SaveSetting(isAutoUpdateKeyName, isPressed.ToString(), AppName);
+                    break;
+                case "toggleButton1":
+                    this.IsReverse = isPressed;
+                    kDCService.SaveSetting(IsReverseKeyName, IsReverse.ToString(), AppName);
+
+                    // Exchange label of dropdown3 with dropdown4 and vice versa
+                    (SelectedToFormat, SelectedFromFormat) = (SelectedFromFormat, SelectedToFormat);
+
+                    kDCService.SaveSetting(SelectedFormat1KeyName, SelectedFromFormat, AppName);
+                    kDCService.SaveSetting(SelectedFormat2KeyName, SelectedToFormat, AppName);
+
+                    this.ribbon.InvalidateControl("dropDown3");
+                    this.ribbon.InvalidateControl("dropDown4");
+                    this.ribbon.InvalidateControl("dropDown2");
+                    break;
+            }
+        }
+
+        public void OnDropDownAction(IRibbonControl control, string selectedId, int selectedIndex)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    this.SelectedDialect = _dialectsList[selectedIndex];
+                    kDCService.SaveSetting(
+                        SelectedDialectKeyName,
+                        _dialectsList[selectedIndex],
+                        AppName
+                    );
+                    break;
+
+                case "dropDown2":
+                    this.SelectedCalendar = IsReverse
+                        ? _calendarGroup2List[selectedIndex]
+                        : _calendarGroup1List[selectedIndex];
+                    var keyName = IsReverse
+                        ? LastSelectionGroup2KeyName
+                        : LastSelectionGroup1KeyName;
+                    kDCService.SaveSetting(keyName, SelectedCalendar, AppName);
+                    break;
+
+                case "dropDown3":
+                    this.SelectedFromFormat = _formatsList[selectedIndex];
+                    kDCService.SaveSetting(SelectedFormat1KeyName, SelectedFromFormat, AppName);
+                    break;
+
+                case "dropDown4":
+                    this.SelectedToFormat = _formatsList[selectedIndex];
+                    kDCService.SaveSetting(SelectedFormat2KeyName, SelectedToFormat, AppName);
+                    break;
+                case "dropDown5":
+                    this.SelectedInsertFormat = _formatsList[selectedIndex];
+                    kDCService.SaveSetting(InsertFormatKeyName, SelectedInsertFormat, AppName);
+                    break;
+            }
+        }
+
+        public void OnButtonAction_Click(IRibbonControl control)
+        {
+            switch (control.Id)
+            {
+                case "button1":
+                    new CreditsForm().ShowDialog();
+                    break;
+                case "button2":
+                    UpdateDatesFromCustomXmlParts(Globals.ThisAddIn.Application.ActiveDocument);
+                    break;
+                case "button3":
+                    PopulateInsertDate();
+                    break;
+                case "button4":
+                    Form form = new CalendarControlForm(SelectedDialect);
+                    form.FormClosed += (sender, e) =>
+                    {
+                        if (kDCService.isClosedByDoubleClick())
+                        {
+                            DateTime gDate = kDCService.GetGregorianSelectedDate();
+
+                            if (gDate == DateTime.MinValue)
+                            {
+                                return;
+                            }
+                            var app = Globals.ThisAddIn.Application;
+                            app.Selection.Text = kDCService.ConvertDateBasedOnUserSelection(
+                                gDate.ToString("dd/MM/yyyy"),
+                                false,
+                                SelectedDialect,
+                                "dd/MM/yyyy",
+                                SelectedInsertFormat,
+                                "Gregorian",
+                                IsAddSuffix
+                            );
+                            app.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
+                        }
+                    };
+                    form.ShowDialog();
+                    break;
+                case "splitButton2__btn":
+                    Globals.ThisAddIn.Application.Selection.Text =
+                        kDCService.ConvertDateBasedOnUserSelection(
+                            Globals.ThisAddIn.Application.Selection.Text,
+                            IsReverse,
+                            SelectedDialect,
+                            SelectedFromFormat,
+                            SelectedToFormat,
+                            SelectedCalendar,
+                            IsAddSuffix
+                        );
+                    break;
+            }
+        }
+
+        public int OnGetSelectedItemIndex(IRibbonControl control)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    this.SelectedDialect = kDCService.LoadSetting(
+                        SelectedDialectKeyName,
+                        _dialectsList[0],
+                        AppName
+                    );
+
+                    return _dialectsList.IndexOf(SelectedDialect);
+                case "dropDown2":
+                    string savedCalendarKeyName = IsReverse
+                        ? LastSelectionGroup2KeyName
+                        : LastSelectionGroup1KeyName;
+                    this.SelectedCalendar = kDCService.LoadSetting(
+                        savedCalendarKeyName,
+                        IsReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
+                        AppName
+                    );
+                    List<string> selectedList = IsReverse
+                        ? _calendarGroup2List
+                        : _calendarGroup1List;
+                    return selectedList.IndexOf(SelectedCalendar);
+                case "dropDown3":
+                    this.SelectedFromFormat = kDCService.LoadSetting(
+                        SelectedFormat1KeyName,
+                        _formatsList[0],
+                        AppName
+                    );
+                    return _formatsList.IndexOf(SelectedFromFormat);
+                case "dropDown4":
+                    SelectedToFormat = kDCService.LoadSetting(
+                        SelectedFormat2KeyName,
+                        _formatsList[0],
+                        AppName
+                    );
+                    return _formatsList.IndexOf(SelectedToFormat);
+                case "dropDown5":
+                    this.SelectedInsertFormat = kDCService.LoadSetting(
+                        InsertFormatKeyName,
+                        _formatsList[0],
+                        AppName
+                    );
+                    return _formatsList.IndexOf(SelectedInsertFormat);
+                default:
+                    return 0;
+            }
+        }
+
+        public int OnGetItemCount(IRibbonControl control)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    return _dialectsList.Count;
+                case "dropDown2":
+                    return IsReverse ? _calendarGroup2List.Count : _calendarGroup1List.Count;
+                case "dropDown3":
+                case "dropDown4":
+                case "dropDown5":
+                    return _formatsList.Count;
+                default:
+                    return 0;
+            }
+        }
+
+        public string OnGetItemLabel(IRibbonControl control, int index)
+        {
+            switch (control.Id)
+            {
+                case "dropDown1":
+                    return _dialectsList[index];
+                case "dropDown2":
+                    List<string> selectedList = IsReverse
+                        ? _calendarGroup2List
+                        : _calendarGroup1List;
+                    return selectedList[index];
+                case "dropDown3":
+                case "dropDown4":
+                case "dropDown5":
+                    return _formatsList[index];
+                default:
+                    return "";
+            }
+        }
+
+        #endregion
+
+        #region Helper Methods
+        private void CleanOrphanBookmarks()
+        {
+            Document doc = Globals.ThisAddIn.Application.ActiveDocument;
+            List<string> bookmarksToRemove = new List<string>();
+
+            foreach (Bookmark mark in doc.Bookmarks)
+            {
+                if (mark.Name.StartsWith("KDate"))
+                {
+                    // Check if the bookmark's content is valid
+                    if (IsBookmarkOrphan(mark))
+                    {
+                        bookmarksToRemove.Add(mark.Name);
+                    }
+                }
+            }
+
+            // Remove identified orphan bookmarks
+            foreach (string bookmarkName in bookmarksToRemove)
+            {
+                doc.Bookmarks[bookmarkName].Delete();
+            }
+        }
+
+        private bool IsBookmarkOrphan(Bookmark bookmark)
+        {
+            string content = bookmark.Range.Text;
+            if (string.IsNullOrWhiteSpace(content)) // Assuming dates have '/' character
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void PopulateInsertDate()
+        {
+            if (SelectedInsertFormat == null)
             {
                 MessageBox.Show(
                     "No format selected.",
@@ -339,7 +433,7 @@ namespace KDC_Word
             }
 
             // Determine the format choice based on the label of the checked checkbox.
-            int formatChoice = kDCService.DetermineFormatChoiceFromCheckbox(_selectedInsertFormat);
+            int formatChoice = kDCService.SelectFormatChoice(SelectedInsertFormat);
             if (formatChoice == -1) // If the format is unsupported or not found
             {
                 MessageBox.Show(
@@ -351,190 +445,145 @@ namespace KDC_Word
                 return; // Exit the method if no valid format is selected
             }
 
-            // Call Insert Kurdish Date with the determined formatChoice and dialect and isAddSuffix
-            Globals.ThisAddIn.Application.Selection.TypeText(
-                kDCService.Kurdish(formatChoice, _selectedDialect, _isAddSuffix)
-            );
+            string kurdishDate = kDCService.Kurdish(formatChoice, SelectedDialect, IsAddSuffix);
+
+            var app = Globals.ThisAddIn.Application;
+
+            if (IsAutoUpdate)
+            {
+                CleanOrphanBookmarks(); // Remove orphan bookmarks before inserting a new date
+
+                Range currentRange = app.Selection.Range;
+                currentRange.Text = kurdishDate; // This replaces the selected text with the Kurdish date
+
+                currentRange.SetRange(currentRange.Start, currentRange.Start + kurdishDate.Length);
+
+                // Add a bookmark for future reference
+                try
+                {
+                    string bookmarkName = "KDate" + Guid.NewGuid().ToString().Replace("-", ""); // Clean and valid bookmark name
+                    if (!app.ActiveDocument.Bookmarks.Exists(bookmarkName))
+                    {
+                        app.ActiveDocument.Bookmarks.Add(bookmarkName, currentRange);
+
+                        // Save parameters to Custom XML Part
+                        AddCustomXmlPart(bookmarkName, SelectedDialect, formatChoice, IsAddSuffix);
+
+                        // select inserted date
+                        currentRange.Select();
+                    }
+                }
+                catch (COMException ex)
+                {
+                    MessageBox.Show(
+                        "Failed to create bookmark: " + ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+            else
+            {
+                app.Selection.Text = kurdishDate;
+                app.Selection.Collapse(WdCollapseDirection.wdCollapseEnd);
+            }
         }
 
-        #region Callbacks for Ribbon Controls
-
-        public void checkBox7_Click(IRibbonControl control, bool isPressed)
+        public void AddCustomXmlPart(
+            string bookmarkName,
+            string dialect,
+            int formatChoice,
+            bool isAddSuffix
+        )
         {
-            this._isAddSuffix = isPressed;
-            kDCService.SaveSetting(isAddSuffixKeyName, isPressed.ToString(), AppName);
+            string customXml =
+                $@"<KurdishDateInsertion>
+                    <DateInfo>
+                        <Dialect>{dialect}</Dialect>
+                        <FormatChoice>{formatChoice}</FormatChoice>
+                        <IsAddSuffix>{isAddSuffix}</IsAddSuffix>
+                        <BookmarkName>{bookmarkName}</BookmarkName>
+                    </DateInfo>
+                </KurdishDateInsertion>
+                ";
+
+            var doc = Globals.ThisAddIn.Application.ActiveDocument;
+            doc.CustomXMLParts.Add(customXml);
         }
 
-        public void toggleButton1_Click(IRibbonControl control, bool isPressed)
+        public void UpdateDatesFromCustomXmlParts(Document Doc)
         {
-            this._isReverse = isPressed;
-            kDCService.SaveSetting(IsReverseKeyName, _isReverse.ToString(), AppName);
-            this.ribbon.InvalidateControl("dropDown2");
+            List<Bookmark> bookmarksToUpdate = new List<Bookmark>();
+
+            // Collect all relevant bookmarks to update
+            foreach (Bookmark bookmark in Doc.Bookmarks)
+            {
+                if (bookmark.Name.StartsWith("KDate"))
+                {
+                    bookmarksToUpdate.Add(bookmark);
+                }
+            }
+
+            // Process each bookmark to update its content
+            foreach (Bookmark bookmark in bookmarksToUpdate)
+            {
+                Range bookmarkRange = bookmark.Range;
+                string bookmarkName = bookmark.Name;
+                CustomXMLPart part = FindCustomXmlPartForBookmark(bookmarkName, Doc);
+
+                if (part != null)
+                {
+                    var dialect = part.SelectSingleNode(
+                        "/KurdishDateInsertion/DateInfo/Dialect"
+                    )?.Text;
+                    var formatChoice = int.Parse(
+                        part.SelectSingleNode("/KurdishDateInsertion/DateInfo/FormatChoice")?.Text
+                            ?? "0"
+                    );
+                    var isAddSuffix = bool.Parse(
+                        part.SelectSingleNode("/KurdishDateInsertion/DateInfo/IsAddSuffix")?.Text
+                            ?? "false"
+                    );
+
+                    string newDate = kDCService.Kurdish(formatChoice, dialect, isAddSuffix);
+
+                    // Replace old content and reset the bookmark
+                    bookmarkRange.Text = newDate;
+
+                    // Create a new range for the new text
+                    Range newRange = Doc.Range(
+                        bookmarkRange.Start,
+                        bookmarkRange.Start + newDate.Length
+                    );
+
+                    Doc.Bookmarks.Add(bookmarkName, newRange);
+                }
+                else
+                {
+                    Debug.WriteLine($"No matching XML part found for bookmark: {bookmarkName}");
+                }
+            }
         }
 
-        public void splitButton1_Click(IRibbonControl control)
+        private CustomXMLPart FindCustomXmlPartForBookmark(string bookmarkName, Document doc)
         {
-            populateInsertDate();
+            foreach (CustomXMLPart part in doc.CustomXMLParts)
+            {
+                if (part.NamespaceURI == string.Empty)
+                {
+                    var nameNode = part.SelectSingleNode(
+                        "/KurdishDateInsertion/DateInfo/BookmarkName"
+                    );
+                    if (nameNode != null && nameNode.Text == bookmarkName)
+                    {
+                        return part;
+                    }
+                }
+            }
+            return null;
         }
-
-        public void splitButton2_Click(Office.IRibbonControl control)
-        {
-            Globals.ThisAddIn.Application.Selection.Text =
-                kDCService.ConvertDateBasedOnUserSelection(
-                    Globals.ThisAddIn.Application.Selection.Text,
-                    _isReverse,
-                    _selectedDialect,
-                    _selectedFromFormat,
-                    _selectedToFormat,
-                    _selectedCalendar,
-                    _isAddSuffix
-                );
-        }
-
         #endregion
-
-
-        #region Load current List of Dialects, Formats, and Calendar Groups
-
-        public string getDialectLabel(IRibbonControl control, int index)
-        {
-            // Return the label of the dialect at the specified index
-            return _dialectsList[index];
-        }
-
-        public int getDialectCount(IRibbonControl control)
-        {
-            // Return the number of dialects available
-            return _dialectsList.Count;
-        }
-
-        public int getSelectedDialectIndex(IRibbonControl control)
-        {
-            // Load the saved dialect name from your settings
-            this._selectedDialect = kDCService.LoadSetting(
-                SelectedDialectKeyName,
-                _dialectsList[0],
-                AppName
-            );
-
-            int index = _dialectsList.IndexOf(_selectedDialect);
-            // Return the index of the saved dialect or default to the first item if not found
-            return index >= 0 ? index : 0;
-        }
-
-        public string getSelectedDialectLabel(IRibbonControl control)
-        {
-            this._selectedDialect = _dialectsList[getSelectedDialectIndex(control)];
-            return _selectedDialect;
-        }
-
-        public string getCalendarLabel(IRibbonControl control, int index)
-        {
-            // Check the _isReverse state to decide which list to use
-            List<string> selectedList = _isReverse ? _calendarGroup2List : _calendarGroup1List;
-            // Return the label of the calendar at the specified index from the appropriate list
-            return selectedList[index];
-        }
-
-        public int getCalendarCount(IRibbonControl control)
-        {
-            // Return the number of calendars available based on the _isReverse state
-            return _isReverse ? _calendarGroup2List.Count : _calendarGroup1List.Count;
-        }
-
-        public int getSelectedCalendarIndex(IRibbonControl control)
-        {
-            // Determine the correct key name based on the _isReverse state
-            string savedCalendarKeyName = _isReverse
-                ? LastSelectionGroup2KeyName
-                : LastSelectionGroup1KeyName;
-            this._selectedCalendar = kDCService.LoadSetting(
-                savedCalendarKeyName,
-                _isReverse ? _calendarGroup2List[0] : _calendarGroup1List[0],
-                AppName
-            );
-            List<string> selectedList = _isReverse ? _calendarGroup2List : _calendarGroup1List;
-            int index = selectedList.IndexOf(_selectedCalendar);
-            // Default to the first item if the saved calendar is not found
-            return index >= 0 ? index : 0;
-        }
-
-        public string getSelectedCalendarLabel(IRibbonControl control)
-        {
-            this._selectedCalendar = _isReverse
-                ? _calendarGroup2List[getSelectedCalendarIndex(control)]
-                : _calendarGroup1List[getSelectedCalendarIndex(control)];
-            return _selectedCalendar;
-        }
-
-        public string getFromFormatLabel(IRibbonControl control, int index)
-        {
-            // Return the label of the format at the specified index
-            return _formatsList[index];
-        }
-
-        public int getFromFormatCount(IRibbonControl control)
-        {
-            // Return the number of formats available
-            return _formatsList.Count;
-        }
-
-        public int getSelectedFromFormatIndex(IRibbonControl control)
-        {
-            // Load the saved format name from your settings
-            this._selectedFromFormat = kDCService.LoadSetting(
-                SelectedFormat1KeyName,
-                _formatsList[0],
-                AppName
-            );
-            int index = _formatsList.IndexOf(_selectedFromFormat);
-            // Return the index of the saved format or default to the first item if not found
-            return index >= 0 ? index : 0; // Ensure we return an integer
-        }
-
-        public string getSelectedFromFormatLabel(IRibbonControl control)
-        {
-            this._selectedFromFormat = _formatsList[getSelectedFromFormatIndex(control)];
-            return _selectedFromFormat;
-        }
-
-        public string getToFormatLabel(IRibbonControl control, int index)
-        {
-            // Return the label of the format at the specified index
-            return _formatsList[index];
-        }
-
-        public int getToFormatCount(IRibbonControl control)
-        {
-            // Return the number of formats available
-            return _formatsList.Count;
-        }
-
-        public int getSelectedToFormatIndex(IRibbonControl control)
-        {
-            // Load the saved format name from your settings
-            _selectedToFormat = kDCService.LoadSetting(
-                SelectedFormat2KeyName,
-                _formatsList[0],
-                AppName
-            );
-            int index = _formatsList.IndexOf(_selectedToFormat);
-            return index >= 0 ? index : 0; // Ensure we return an integer
-        }
-
-        public string getSelectedToFormatLabel(IRibbonControl control)
-        {
-            this._selectedToFormat = _formatsList[getSelectedToFormatIndex(control)];
-            return _selectedToFormat;
-        }
-
-        public void button1_Click(IRibbonControl control)
-        {
-            new CreditsForm().Show();
-        }
-
-        #endregion
-
 
         #endregion
     }

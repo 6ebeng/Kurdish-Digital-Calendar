@@ -4,7 +4,6 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1e76f8b8-75f4-4581-8514-bebc7ef51bd6</ProjectGuid>
     <OutputType>msi</OutputType>
-    <ProjectHome>.</ProjectHome>
     <StartupFile>AI Setup Project.aip</StartupFile>
     <SearchPath>
     </SearchPath>
@@ -16,7 +15,7 @@
     <LoadFromTemplate>
     </LoadFromTemplate>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'AnyCPU_Release' " />
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' " />
   <ItemGroup>
     <Compile Include="Kurdish Digital Calendar.aip">
       <SubType>Content</SubType>

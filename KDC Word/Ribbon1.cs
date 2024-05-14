@@ -303,5 +303,7 @@ namespace KDC_Word
         }
 
         private void splitButton3_Click(object sender, RibbonControlEventArgs e) { }
+
+        private void splitButton4_Click(object sender, RibbonControlEventArgs e) { }
     }
 }

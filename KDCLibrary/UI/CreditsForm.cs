@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace KDCLibrary
 {
-    public partial class CreditsForm : Form
+    [ComVisible(false)]
+    public partial class CreditsForm : DevExpress.XtraEditors.XtraForm
     {
         public CreditsForm()
         {
             InitializeComponent();
         }
-
-        private void label1_Click(object sender, EventArgs e) { }
-
-        private void label4_Click(object sender, EventArgs e) { }
-
-        private void Credit_Load(object sender, EventArgs e) { }
     }
 }
