@@ -23,8 +23,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
+    - name: Set PFX Password
+      run: echo "PFX_PASSWORD=${{ secrets.PFX_PASSWORD }}" >> $GITHUB_ENV
+
     - name: Build solution
-      run: dotnet build --configuration Release
+      run: dotnet build --configuration Release /p:SignAssembly=true /p:AssemblyOriginatorKeyFile=path/to/your.pfx /p:AssemblyOriginatorKeyPassword=${{ env.PFX_PASSWORD }}
 
     - name: Install Advanced Installer
       run: choco install advanced-installer
