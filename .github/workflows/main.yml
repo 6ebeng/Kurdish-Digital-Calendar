@@ -1,0 +1,100 @@
+name: Build and Release KDC
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags (e.g., v1.0.0)
+  workflow_dispatch:
+    # Allows manual trigger of the workflow
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --configuration Release
+
+    - name: Install Advanced Installer
+      run: choco install advanced-installer
+
+    - name: Determine Advanced Installer Path
+      id: determine-ai-path
+      shell: pwsh
+      run: |
+        $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName
+        echo "::set-output name=AI_PATH::$aiPath"
+
+    - name: Update Installer Version
+      shell: pwsh
+      run: |
+        $version = "${{ github.ref_name }}"
+        $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
+        (Get-Content $aipPath) -replace 'ProductVersion="[0-9]+\.[0-9]+\.[0-9]+"', "ProductVersion=`"$version`"" | Set-Content $aipPath
+
+    - name: Sign assemblies with SignTool
+      shell: pwsh
+      run: |
+        $pfxPath = "${{ github.workspace }}\KDC_Key.pfx"
+        $pfxPassword = "${{ secrets.PFX_PASSWORD }}"
+        $projects = @("KDC Excel", "KDC Outlook", "KDC PowerPoint", "KDC Project", "KDC Viso", "KDC Word", "KDCLibrary")
+        foreach ($project in $projects) {
+          $assemblies = Get-ChildItem -Path "${{ github.workspace }}\$project\bin\Release" -Filter *.dll -Recurse
+          foreach ($assembly in $assemblies) {
+            & "C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe" sign /f $pfxPath /p $pfxPassword /t http://timestamp.digicert.com /v $assembly.FullName
+          }
+        }
+
+    - name: Build Advanced Installer project
+      run: |
+        "${{ steps.determine-ai-path.outputs.AI_PATH }}\bin\x86\advinst.exe" /build "AI Setup Project\Kurdish Digital Calendar.aip" /output ./output
+
+    - name: Archive build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: ./output
+
+  release:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifacts
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./output/Kurdish-Digital-Calendar.exe
+        asset_name: Kurdish-Digital-Calendar.exe
+        asset_content_type: application/octet-stream
