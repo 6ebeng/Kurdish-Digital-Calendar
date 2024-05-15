@@ -364,5 +364,6 @@ FodyWeavers.xsd
 
 # exclude publish folder
 publish
-/AI Setup Project/AI Setup Project.aiproj/*
+/AI Setup Project/Setup Files/*
+/AI Setup Project/Kurdish Digital Calendar-cache/*
 
