@@ -367,3 +367,8 @@ publish
 /AI Setup Project/Setup Files/*
 /AI Setup Project/Kurdish Digital Calendar-cache/*
 
+
+# VS Code directories
+.vscode/
+.history/
+
