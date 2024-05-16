@@ -15,10 +15,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install Ruby
-      uses: actions/setup-ruby@v1
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.7'
+        ruby-version: '3.0'
 
     - name: Install github-changelog-generator
       run: gem install github_changelog_generator
@@ -52,16 +52,6 @@ jobs:
       run: |
         "${{ steps.determine-ai-path.outputs.AI_PATH }}\bin\x86\advinst.exe" /build "AI Setup Project\Kurdish Digital Calendar.aip" /output ./output
 
-    - name: Sign assemblies with SignTool
-      shell: pwsh
-      run: |
-        $pfxPath = "${{ github.workspace }}\KDCLibrary\KDC_Key.pfx"
-        $pfxPassword = "${{ secrets.PFX_PASSWORD }}"
-        $assemblies = Get-ChildItem -Path "./output" -Filter *.dll -Recurse
-        foreach ($assembly in $assemblies) {
-          & "C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe" sign /f $pfxPath /p $pfxPassword /t http://timestamp.digicert.com /v $assembly.FullName
-        }
-
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -87,7 +77,6 @@ jobs:
           --user ${{ github.repository_owner }} \
           --project ${{ github.event.repository.name }} \
           --token ${{ secrets.GITHUB_TOKEN }} \
-          --since-tag ${{ github.event.before }} \
           --future-release ${{ steps.extract-version.outputs.VERSION }} \
           --output CHANGELOG.md
 
