@@ -15,17 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '6.x'
-
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build solution
-      run: dotnet build --configuration Release
-
     - name: Install Advanced Installer
       run: choco install advanced-installer
 
@@ -43,22 +32,19 @@ jobs:
         $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
         (Get-Content $aipPath) -replace 'ProductVersion="[0-9]+\.[0-9]+\.[0-9]+"', "ProductVersion=`"$version`"" | Set-Content $aipPath
 
-    - name: Sign assemblies with SignTool
-      shell: pwsh
-      run: |
-        $pfxPath = "${{ github.workspace }}\KDC_Key.pfx"
-        $pfxPassword = "${{ secrets.PFX_PASSWORD }}"
-        $projects = @("KDC Excel", "KDC Outlook", "KDC PowerPoint", "KDC Project", "KDC Viso", "KDC Word", "KDCLibrary")
-        foreach ($project in $projects) {
-          $assemblies = Get-ChildItem -Path "${{ github.workspace }}\$project\bin\Release" -Filter *.dll -Recurse
-          foreach ($assembly in $assemblies) {
-            & "C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe" sign /f $pfxPath /p $pfxPassword /t http://timestamp.digicert.com /v $assembly.FullName
-          }
-        }
-
     - name: Build Advanced Installer project
       run: |
         "${{ steps.determine-ai-path.outputs.AI_PATH }}\bin\x86\advinst.exe" /build "AI Setup Project\Kurdish Digital Calendar.aip" /output ./output
+
+    - name: Sign assemblies with SignTool
+      shell: pwsh
+      run: |
+        $pfxPath = "${{ github.workspace }}\KDCLibrary\KDC_Key.pfx"
+        $pfxPassword = "${{ secrets.PFX_PASSWORD }}"
+        $assemblies = Get-ChildItem -Path "./output" -Filter *.dll -Recurse
+        foreach ($assembly in $assemblies) {
+          & "C:\Program Files (x86)\Windows Kits\10\bin\x64\signtool.exe" sign /f $pfxPath /p $pfxPassword /t http://timestamp.digicert.com /v $assembly.FullName
+        }
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
