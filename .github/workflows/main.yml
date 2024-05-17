@@ -66,7 +66,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: build-artifacts
-        path: ./Kurdish Digital Calendar-Release-SetupFiles
+        path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
 
   release:
     runs-on: windows-latest
@@ -108,6 +108,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./Kurdish Digital Calendar-Release-SetupFiles/Kurdish-Digital-Calendar.exe
+        asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
         asset_name: Kurdish-Digital-Calendar.exe
         asset_content_type: application/octet-stream
