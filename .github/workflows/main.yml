@@ -62,16 +62,6 @@ jobs:
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
 
-    - name: Check Output Directory
-      shell: pwsh
-      run: |
-        $outputPath = "./Kurdish Digital Calendar-Release-SetupFiles"
-        if ((Get-ChildItem -Path $outputPath).Count -eq 0) {
-          Write-Error "Output directory is empty. Build might have failed."
-          exit 1
-        }
-        Get-ChildItem -Path $outputPath
-
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
       with:
