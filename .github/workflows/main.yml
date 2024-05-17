@@ -82,15 +82,6 @@ jobs:
         name: build-artifacts
 
     - name: Generate Changelog
-      run: |
-        github_changelog_generator `
-          --user ${{ github.repository_owner }} `
-          --project ${{ github.event.repository.name }} `
-          --token ${{ secrets.GITHUB_TOKEN }} `
-          --future-release $env:VERSION `
-          --output CHANGELOG.md
-
-    - name: Generate Changelog
       shell: pwsh
       run: |
         & {
