@@ -11,10 +11,6 @@ jobs:
   build:
     runs-on: windows-latest
 
-    env:
-      AI_PATH: ""
-      VERSION: ""
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -55,12 +51,10 @@ jobs:
 
     - name: Build Advanced Installer project
       shell: pwsh
-      env:
-        AI_PATH: ${{ steps.determine-ai-path.outputs.AI_PATH }}
       run: |
         $aiPath = "${{ env.AI_PATH }}"
         Write-Host "Using Advanced Installer Path: $aiPath"
-        "$aiPath" /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
+        & $aiPath /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
