@@ -60,7 +60,7 @@ jobs:
       run: |
         $aiPath = "${{ env.AI_PATH }}"
         Write-Host "Using Advanced Installer Path: $aiPath"
-        & "$aiPath" /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
+        "$aiPath" /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
