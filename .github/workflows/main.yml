@@ -32,9 +32,7 @@ jobs:
       run: |
         $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName + "\bin\x86\advinst.exe"
         Write-Host "Determined Advanced Installer Path: $aiPath"
-        echo "AIPATH=$aiPath" >> $GITHUB_ENV
-      env:
-        AIPATH: ''
+        echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV
 
     - name: Extract Version from Tag
       id: extract-version
@@ -42,9 +40,7 @@ jobs:
       run: |
         $version = "${{ github.ref }}"
         $version = $version -replace 'refs/tags/v', ''
-        echo "VERSION=$version" >> $GITHUB_ENV
-      env:
-        VERSION: ''
+        echo "VERSION=$version" >> $env:GITHUB_ENV
 
     - name: Update Installer Version
       shell: pwsh
@@ -56,10 +52,8 @@ jobs:
     - name: Build Advanced Installer project
       shell: pwsh
       run: |
-        Write-Host "Using Advanced Installer Path: ${{ env.AI_PATH }}"
-        & "${{ env.AI_PATH }}" /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
-      env:
-        AIPATH: ${{ env.AI_PATH }}
+        Write-Host "Using Advanced Installer Path: $AI_PATH"
+        & "$AI_PATH" /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
@@ -88,15 +82,12 @@ jobs:
           --token ${{ secrets.GITHUB_TOKEN }} \
           --future-release ${{ env.VERSION }} \
           --output CHANGELOG.md
-      env:
-        VERSION: ${{ env.VERSION }}
 
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        VERSION: ${{ env.VERSION }}
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ env.VERSION }}
