@@ -30,7 +30,7 @@ jobs:
       id: determine-ai-path
       shell: pwsh
       run: |
-        $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName
+        $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName + "\bin\x86\advinst.exe"
         echo "AI_PATH=$aiPath" >> $GITHUB_ENV
 
     - name: Extract Version from Tag
@@ -51,7 +51,7 @@ jobs:
     - name: Build Advanced Installer project
       shell: pwsh
       run: |
-        $aiPath = "${{ env.AI_PATH }}\bin\x86\advinst.exe"
+        $aiPath = "${{ env.AI_PATH }}"
         & $aiPath /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
 
     - name: Archive build artifacts
