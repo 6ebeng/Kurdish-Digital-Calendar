@@ -34,18 +34,20 @@ jobs:
         Write-Host "Determined Advanced Installer Path: $aiPath"
         echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV
 
-    - name: Extract Version from Tag
+    - name: Extract Product Version from AIP
       id: extract-version
       shell: pwsh
       run: |
-        $version = "${{ github.ref }}"
-        $version = $version -replace 'refs/tags/v', ''
-        echo "VERSION=$version" >> $env:GITHUB_ENV
+        $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
+        [xml]$aipFile = Get-Content $aipPath
+        $productVersion = $aipFile.Product.WIX.Product.Version
+        Write-Host "Extracted Product Version: $productVersion"
+        echo "VERSION=$productVersion" >> $env:GITHUB_ENV
 
     - name: Update Installer Version
       shell: pwsh
       run: |
-        $version = "${{ env.VERSION }}"
+        $version = "$env:VERSION"
         $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
         (Get-Content $aipPath) -replace 'ProductVersion="[0-9]+\.[0-9]+\.[0-9]+"', "ProductVersion=`"$version`"" | Set-Content $aipPath
 
@@ -54,6 +56,16 @@ jobs:
       run: |
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
+
+    - name: Check Output Directory
+      shell: pwsh
+      run: |
+        $outputPath = "./output"
+        if ((Get-ChildItem -Path $outputPath).Count -eq 0) {
+          Write-Error "Output directory is empty. Build might have failed."
+          exit 1
+        }
+        Get-ChildItem -Path $outputPath
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
