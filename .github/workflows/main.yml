@@ -31,6 +31,7 @@ jobs:
       shell: pwsh
       run: |
         $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName + "\bin\x86\advinst.exe"
+        Write-Host "Determined Advanced Installer Path: $aiPath"
         echo "AI_PATH=$aiPath" >> $GITHUB_ENV
 
     - name: Extract Version from Tag
@@ -52,7 +53,8 @@ jobs:
       shell: pwsh
       run: |
         $aiPath = "${{ env.AI_PATH }}"
-        & $aiPath /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
+        Write-Host "Using Advanced Installer Path: $aiPath"
+        & "$aiPath" /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
