@@ -56,19 +56,11 @@ jobs:
             exit 1
         }
 
-
-    - name: Update Installer Version
-      shell: pwsh
-      run: |
-        $version = $env:VERSION
-        $aiPath = "${{ env.AI_PATH }}"
-        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion $version
-
     - name: Build Advanced Installer project
       shell: pwsh
       run: |
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
-        & $env:AI_PATH /build "AI Setup Project/Kurdish Digital Calendar.aip"
+        & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
 
     - name: Check Output Directory
       shell: pwsh

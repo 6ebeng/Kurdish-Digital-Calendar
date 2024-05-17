@@ -48,6 +48,7 @@ Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AI Setup Project", "AI Setu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{522D62C0-65DA-4B03-9022-3F532F18C232}"
 	ProjectSection(SolutionItems) = preProject
+		Generate-Changelog.ps1 = Generate-Changelog.ps1
 		.github\workflows\main.yml = .github\workflows\main.yml
 	EndProjectSection
 EndProject
