@@ -49,8 +49,10 @@ jobs:
         (Get-Content $aipPath) -replace 'ProductVersion="[0-9]+\.[0-9]+\.[0-9]+"', "ProductVersion=`"$version`"" | Set-Content $aipPath
 
     - name: Build Advanced Installer project
+      shell: pwsh
       run: |
-        "${{ env.AI_PATH }}\bin\x86\advinst.exe" /build "AI Setup Project\Kurdish Digital Calendar.aip" /output ./output
+        $aiPath = "${{ env.AI_PATH }}\bin\x86\advinst.exe"
+        & $aiPath /build "AI Setup Project/Kurdish Digital Calendar.aip" /output ./output
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
