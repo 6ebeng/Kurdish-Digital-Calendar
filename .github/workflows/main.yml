@@ -39,15 +39,23 @@ jobs:
       shell: pwsh
       run: |
         $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
-        $content = Get-Content $aipPath
-        if ($content -match 'Property="ProductVersion" Value="([0-9]+\.[0-9]+\.[0-9]+)"') {
-          $version = $matches[1]
-          Write-Host "Extracted Version: $version"
-          echo "VERSION=$version" >> $env:GITHUB_ENV
+        if (Test-Path $aipPath) {
+            $content = Get-Content $aipPath -Raw
+            Write-Host "Content successfully read from $aipPath"
+
+            if ($content -match 'Property="ProductVersion" Value="([0-9]+\.[0-9]+\.[0-9]+)"') {
+                $version = $matches[1]
+                Write-Host "Extracted Version: $version"
+                echo "VERSION=$version" >> $env:GITHUB_ENV
+            } else {
+                Write-Error "Version not found in AIP file."
+                exit 1
+            }
         } else {
-          Write-Error "Version not found in AIP file."
-          exit 1
+            Write-Error "File not found: $aipPath"
+            exit 1
         }
+
 
     - name: Update Installer Version
       shell: pwsh
