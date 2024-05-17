@@ -366,6 +366,7 @@ FodyWeavers.xsd
 publish
 /AI Setup Project/Setup Files/*
 /AI Setup Project/Kurdish Digital Calendar-cache/*
+/AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*
 
 
 # VS Code directories
