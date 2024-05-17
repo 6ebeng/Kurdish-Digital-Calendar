@@ -86,6 +86,7 @@ jobs:
       env:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
       run: |
+        $env:PATH += ";C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
