@@ -15,14 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-
-    - name: Install github-changelog-generator
-      run: gem install github_changelog_generator
-
     - name: Install Advanced Installer
       run: choco install advanced-installer
 
@@ -76,6 +68,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+
+    - name: Install github-changelog-generator
+      run: gem install github_changelog_generator
+
     - name: Download build artifacts
       uses: actions/download-artifact@v2
       with:
@@ -86,7 +86,6 @@ jobs:
       env:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
       run: |
-        $env:PATH += ";C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
