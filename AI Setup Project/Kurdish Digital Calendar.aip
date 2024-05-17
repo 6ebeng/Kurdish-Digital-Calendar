@@ -201,7 +201,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.digicert.com" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="c89e4acd33aa5b94e34a20ee697d0adde20518a3 Subject: KDC&#10;Issuer: KDC&#10;Valid from 04/13/2024 to 04/13/2025" Subject="CN=KDC" Store="User\MY"/>
+    <ROW TimeStampUrl="http://timestamp.digicert.com" SignOptions="7" SignTool="4" UseSha256="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
