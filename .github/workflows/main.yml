@@ -29,17 +29,17 @@ jobs:
     - name: Fetch all tags
       run: git fetch --tags
 
-    - name: Extract Latest Tag Version
+    - name: Extract Version from Tag
       id: extract-version
       shell: pwsh
       run: |
-        $latestTag = git describe --tags $(git rev-list --tags --max-count=1)
-        if ($latestTag -match 'v([0-9]+\.[0-9]+\.[0-9]+)') {
-            $version = $matches[1]
-            Write-Host "Extracted Version from Latest Tag: $version"
+        $tag = "${{ github.ref }}"
+        if ($tag -match 'refs/tags/(v[0-9]+\.[0-9]+\.[0-9]+)') {
+            $version = $matches[1].Substring(1)  # Remove the 'v' prefix
+            Write-Host "Extracted Version from Tag: $version"
             echo "VERSION=$version" >> $env:GITHUB_ENV
         } else {
-            Write-Error "Latest tag format is invalid. Expected format: 'vX.X.X'."
+            Write-Error "Tag format is invalid. Expected format: 'vX.X.X'."
             exit 1
         }
 
