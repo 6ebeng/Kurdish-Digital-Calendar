@@ -107,9 +107,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: $env:VERSION  # Use extracted version as the tag name
-        release_name: Release $env:VERSION
-        body_path: CHANGELOG.md  # Use the generated changelog as the release body
+        tag_name: ${{ steps.extract-version.outputs.version }}
+        release_name: Release ${{ steps.extract-version.outputs.version }}
+        body_path: CHANGELOG.md  
         draft: false
         prerelease: false
 
