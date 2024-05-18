@@ -15,14 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-
-    - name: Install github-changelog-generator
-      run: gem install github_changelog_generator
-
     - name: Install Advanced Installer
       run: choco install advanced-installer
 
@@ -34,23 +26,31 @@ jobs:
         Write-Host "Determined Advanced Installer Path: $aiPath"
         echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV
 
-    - name: Extract Version from AIP File
+    - name: Fetch all tags
+      run: git fetch --tags
+
+    - name: Extract Latest Tag Version
       id: extract-version
+      shell: pwsh
+      run: |
+        $latestTag = git describe --tags `git rev-list --tags --max-count=1`
+        if ($latestTag -match 'v([0-9]+\.[0-9]+\.[0-9]+)') {
+            $version = $matches[1]
+            Write-Host "Extracted Version from Latest Tag: $version"
+            echo "VERSION=$version" >> $env:GITHUB_ENV
+        } else {
+            Write-Error "Latest tag format is invalid. Expected format: 'vX.X.X'."
+            exit 1
+        }
+
+    - name: Update Product Version in AIP File
+      id: update-version
       shell: pwsh
       run: |
         $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
         if (Test-Path $aipPath) {
-            $content = Get-Content $aipPath -Raw
-            Write-Host "Content successfully read from $aipPath"
-
-            if ($content -match 'Property="ProductVersion" Value="([0-9]+\.[0-9]+\.[0-9]+)"') {
-                $version = $matches[1]
-                Write-Host "Extracted Version: $version"
-                echo "VERSION=$version" >> $env:GITHUB_ENV
-            } else {
-                Write-Error "Version not found in AIP file."
-                exit 1
-            }
+            (Get-Content $aipPath) -replace 'Property="ProductVersion" Value="([0-9]+\.[0-9]+\.[0-9]+)"', "Property=`"ProductVersion`" Value=`"$env:VERSION`"" | Set-Content $aipPath
+            Write-Host "Updated Product Version in AIP file to: $env:VERSION"
         } else {
             Write-Error "File not found: $aipPath"
             exit 1
@@ -76,6 +76,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+
+    - name: Install github-changelog-generator
+      run: gem install github_changelog_generator
+
     - name: Download build artifacts
       uses: actions/download-artifact@v2
       with:
@@ -87,7 +95,6 @@ jobs:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
         PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        $env:PATH += ";C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
