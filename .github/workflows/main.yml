@@ -85,12 +85,13 @@ jobs:
       shell: pwsh
       env:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
+        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         $env:PATH += ";C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
-          --token ${{ secrets.GITHUB_TOKEN }} `
+          --token ${{ secrets.PAT_TOKEN }} `
           --future-release $env:VERSION `
           --output CHANGELOG.md
 
@@ -98,7 +99,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ env.VERSION }}
@@ -109,7 +110,7 @@ jobs:
     - name: Upload Installer
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
