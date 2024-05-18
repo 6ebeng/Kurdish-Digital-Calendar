@@ -35,6 +35,7 @@ jobs:
       run: |
         $lastTagCommit = git rev-list --tags --max-count=1
         $latestTag = git describe --tags $lastTagCommit
+        Write-Host "Latest Tag: $latestTag"
         if ($latestTag -match 'v([0-9]+\.[0-9]+\.[0-9]+)') {
             $version = $matches[1]
             Write-Host "Extracted Version from Latest Tag: $version"
