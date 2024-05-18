@@ -68,6 +68,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Extract Tag Name
+      id: extract_tag_name
+      shell: bash
+      run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -100,7 +105,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: ${{ github.ref_name }}  # Using github.ref_name to get the tag name directly
+        tag_name: $env:TAG_NAME
         release_name: Release ${{ env.VERSION }}
         body_path: CHANGELOG.md  # Use the generated changelog as the release body
         draft: false
