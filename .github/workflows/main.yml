@@ -107,8 +107,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: ${{ env.VERSION }}  # Use extracted version as the tag name
-        release_name: Release ${{ env.VERSION }}
+        tag_name: "v$env:VERSION"  # Use extracted version as the tag name
+        release_name: "KDC Installer"
         body_path: CHANGELOG.md  # Use the generated changelog as the release body
         draft: false
         prerelease: false
