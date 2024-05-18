@@ -83,6 +83,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: build-artifacts
+        path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
 
     - name: List files in artifact directory (debugging step)
       run: dir "./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles"
