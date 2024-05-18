@@ -93,7 +93,7 @@ jobs:
       env:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
         PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ env.VERSION }}
+        VERSION: ${{ needs.build.outputs.VERSION }}
       run: |
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
@@ -107,19 +107,33 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ env.VERSION }}
+        VERSION: ${{ needs.build.outputs.VERSION }}
       with:
-        tag_name: $VERSION
-        release_name: Release $VERSION
+        tag_name: ${{ env.VERSION }}
+        release_name: Release ${{ env.VERSION }}
         body_path: CHANGELOG.md  
         draft: false
         prerelease: false
+
+    - name: Create or Update Latest Tag
+      shell: pwsh
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        VERSION: ${{ needs.build.outputs.VERSION }}
+      run: |
+        $latestRef = "refs/tags/Latest"
+        $sha = (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/$VERSION --jq '.object.sha')
+        if (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest) {
+            gh api -X PATCH repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest -f sha=$sha -f force=true
+        } else {
+            gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs -f ref=$latestRef -f sha=$sha
+        }
 
     - name: Upload Installer
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ env.VERSION }}
+        VERSION: ${{ needs.build.outputs.VERSION }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
