@@ -115,20 +115,6 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Create or Update Latest Tag
-      shell: pwsh
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ env.VERSION }}
-      run: |
-        $latestRef = "refs/tags/Latest"
-        $sha = (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/$VERSION --jq '.object.sha')
-        if (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest) {
-            gh api -X PATCH repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest -f sha=$sha -f force=true
-        } else {
-            gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs -f ref=$latestRef -f sha=$sha
-        }
-
     - name: Upload Installer
       uses: actions/upload-release-asset@v1
       env:
