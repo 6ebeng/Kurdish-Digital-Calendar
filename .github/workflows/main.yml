@@ -33,7 +33,7 @@ jobs:
       id: extract-version
       shell: pwsh
       run: |
-        $latestTag = git describe --tags `git rev-list --tags --max-count=1`
+        $latestTag = git describe --tags $(git rev-list --tags --max-count=1)
         if ($latestTag -match 'v([0-9]+\.[0-9]+\.[0-9]+)') {
             $version = $matches[1]
             Write-Host "Extracted Version from Latest Tag: $version"
