@@ -54,6 +54,9 @@ jobs:
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
 
+    - name: List files in output directory (debugging step)
+      run: dir "AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles"
+
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -81,6 +84,9 @@ jobs:
       with:
         name: build-artifacts
 
+    - name: List files in artifact directory (debugging step)
+      run: dir "./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles"
+
     - name: Generate Changelog
       shell: pwsh
       env:
@@ -100,11 +106,24 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: ${{ github.ref_name }}  # Using github.ref_name to get the tag name directly
+        tag_name: ${{ env.VERSION }}  # Use extracted version as the tag name
         release_name: Release ${{ env.VERSION }}
         body_path: CHANGELOG.md  # Use the generated changelog as the release body
         draft: false
         prerelease: false
+
+    - name: Create or Update Latest Tag
+      shell: pwsh
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      run: |
+        $latestRef = "refs/tags/Latest"
+        $sha = (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/${{ env.VERSION }} --jq '.object.sha')
+        if (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest) {
+            gh api -X PATCH repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest -f sha=$sha -f force=true
+        } else {
+            gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs -f ref=$latestRef -f sha=$sha
+        }
 
     - name: Upload Installer
       uses: actions/upload-release-asset@v1
