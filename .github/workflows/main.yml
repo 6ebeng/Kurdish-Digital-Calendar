@@ -10,6 +10,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    outputs:
+      VERSION: ${{ steps.extract-version.outputs.VERSION }}
 
     steps:
     - name: Checkout repository
@@ -91,7 +93,7 @@ jobs:
       env:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
         PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ steps.extract-version.outputs.VERSION }}
+        VERSION: ${{ needs.extract-version.outputs.VERSION }}
       run: |
         Write-Host "Generating changelog for version $VERSION"
         github_changelog_generator `
@@ -106,10 +108,10 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ steps.extract-version.outputs.VERSION }}
+        VERSION: ${{ needs.extract-version.outputs.VERSION }}
       with:
         tag_name: "v$VERSION"
-        release_name: "v$VERSION"
+        release_name: "KDC release $VERSION"
         body_path: CHANGELOG.md  
         draft: false
         prerelease: false
