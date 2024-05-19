@@ -26,7 +26,7 @@ jobs:
       run: |
         $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName + "\bin\x86\AdvancedInstaller.com"
         Write-Host "Determined Advanced Installer Path: $aiPath"
-        echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV
+        echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV 
 
     - name: Extract Version from AIP File
       id: extract-version
