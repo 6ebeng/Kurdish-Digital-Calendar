@@ -119,8 +119,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         VERSION: ${{ needs.build.outputs.version }}
       with:
-        tag_name: "v$env:VERSION"
-        release_name: "KDC release v$env:VERSION"
+        tag_name: v$env:VERSION
+        release_name: KDC release v$env:VERSION
         body_path: CHANGELOG.md  
         draft: false
         prerelease: false
