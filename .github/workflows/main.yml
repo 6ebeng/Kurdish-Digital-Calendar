@@ -48,6 +48,12 @@ jobs:
             exit 1
         }
 
+    - name: Build Advanced Installer project
+      shell: pwsh
+      run: |
+        Write-Host "Using Advanced Installer Path: $env:AI_PATH"
+        & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
+
     - name: Archive build artifacts
       uses: actions/upload-artifact@v3
       with:
