@@ -53,7 +53,7 @@ jobs:
     - name: Print Extracted Version (Debugging)
       shell: pwsh
       run: |
-        Write-Host "Extracted Version in build job: ${{ steps.extract-version.outputs.VERSION }}"
+        Write-Host "Extracted Version in build job: ${{ steps.extract-version.outputs.version }}"
 
     - name: Build Advanced Installer project
       shell: pwsh
@@ -104,12 +104,12 @@ jobs:
       env:
         VERSION: ${{ needs.build.outputs.version }}
       run: |
-        Write-Host "Generating changelog for version $version"
+        Write-Host "Generating changelog for version $VERSION"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
           --token ${{ secrets.PAT_TOKEN }} `
-          --future-release "$version" `
+          --future-release "$VERSION" `
           --output CHANGELOG.md
 
     - name: Create GitHub Release
@@ -119,8 +119,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         VERSION: ${{ needs.build.outputs.version }}
       with:
-        tag_name: "v$version"
-        release_name: "KDC release v$version"
+        tag_name: "v$VERSION"
+        release_name: "KDC release v$VERSION"
         body_path: CHANGELOG.md  
         draft: false
         prerelease: false
