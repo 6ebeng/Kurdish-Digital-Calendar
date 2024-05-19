@@ -15,6 +15,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Install Advanced Installer
+      run: choco install advanced-installer
+
     - name: Determine Advanced Installer Path
       id: determine-ai-path
       shell: pwsh
