@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: windows-latest
     outputs:
-      version: ${{ steps.extract-version.outputs.VERSION }}
+      version: ${{ steps.extract-version.outputs.version }}
 
     steps:
     - name: Checkout repository
