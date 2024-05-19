@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: windows-latest
     outputs:
-      VERSION: ${{ steps.extract-version.outputs.VERSION }}
+      version: ${{ steps.extract-version.outputs.VERSION }}
 
     steps:
     - name: Checkout repository
@@ -40,8 +40,7 @@ jobs:
             if ($content -match 'Property="ProductVersion" Value="([0-9]+\.[0-9]+\.[0-9]+)"') {
                 $version = $matches[1]
                 Write-Host "Extracted Version: $version"
-                echo "VERSION=$version" >> $env:GITHUB_ENV
-                echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+                echo "version=$version" >> $env:GITHUB_OUTPUT
             } else {
                 Write-Error "Version not found in AIP file."
                 exit 1
@@ -50,6 +49,11 @@ jobs:
             Write-Error "File not found: $aipPath"
             exit 1
         }
+
+    - name: Print Extracted Version (Debugging)
+      shell: pwsh
+      run: |
+        Write-Host "Extracted Version in build job: ${{ steps.extract-version.outputs.VERSION }}"
 
     - name: Build Advanced Installer project
       shell: pwsh
@@ -88,19 +92,24 @@ jobs:
     - name: List files in artifact directory (debugging step)
       run: dir "./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles"
 
+    - name: Print Version for Changelog Generation (Debugging)
+      shell: pwsh
+      env:
+        VERSION: ${{ needs.build.outputs.version }}
+      run: |
+        Write-Host "Version for changelog generation: $VERSION"
+
     - name: Generate Changelog
       shell: pwsh
       env:
-        PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
-        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ needs.extract-version.outputs.VERSION }}
+        VERSION: ${{ needs.build.outputs.version }}
       run: |
-        Write-Host "Generating changelog for version $VERSION"
+        Write-Host "Generating changelog for version $version"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
           --token ${{ secrets.PAT_TOKEN }} `
-          --future-release $VERSION `
+          --future-release "$version" `
           --output CHANGELOG.md
 
     - name: Create GitHub Release
@@ -108,10 +117,10 @@ jobs:
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        VERSION: ${{ needs.extract-version.outputs.VERSION }}
+        VERSION: ${{ needs.build.outputs.version }}
       with:
-        tag_name: "v$VERSION"
-        release_name: "KDC release $VERSION"
+        tag_name: "v$version"
+        release_name: "KDC release v$version"
         body_path: CHANGELOG.md  
         draft: false
         prerelease: false
