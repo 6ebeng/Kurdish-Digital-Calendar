@@ -15,9 +15,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install Advanced Installer
-      run: choco install advanced-installer
-
     - name: Determine Advanced Installer Path
       id: determine-ai-path
       shell: pwsh
@@ -48,17 +45,8 @@ jobs:
             exit 1
         }
 
-    - name: Build Advanced Installer project
-      shell: pwsh
-      run: |
-        Write-Host "Using Advanced Installer Path: $env:AI_PATH"
-        & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
-
-    - name: List files in output directory (debugging step)
-      run: dir "AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles"
-
     - name: Archive build artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: build-artifacts
         path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
@@ -80,7 +68,7 @@ jobs:
       run: gem install github_changelog_generator
 
     - name: Download build artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: build-artifacts
         path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
@@ -94,7 +82,8 @@ jobs:
         PATH: C:\hostedtoolcache\windows\ruby\3.0.0\x64\bin;${{ env.PATH }}
         PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        VERSION=$(cat $GITHUB_ENV | grep VERSION | cut -d '=' -f 2)
+        VERSION= $env:VERSION
+        Write-Host "Generating changelog for version $VERSION"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
           --project ${{ github.event.repository.name }} `
@@ -108,25 +97,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
-        tag_name: ${{ needs.build.outputs.VERSION }}
-        release_name: Release ${{ needs.build.outputs.VERSION }}
+        tag_name: "v$env:VERSION"
+        release_name: "v$env:VERSION"
         body_path: CHANGELOG.md  
         draft: false
         prerelease: false
-
-    - name: Create or Update Latest Tag
-      shell: pwsh
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-      run: |
-        VERSION=$(cat $GITHUB_ENV | grep VERSION | cut -d '=' -f 2)
-        $latestRef = "refs/tags/Latest"
-        $sha = (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/$VERSION --jq '.object.sha')
-        if (gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest) {
-            gh api -X PATCH repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs/tags/Latest -f sha=$sha -f force=true
-        } else {
-            gh api repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/git/refs -f ref=$latestRef -f sha=$sha
-        }
 
     - name: Upload Installer
       uses: actions/upload-release-asset@v1
