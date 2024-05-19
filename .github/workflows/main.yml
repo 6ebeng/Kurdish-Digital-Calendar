@@ -50,9 +50,8 @@ jobs:
     - name: Update Installer Version
       shell: pwsh
       run: |
-        $version = ${{ steps.extract-version.outputs.version }}
         $aiPath = "${{ env.AI_PATH }}"
-        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion $version
+        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion ${{ steps.extract-version.outputs.version }}
 
 
     - name: Build Advanced Installer project
