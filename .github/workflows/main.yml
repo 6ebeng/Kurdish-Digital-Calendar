@@ -93,7 +93,6 @@ jobs:
         PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         VERSION: ${{ steps.extract-version.outputs.VERSION }}
       run: |
-        VERSION= "$VERSION"
         Write-Host "Generating changelog for version $VERSION"
         github_changelog_generator `
           --user ${{ github.repository_owner }} `
