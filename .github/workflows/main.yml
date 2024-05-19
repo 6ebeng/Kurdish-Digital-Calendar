@@ -28,32 +28,32 @@ jobs:
         Write-Host "Determined Advanced Installer Path: $aiPath"
         echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV 
 
-    - name: Extract Version from AIP File
+    - name: Extract Version from Tag
       id: extract-version
       shell: pwsh
       run: |
-        $aipPath = "AI Setup Project/Kurdish Digital Calendar.aip"
-        if (Test-Path $aipPath) {
-            $content = Get-Content $aipPath -Raw
-            Write-Host "Content successfully read from $aipPath"
-
-            if ($content -match 'Property="ProductVersion" Value="([0-9]+\.[0-9]+\.[0-9]+)"') {
-                $version = $matches[1]
-                Write-Host "Extracted Version: $version"
-                echo "version=$version" >> $env:GITHUB_OUTPUT
-            } else {
-                Write-Error "Version not found in AIP file."
-                exit 1
-            }
+        $tag = git describe --tags --abbrev=0
+        if ($tag -match '^v([0-9]+\.[0-9]+\.[0-9]+)$') {
+          $version = $matches[1]
+          Write-Host "Extracted Version: $version"
+          echo "version=$version" >> $env:GITHUB_OUTPUT
         } else {
-            Write-Error "File not found: $aipPath"
-            exit 1
+          Write-Error "Tag does not match version pattern."
+          exit 1
         }
 
     - name: Print Extracted Version (Debugging)
       shell: pwsh
       run: |
         Write-Host "Extracted Version in build job: ${{ steps.extract-version.outputs.version }}"
+
+    - name: Update Installer Version
+      shell: pwsh
+      run: |
+        $version = ${{ steps.extract-version.outputs.version }}
+        $aiPath = "${{ env.AI_PATH }}"
+        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion $version
+
 
     - name: Build Advanced Installer project
       shell: pwsh
