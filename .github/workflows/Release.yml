@@ -61,7 +61,7 @@ jobs:
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
 
     - name: Archive build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
         path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
@@ -83,7 +83,7 @@ jobs:
       run: gem install github_changelog_generator
 
     - name: Download build artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: build-artifacts
         path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
