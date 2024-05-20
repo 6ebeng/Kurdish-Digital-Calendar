@@ -47,8 +47,8 @@ jobs:
       shell: pwsh
       run: |
         $tag = git describe --tags --abbrev=0
-        if ($tag -match '^(pre-|v)([0-9]+\.[0-9]+\.[0-9]+)$') {
-          $version = $matches[1]
+        if ($tag -match '^(pre-|v)([0-9]+\.[0-9]+\.[0-9](\.[0-9]+)?)$') {
+          $version = $matches[2]
           Write-Host "Extracted Version: $version"
           echo "version=$version" >> $env:GITHUB_OUTPUT
         } else {
