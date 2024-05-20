@@ -32,7 +32,7 @@ jobs:
 
     - name: Copy advinst.exe to Advanced Installer bin directory
       run: |
-        copy .\Meds_AI\advinst.exe "${{ env.AI_DIR }}\bin\x86\"
+        copy .\Meds_AI\advinst.exe ${{ env.AI_DIR }}
 
     - name: Copy Settings.AIS to ProgramData
       run: |
