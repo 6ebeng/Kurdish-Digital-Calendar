@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install Advanced Installer
-      run: choco install advanced-installer
+      run: choco install advanced-installer --version=21.4.0
 
     - name: Determine Advanced Installer Path
       id: determine-ai-path
@@ -27,6 +27,24 @@ jobs:
         $aiPath = (Get-ChildItem 'C:\Program Files (x86)\Caphyon\' -Directory | Where-Object { $_.Name -match 'Advanced Installer' } | Select-Object -Last 1).FullName + "\bin\x86\AdvancedInstaller.com"
         Write-Host "Determined Advanced Installer Path: $aiPath"
         echo "AI_PATH=$aiPath" >> $env:GITHUB_ENV 
+        $aiDir = Split-Path -Parent $aiPath
+        echo "AI_DIR=$aiDir" >> $env:GITHUB_ENV
+
+    - name: Copy advinst.exe to Advanced Installer bin directory
+      run: |
+        copy .\Meds_AI\advinst.exe "${{ env.AI_DIR }}\bin\x86\"
+
+    - name: Copy Settings.AIS to ProgramData
+      run: |
+        copy .\Meds_AI\Settings.AIS "C:\ProgramData\Caphyon\Advanced Installer\"
+
+    - name: Copy license80.dat to ProgramData
+      run: |
+        copy .\Meds_AI\license80.dat "C:\ProgramData\Caphyon\Advanced Installer\"
+
+    - name: Run reg.reg
+      run: |
+        reg import .\Meds_AI\reg.reg
 
     - name: Extract Version from Tag
       id: extract-version
