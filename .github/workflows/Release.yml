@@ -53,12 +53,22 @@ jobs:
         $aiPath = "${{ env.AI_PATH }}"
         & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion ${{ steps.extract-version.outputs.version }}
 
+    - name: Decode and Install Certificate
+      shell: pwsh
+      env:
+        CERT_BASE64: ${{ secrets.CERT_BASE64 }}
+        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+      run: |
+        $certPath = "$env:USERPROFILE\certificate.pfx"
+        [System.IO.File]::WriteAllBytes($certPath, [System.Convert]::FromBase64String($env:CERT_BASE64))
+        certutil -f -p $env:CERT_PASSWORD -importpfx $certPath
 
-    - name: Build Advanced Installer project
+    - name: Build Advanced Installer project with Signing
       shell: pwsh
       run: |
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
-        & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
+        & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip" `
+        /SetDigitalSignatureFile "$env:USERPROFILE\certificate.pfx" /SetDigitalSignaturePassword ${{ secrets.CERT_PASSWORD }}
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
