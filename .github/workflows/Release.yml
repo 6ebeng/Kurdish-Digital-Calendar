@@ -116,16 +116,6 @@ jobs:
         name: build-artifacts
         path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
 
-    - name: List files in artifact directory (debugging step)
-      run: dir "./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles"
-
-    - name: Print Version for Changelog Generation (Debugging)
-      shell: pwsh
-      env:
-        VERSION: ${{ needs.build.outputs.version }}
-      run: |
-        Write-Host "Version for changelog generation: $env:VERSION"
-
     - name: Generate Changelog
       shell: pwsh
       env:
