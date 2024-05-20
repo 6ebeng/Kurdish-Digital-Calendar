@@ -53,29 +53,31 @@ jobs:
         $aiPath = "${{ env.AI_PATH }}"
         & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion ${{ steps.extract-version.outputs.version }}
 
-    - name: Decode and Install Certificate
+    - name: Decode and Save Certificate
+      id: save-cert
       shell: pwsh
       env:
         CERT_BASE64: ${{ secrets.CERT_BASE64 }}
-        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
       run: |
         $certPath = "$env:USERPROFILE\certificate.pfx"
         [System.IO.File]::WriteAllBytes($certPath, [System.Convert]::FromBase64String($env:CERT_BASE64))
-        certutil -f -p $env:CERT_PASSWORD -importpfx $certPath
+        echo "CERT_PATH=$certPath" >> $env:GITHUB_ENV
 
-    - name: Build Advanced Installer project
+    - name: Set Digital Certificate in Advanced Installer
+      shell: pwsh
+      env:
+        CERT_PATH: ${{ env.CERT_PATH }}
+        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+      run: |
+        $aiPath = "${{ env.AI_PATH }}"
+        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
+          /SetDigitalCertificateFile -file $env:CERT_PATH -password $env:CERT_PASSWORD -enable_signing
+
+    - name: Build Advanced Installer project with Signing
       shell: pwsh
       run: |
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
-
-    - name: Sign the Installer
-      shell: pwsh
-      env:
-        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
-      run: |
-        $installerPath = "AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe"
-        & "C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe" sign /f "$env:USERPROFILE\certificate.pfx" /p $env:CERT_PASSWORD /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 $installerPath
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
@@ -152,6 +154,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
-        asset_name: KDC Installer x64/x86.exe
-        asset_content_type: application/octet-stream
+        asset_path: ./AI Setup Project
