@@ -56,11 +56,6 @@ jobs:
           exit 1
         }
 
-    - name: Print Extracted Version (Debugging)
-      shell: pwsh
-      run: |
-        Write-Host "Extracted Version in build job: ${{ steps.extract-version.outputs.version }}"
-
     - name: Update Installer Version
       shell: pwsh
       run: |
@@ -163,7 +158,7 @@ jobs:
         prerelease: false
 
     - name: Upload Installer
-      uses: actions/upload-release-asset@v1.1.3
+      uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
