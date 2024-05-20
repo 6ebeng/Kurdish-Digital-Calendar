@@ -30,21 +30,17 @@ jobs:
         $aiDir = Split-Path -Parent $aiPath
         echo "AI_DIR=$aiDir" >> $env:GITHUB_ENV
 
-    - name: Copy advinst.exe to Advanced Installer bin directory
+    - name: Copy Med files to AI directories
       run: |
         copy .\Meds_AI\advinst.exe "${{ env.AI_DIR }}"
-
-    - name: Copy Settings.AIS to ProgramData
-      run: |
+        $dirPath = "C:\ProgramData\Caphyon\Advanced Installer"
+        if (-not (Test-Path -Path $dirPath)) {
+          New-Item -Path $dirPath -ItemType Directory
+        }
         copy .\Meds_AI\Settings.AIS "C:\ProgramData\Caphyon\Advanced Installer\"
-
-    - name: Copy license80.dat to ProgramData
-      run: |
         copy .\Meds_AI\license80.dat "C:\ProgramData\Caphyon\Advanced Installer\"
-
-    - name: Run reg.reg
-      run: |
         reg import .\Meds_AI\reg.reg
+
 
     - name: Extract Version from Tag
       id: extract-version
