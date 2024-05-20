@@ -1,4 +1,4 @@
-name: Build and Release KDC
+name: Release KDC
 
 on:
   push:

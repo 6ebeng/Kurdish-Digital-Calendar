@@ -1,4 +1,4 @@
-name: Build and Release KDC
+name: Pre-release KDC
 
 on:
   push:
