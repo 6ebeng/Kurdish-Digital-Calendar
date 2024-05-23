@@ -256,10 +256,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KDC Excel_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FF0E7FBCD2C71B3118EB38CB54C4DB8DE557094D</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>003D907744F2ECB80E599A0751FE52EF9B3EDB0B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>

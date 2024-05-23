@@ -1,24 +1,19 @@
 # Kurdish Digital Calendar (KDC)
 
-[![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) [![GitHub forks](https://img.shields.io/github/forks/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/network) [![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/LICENSE) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
 
-Download and try it out [💾here](https://github.com/6ebeng/kurdish-digital-calendar/releases/latest/download/KDC_Installer.exe).
 
-The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in designed for Microsoft Office applications. It allows users to seamlessly insert and convert dates between Gregorian, Hijri, Umm Al-Qura, and Kurdish calendars. The add-in supports various Office applications, including Word, Excel, PowerPoint, Outlook, Visio, and MS Project, ensuring consistency and accuracy in date handling across documents.
+[![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
+[![GitHub forks](https://img.shields.io/github/forks/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/network) 
+[![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/LICENSE) 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
+
+Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest).
+
+The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in designed for Microsoft Office applications. It allows users to seamlessly insert and convert dates between Gregorian, Hijri, Umm Al-Qura, and Kurdish calendars. The add-in supports various Office applications, including Word, Excel, PowerPoint, Outlook, COM Library for Access, Visio, and MS Project, ensuring consistency and accuracy in date handling across documents.
 
 ## Features
 
 ### KD Calendar Tab
-
-#### Help
-- **Help**
-  - Provides access to help and documentation.
-- **Credits**
-  - Shows credits for the KDC project.
-
-#### Settings
-- **Settings**
-  - Opens the settings dialog to configure calendar settings.
 
 #### Update Dates
 - **Update Dates**
@@ -29,10 +24,6 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 #### Calendar Selection
 - **Calendar**
   - Select the type of calendar system (e.g., Gregorian, Hijri, Umm Al-Qura).
-
-#### Original Format
-- **Format**
-  - Select the original format for conversion.
 
 #### Conversion
 - Displays the selected date.
@@ -66,12 +57,12 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 
 To install and use the Kurdish Digital Calendar:
 
-1. Download the installer from the [GitHub repository](https://github.com/your-repo/kurdish-digital-calendar).
+1. Download the installer from the [GitHub repository](https://github.com/6ebeng/kurdish-digital-calendar).
 2. Run the installer and follow the instructions to complete the installation.
 3. Open any Microsoft Office application (Word, Excel, PowerPoint, Outlook, Visio, or MS Project).
 4. Go to the "KD Calendar" tab in the ribbon to access the KDC features.
 
-For detailed instructions, refer to the [user manual](https://github.com/your-repo/kurdish-digital-calendar/wiki/User-Manual).
+For detailed instructions, refer to the [user manual](https://github.com/6ebeng/kurdish-digital-calendar/wiki/User-Manual).
 
 
 ## Contributing
@@ -83,16 +74,16 @@ To contribute to the Kurdish Digital Calendar project:
 3. Commit your changes and push your branch to GitHub.
 4. Open a pull request with a description of your changes.
 
-For more information, see our [contributing guidelines](https://github.com/your-repo/kurdish-digital-calendar/blob/main/CONTRIBUTING.md).
+For more information, see our [contributing guidelines](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/CONTRIBUTING.md).
 
 ## License
 
-The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE](https://github.com/your-repo/kurdish-digital-calendar/blob/main/LICENSE) file for details.
+The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/LICENSE) file for details.
 
 ## Credits
 
-Developed and maintained by [Your Name](https://github.com/6ebeng). Thanks to all contributors and supporters.
+Developed and maintained by [Rekbin Devs](https://github.com/6ebeng). Thanks to all contributors and supporters.
 
 ## Support
 
-For issues or questions, open an issue on the [GitHub repository](https://github.com/your-repo/kurdish-digital-calendar/issues) or contact us at [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
+For issues or questions, open an issue on the [GitHub repository](https://github.com/6ebeng/kurdish-digital-calendar/issues) or contact us at [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).

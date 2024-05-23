@@ -243,10 +243,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KDC Outlook_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2C370EAF4412C1F810BD93E16F3F864823182BF5</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>003D907744F2ECB80E599A0751FE52EF9B3EDB0B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>

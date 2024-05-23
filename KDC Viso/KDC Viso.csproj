@@ -234,10 +234,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KDC Viso_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>5C65124D5DF2C542CD90F3805025F5C306978046</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>003D907744F2ECB80E599A0751FE52EF9B3EDB0B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>

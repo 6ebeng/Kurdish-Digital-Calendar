@@ -254,10 +254,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KDC PowerPoint_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>87223F6E759F3FB8280E0E5EA1BA62A968EFC71A</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>003D907744F2ECB80E599A0751FE52EF9B3EDB0B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>

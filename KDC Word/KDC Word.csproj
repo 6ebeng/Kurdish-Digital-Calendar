@@ -238,10 +238,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>KDC Word_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>98C0AA354956B22B3D0D123CA5AD08DE83140DA0</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>003D907744F2ECB80E599A0751FE52EF9B3EDB0B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>

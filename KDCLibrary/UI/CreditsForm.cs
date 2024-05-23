@@ -10,5 +10,10 @@ namespace KDCLibrary
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/6ebeng/Kurdish-Digital-Calendar");
+        }
     }
 }
