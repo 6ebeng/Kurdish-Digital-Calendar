@@ -370,6 +370,9 @@ publish
 /AI Setup Project/Kurdish Digital Calendar-cache/*
 /AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*
 
+# Allow specific release directory
+!KDCLibrary/bin/release/
+
 
 # VS Code directories
 .vscode/
