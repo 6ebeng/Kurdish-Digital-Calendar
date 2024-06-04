@@ -1,5 +1,7 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Numerics;
+using System.Runtime.InteropServices;
 using KDCLibrary.Calendars;
+using KDCLibrary.Services;
 
 namespace KDCLibrary
 {
@@ -30,6 +32,11 @@ namespace KDCLibrary
                 targetCalendar,
                 isAddSuffix
             );
+        }
+
+        public string ConvertNumberToKurdishText(long number)
+        {
+            return new NumberToWordText().ToKurdish(number);
         }
     }
 }

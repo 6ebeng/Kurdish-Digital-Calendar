@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace KDCLibrary
@@ -16,5 +17,7 @@ namespace KDCLibrary
             string targetCalendar,
             bool isAddSuffix
         );
+
+        string ConvertNumberToKurdishText(long number);
     }
 }
