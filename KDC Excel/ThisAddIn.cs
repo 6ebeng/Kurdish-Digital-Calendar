@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using ExcelDna.Integration;
 using KDCLibrary;
 using Microsoft.Office.Core;
 using Excel = Microsoft.Office.Interop.Excel;
@@ -24,6 +26,25 @@ namespace KDC_Excel
                 new Excel.AppEvents_WorkbookOpenEventHandler(Application_WorkbookOpen);
             ((Excel.AppEvents_Event)this.Application).NewWorkbook +=
                 new Excel.AppEvents_NewWorkbookEventHandler(Application_NewWorkbook);
+
+            // Register the XLL
+            string addInPath;
+            if (Environment.Is64BitProcess)
+            {
+                addInPath = System.IO.Path.Combine(
+                    System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                    "KDC Excel-AddIn64.xll"
+                );
+            }
+            else
+            {
+                addInPath = System.IO.Path.Combine(
+                    System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                    "KDC Excel-AddIn.xll"
+                );
+            }
+
+            ExcelIntegration.RegisterXLL(addInPath);
         }
 
         private void Application_WorkbookOpen(Excel.Workbook Wb)
