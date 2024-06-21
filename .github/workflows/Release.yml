@@ -153,8 +153,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
-        asset_name: KDC Installer x64/x86.exe
+        asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.msi
+        asset_name: KDC Installer x64/x86.msi
         asset_content_type: application/octet-stream
 
 

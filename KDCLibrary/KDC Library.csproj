@@ -95,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calendars\KurdishCalandar.cs" />
+    <Compile Include="Conversions\NumberToKurdishCentral.cs" />
+    <Compile Include="Conversions\NumberToKurdishNorthern.cs" />
     <Compile Include="CustomControls\CustomXtraEditorsCalendarControl.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections.Specialized;
+using System.Runtime.InteropServices;
 
 namespace KDCLibrary
 {
@@ -16,6 +17,7 @@ namespace KDCLibrary
             bool isAddSuffix
         );
 
-        string ConvertNumberToKurdishText(long number);
+        string ConvertNumberToKurdishCentralText(long number);
+        string ConvertNumberToKurdishNorthernText(long number);
     }
 }

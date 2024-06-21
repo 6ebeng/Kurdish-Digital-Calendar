@@ -33,9 +33,14 @@ namespace KDCLibrary
             );
         }
 
-        public string ConvertNumberToKurdishText(long number)
+        public string ConvertNumberToKurdishCentralText(long number)
         {
-            return new NumberToWordText().ToKurdish(number);
+            return new NumberToWordText().KurdishCentral(number);
+        }
+
+        public string ConvertNumberToKurdishNorthernText(long number)
+        {
+            return new NumberToWordText().KurdishNorthern(number);
         }
     }
 }

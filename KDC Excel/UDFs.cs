@@ -1,8 +1,9 @@
 ﻿using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using ExcelDna.Integration;
 using KDCLibrary;
 
-namespace KDC_Excel_UDFs
+namespace KDC_Excel
 {
     [ComVisible(true)]
     public static class UDFs
@@ -15,10 +16,23 @@ namespace KDC_Excel_UDFs
             Name = "ConvertNumberToKurdishText",
             Category = "Number to Word"
         )]
-        public static string ConvertNumberToKurdishText(double number)
+        public static string ConvertNumberToKurdishText(double number, string langcode)
         {
             long longNumber = (long)number;
-            return kdcService.ConvertNumberToKurdishText(longNumber);
+
+            if (langcode == "" || langcode == "ckb")
+                return kdcService.ConvertNumberToKurdishCentralText(longNumber);
+
+            if (langcode == "ku")
+                return kdcService.ConvertNumberToKurdishNorthernText(longNumber);
+
+            MessageBox.Show(
+                "Invalid language code. Please enter langcode (ckb) for Kurdish Central (Optional) or (ku) for Kurdish Northern.",
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+            return "";
         }
 
         [ExcelFunction(
@@ -29,33 +43,44 @@ namespace KDC_Excel_UDFs
         )]
         public static string ConvertDateToKurdish(
             string date,
-            bool isKurdishCentral,
+            string targetDialect,
             string fromFormat,
             string toFormat,
             string targetCalendar,
             bool isAddSuffix
         )
         {
-            if (isKurdishCentral)
+            if (targetDialect == "" || targetDialect == "Kurdish (Central)")
                 return kdcService.ConvertDateBasedOnUserSelection(
                     date,
                     false,
-                    "Kurdish (Central)",
+                    targetDialect,
                     fromFormat,
                     toFormat,
                     targetCalendar,
                     isAddSuffix
                 );
-            else
+
+            if (targetDialect == "Kurdish (Northern)")
                 return kdcService.ConvertDateBasedOnUserSelection(
                     date,
                     false,
-                    "Kurdish (Northern)",
+                    targetDialect,
                     fromFormat,
                     toFormat,
                     targetCalendar,
                     isAddSuffix
                 );
+
+            if (targetDialect == "")
+                MessageBox.Show(
+                    "Invalid target dialect. Please enter targetDialect \"Kurdish (Central)\" or \"Kurdish (Northern)\".",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+            return "";
         }
     }
 }
