@@ -9,10 +9,10 @@ namespace KDCLibrary.Services
         public string KurdishCentral(long number)
         {
             if (number > 9223372036854775807)
-                return "نەتوانرا بەرزتر لە 9,223,372,036,854,775,807 بێت";
+                return "نەتوانرا نزمتر/به‌رزتر لە 9,223,372,036,854,775,807 شیكار بێت";
 
             if (number < -9223372036854775807)
-                return "نەتوانرا نزمتر لە 9,223,372,036,854,775,807- بێت";
+                return "نەتوانرا نزمتر/به‌رزتر لە 9,223,372,036,854,775,807 شیكار بێت";
 
             if (number == 0)
                 return "سفر";
@@ -26,10 +26,10 @@ namespace KDCLibrary.Services
         public string KurdishNorthern(long number)
         {
             if (number > 9223372036854775807)
-                return "nikare ji 9,223,372,036,854,775,807 bilindtir be";
+                return "nikare ji 9,223,372,036,854,775,807 kêmtir/bilindtir be";
 
             if (number < -9223372036854775807)
-                return "nikare ji -9,223,372,036,854,775,807 kêmtir be";
+                return "nikare ji 9,223,372,036,854,775,807 kêmtir/bilindtir be";
 
             if (number == 0)
                 return "sifir";
