@@ -1,3 +1,12 @@
+name: Release KDC
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags (e.g., v1.0.0)
+  workflow_dispatch:
+    # Allows manual trigger of the workflow
+
 jobs:
   build:
     runs-on: windows-latest
