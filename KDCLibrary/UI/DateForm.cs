@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Threading;
+﻿using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using DevExpress.XtraEditors.Controls;
 using KDCLibrary.CustomControls;

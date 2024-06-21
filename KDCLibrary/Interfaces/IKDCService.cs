@@ -1,13 +1,11 @@
-﻿using System;
-using System.Numerics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace KDCLibrary
 {
     [ComVisible(true)]
     public interface IKDCService
     {
-        string toKurdish(int formatChoice, string dialect, bool isAddSuffix);
+        string ToKurdish(int formatChoice, string dialect, bool isAddSuffix);
         string ConvertDateBasedOnUserSelection(
             string selectedText,
             bool isReverse,

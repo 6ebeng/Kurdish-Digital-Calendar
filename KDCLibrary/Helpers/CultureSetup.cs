@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using KDCLibrary.Calendars;
 
 namespace KDCLibrary.Helpers
 {

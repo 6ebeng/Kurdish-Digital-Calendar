@@ -37,7 +37,7 @@
     <PublishUrl>C:\Users\Tishko\source\repos\Kurdish Digital Calendar\publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>0.1.0.40</ApplicationVersion>
+    <ApplicationVersion>0.1.0.42</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>0</UpdateInterval>

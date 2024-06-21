@@ -7,11 +7,13 @@
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
     <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_ADMIN_USER;AI_DETECTED_OFFICE_ACCESS_VERSION;AI_DETECTED_OFFICE_WORD_VERSION;AI_DETECTED_OFFICE_EXCEL_VERSION;AI_DETECTED_OFFICE_POWERPOINT_VERSION;AI_DETECTED_OFFICE_OUTLOOK_VERSION;AI_DETECTED_INTERNET_CONNECTION"/>
+    <ROW Property="AI_PRODUCTNAME_ARP" Value="Kurdish Digital Calendar"/>
+    <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1" MultiBuildValue="AnyCPU_Release_1:2"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="rekbin.devs@gmail.com"/>
-    <ROW Property="ARPNOREPAIR" MultiBuildValue="AnyCPU_Release_1:1"/>
-    <ROW Property="ARPPRODUCTICON" Value="KDCOnly.exe" Type="8"/>
+    <ROW Property="ARPNOREPAIR" Value="1" MultiBuildValue="AnyCPU_Release_1:1"/>
+    <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
     <ROW Property="AiFeatIcoApp" Value="KDCFramed.exe" Type="8"/>
     <ROW Property="AiFeatIcoExcelAddin" Value="Excel_128x128.exe" Type="8"/>
     <ROW Property="AiFeatIcoFeature" Value="Access.exe" Type="8"/>
@@ -44,6 +46,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_CustomARPName" ComponentId="{0738C055-191C-4129-A495-2FE805A7126E}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{920E1CCA-BE2F-4392-92CD-86B857B9B66B}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{AAFABF53-35A2-4F37-9AEE-A9A132D417BA}" Directory_="APPDIR" Attributes="0"/>
@@ -76,12 +79,12 @@
     <ROW Component="FriendlyName_7" ComponentId="{8FEBA876-A85E-4C44-84ED-4A8AD56A3BA1}" Directory_="APPDIR" Attributes="4" KeyPath="FriendlyName_7"/>
     <ROW Component="FriendlyName_8" ComponentId="{98C21C79-AD12-4805-885D-93D8DE618F27}" Directory_="APPDIR" Attributes="4" KeyPath="FriendlyName_8"/>
     <ROW Component="FriendlyName_9" ComponentId="{B542C8FD-3545-4C26-AD06-C6AAA4BC307E}" Directory_="APPDIR" Attributes="4" KeyPath="FriendlyName_9"/>
-    <ROW Component="KDCExcelAddIn.xll" ComponentId="{17C740A6-F969-40F9-AFCF-29E0AD53F7BB}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddIn.xll"/>
-    <ROW Component="KDCExcelAddIn64.dna" ComponentId="{65AF2697-FBE5-4C98-A04C-CFBC715E4320}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddIn64.dna"/>
-    <ROW Component="KDCExcelAddIn64packed.xll" ComponentId="{E2F1E29A-0EB4-4ECB-9345-20424FFB6870}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddIn.dna" Type="0"/>
-    <ROW Component="KDCExcelAddIn64packed.xll_1" ComponentId="{68CD5D90-B6D6-45F6-98D8-193106BE19AA}" Directory_="APPDIR" Attributes="256" Condition="VersionNT64" KeyPath="KDCExcelAddIn64.xll"/>
-    <ROW Component="KDCExcelAddIn64packed.xll_2" ComponentId="{FAEE64C4-806A-44F7-A6D0-7EDCCDE21BCE}" Directory_="APPDIR" Attributes="256" Condition="VersionNT64" KeyPath="KDCExcelAddIn64packed.xll"/>
-    <ROW Component="KDCExcelAddInpacked.xll" ComponentId="{E871A911-4803-4BE4-AF42-2D5CBC7A503E}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddInpacked.xll"/>
+    <ROW Component="KDCExcelAddIn.dna" ComponentId="{F1CEE4CA-9410-4B44-9EAA-83483EBF9298}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddIn.dna" Type="0"/>
+    <ROW Component="KDCExcelAddIn.xll" ComponentId="{47A518CA-2234-4E4D-9F2A-42DC8EAC25E1}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddIn.xll"/>
+    <ROW Component="KDCExcelAddIn64.dna" ComponentId="{50043614-EB65-47C4-B3F1-8328A75910EE}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddIn64.dna"/>
+    <ROW Component="KDCExcelAddIn64.xll" ComponentId="{D2373777-91E0-4B06-AA01-523F58BB2350}" Directory_="APPDIR" Attributes="256" KeyPath="KDCExcelAddIn64.xll"/>
+    <ROW Component="KDCExcelAddIn64packed.xll" ComponentId="{99B0AB7F-E7A4-4659-8CEB-5B2F6943BBD1}" Directory_="APPDIR" Attributes="256" KeyPath="KDCExcelAddIn64packed.xll"/>
+    <ROW Component="KDCExcelAddInpacked.xll" ComponentId="{567005FA-16B6-456A-A13B-7E2C02E9E098}" Directory_="APPDIR" Attributes="0" KeyPath="KDCExcelAddInpacked.xll"/>
     <ROW Component="KDC_Excel" ComponentId="{38ED86E6-3275-45FF-85D4-E3181FCF26C8}" Directory_="APPDIR" Attributes="4" KeyPath="KDC_Excel"/>
     <ROW Component="KDC_Excel.dll" ComponentId="{1BC07EF5-E50A-4F6F-B54A-08140F9E8318}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Excel.dll"/>
     <ROW Component="KDC_Excel.dll.manifest" ComponentId="{5E76D242-1B03-4A42-8442-4668D05BBEDE}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Excel.dll.manifest"/>
@@ -132,7 +135,6 @@
     <ROW Component="Software" ComponentId="{6577A95B-F4FB-4BD4-AA2D-B3DCB908F614}" Directory_="APPDIR" Attributes="4" KeyPath="Software"/>
     <ROW Component="Visio" ComponentId="{E5296629-18F3-46F4-B2BB-445FFA295C6C}" Directory_="APPDIR" Attributes="4" KeyPath="Visio_1"/>
     <ROW Component="Word" ComponentId="{302E0398-E278-4648-97A9-24CCAF709361}" Directory_="APPDIR" Attributes="4" KeyPath="Word_1"/>
-    <ROW Component="updater.exe" ComponentId="{E963D955-6CEE-4F97-82E9-371DDCFC27D8}" Directory_="APPDIR" Attributes="0" KeyPath="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="App" Title="KDC" Description="Description" Display="0" Level="1" Directory_="APPDIR" Attributes="25"/>
@@ -179,13 +181,12 @@
     <ROW File="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Component_="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" FileName="MICROS~1.DLL|Microsoft.Office.Tools.Common.v4.0.Utilities.dll" Attributes="0" SourcePath="..\KDCLibrary\bin\Release\Microsoft.Office.Tools.Common.v4.0.Utilities.dll" SelfReg="false"/>
     <ROW File="Microsoft.Office.Tools.v4.0.Framework.dll" Component_="Microsoft.Office.Tools.v4.0.Framework.dll" FileName="MICROS~2.DLL|Microsoft.Office.Tools.v4.0.Framework.dll" Attributes="0" SourcePath="..\KDCLibrary\bin\Release\Microsoft.Office.Tools.v4.0.Framework.dll" SelfReg="false"/>
     <ROW File="Microsoft.VisualStudio.Tools.Applications.Runtime.dll" Component_="Microsoft.VisualStudio.Tools.Applications.Runtime.dll" FileName="MICROS~3.DLL|Microsoft.VisualStudio.Tools.Applications.Runtime.dll" Attributes="0" SourcePath="..\KDCLibrary\bin\Release\Microsoft.VisualStudio.Tools.Applications.Runtime.dll" SelfReg="false"/>
-    <ROW File="KDCExcelAddIn64packed.xll" Component_="KDCExcelAddIn64packed.xll_2" FileName="KDCEXC~1.XLL|KDC Excel-AddIn64-packed.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64-packed.xll" SelfReg="false"/>
-    <ROW File="KDCExcelAddInpacked.xll" Component_="KDCExcelAddInpacked.xll" FileName="KDCEXC~2.XLL|KDC Excel-AddIn-packed.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn-packed.xll" SelfReg="false"/>
-    <ROW File="KDCExcelAddIn.dna" Component_="KDCExcelAddIn64packed.xll" FileName="KDCEXC~1.DNA|KDC Excel-AddIn.dna" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn.dna" SelfReg="false"/>
-    <ROW File="KDCExcelAddIn.xll" Component_="KDCExcelAddIn.xll" FileName="KDCEXC~3.XLL|KDC Excel-AddIn.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn.xll" SelfReg="false"/>
+    <ROW File="KDCExcelAddIn.dna" Component_="KDCExcelAddIn.dna" FileName="KDCEXC~1.DNA|KDC Excel-AddIn.dna" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn.dna" SelfReg="false"/>
+    <ROW File="KDCExcelAddIn.xll" Component_="KDCExcelAddIn.xll" FileName="KDCEXC~1.XLL|KDC Excel-AddIn.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn.xll" SelfReg="false"/>
     <ROW File="KDCExcelAddIn64.dna" Component_="KDCExcelAddIn64.dna" FileName="KDCEXC~2.DNA|KDC Excel-AddIn64.dna" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64.dna" SelfReg="false"/>
-    <ROW File="KDCExcelAddIn64.xll" Component_="KDCExcelAddIn64packed.xll_1" FileName="KDCEXC~4.XLL|KDC Excel-AddIn64.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64.xll" SelfReg="false"/>
-    <ROW File="updater.exe" Component_="updater.exe" FileName="updater.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="&lt;AI_STUBS&gt;updater.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="KDCExcelAddIn64.xll" Component_="KDCExcelAddIn64.xll" FileName="KDCEXC~2.XLL|KDC Excel-AddIn64.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64.xll" SelfReg="false"/>
+    <ROW File="KDCExcelAddIn64packed.xll" Component_="KDCExcelAddIn64packed.xll" FileName="KDCEXC~3.XLL|KDC Excel-AddIn64-packed.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64-packed.xll" SelfReg="false"/>
+    <ROW File="KDCExcelAddInpacked.xll" Component_="KDCExcelAddInpacked.xll" FileName="KDCEXC~4.XLL|KDC Excel-AddIn-packed.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn-packed.xll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiPersistentPropComponent">
     <ROW Property="AI_INSTALLPERUSER" Registry="AI_INSTALLPERUSER" HklmSearch="AI_INSTALLPERUSER" HkcuSearch="AI_INSTALLPERUSER_1"/>
@@ -266,6 +267,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="Logo.png" SourcePath="..\Assets\Logo.png"/>
+    <ROW Name="PowerShellScriptLauncher.dll" SourcePath="&lt;AI_CUSTACTS&gt;PowerShellScriptLauncher.dll"/>
     <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
@@ -429,6 +431,8 @@
     <ROW Action="AI_CleanPrereq" Type="65" Source="Prereq.dll" Target="CleanPrereq" WithoutSeq="true"/>
     <ROW Action="AI_ConfigureChainer" Type="1" Source="Prereq.dll" Target="ConfigurePrereqLauncher"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="CustomActionData" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="AEQAaQBnAGkAdABhAGwAbAB5AFMAaQBnAG4AUwBjAHIAaQBwAHQAAgAxAAEARgBsAGEAZwBzAAIANgABAEwAYQB1AG4AYwBoAEQAaQByAAIAAQBQAGEAcgBhAG0AcwACACIAWwBBAEkAXwBVAHMAZQByAFAAcgBvAGcAcgBhAG0ARgBpAGwAZQBzAF0AWwBNAGEAbgB1AGYAYQBjAHQAdQByAGUAcgBdAFwAWwBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAXQAiAAEAUwBjAHIAaQBwAHQAAgBwAGEAcgBhAG0AIAAoAA0ACgAgACAAIAAgAFsAXABbAF0AcwB0AHIAaQBuAGcAWwBcAF0AXQAkAEEAUABQAEQASQBSAA0ACgApAA0ACgANAAoAIwAgAEYAdQBuAGMAdABpAG8AbgAgAHQAbwAgAGMAaABlAGMAawAgAGkAZgAgAEUAeABjAGUAbAAgAGkAcwAgADYANAAtAGIAaQB0ACAAbwByACAAMwAyAC0AYgBpAHQADQAKAGYAdQBuAGMAdABpAG8AbgAgAEcAZQB0AC0ARQB4AGMAZQBsAEIAaQB0AG4AZQBzAHMAIABbAFwAewBdAA0ACgAgACAAIAAgACQAZQB4AGMAZQBsACAAPQAgAE4AZQB3AC0ATwBiAGoAZQBjAHQAIAAtAEMAbwBtAE8AYgBqAGUAYwB0ACAARQB4AGMAZQBsAC4AQQBwAHAAbABpAGMAYQB0AGkAbwBuAA0ACgAgACAAIAAgACQAYgBpAHQAbgBlAHMAcwAgAD0AIAAkAGUAeABjAGUAbAAuAFAAcgBvAGQAdQBjAHQAQwBvAGQAZQAgAC0AbQBhAHQAYwBoACAAIgBbAFwAewBdAC4AKgAtAC4AKgAtAC4AKgAtAC4AKgAtAC4AKgBbAFwAfQBdACIADQAKACAAIAAgACAAJABlAHgAYwBlAGwALgBRAHUAaQB0ACgAKQANAAoAIAAgACAAIABbAFwAWwBdAFMAeQBzAHQAZQBtAC4AUgB1AG4AdABpAG0AZQAuAEkAbgB0AGUAcgBvAHAAcwBlAHIAdgBpAGMAZQBzAC4ATQBhAHIAcwBoAGEAbABbAFwAXQBdADoAOgBSAGUAbABlAGEAcwBlAEMAbwBtAE8AYgBqAGUAYwB0ACgAJABlAHgAYwBlAGwAKQAgAHwAIABPAHUAdAAtAE4AdQBsAGwADQAKACAAIAAgACAAcgBlAHQAdQByAG4AIAAkAGIAaQB0AG4AZQBzAHMADQAKAFsAXAB9AF0ADQAKAA0ACgAjACAARgB1AG4AYwB0AGkAbwBuACAAdABvACAAZgBpAG4AZAAgAHQAaABlACAAbgBlAHgAdAAgAGEAdgBhAGkAbABhAGIAbABlACAATwBQAEUATgAgAGsAZQB5ACAAbwByACAAdgBlAHIAaQBmAHkAIABpAGYAIAB0AGgAZQAgAHYAYQBsAHUAZQAgAGEAbAByAGUAYQBkAHkAIABlAHgAaQBzAHQAcwANAAoAZgB1AG4AYwB0AGkAbwBuACAARwBlAHQALQBOAGUAeAB0AE8AcABlAG4ASwBlAHkAIABbAFwAewBdAA0ACgAgACAAIAAgAHAAYQByAGEAbQAgACgADQAKACAAIAAgACAAIAAgACAAIABbAFwAWwBdAHMAdAByAGkAbgBnAFsAXABdAF0AJABiAGEAcwBlAFAAYQB0AGgALAANAAoAIAAgACAAIAAgACAAIAAgAFsAXABbAF0AcwB0AHIAaQBuAGcAWwBcAF0AXQAkAHQAYQByAGcAZQB0AFYAYQBsAHUAZQANAAoAIAAgACAAIAApAA0ACgAgACAAIAAgACQAaQBuAGQAZQB4ACAAPQAgADAADQAKACAAIAAgACAAJABvAHAAZQBuAEsAZQB5AE4AYQBtAGUAIAA9ACAAIgBPAFAARQBOACIADQAKACAAIAAgACAAZABvACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgAGkAZgAgACgAJABpAG4AZABlAHgAIAAtAG4AZQAgADAAKQAgAFsAXAB7AF0ADQAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQAbwBwAGUAbgBLAGUAeQBOAGEAbQBlACAAPQAgACIATwBQAEUATgAkAGkAbgBkAGUAeAAiAA0ACgAgACAAIAAgACAAIAAgACAAWwBcAH0AXQANAAoAIAAgACAAIAAgACAAIAAgACQAaQBuAGQAZQB4ACsAKwANAAoAIAAgACAAIAAgACAAIAAgACQAZQB4AGkAcwB0AGkAbgBnAFYAYQBsAHUAZQAgAD0AIABHAGUAdAAtAEkAdABlAG0AUAByAG8AcABlAHIAdAB5ACAALQBQAGEAdABoACAAJABiAGEAcwBlAFAAYQB0AGgAIAAtAE4AYQBtAGUAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwBpAGwAZQBuAHQAbAB5AEMAbwBuAHQAaQBuAHUAZQAgAHwAIABTAGUAbABlAGMAdAAtAE8AYgBqAGUAYwB0ACAALQBFAHgAcABhAG4AZABQAHIAbwBwAGUAcgB0AHkAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwBpAGwAZQBuAHQAbAB5AEMAbwBuAHQAaQBuAHUAZQANAAoAIAAgACAAIAAgACAAIAAgAGkAZgAgACgAJABlAHgAaQBzAHQAaQBuAGcAVgBhAGwAdQBlACAALQBlAHEAIAAkAHQAYQByAGcAZQB0AFYAYQBsAHUAZQApACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAVwByAGkAdABlAC0ASABvAHMAdAAgACIATQBhAHQAYwBoAGkAbgBnACAAdgBhAGwAdQBlACAAZgBvAHUAbgBkACAAZgBvAHIAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAsACAAbgBvACAAbgBlAHcAIABrAGUAeQAgAHcAaQBsAGwAIABiAGUAIABjAHIAZQBhAHQAZQBkAC4AIgANAAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAcgBlAHQAdQByAG4AIAAkAG4AdQBsAGwADQAKACAAIAAgACAAIAAgACAAIABbAFwAfQBdAA0ACgAgACAAIAAgAFsAXAB9AF0AIAB3AGgAaQBsAGUAIAAoACQAZQB4AGkAcwB0AGkAbgBnAFYAYQBsAHUAZQApAA0ACgAgACAAIAAgAHIAZQB0AHUAcgBuACAAJABvAHAAZQBuAEsAZQB5AE4AYQBtAGUADQAKAFsAXAB9AF0ADQAKAA0ACgAjACAATABpAHMAdAAgAG8AZgAgAE8AZgBmAGkAYwBlACAAdgBlAHIAcwBpAG8AbgBzACAAdABvACAAcwB1AHAAcABvAHIAdAANAAoAJABvAGYAZgBpAGMAZQBWAGUAcgBzAGkAbwBuAHMAIAA9ACAAQAAoACIAMQA1AC4AMAAiACwAIAAiADEANgAuADAAIgApACAAIwAgAE8AZgBmAGkAYwBlACAAMgAwADEAMwAgACgAMQA1AC4AMAApACAAYQBuAGQAIABsAGEAdABlAHIAIAAoADEANgAuADAAIABpAG4AYwBsAHUAZABlAHMAIAAyADAAMQA2ACwAIAAyADAAMQA5ACwAIABPAGYAZgBpAGMAZQAgADMANgA1ACkADQAKAA0ACgAkAGIAaQB0AG4AZQBzAHMAIAA9ACAARwBlAHQALQBFAHgAYwBlAGwAQgBpAHQAbgBlAHMAcwANAAoADQAKAGYAbwByAGUAYQBjAGgAIAAoACQAdgBlAHIAcwBpAG8AbgAgAGkAbgAgACQAbwBmAGYAaQBjAGUAVgBlAHIAcwBpAG8AbgBzACkAIABbAFwAewBdAA0ACgAgACAAIAAgACQAZQB4AGMAZQBsAE8AcAB0AGkAbwBuAHMASwBlAHkAIAA9ACAAIgBIAEsAQwBVADoAXABTAG8AZgB0AHcAYQByAGUAXABNAGkAYwByAG8AcwBvAGYAdABcAE8AZgBmAGkAYwBlAFwAJAB2AGUAcgBzAGkAbwBuAFwARQB4AGMAZQBsAFwATwBwAHQAaQBvAG4AcwAiAA0ACgAgACAAIAAgAA0ACgAgACAAIAAgACMAIABDAGgAZQBjAGsAIABpAGYAIAB0AGgAZQAgAHAAYQB0AGgAIABlAHgAaQBzAHQAcwANAAoAIAAgACAAIABpAGYAIAAoAFQAZQBzAHQALQBQAGEAdABoACAAJABlAHgAYwBlAGwATwBwAHQAaQBvAG4AcwBLAGUAeQApACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgACQAeAA4ADYAVgBhAGwAdQBlACAAPQAgACIALwBSACAAYAAiACQAQQBQAFAARABJAFIAXABLAEQAQwAgAEUAeABjAGUAbAAtAEEAZABkAEkAbgAuAHgAbABsAGAAIgAiAA0ACgAgACAAIAAgACAAIAAgACAAJAB4ADYANABWAGEAbAB1AGUAIAA9ACAAIgAvAFIAIABgACIAJABBAFAAUABEAEkAUgBcAEsARABDACAARQB4AGMAZQBsAC0AQQBkAGQASQBuADYANAAuAHgAbABsAGAAIgAiAA0ACgAgACAAIAAgACAAIAAgACAAJAB2AGEAbAB1AGUAVABvAFMAZQB0ACAAPQAgAGkAZgAgACgAJABiAGkAdABuAGUAcwBzACkAIABbAFwAewBdACAAJAB4ADYANABWAGEAbAB1AGUAIABbAFwAfQBdACAAZQBsAHMAZQAgAFsAXAB7AF0AIAAkAHgAOAA2AFYAYQBsAHUAZQAgAFsAXAB9AF0ADQAKAA0ACgAgACAAIAAgACAAIAAgACAAIwAgAEcAZQB0ACAAdABoAGUAIABuAGUAeAB0ACAAYQB2AGEAaQBsAGEAYgBsAGUAIABPAFAARQBOACAAawBlAHkAIABvAHIAIABuAHUAbABsACAAaQBmACAAdABoAGUAIAB2AGEAbAB1AGUAIABhAGwAcgBlAGEAZAB5ACAAZQB4AGkAcwB0AHMADQAKACAAIAAgACAAIAAgACAAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAD0AIABHAGUAdAAtAE4AZQB4AHQATwBwAGUAbgBLAGUAeQAgAC0AYgBhAHMAZQBQAGEAdABoACAAJABlAHgAYwBlAGwATwBwAHQAaQBvAG4AcwBLAGUAeQAgAC0AdABhAHIAZwBlAHQAVgBhAGwAdQBlACAAJAB2AGEAbAB1AGUAVABvAFMAZQB0AA0ACgANAAoAIAAgACAAIAAgACAAIAAgAGkAZgAgACgAJABvAHAAZQBuAEsAZQB5AE4AYQBtAGUAKQAgAFsAXAB7AF0ADQAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgAFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAiAFMAZQB0AHQAaQBuAGcAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAGYAbwByACAATwBmAGYAaQBjAGUAIAB2AGUAcgBzAGkAbwBuACAAJAB2AGUAcgBzAGkAbwBuAC4AIgANAAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIwAgAFMAZQB0ACAAdABoAGUAIAByAGUAZwBpAHMAdAByAHkAIABrAGUAeQANAAoAIAAgACAAIAAgACAAIAAgACAAIAAgACAATgBlAHcALQBJAHQAZQBtAFAAcgBvAHAAZQByAHQAeQAgAC0AUABhAHQAaAAgACQAZQB4AGMAZQBsAE8AcAB0AGkAbwBuAHMASwBlAHkAIAAtAE4AYQBtAGUAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAC0AVgBhAGwAdQBlACAAJAB2AGEAbAB1AGUAVABvAFMAZQB0ACAALQBQAHIAbwBwAGUAcgB0AHkAVAB5AHAAZQAgAFMAdAByAGkAbgBnACAALQBGAG8AcgBjAGUADQAKACAAIAAgACAAIAAgACAAIABbAFwAfQBdAA0ACgAgACAAIAAgAFsAXAB9AF0AIABlAGwAcwBlACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgAFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAiAE8AcAB0AGkAbwBuAHMAIABrAGUAeQAgAGQAbwBlAHMAIABuAG8AdAAgAGUAeABpAHMAdAAgAGYAbwByACAATwBmAGYAaQBjAGUAIAB2AGUAcgBzAGkAbwBuACAAJAB2AGUAcgBzAGkAbwBuAC4AIABTAGsAaQBwAHAAaQBuAGcALgAuAC4AIgANAAoAIAAgACAAIABbAFwAfQBdAA0ACgBbAFwAfQBdAA0ACgANAAoAVwByAGkAdABlAC0ASABvAHMAdAAgACIAUgBlAGcAaQBzAHQAcgB5ACAAZQBuAHQAcgBpAGUAcwAgAGMAaABlAGMAawBlAGQALwBjAHIAZQBhAHQAZQBkACAAcwB1AGMAYwBlAHMAcwBmAHUAbABsAHkALgAiAA0ACg=="/>
+    <ROW Action="AI_DATA_SETTER_2" Type="51" Source="CustomActionData" Target="AEQAaQBnAGkAdABhAGwAbAB5AFMAaQBnAG4AUwBjAHIAaQBwAHQAAgAxAAEARgBsAGEAZwBzAAIANgABAEwAYQB1AG4AYwBoAEQAaQByAAIAAQBQAGEAcgBhAG0AcwACACIAWwBBAEkAXwBVAHMAZQByAFAAcgBvAGcAcgBhAG0ARgBpAGwAZQBzAF0AWwBNAGEAbgB1AGYAYQBjAHQAdQByAGUAcgBdAFwAWwBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAXQAiAAEAUwBjAHIAaQBwAHQAAgBwAGEAcgBhAG0AIAAoAA0ACgAgACAAIAAgAFsAXABbAF0AcwB0AHIAaQBuAGcAWwBcAF0AXQAkAEEAUABQAEQASQBSAA0ACgApAA0ACgANAAoAIwAgAEYAdQBuAGMAdABpAG8AbgAgAHQAbwAgAGMAaABlAGMAawAgAGkAZgAgAEUAeABjAGUAbAAgAGkAcwAgADYANAAtAGIAaQB0ACAAbwByACAAMwAyAC0AYgBpAHQADQAKAGYAdQBuAGMAdABpAG8AbgAgAEcAZQB0AC0ARQB4AGMAZQBsAEIAaQB0AG4AZQBzAHMAIABbAFwAewBdAA0ACgAgACAAIAAgACQAZQB4AGMAZQBsACAAPQAgAE4AZQB3AC0ATwBiAGoAZQBjAHQAIAAtAEMAbwBtAE8AYgBqAGUAYwB0ACAARQB4AGMAZQBsAC4AQQBwAHAAbABpAGMAYQB0AGkAbwBuAA0ACgAgACAAIAAgACQAYgBpAHQAbgBlAHMAcwAgAD0AIAAkAGUAeABjAGUAbAAuAFAAcgBvAGQAdQBjAHQAQwBvAGQAZQAgAC0AbQBhAHQAYwBoACAAIgBbAFwAewBdAC4AKgAtAC4AKgAtAC4AKgAtAC4AKgAtAC4AKgBbAFwAfQBdACIADQAKACAAIAAgACAAJABlAHgAYwBlAGwALgBRAHUAaQB0ACgAKQANAAoAIAAgACAAIABbAFwAWwBdAFMAeQBzAHQAZQBtAC4AUgB1AG4AdABpAG0AZQAuAEkAbgB0AGUAcgBvAHAAcwBlAHIAdgBpAGMAZQBzAC4ATQBhAHIAcwBoAGEAbABbAFwAXQBdADoAOgBSAGUAbABlAGEAcwBlAEMAbwBtAE8AYgBqAGUAYwB0ACgAJABlAHgAYwBlAGwAKQAgAHwAIABPAHUAdAAtAE4AdQBsAGwADQAKACAAIAAgACAAcgBlAHQAdQByAG4AIAAkAGIAaQB0AG4AZQBzAHMADQAKAFsAXAB9AF0ADQAKAA0ACgAjACAARgB1AG4AYwB0AGkAbwBuACAAdABvACAAZABlAGwAZQB0AGUAIABrAGUAeQBzACAAdwBpAHQAaAAgAHQAaABlACAAcwBwAGUAYwBpAGYAaQBlAGQAIAB2AGEAbAB1AGUADQAKAGYAdQBuAGMAdABpAG8AbgAgAEQAZQBsAGUAdABlAC0ASwBlAHkAcwBXAGkAdABoAFMAcABlAGMAaQBmAGkAZQBkAFYAYQBsAHUAZQAgAFsAXAB7AF0ADQAKACAAIAAgACAAcABhAHIAYQBtACAAKAANAAoAIAAgACAAIAAgACAAIAAgAFsAXABbAF0AcwB0AHIAaQBuAGcAWwBcAF0AXQAkAGIAYQBzAGUAUABhAHQAaAAsAA0ACgAgACAAIAAgACAAIAAgACAAWwBcAFsAXQBzAHQAcgBpAG4AZwBbAFwAXQBdACQAdABhAHIAZwBlAHQAVgBhAGwAdQBlAA0ACgAgACAAIAAgACkADQAKACAAIAAgACAAJABpAG4AZABlAHgAIAA9ACAAMAANAAoAIAAgACAAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAD0AIAAiAE8AUABFAE4AIgANAAoAIAAgACAAIAB3AGgAaQBsAGUAIAAoACQAdAByAHUAZQApACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgAGkAZgAgACgAJABpAG4AZABlAHgAIAAtAG4AZQAgADAAKQAgAFsAXAB7AF0ADQAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgACQAbwBwAGUAbgBLAGUAeQBOAGEAbQBlACAAPQAgACIATwBQAEUATgAkAGkAbgBkAGUAeAAiAA0ACgAgACAAIAAgACAAIAAgACAAWwBcAH0AXQANAAoAIAAgACAAIAAgACAAIAAgACQAaQBuAGQAZQB4ACsAKwANAAoAIAAgACAAIAAgACAAIAAgACQAZQB4AGkAcwB0AGkAbgBnAFYAYQBsAHUAZQAgAD0AIABHAGUAdAAtAEkAdABlAG0AUAByAG8AcABlAHIAdAB5ACAALQBQAGEAdABoACAAJABiAGEAcwBlAFAAYQB0AGgAIAAtAE4AYQBtAGUAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwBpAGwAZQBuAHQAbAB5AEMAbwBuAHQAaQBuAHUAZQAgAHwAIABTAGUAbABlAGMAdAAtAE8AYgBqAGUAYwB0ACAALQBFAHgAcABhAG4AZABQAHIAbwBwAGUAcgB0AHkAIAAkAG8AcABlAG4ASwBlAHkATgBhAG0AZQAgAC0ARQByAHIAbwByAEEAYwB0AGkAbwBuACAAUwBpAGwAZQBuAHQAbAB5AEMAbwBuAHQAaQBuAHUAZQANAAoAIAAgACAAIAAgACAAIAAgAGkAZgAgACgAIQAkAGUAeABpAHMAdABpAG4AZwBWAGEAbAB1AGUAKQAgAFsAXAB7AF0ADQAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgAGIAcgBlAGEAawANAAoAIAAgACAAIAAgACAAIAAgAFsAXAB9AF0ADQAKACAAIAAgACAAIAAgACAAIABpAGYAIAAoACQAZQB4AGkAcwB0AGkAbgBnAFYAYQBsAHUAZQAgAC0AZQBxACAAJAB0AGEAcgBnAGUAdABWAGEAbAB1AGUAKQAgAFsAXAB7AF0ADQAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgAFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAiAEQAZQBsAGUAdABpAG4AZwAgACQAbwBwAGUAbgBLAGUAeQBOAGEAbQBlACAAdwBpAHQAaAAgAHYAYQBsAHUAZQAgACQAZQB4AGkAcwB0AGkAbgBnAFYAYQBsAHUAZQAuACIADQAKACAAIAAgACAAIAAgACAAIAAgACAAIAAgAFIAZQBtAG8AdgBlAC0ASQB0AGUAbQBQAHIAbwBwAGUAcgB0AHkAIAAtAFAAYQB0AGgAIAAkAGIAYQBzAGUAUABhAHQAaAAgAC0ATgBhAG0AZQAgACQAbwBwAGUAbgBLAGUAeQBOAGEAbQBlACAALQBFAHIAcgBvAHIAQQBjAHQAaQBvAG4AIABTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlAA0ACgAgACAAIAAgACAAIAAgACAAWwBcAH0AXQANAAoAIAAgACAAIABbAFwAfQBdAA0ACgBbAFwAfQBdAA0ACgANAAoAIwAgAEwAaQBzAHQAIABvAGYAIABPAGYAZgBpAGMAZQAgAHYAZQByAHMAaQBvAG4AcwAgAHQAbwAgAHMAdQBwAHAAbwByAHQADQAKACQAbwBmAGYAaQBjAGUAVgBlAHIAcwBpAG8AbgBzACAAPQAgAEAAKAAiADEANQAuADAAIgAsACAAIgAxADYALgAwACIAKQAgACMAIABPAGYAZgBpAGMAZQAgADIAMAAxADMAIAAoADEANQAuADAAKQAgAGEAbgBkACAAbABhAHQAZQByACAAKAAxADYALgAwACAAaQBuAGMAbAB1AGQAZQBzACAAMgAwADEANgAsACAAMgAwADEAOQAsACAATwBmAGYAaQBjAGUAIAAzADYANQApAA0ACgANAAoAJABiAGkAdABuAGUAcwBzACAAPQAgAEcAZQB0AC0ARQB4AGMAZQBsAEIAaQB0AG4AZQBzAHMADQAKAA0ACgBmAG8AcgBlAGEAYwBoACAAKAAkAHYAZQByAHMAaQBvAG4AIABpAG4AIAAkAG8AZgBmAGkAYwBlAFYAZQByAHMAaQBvAG4AcwApACAAWwBcAHsAXQANAAoAIAAgACAAIAAkAGUAeABjAGUAbABPAHAAdABpAG8AbgBzAEsAZQB5ACAAPQAgACIASABLAEMAVQA6AFwAUwBvAGYAdAB3AGEAcgBlAFwATQBpAGMAcgBvAHMAbwBmAHQAXABPAGYAZgBpAGMAZQBcACQAdgBlAHIAcwBpAG8AbgBcAEUAeABjAGUAbABcAE8AcAB0AGkAbwBuAHMAIgANAAoAIAAgACAAIAAkAHgAOAA2AFYAYQBsAHUAZQAgAD0AIAAiAC8AUgAgAGAAIgAkAEEAUABQAEQASQBSAFwASwBEAEMAIABFAHgAYwBlAGwALQBBAGQAZABJAG4ALgB4AGwAbABgACIAIgANAAoAIAAgACAAIAAkAHgANgA0AFYAYQBsAHUAZQAgAD0AIAAiAC8AUgAgAGAAIgAkAEEAUABQAEQASQBSAFwASwBEAEMAIABFAHgAYwBlAGwALQBBAGQAZABJAG4ANgA0AC4AeABsAGwAYAAiACIADQAKACAAIAAgACAAJAB2AGEAbAB1AGUAVABvAEQAZQBsAGUAdABlACAAPQAgAGkAZgAgACgAJABiAGkAdABuAGUAcwBzACkAIABbAFwAewBdACAAJAB4ADYANABWAGEAbAB1AGUAIABbAFwAfQBdACAAZQBsAHMAZQAgAFsAXAB7AF0AIAAkAHgAOAA2AFYAYQBsAHUAZQAgAFsAXAB9AF0ADQAKAA0ACgAgACAAIAAgACMAIABDAGgAZQBjAGsAIABpAGYAIAB0AGgAZQAgAHAAYQB0AGgAIABlAHgAaQBzAHQAcwANAAoAIAAgACAAIABpAGYAIAAoAFQAZQBzAHQALQBQAGEAdABoACAAJABlAHgAYwBlAGwATwBwAHQAaQBvAG4AcwBLAGUAeQApACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgAFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAiAEMAaABlAGMAawBpAG4AZwAgAGEAbgBkACAAZABlAGwAZQB0AGkAbgBnACAAawBlAHkAcwAgAGYAbwByACAATwBmAGYAaQBjAGUAIAB2AGUAcgBzAGkAbwBuACAAJAB2AGUAcgBzAGkAbwBuAC4AIgANAAoAIAAgACAAIAAgACAAIAAgACMAIABEAGUAbABlAHQAZQAgAGsAZQB5AHMAIAB3AGkAdABoACAAdABoAGUAIABzAHAAZQBjAGkAZgBpAGUAZAAgAHYAYQBsAHUAZQANAAoAIAAgACAAIAAgACAAIAAgAEQAZQBsAGUAdABlAC0ASwBlAHkAcwBXAGkAdABoAFMAcABlAGMAaQBmAGkAZQBkAFYAYQBsAHUAZQAgAC0AYgBhAHMAZQBQAGEAdABoACAAJABlAHgAYwBlAGwATwBwAHQAaQBvAG4AcwBLAGUAeQAgAC0AdABhAHIAZwBlAHQAVgBhAGwAdQBlACAAJAB2AGEAbAB1AGUAVABvAEQAZQBsAGUAdABlAA0ACgAgACAAIAAgAFsAXAB9AF0AIABlAGwAcwBlACAAWwBcAHsAXQANAAoAIAAgACAAIAAgACAAIAAgAFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAiAE8AcAB0AGkAbwBuAHMAIABrAGUAeQAgAGQAbwBlAHMAIABuAG8AdAAgAGUAeABpAHMAdAAgAGYAbwByACAATwBmAGYAaQBjAGUAIAB2AGUAcgBzAGkAbwBuACAAJAB2AGUAcgBzAGkAbwBuAC4AIABTAGsAaQBwAHAAaQBuAGcALgAuAC4AIgANAAoAIAAgACAAIABbAFwAfQBdAA0ACgBbAFwAfQBdAA0ACgANAAoAVwByAGkAdABlAC0ASABvAHMAdAAgACIAUgBlAGcAaQBzAHQAcgB5ACAAZQBuAHQAcgBpAGUAcwAgAGMAaABlAGMAawBlAGQAIABhAG4AZAAgAGQAZQBsAGUAdABlAGQAIABzAHUAYwBjAGUAcwBzAGYAdQBsAGwAeQAuACIADQAK"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -443,6 +447,7 @@
     <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
     <ROW Action="AI_ExtractPrereq" Type="65" Source="Prereq.dll" Target="ExtractPrereq"/>
     <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_InstallPostPrerequisite" Type="1" Source="Prereq.dll" Target="InstallPostPrereq"/>
     <ROW Action="AI_InstallPrePrerequisite" Type="65" Source="Prereq.dll" Target="InstallPrePrereq"/>
@@ -460,16 +465,17 @@
     <ROW Action="AI_SETPROGRAMFILES64" Type="51" Source="AI_ProgramFiles" Target="[ProgramFiles64Folder]"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
-    <ROW Action="AI_UPDATER_UNINSTALL" Type="82" Source="updater.exe" Target="/clean silent"/>
     <ROW Action="AI_VerifyPrePrereq" Type="1" Source="Prereq.dll" Target="VerifyPrePrereq"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
+    <ROW Action="AddExcelDNA" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="DeleteExcelDNA" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_2"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="AnyCPU_Release_1:[AI_ProgramFiles][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDrLocatorComponent">
-    <ROW Signature_="FileSearchSign" Path="[ProgramFiles64Folder] OR [ProgramFilesFolder]" Depth="3"/>
-    <ROW Signature_="FileSearchSign_1" Path="[ProgramFiles64Folder] OR [ProgramFilesFolder]" Depth="3"/>
+    <ROW Signature_="FileSearchSign" Path="[ProgramFiles64Folder]" Depth="3"/>
+    <ROW Signature_="FileSearchSign_1" Path="[ProgramFiles64Folder]" Depth="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
     <ROW Feature_="WordAddin" Component_="Word"/>
@@ -554,36 +560,23 @@
     <ROW Feature_="ExcelAddin" Component_="KDC_Excel.vsto"/>
     <ROW Feature_="ExcelAddin" Component_="KDC_Excel.dll.manifest"/>
     <ROW Feature_="ExcelAddin" Component_="KDC_Excel.dll"/>
-    <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64packed.xll"/>
-    <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64packed.xll_1"/>
     <ROW Feature_="ExcelAddin" Component_="KDCExcelAddInpacked.xll"/>
-    <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64packed.xll_2"/>
+    <ROW Feature_="App" Component_="AI_CustomARPName"/>
+    <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64packed.xll"/>
+    <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64.xll"/>
     <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64.dna"/>
     <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn.xll"/>
-    <ROW Feature_="App" Component_="updater.exe"/>
+    <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn.dna"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
     <ROW Name="Excel_128x128.exe" SourcePath="..\Assets\Excel_128x128.ico" Index="0"/>
     <ROW Name="KDCFramed.exe" SourcePath="..\Assets\KDC Framed.ico" Index="0"/>
-    <ROW Name="KDCOnly.exe" SourcePath="..\KDCLibrary\Resources\KDC Only.ico" Index="0"/>
     <ROW Name="Outlook_128x128.exe" SourcePath="..\Assets\Outlook_128x128.ico" Index="0"/>
     <ROW Name="PowerPoint_128x128.exe" SourcePath="..\Assets\PowerPoint_128x128.ico" Index="0"/>
     <ROW Name="Project.exe" SourcePath="..\Assets\Project.ico" Index="0"/>
     <ROW Name="Visio.exe" SourcePath="..\Assets\Visio.ico" Index="0"/>
     <ROW Name="Word_128x128.exe" SourcePath="..\Assets\Word_128x128.ico" Index="0"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
-    <ROW IniFile="AppDir" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="AppDir" Value="[APPDIR]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="ApplicationName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationName" Value="[ProductName]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="ApplicationVersion" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationVersion" Value="[ProductVersion]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="CheckFrequency" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CheckFrequency" Value="2" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="CompanyName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CompanyName" Value="[Manufacturer]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="DefaultCommandLine" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DefaultCommandLine" Value="/checknow" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="DownloadsFolder" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DownloadsFolder" Value="[CommonAppDataFolder][Manufacturer]\[ProductName]\updates\" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="Flags" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="Flags" Value="PerMachine|ShowConfigOptionsButton" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="ID" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ID" Value="[UpgradeCode]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="URL" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="URL" Value="http://www.example.com/download/updates.txt" Action="0" Component_="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -613,7 +606,11 @@
     <ROW Action="AI_VerifyPrereq" Sequence="1101"/>
     <ROW Action="AI_ConfigureChainer" Condition="(NOT SETUPEXEDIR) AND ((UILevel = 2) OR (UILevel = 3)) AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6598"/>
     <ROW Action="AI_LaunchChainer" Condition="AI_PREREQ_CHAINER AND (NOT UPGRADINGPRODUCTCODE)" Sequence="6599"/>
-    <ROW Action="AI_UPDATER_UNINSTALL" Condition="($updater.exe = 2) AND (?updater.exe = 3) AND NOT (UPGRADINGPRODUCTCODE)" Sequence="1551"/>
+    <ROW Action="AddExcelDNA" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (AI_DETECTED_OFFICE_EXCEL_VERSION &gt;= &quot;2013&quot;) OR (Installed) )" Sequence="6404"/>
+    <ROW Action="AI_DATA_SETTER_1" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (AI_DETECTED_OFFICE_EXCEL_VERSION &gt;= &quot;2013&quot;) OR (Installed) )" Sequence="6403"/>
+    <ROW Action="DeleteExcelDNA" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6402"/>
+    <ROW Action="AI_GetArpIconPath" Sequence="1401"/>
+    <ROW Action="AI_DATA_SETTER_2" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6401"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
@@ -669,12 +666,19 @@
     <ROW Registry="Addins_6" Root="1" Key="Software\Microsoft\Office\Word\Addins" Name="+" Component_="Addins_7"/>
     <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
     <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
+    <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
     <ROW Registry="Description_10" Root="1" Key="Software\Microsoft\Office\Visio\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Viso that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_10"/>
     <ROW Registry="Description_11" Root="1" Key="Software\Microsoft\Office\Word\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Word that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_11"/>
     <ROW Registry="Description_6" Root="1" Key="Software\Microsoft\Office\Excel\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Excel that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_6"/>
     <ROW Registry="Description_7" Root="1" Key="Software\Microsoft\Office\Outlook\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Outlook that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_7"/>
     <ROW Registry="Description_8" Root="1" Key="Software\Microsoft\Office\PowerPoint\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for PowerPoint that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_8"/>
     <ROW Registry="Description_9" Root="1" Key="Software\Microsoft\Office\MS Project\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Project that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_9"/>
+    <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
+    <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
+    <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#[AI_ARP_SIZE]" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Excel_1" Root="1" Key="Software\Microsoft\Office\Excel" Name="+" Component_="Excel"/>
     <ROW Registry="FriendlyName_10" Root="1" Key="Software\Microsoft\Office\Visio\Addins\[Manufacturer].[ProductName]" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_10"/>
     <ROW Registry="FriendlyName_11" Root="1" Key="Software\Microsoft\Office\Word\Addins\[Manufacturer].[ProductName]" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_11"/>
@@ -682,6 +686,9 @@
     <ROW Registry="FriendlyName_7" Root="1" Key="Software\Microsoft\Office\Outlook\Addins\[Manufacturer].[ProductName]" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_7"/>
     <ROW Registry="FriendlyName_8" Root="1" Key="Software\Microsoft\Office\PowerPoint\Addins\[Manufacturer].[ProductName]" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_8"/>
     <ROW Registry="FriendlyName_9" Root="1" Key="Software\Microsoft\Office\MS Project\Addins\[Manufacturer].[ProductName]" Name="FriendlyName" Value="Kurdish Digital Calendar" Component_="FriendlyName_9"/>
+    <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
+    <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
+    <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="KDC_Excel" Root="1" Key="Software\Microsoft\Office\Excel\Addins\[Manufacturer].[ProductName]" Name="*" Component_="KDC_Excel"/>
     <ROW Registry="KDC_Outlook" Root="1" Key="Software\Microsoft\Office\Outlook\Addins\[Manufacturer].[ProductName]" Name="*" Component_="KDC_Outlook"/>
     <ROW Registry="KDC_PowerPoint" Root="1" Key="Software\Microsoft\Office\PowerPoint\Addins\[Manufacturer].[ProductName]" Name="*" Component_="KDC_PowerPoint"/>
@@ -703,22 +710,36 @@
     <ROW Registry="Manifest_8" Root="1" Key="Software\Microsoft\Office\PowerPoint\Addins\[Manufacturer].[ProductName]" Name="Manifest" Value="file:///[AI_UserProgramFiles][Manufacturer]\[ProductName]\KDC_PowerPoint.vsto|vstolocal" Component_="Manifest_8"/>
     <ROW Registry="Manifest_9" Root="1" Key="Software\Microsoft\Office\MS Project\Addins\[Manufacturer].[ProductName]" Name="Manifest" Value="file:///[AI_UserProgramFiles][Manufacturer]\[ProductName]\KDC_Project.vsto|vstolocal" Component_="Manifest_9"/>
     <ROW Registry="Manufacturer" Root="-1" Key="Software\[Manufacturer]" Name="*" Component_="Manufacturer"/>
+    <ROW Registry="Microsoft" Root="-1" Key="Software\Microsoft" Name="\"/>
     <ROW Registry="Microsoft_1" Root="1" Key="Software\Microsoft" Name="+" Component_="Microsoft_2"/>
+    <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /i [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
+    <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Office_1" Root="1" Key="Software\Microsoft\Office" Name="\"/>
     <ROW Registry="Outlook_1" Root="1" Key="Software\Microsoft\Office\Outlook" Name="+" Component_="Outlook"/>
     <ROW Registry="PowerPoint_1" Root="1" Key="Software\Microsoft\Office\PowerPoint" Name="+" Component_="PowerPoint"/>
     <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]" Name="\"/>
     <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="*" Component_="ProductName"/>
+    <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="\"/>
+    <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
     <ROW Registry="Software" Root="-1" Key="Software" Name="+" Component_="Software"/>
     <ROW Registry="Software_2" Root="1" Key="Software" Name="\"/>
+    <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
+    <ROW Registry="URLUpdateInfo" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLUpdateInfo" Value="[ARPURLUPDATEINFO]" Component_="AI_CustomARPName"/>
+    <ROW Registry="Uninstall" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall" Name="\"/>
+    <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
+    <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UpgradeCode" Root="-1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="\"/>
+    <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
+    <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Visio_1" Root="1" Key="Software\Microsoft\Office\Visio" Name="+" Component_="Visio"/>
+    <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
     <ROW Registry="Word_1" Root="1" Key="Software\Microsoft\Office\Word" Name="+" Component_="Word"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiSignatureComponent">
     <ROW Signature="FileSearchSign" FileName="VISIO.EXE" Languages="0"/>
-    <ROW Signature="FileSearchSign_1" FileName="WINPROJ.EXE" MinVersion="16.0.17628.20116" MinSize="31981496" MaxSize="31981496" MinDate="1488933263" Languages="0"/>
+    <ROW Signature="FileSearchSign_1" FileName="WINPROJ.EXE" Languages="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiTextStyleComponent">
     <ROW TextStyle="AppNameSegoeUI28" FaceName="Segoe UI" Size="24" Color="8847617" StyleBits="1" MsiKey="AppNameSegoeUI28"/>
@@ -738,6 +759,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.NotesComponent">
     <ROW Type="2" Note="{\urtf1\fbidis\ansi\ansicpg65001\deff0\deflang2049{\fonttbl{\f0\fnil\fcharset0 MS Shell Dlg 2;}}&#13;&#10;\viewkind4\uc1\pard\ltrpar\f0\fs17\par&#13;&#10;}&#13;&#10;"/>
     <ROW Type="2" Note="{\urtf1\fbidis\ansi\ansicpg65001\deff0\deflang2049{\fonttbl{\f0\fnil\fcharset0 MS Shell Dlg 2;}}&#13;&#10;\viewkind4\uc1\pard\ltrpar\f0\fs17\par&#13;&#10;}&#13;&#10;"/>
+    <ROW Type="2" DisplayString="Files, Folders and Shortcuts" Note="{\urtf1\fbidis\ansi\ansicpg65001\deff0\deflang2049{\fonttbl{\f0\fnil\fcharset0 MS Shell Dlg 2;}}&#13;&#10;\viewkind4\uc1\pard\ltrpar\f0\fs17\par&#13;&#10;}&#13;&#10;" ViewId="Files, Folders and Shortcuts"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqComponent">
     <ROW PrereqKey="A6D7F21EAEB4C4A901F0979CF110936" DisplayName=".NET Framework 4.7.2" SetupFileUrl="https://download.visualstudio.microsoft.com/download/pr/1f5af042-d0e4-4002-9c59-9ba66bcf15f6/089f837de42708daacaae7c04b7494db/ndp472-kb4054530-x86-x64-allos-enu.exe" Location="1" ExactSize="83937536" WinNTVersions="Windows 7 RTM x86, Windows 10 version 1507 x86, Windows 10 version 1511 x86, Windows 10 version 1803 x86, Windows 10 version 1809 x86, Windows 10 version 1903 x86, Windows 10 version 1909 x86, Windows 10 version 2004 x86, Windows 10 version 20H2 x86, Windows 10 version 21H1 x86, Windows 10 version 21H2 x86, Windows 10 version 22H2 x86" WinNT64Versions="Windows 7 RTM x64, Windows Server 2008 R2 RTM x64, Windows 10 version 1507 x64, Windows 10 version 1511 x64, Windows 10 version 1803 x64, Windows 10 version 1809 x64, Windows Server 2019 x64, Windows 10 version 1903 x64, Windows 10 version 1909 x64, Windows 10 version 2004 x64, Windows 10 version 20H2 x64, Windows 10 version 21H1 x64, Windows 10 version 21H2 x64, Windows 10 version 22H2 x64, Windows Server 2022 x64, Windows 11 x64" Operator="1" NoUiComLine="/q /norestart" Options="xkmq" MD5="4037bdde26bf72e2ce5108cb30387bcd" TargetName=".NET Framework 4.7.2"/>
@@ -747,8 +769,5 @@
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461813" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
     <ROW SearchKey="ABA121137E454F6C815A1647D0B2CF14Ver" Prereq="ABA121137E454F6C815A1647D0B2CF14" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\VSTO Runtime Setup\v4R\Version" VerMin="10.0.60828" Order="1" Property="PreReqSearch_ABA121137E454F6C815A16"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.UpdaterComponent">
-    <ROW Updater="updater.exe" URL="URL" SearchFreq="CheckFrequency" DownloadsFolder="DownloadsFolder" ID="ID" TargetDir="AppDir" AppName="ApplicationName" AppVersion="ApplicationVersion" CompanyName="CompanyName" DefCommandLine="DefaultCommandLine" Flags="Flags" IconIndex="0" UnistallCASeq="AI_UPDATER_UNINSTALL" Description="[|UpdaterName] [|ProductVersion]"/>
   </COMPONENT>
 </DOCUMENT>

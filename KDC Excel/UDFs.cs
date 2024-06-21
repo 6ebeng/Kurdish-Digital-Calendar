@@ -2,21 +2,27 @@
 using ExcelDna.Integration;
 using KDCLibrary;
 
-namespace KDC_Excel
+namespace KDC_Excel_UDFs
 {
     [ComVisible(true)]
-    public class UDFs
+    public static class UDFs
     {
         private static readonly IKDCService kdcService = new KDCServiceImplementation();
 
-        [ExcelFunction(Description = "Converts a number to Kurdish words")]
+        [ExcelFunction(
+            Description = "Converts a number to Kurdish words",
+            HelpTopic = "Converts a number to Kurdish words"
+        )]
         public static string ConvertNumberToKurdishText(double number)
         {
             long longNumber = (long)number;
             return kdcService.ConvertNumberToKurdishText(longNumber);
         }
 
-        [ExcelFunction(Description = "Converts a date to Kurdish")]
+        [ExcelFunction(
+            Description = "Converts a date to Kurdish",
+            HelpTopic = "Converts a date to Kurdish"
+        )]
         public static string ConvertDateToKurdish(
             string date,
             bool isKurdishCentral,

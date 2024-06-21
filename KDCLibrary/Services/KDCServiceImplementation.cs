@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using KDCLibrary.Calendars;
 using KDCLibrary.Services;
 
@@ -8,7 +7,7 @@ namespace KDCLibrary
     [ComVisible(true)]
     public class KDCServiceImplementation : IKDCService
     {
-        public string toKurdish(int formatChoice, string dialect, bool isAddSuffix)
+        public string ToKurdish(int formatChoice, string dialect, bool isAddSuffix)
         {
             return new DateInsertion().Kurdish(formatChoice, dialect, isAddSuffix);
         }

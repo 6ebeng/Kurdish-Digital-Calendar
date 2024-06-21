@@ -1,8 +1,6 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using DevExpress.XtraBars;
 using KDCLibrary.Helpers;
 
