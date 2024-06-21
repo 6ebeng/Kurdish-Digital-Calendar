@@ -11,7 +11,9 @@ namespace KDC_Excel_UDFs
 
         [ExcelFunction(
             Description = "Converts a number to Kurdish words",
-            HelpTopic = "Converts a number to Kurdish words"
+            HelpTopic = "Converts a number to Kurdish words",
+            Name = "ConvertNumberToKurdishText",
+            Category = "Number to Word"
         )]
         public static string ConvertNumberToKurdishText(double number)
         {
@@ -21,7 +23,9 @@ namespace KDC_Excel_UDFs
 
         [ExcelFunction(
             Description = "Converts a date to Kurdish",
-            HelpTopic = "Converts a date to Kurdish"
+            HelpTopic = "Converts a date to Kurdish",
+            Name = "ConvertDateToKurdish",
+            Category = "KDC"
         )]
         public static string ConvertDateToKurdish(
             string date,
