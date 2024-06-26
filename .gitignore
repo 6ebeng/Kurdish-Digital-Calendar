@@ -373,6 +373,7 @@ publish
 
 # Allow specific release directory
 !KDCLibrary/bin/release/
+!Meds_AI/cert.pfx
 
 
 # VS Code directories
