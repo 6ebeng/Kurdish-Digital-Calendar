@@ -48,6 +48,7 @@ Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AI Setup Project", "AI Setu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{522D62C0-65DA-4B03-9022-3F532F18C232}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\Certs\cert.pfx = Assets\Certs\cert.pfx
 		.github\workflows\Pre-release.yml = .github\workflows\Pre-release.yml
 		README.md = README.md
 		.github\workflows\Release.yml = .github\workflows\Release.yml
@@ -56,6 +57,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meds_AI", "Meds_AI", "{ECB6DD46-90AA-4554-90C1-7144C0FA6C88}"
 	ProjectSection(SolutionItems) = preProject
 		Meds_AI\advinst.exe = Meds_AI\advinst.exe
+		Assets\Certs\cert.pfx = Assets\Certs\cert.pfx
 		Meds_AI\license80.dat = Meds_AI\license80.dat
 		Meds_AI\reg.reg = Meds_AI\reg.reg
 		Meds_AI\Settings.AIS = Meds_AI\Settings.AIS
