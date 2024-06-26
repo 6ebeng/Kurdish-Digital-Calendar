@@ -62,37 +62,28 @@ jobs:
         $aiPath = "${{ env.AI_PATH }}"
         & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion ${{ steps.extract-version.outputs.version }}
 
-    - name: Decode and Save Certificate
-      id: save-cert
-      shell: pwsh
-      env:
-        CERT_BASE64: ${{ secrets.CERT_BASE64 }}
-      run: |
-        $certPath = "$env:USERPROFILE\certificate.pfx"
-        [System.IO.File]::WriteAllBytes($certPath, [System.Convert]::FromBase64String($env:CERT_BASE64))
-        echo "CERT_PATH=$certPath" >> $env:GITHUB_ENV
-
     - name: Set Digital Certificate in Advanced Installer
       shell: pwsh
       env:
-        CERT_PATH: ${{ env.CERT_PATH }}
-        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+        CERT_NAME: ${{ secrets.CERT_NAME }}
       run: |
         $aiPath = "${{ env.AI_PATH }}"
-        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
-          /SetDigitalCertificateFile -file $env:CERT_PATH -password $env:CERT_PASSWORD -enable_signing
+        $certStore = "My"
+        $certLocation = "LocalMachine"
+        $cert = Get-ChildItem -Path "Cert:\$certLocation\$certStore" | Where-Object { $_.FriendlyName -eq $env:CERT_NAME }
+        if ($cert) {
+          & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
+            /SetDigitalCertificate -store $certStore -location $certLocation -sha1 $cert.Thumbprint -enable_signing
+        } else {
+          Write-Error "Certificate with friendly name '$env:CERT_NAME' not found."
+          exit 1
+        }
 
     - name: Build Advanced Installer project with Signing
       shell: pwsh
       run: |
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
-
-    - name: Verify Files and Hashes
-      shell: pwsh
-      run: |
-        Get-FileHash -Algorithm SHA256 "AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*" | Format-Table -AutoSize
-
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
