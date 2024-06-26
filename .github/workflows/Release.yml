@@ -17,14 +17,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.0'
-
-    - name: Install github-changelog-generator
-      run: gem install github_changelog_generator
-
     - name: Install Advanced Installer
       run: choco install advanced-installer --version=21.4.0
 
@@ -48,6 +40,7 @@ jobs:
         copy .\Meds_AI\Settings.AIS "C:\ProgramData\Caphyon\Advanced Installer\"
         copy .\Meds_AI\license80.dat "C:\ProgramData\Caphyon\Advanced Installer\"
         reg import .\Meds_AI\reg.reg
+
 
     - name: Extract Version from Tag
       id: extract-version
@@ -100,8 +93,31 @@ jobs:
       run: |
         Get-FileHash -Algorithm SHA256 "AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*" | Format-Table -AutoSize
 
+
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
+
+  release:
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+
+    - name: Install github-changelog-generator
+      run: gem install github_changelog_generator
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
       with:
         name: build-artifacts
         path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
@@ -146,3 +162,4 @@ jobs:
         asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
         asset_name: KDC Installer x64/x86.exe
         asset_content_type: application/octet-stream
+
