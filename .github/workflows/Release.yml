@@ -17,6 +17,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+
+    - name: Install github-changelog-generator
+      run: gem install github_changelog_generator
+
     - name: Install Advanced Installer
       run: choco install advanced-installer --version=21.4.0
 
