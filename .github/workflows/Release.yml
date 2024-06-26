@@ -75,19 +75,12 @@ jobs:
     - name: Set Digital Certificate in Advanced Installer
       shell: pwsh
       env:
-        CERT_NAME: ${{ secrets.CERT_NAME }}
+        CERT_PATH: ${{ env.CERT_PATH }}
+        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
       run: |
         $aiPath = "${{ env.AI_PATH }}"
-        $certStore = "My"
-        $certLocation = "LocalMachine"
-        $cert = Get-ChildItem -Path "Cert:\$certLocation\$certStore" | Where-Object { $_.DnsNameList -contains $env:CERT_NAME }
-        if ($cert) {
-          & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
-            /SetDigitalCertificateFile -store $certStore -location $certLocation -sha1 $cert.Thumbprint -enable_signing
-        } else {
-          Write-Error "Certificate with DNS name '$env:CERT_NAME' not found."
-          exit 1
-        }
+        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
+          /SetDigitalCertificateFile -file $env:CERT_PATH -password $env:CERT_PASSWORD -enable_signing
 
     - name: Build Advanced Installer project with Signing
       shell: pwsh
