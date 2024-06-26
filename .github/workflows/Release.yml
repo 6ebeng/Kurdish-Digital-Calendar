@@ -62,27 +62,23 @@ jobs:
         $aiPath = "${{ env.AI_PATH }}"
         & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion ${{ steps.extract-version.outputs.version }}
 
-    - name: Create Self-Signed Certificate
+    - name: Decode and Save Certificate
+      id: save-cert
       shell: pwsh
       env:
-        CERT_NAME: ${{ secrets.CERT_NAME }}
-        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
+        CERT_BASE64: ${{ secrets.CERT_BASE64 }}
       run: |
-        $cert = New-SelfSignedCertificate -Type Custom -Subject "CN=Caphyon, O=Caphyon, C=US" -KeyUsage DigitalSignature -FriendlyName $env:CERT_NAME -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
         $certPath = "$env:USERPROFILE\certificate.pfx"
-        Export-PfxCertificate -Cert $cert -FilePath $certPath -Password (ConvertTo-SecureString -String $env:CERT_PASSWORD -Force -AsPlainText)
+        [System.IO.File]::WriteAllBytes($certPath, [System.Convert]::FromBase64String($env:CERT_BASE64))
         echo "CERT_PATH=$certPath" >> $env:GITHUB_ENV
-        Write-Host "Created and exported self-signed certificate."
 
-    - name: Set Digital Certificate in Advanced Installer
+    - name: Import Certificate into Machine Store
       shell: pwsh
       env:
         CERT_PATH: ${{ env.CERT_PATH }}
-        CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
       run: |
-        $aiPath = "${{ env.AI_PATH }}"
-        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
-          /SetDigitalCertificateFile -file $env:CERT_PATH -password $env:CERT_PASSWORD -enable_signing
+        Import-PfxCertificate -FilePath $env:CERT_PATH -CertStoreLocation Cert:\LocalMachine\My -Password (ConvertTo-SecureString -String "" -Force -AsPlainText)
+        Write-Host "Imported certificate into machine's personal store."
 
     - name: Build Advanced Installer project with Signing
       shell: pwsh
