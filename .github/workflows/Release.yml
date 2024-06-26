@@ -68,8 +68,10 @@ jobs:
         CERT_NAME: ${{ secrets.CERT_NAME }}
         CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
       run: |
-        $cert = New-SelfSignedCertificate -DnsName $env:CERT_NAME -CertStoreLocation "Cert:\LocalMachine\My"
-        $cert | Export-PfxCertificate -FilePath "$env:USERPROFILE\certificate.pfx" -Password (ConvertTo-SecureString -String $env:CERT_PASSWORD -Force -AsPlainText)
+        $cert = New-SelfSignedCertificate -Type Custom -Subject "CN=Caphyon, O=Caphyon, C=US" -KeyUsage DigitalSignature -FriendlyName $env:CERT_NAME -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
+        $certPath = "$env:USERPROFILE\certificate.pfx"
+        Export-PfxCertificate -Cert $cert -FilePath $certPath -Password (ConvertTo-SecureString -String $env:CERT_PASSWORD -Force -AsPlainText)
+        echo "CERT_PATH=$certPath" >> $env:GITHUB_ENV
         Write-Host "Created and exported self-signed certificate."
 
     - name: Set Digital Certificate in Advanced Installer
