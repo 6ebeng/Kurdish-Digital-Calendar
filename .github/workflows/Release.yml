@@ -62,21 +62,23 @@ jobs:
         $aiPath = "${{ env.AI_PATH }}"
         & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" /SetVersion ${{ steps.extract-version.outputs.version }}
 
-    - name: Copy Certificate
+    - name: Decode Base64 Certificate and Save
       shell: pwsh
+      env:
+        CERT_BASE64: ${{ secrets.CERT_BASE64 }}
       run: |
-        copy .\Assets\Certs\cert.pfx $env:USERPROFILE\certificate.pfx
+        [System.IO.File]::WriteAllBytes("$env:USERPROFILE\certificate.pfx", [Convert]::FromBase64String($env:CERT_BASE64))
         echo "CERT_PATH=$env:USERPROFILE\certificate.pfx" >> $env:GITHUB_ENV
 
-    - name: Import Certificate into Machine Store
+    - name: Set Digital Certificate in Advanced Installer
       shell: pwsh
       env:
         CERT_PATH: ${{ env.CERT_PATH }}
         CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
       run: |
-        $securePassword = ConvertTo-SecureString -String $env:CERT_PASSWORD -Force -AsPlainText
-        Import-PfxCertificate -FilePath $env:CERT_PATH -CertStoreLocation Cert:\LocalMachine\My -Password $securePassword
-        Write-Host "Imported certificate into machine's personal store."
+        $aiPath = "${{ env.AI_PATH }}"
+        & $aiPath /edit "AI Setup Project/Kurdish Digital Calendar.aip" `
+          /SetDigitalCertificateFile -file $env:CERT_PATH -password $env:CERT_PASSWORD -enable_signing
 
     - name: Build Advanced Installer project with Signing
       shell: pwsh

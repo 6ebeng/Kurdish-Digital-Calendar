@@ -57,7 +57,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meds_AI", "Meds_AI", "{ECB6DD46-90AA-4554-90C1-7144C0FA6C88}"
 	ProjectSection(SolutionItems) = preProject
 		Meds_AI\advinst.exe = Meds_AI\advinst.exe
-		Assets\Certs\cert.pfx = Assets\Certs\cert.pfx
 		Meds_AI\license80.dat = Meds_AI\license80.dat
 		Meds_AI\reg.reg = Meds_AI\reg.reg
 		Meds_AI\Settings.AIS = Meds_AI\Settings.AIS
