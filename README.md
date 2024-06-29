@@ -3,7 +3,7 @@
 
 <Table border="0">
 <td>Support us with a donation</td>
-<td valign="center"
+<td valign="middle"
 ><a href="https://www.paypal.com/donate/?business=4U9ZWTGCL4XDG&amount=5&no_recurring=0&item_name=Support+the+Kurdish+Digital+Calendar%21+Your+donation+helps+keep+this+project+alive+and+free.+Thank+you+for+your+generosity%21&currency_code=USD">
     <img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="Donate">
 </a></td>
