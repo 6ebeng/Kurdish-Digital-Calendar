@@ -104,24 +104,16 @@ To contribute to the Kurdish Digital Calendar project:
 3. Commit your changes and push your branch to GitHub.
 4. Open a pull request with a description of your changes.
 
-For more information, see our [contributing guidelines](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/CONTRIBUTING.md).
+For more information, see our [contributing guidelines](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/CONTRIBUTING.md).
 
 ## License
 
-The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/LICENSE) file for details.
+The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/LICENSE) file for details.
 
 ## Credits
 
 Developed and maintained by Tishko Rasoul ([Rekbin Devs](https://github.com/Rekbin-Devs)). Thanks to all contributors and supporters.
 
-## Contact
+## Support
 
 For issues or questions, open an issue on the [GitHub repository](https://github.com/6ebeng/kurdish-digital-calendar/issues) or contact us at [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
-
-## Support and Donations
-
-If you find this project useful, please consider supporting its development by making a donation. Your support will help us to continue improving and maintaining the Kurdish Digital Calendar.
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.paypal.com/donate/?business=4U9ZWTGCL4XDG&amount=5&no_recurring=0&item_name=Support+the+Kurdish+Digital+Calendar%21+Your+donation+helps+keep+this+project+alive+and+free.+Thank+you+for+your+generosity%21&currency_code=USD)
-
-Thank you for your support!
