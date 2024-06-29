@@ -369,11 +369,21 @@ publish
 /AI Setup Project/Setup Files/*
 /AI Setup Project/Kurdish Digital Calendar-cache/*
 /AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*
+/KDC Excel/bin/Release/
+/KDC Outlook/bin/Release/
+/KDC Word/bin/Release/
+/KDC PowerPoint/bin/Release/
+/KDC Project/bin/Release/
+/KDC Visio/bin/Release/
+
+
+
 [Cc]erts/*
 
 # Allow specific release directory
 !KDCLibrary/bin/release/
 !Meds_AI/cert.pfx
+
 
 
 # VS Code directories
