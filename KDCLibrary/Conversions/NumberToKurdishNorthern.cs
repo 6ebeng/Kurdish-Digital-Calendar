@@ -54,12 +54,12 @@ namespace KDCLibrary.Conversions
         {
             var parts = new string[]
             {
-                ProcessSegment((number / 1000000000000000000) % 1000, "quintillion ", true),
-                ProcessSegment((number / 1000000000000000) % 1000, "qadrillion ", true),
-                ProcessSegment((number / 1000000000000) % 1000, "trîlyon ", true),
-                ProcessSegment((number / 1000000000) % 1000, "milyar ", true),
-                ProcessSegment((number / 1000000) % 1000, "milyon ", true),
-                ProcessSegment((number / 1000) % 1000, "hezar ", true),
+                ProcessSegment((number / 1000000000000000000) % 1000, " quintillion", true),
+                ProcessSegment((number / 1000000000000000) % 1000, " qadrillion", true),
+                ProcessSegment((number / 1000000000000) % 1000, " trîlyon", true),
+                ProcessSegment((number / 1000000000) % 1000, " milyar", true),
+                ProcessSegment((number / 1000000) % 1000, " milyon", true),
+                ProcessSegment((number / 1000) % 1000, " hezar", true),
                 ProcessSegment(number % 1000)
             };
 
