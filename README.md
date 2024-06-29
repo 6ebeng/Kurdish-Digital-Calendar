@@ -7,8 +7,7 @@ Help keep the Kurdish Digital Calendar project alive and free! Your donation sup
 
 
 
-[![GitHub release](https://img.shields.io/github/v/release/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases "Latest Release") 
-
+[![GitHub release](https://img.shields.io/github/v/release/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases) 
 [![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
 [![GitHub forks](https://img.shields.io/github/forks/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/network) 
 [![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/LICENSE) 
