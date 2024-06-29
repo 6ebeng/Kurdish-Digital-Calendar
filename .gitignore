@@ -382,6 +382,18 @@ publish
 
 # Allow specific release directory
 !KDCLibrary/bin/release/
+!*/bin/Release/*.manifest
+!*/bin/Release/*.vsto
+!*/bin/Release/*.xll
+!*/bin/Release/*.dna
+
+!*/bin/Release/KDC_Excel.dll
+!*/bin/Release/KDC_Outlook.dll
+!*/bin/Release/KDC_PowerPoint.dll
+!*/bin/Release/KDC_Project.dll
+!*/bin/Release/KDC_Visio.dll
+!*/bin/Release/KDC_Word.dll
+
 !Meds_AI/cert.pfx
 
 
