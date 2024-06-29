@@ -385,6 +385,7 @@ publish
 !*.vsto
 !*.xll
 !*.dna
+!*.manifest
 
 !/KDC Excel/bin/Release/KDC_Excel.dll
 !/KDC Outlook/bin/Release/KDC_Outlook.dll
