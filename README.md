@@ -25,28 +25,28 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 - Kurdish (Northern)
 
 ## Calendar Types
-	### Primary Calendars
-	KDC recognizes these primary calendars in Kurdish, Arabic, and English:
-		- Gregorian
-		- Hijri
-		- Umm al-Qura
+### Primary Calendars
+KDC recognizes these primary calendars in Kurdish, Arabic, and English:
+	- Gregorian
+	- Hijri
+	- Umm al-Qura
 
-	### Reverse Conversion Calendars**
-	These calendars are used for reverse conversion based on the chosen primary calendar:
-		- Gregorian (English)
-		- Gregorian (Arabic)
-		- Gregorian (Kurdish Central)
-		- Gregorian (Kurdish Northern)
-		- Hijri (English)
-		- Hijri (Arabic)
-		- Hijri (Kurdish Central)
-		- Hijri (Kurdish Northern)
-		- Umm al-Qura (English)
-		- Umm al-Qura (Arabic)
-		- Umm al-Qura (Kurdish Central)
-		- Umm al-Qura (Kurdish Northern)
-		- Kurdish (Central)
-		- Kurdish (Northern)
+### Reverse Conversion Calendars**
+These calendars are used for reverse conversion based on the chosen primary calendar:
+	- Gregorian (English)
+	- Gregorian (Arabic)
+	- Gregorian (Kurdish Central)
+	- Gregorian (Kurdish Northern)
+	- Hijri (English)
+	- Hijri (Arabic)
+	- Hijri (Kurdish Central)
+	- Hijri (Kurdish Northern)
+	- Umm al-Qura (English)
+	- Umm al-Qura (Arabic)
+	- Umm al-Qura (Kurdish Central)
+	- Umm al-Qura (Kurdish Northern)
+	- Kurdish (Central)
+	- Kurdish (Northern)
 
 ## Features
 
