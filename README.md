@@ -82,7 +82,7 @@ The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE
 
 ## Credits
 
-Developed and maintained by [Rekbin Devs](https://github.com/6ebeng). Thanks to all contributors and supporters.
+Developed and maintained by Tishko Rasoul ([Rekbin Devs](https://github.com/6ebeng)). Thanks to all contributors and supporters.
 
 ## Support
 
