@@ -75,7 +75,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 		- Example: `ConvertNumberToKurdishText(123456789)` or `ConvertNumberToKurdishText(123456789, "ku")` or `ConvertNumberToKurdishText(123456789, "ckb")`
 		- Result: 
 			- Kurdish Central Dialect : "سەد و بیست و سێ ملیۆن و چوار سەد و پەنجا و شەش هەزار و حەوت سه‌د و هه‌شتاو نۆ"
-			- Kurdish Northern Dialect : "sed û bîst û sêmilyon  û çarsed  û pêncî û şeşhezar  û heftsed  û heştê û neh"
+			- Kurdish Northern Dialect : "sed û bîst û sê milyon û çar sed û pêncî û şeş hezar û heft sed û heştê û neh"
 		- Note: The function supports numbers up to 999,999,999,999,999,999.
 
 	- **ConvertDateToKurdish** (Support both Kurdish Central and Kurdish Northern Dialects)
