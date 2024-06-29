@@ -387,12 +387,13 @@ publish
 !*/bin/Release/*.xll
 !*/bin/Release/*.dna
 
-!*/bin/Release/KDC_Excel.dll
-!*/bin/Release/KDC_Outlook.dll
-!*/bin/Release/KDC_PowerPoint.dll
-!*/bin/Release/KDC_Project.dll
-!*/bin/Release/KDC_Visio.dll
-!*/bin/Release/KDC_Word.dll
+!KDC Excel/bin/Release/KDC_Excel.dll
+!KDC Outlook/bin/Release/KDC_Outlook.dll
+!KDC Word/bin/Release/KDC_Word.dll
+!KDC PowerPoint/bin/Release/KDC_PowerPoint.dll
+!KDC Project/bin/Release/KDC_Project.dll
+!KDC Visio/bin/Release/KDC_Visio.dll
+
 
 !Meds_AI/cert.pfx
 
