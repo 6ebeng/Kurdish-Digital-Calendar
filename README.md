@@ -31,7 +31,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 	- Hijri
 	- Umm al-Qura
 
-### Reverse Conversion Calendars**
+### Reverse Conversion Calendars
 - These calendars are used for reverse conversion based on the chosen primary calendar:
 	- Gregorian (English)
 	- Gregorian (Arabic)
@@ -124,7 +124,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 		- Note: The function supports numbers up to 999,999,999,999,999,999.
 
 	- **ConvertDateToKurdish** (Support both Kurdish Central and Kurdish Northern Dialects)
-    - Converts a date to the Kurdish calendar.
+		- Converts a date to the Kurdish calendar.
         - Syntax: `ConvertDateToKurdish(Date, targetDialect as Optional, fromFormat as Optional, toFormat as Optional, targetCalendar as Optional, isAddSuffix as Optional)` Default Dialect is Kurdish Central.
 		    - Parameters
 			    - Date: The date to convert to the Kurdish calendar.
