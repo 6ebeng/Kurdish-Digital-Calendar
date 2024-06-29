@@ -103,7 +103,7 @@ namespace KDCLibrary.Conversions
             };
 
             var result =
-                string.Join(" و ", parts.Where(part => !string.IsNullOrWhiteSpace(part))) + suffix;
+                string.Join(" û ", parts.Where(part => !string.IsNullOrWhiteSpace(part))) + suffix;
 
             if (isNumberSegment && result.StartsWith("yek hezar"))
             {
@@ -121,7 +121,7 @@ namespace KDCLibrary.Conversions
             if (number == 1)
                 return "sed";
 
-            return Units[(int)number] + "sed ";
+            return Units[(int)number] + " sed";
         }
 
         private string ProcessTensAndUnits(long number)

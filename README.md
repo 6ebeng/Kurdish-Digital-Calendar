@@ -4,7 +4,7 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
 [![GitHub forks](https://img.shields.io/github/forks/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/network) 
-[![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/blob/main/LICENSE) 
+[![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/LICENSE) 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
 
 Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
@@ -53,17 +53,39 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 - **Choose**
   - Open a date picker to select and insert a specific date.
 
-## Installation and Usage
+### COM Library Integration
+ - Includes a COM Library Reference KDC for VBA use in Word, Excel and Access.
 
-To install and use the Kurdish Digital Calendar:
+### User-Defined Functions in MS Excel
+ - Call custom functions like `ConvertNumberToKurdishText` and `ConvertDateToKurdish` directly from Excel cells.
+	- **ConvertNumberToKurdishText** (Support both Kurdish Central and Kurdish Northern Dialects)
+		- Converts a number to Kurdish text.
+		- Syntax: `ConvertNumberToKurdishText(Number, langcode as Optional)` Default Dialect is Kurdish Central.
+			- Parameters
+				- Number: The number to convert to Kurdish text.
+				- langcode (optional): The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
+		- Example: `ConvertNumberToKurdishText(123456789)` or `ConvertNumberToKurdishText(123456789, "ku")` or `ConvertNumberToKurdishText(123456789, "ckb")`
+		- Result: 
+			- Kurdish Central Dialect : "سەد و بیست و سێ ملیۆن و چوار سەد و پەنجا و شەش هەزار و حەوت سه‌د و هه‌شتاو نۆ"
+			- Kurdish Northern Dialect : "sed û bîst û sêmilyon  û çarsed  û pêncî û şeşhezar  û heftsed  û heştê û neh"
+		- Note: The function supports numbers up to 999,999,999,999,999,999.
 
-1. Download the installer from the [GitHub repository](https://github.com/6ebeng/kurdish-digital-calendar).
-2. Run the installer and follow the instructions to complete the installation.
-3. Open any Microsoft Office application (Word, Excel, PowerPoint, Outlook, Visio, or MS Project).
-4. Go to the "KD Calendar" tab in the ribbon to access the KDC features.
+ - **ConvertDateToKurdish** (Support both Kurdish Central and Kurdish Northern Dialects)
+	- Converts a Gregorian, Hijri, Umm-Al Qurra date to the Kurdish calendar.
+	- Syntax: `ConvertDateToKurdish(Date, CalendarType)`
 
-For detailed instructions, refer to the [user manual](https://github.com/6ebeng/kurdish-digital-calendar/wiki/User-Manual).
+## Installation
 
+### Prerequisites
+
+- Microsoft Office (Word, Excel, PowerPoint, Outlook, Visio, Project)
+- .NET Framework 4.8 or higher
+
+### Using the Installer
+
+1. Download the latest release from the [GitHub releases page](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases).
+2. Run the installer and select the components you wish to install.
+3. Follow the on-screen instructions to complete the installation.
 
 ## Contributing
 
