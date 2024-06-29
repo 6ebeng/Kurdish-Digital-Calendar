@@ -374,7 +374,7 @@ publish
 /KDC Word/bin/Release/
 /KDC PowerPoint/bin/Release/
 /KDC Project/bin/Release/
-/KDC Visio/bin/Release/
+/KDC Viso/bin/Release/
 
 
 
@@ -382,17 +382,16 @@ publish
 
 # Allow specific release directory
 !KDCLibrary/bin/release/
-!*/bin/Release/*.manifest
-!*/bin/Release/*.vsto
-!*/bin/Release/*.xll
-!*/bin/Release/*.dna
+!*.vsto
+!*.xll
+!*.dna
 
 !KDC Excel/bin/Release/KDC_Excel.dll
 !KDC Outlook/bin/Release/KDC_Outlook.dll
 !KDC Word/bin/Release/KDC_Word.dll
 !KDC PowerPoint/bin/Release/KDC_PowerPoint.dll
 !KDC Project/bin/Release/KDC_Project.dll
-!KDC Visio/bin/Release/KDC_Visio.dll
+!KDC Visio/bin/Release/KDC_Viso.dll
 
 
 !Meds_AI/cert.pfx

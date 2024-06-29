@@ -13,7 +13,9 @@
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="rekbin.devs@gmail.com"/>
     <ROW Property="ARPNOREPAIR" Value="1" MultiBuildValue="AnyCPU_Release_1:1"/>
+    <ROW Property="ARPPRODUCTICON" Value="LogoInstaller.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar"/>
     <ROW Property="AiFeatIcoApp" Value="KDCFramed.exe" Type="8"/>
     <ROW Property="AiFeatIcoExcelAddin" Value="Excel_128x128.exe" Type="8"/>
     <ROW Property="AiFeatIcoFeature" Value="Access.exe" Type="8"/>
@@ -104,9 +106,9 @@
     <ROW Component="KDC_Project.dll.manifest" ComponentId="{1F570E51-C65A-4781-9B13-2BC8810B05E2}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Project.dll.manifest"/>
     <ROW Component="KDC_Project.vsto" ComponentId="{E6D2AADD-5381-4938-9A6B-A8D1294E8CFB}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Project.vsto"/>
     <ROW Component="KDC_Visio" ComponentId="{2796BB78-14E7-46D6-95CC-E6659F6D8A2B}" Directory_="APPDIR" Attributes="4" KeyPath="KDC_Visio"/>
-    <ROW Component="KDC_Viso.dll" ComponentId="{B6808EDD-3D81-4B98-A9E8-4E1F224CD2E9}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Viso.dll"/>
-    <ROW Component="KDC_Viso.dll.manifest" ComponentId="{53397207-1F99-4997-AE46-C9DD4B021170}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Viso.dll.manifest"/>
-    <ROW Component="KDC_Viso.vsto" ComponentId="{DB63BC22-D8B4-4414-A376-C9D066EBAA90}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Viso.vsto"/>
+    <ROW Component="KDC_Visio.dll" ComponentId="{7D7DF059-A98A-44B6-AAB3-9095EA46801B}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Visio.dll"/>
+    <ROW Component="KDC_Visio.dll.manifest" ComponentId="{24E7AF63-34DE-455A-AD2A-9F272B476E70}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Visio.vsto" Type="0"/>
+    <ROW Component="KDC_Visio.dll.manifest_1" ComponentId="{75D0CB19-381C-4563-9A19-A406B8D88809}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Visio.dll.manifest"/>
     <ROW Component="KDC_Word" ComponentId="{EC736DE9-5FD0-4427-B4C2-E3895FC8DB46}" Directory_="APPDIR" Attributes="4" KeyPath="KDC_Word"/>
     <ROW Component="KDC_Word.dll" ComponentId="{0DF19CF4-CBAC-4FC0-92D6-ECC9D4161338}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Word.dll"/>
     <ROW Component="KDC_Word.dll.manifest" ComponentId="{3D1B4050-2C96-412F-B472-49A89B071C1B}" Directory_="APPDIR" Attributes="0" KeyPath="KDC_Word.vsto" Type="0"/>
@@ -151,9 +153,6 @@
     <ROW File="KDC_Word.dll" Component_="KDC_Word.dll" FileName="KDC_Word.dll" Attributes="0" SourcePath="..\KDC Word\bin\Release\KDC_Word.dll" SelfReg="false"/>
     <ROW File="KDC_Word.dll.manifest" Component_="KDC_Word.dll.manifest_1" FileName="KDC_WO~1.MAN|KDC_Word.dll.manifest" Attributes="0" SourcePath="..\KDC Word\bin\Release\KDC_Word.dll.manifest" SelfReg="false"/>
     <ROW File="KDC_Word.vsto" Component_="KDC_Word.dll.manifest" FileName="KDC_WO~1.VST|KDC_Word.vsto" Attributes="0" SourcePath="..\KDC Word\bin\Release\KDC_Word.vsto" SelfReg="false"/>
-    <ROW File="KDC_Viso.dll" Component_="KDC_Viso.dll" FileName="KDC_Viso.dll" Attributes="0" SourcePath="..\KDC Viso\bin\Release\KDC_Viso.dll" SelfReg="false"/>
-    <ROW File="KDC_Viso.dll.manifest" Component_="KDC_Viso.dll.manifest" FileName="KDC_VI~1.MAN|KDC_Viso.dll.manifest" Attributes="0" SourcePath="..\KDC Viso\bin\Release\KDC_Viso.dll.manifest" SelfReg="false"/>
-    <ROW File="KDC_Viso.vsto" Component_="KDC_Viso.vsto" FileName="KDC_VI~1.VST|KDC_Viso.vsto" Attributes="0" SourcePath="..\KDC Viso\bin\Release\KDC_Viso.vsto" SelfReg="false"/>
     <ROW File="KDC_Project.dll" Component_="KDC_Project.dll" FileName="KDC_PR~1.DLL|KDC_Project.dll" Attributes="0" SourcePath="..\KDC Project\bin\Release\KDC_Project.dll" SelfReg="false"/>
     <ROW File="KDC_Project.dll.manifest" Component_="KDC_Project.dll.manifest" FileName="KDC_PR~1.MAN|KDC_Project.dll.manifest" Attributes="0" SourcePath="..\KDC Project\bin\Release\KDC_Project.dll.manifest" SelfReg="false"/>
     <ROW File="KDC_Project.vsto" Component_="KDC_Project.vsto" FileName="KDC_PR~1.VST|KDC_Project.vsto" Attributes="0" SourcePath="..\KDC Project\bin\Release\KDC_Project.vsto" SelfReg="false"/>
@@ -187,6 +186,9 @@
     <ROW File="KDCExcelAddIn64.xll" Component_="KDCExcelAddIn64.xll" FileName="KDCEXC~2.XLL|KDC Excel-AddIn64.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64.xll" SelfReg="false"/>
     <ROW File="KDCExcelAddIn64packed.xll" Component_="KDCExcelAddIn64packed.xll" FileName="KDCEXC~3.XLL|KDC Excel-AddIn64-packed.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn64-packed.xll" SelfReg="false"/>
     <ROW File="KDCExcelAddInpacked.xll" Component_="KDCExcelAddInpacked.xll" FileName="KDCEXC~4.XLL|KDC Excel-AddIn-packed.xll" Attributes="0" SourcePath="..\KDC Excel\bin\Release\KDC Excel-AddIn-packed.xll" SelfReg="false"/>
+    <ROW File="KDC_Visio.dll" Component_="KDC_Visio.dll" FileName="KDC_VI~1.DLL|KDC_Visio.dll" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.dll" SelfReg="false"/>
+    <ROW File="KDC_Visio.dll.manifest" Component_="KDC_Visio.dll.manifest_1" FileName="KDC_VI~1.MAN|KDC_Visio.dll.manifest" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.dll.manifest" SelfReg="false"/>
+    <ROW File="KDC_Visio.vsto" Component_="KDC_Visio.dll.manifest" FileName="KDC_VI~1.VST|KDC_Visio.vsto" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.vsto" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiPersistentPropComponent">
     <ROW Property="AI_INSTALLPERUSER" Registry="AI_INSTALLPERUSER" HklmSearch="AI_INSTALLPERUSER" HkcuSearch="AI_INSTALLPERUSER_1"/>
@@ -542,9 +544,6 @@
     <ROW Feature_="WordAddin" Component_="KDC_Word.dll.manifest"/>
     <ROW Feature_="WordAddin" Component_="KDC_Word.dll.manifest_1"/>
     <ROW Feature_="WordAddin" Component_="KDC_Word.dll"/>
-    <ROW Feature_="VisioAddin" Component_="KDC_Viso.vsto"/>
-    <ROW Feature_="VisioAddin" Component_="KDC_Viso.dll.manifest"/>
-    <ROW Feature_="VisioAddin" Component_="KDC_Viso.dll"/>
     <ROW Feature_="ProjectAddin" Component_="KDC_Project.vsto"/>
     <ROW Feature_="ProjectAddin" Component_="KDC_Project.dll.manifest"/>
     <ROW Feature_="ProjectAddin" Component_="KDC_Project.dll"/>
@@ -567,11 +566,15 @@
     <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn64.dna"/>
     <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn.xll"/>
     <ROW Feature_="ExcelAddin" Component_="KDCExcelAddIn.dna"/>
+    <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll.manifest"/>
+    <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll"/>
+    <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll.manifest_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
     <ROW Name="Excel_128x128.exe" SourcePath="..\Assets\Excel_128x128.ico" Index="0"/>
     <ROW Name="KDCFramed.exe" SourcePath="..\Assets\KDC Framed.ico" Index="0"/>
+    <ROW Name="LogoInstaller.exe" SourcePath="..\Assets\Logo Installer.ico" Index="0"/>
     <ROW Name="Outlook_128x128.exe" SourcePath="..\Assets\Outlook_128x128.ico" Index="0"/>
     <ROW Name="PowerPoint_128x128.exe" SourcePath="..\Assets\PowerPoint_128x128.ico" Index="0"/>
     <ROW Name="Project.exe" SourcePath="..\Assets\Project.ico" Index="0"/>
