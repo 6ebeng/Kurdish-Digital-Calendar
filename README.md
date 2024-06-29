@@ -1,9 +1,8 @@
 # Kurdish Digital Calendar (KDC) 
 
 <a href="https://www.paypal.com/donate/?business=4U9ZWTGCL4XDG&amount=5&no_recurring=0&item_name=Support+the+Kurdish+Digital+Calendar%21+Your+donation+helps+keep+this+project+alive+and+free.+Thank+you+for+your+generosity%21&currency_code=USD">
-    <img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="Donate" style="width:200px;height:auto;">
+    <img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="Donate" style="width:150px;height:auto;">
 </a>
-
 
 
 [![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
