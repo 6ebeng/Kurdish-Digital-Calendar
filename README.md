@@ -108,7 +108,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
   - Open a date picker to select and insert a specific date.
 
 ### COM Library Integration
- - Includes a COM Library Reference KDC for VBA use in Word, Excel and Access.
+ - Includes a COM Library Reference KDC for VBA Office applications (eg. MS Access, MS Excel, etc).
 	- **KDC for VBA**
 		- Provides a set of functions for converting dates between different calendar systems.
 		- Syntax: `KDC.ConvertDate(Date, fromCalendar, toCalendar, fromFormat, toFormat, targetDialect, isAddSuffix)` Default Dialect is Kurdish Central.
