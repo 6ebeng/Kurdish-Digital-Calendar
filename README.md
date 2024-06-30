@@ -6,11 +6,12 @@ Help keep the Kurdish Digital Calendar project alive and free! Your donation sup
 <img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="Donate" style="width:130px;height:auto;">
 </a>
 <a href="tel:+9647507270392">
-<img src="https://img.shields.io/badge/Donate-FIB-cyan.svg" alt="Donate" style="width:108px;height:auto;">
-</a>
-<a href="tel:+9647507270392">
 <img src="https://img.shields.io/badge/Donate-FastPay-red.svg" alt="Donate" style="width:144px;height:auto;"></a>
 </a>
+<a href="tel:+9647507270392">
+<img src="https://img.shields.io/badge/Donate-FIB-cyan.svg" alt="Donate" style="width:108px;height:auto;">
+</a>
+
 </br>
 </br>
 
