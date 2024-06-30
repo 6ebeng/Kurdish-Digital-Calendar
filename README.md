@@ -150,11 +150,11 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 			    - toFormat: The format of the output date.
 			    - targetCalendar: The calendar system to use for conversion.
 			    - isAddSuffix (optional): A boolean value indicating whether to add suffixes to the output date.
-            - Example: `ConvertDateToKurdish("01/01/2024", "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", true)` or `ConvertDateToKurdish(01/01/2024", "Kurdish (Northern)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", true)`
+            - Example: `ConvertDateToKurdish("01/01/2024", "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", true)` or `ConvertDateToKurdish(01/01/2024", "Kurdish (Northern)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", true)` Default Dialect is Kurdish Central.
             - Result: 
 				- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
 				- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
-            - Note: The function supports dates from 0002-01-01 to 9999-12-31.
+            - Note: The function supports dates from 21/03/0001 to 31/12/9999.
 
 ## Installation
 
