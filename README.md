@@ -108,23 +108,99 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
   - Open a date picker to select and insert a specific date.
 
 ### COM Library Integration
- - Includes a COM Library Reference KDC for VBA Office applications (eg. MS Access, MS Excel, etc).
-	- **KDC for VBA**
-		- Provides a set of functions for converting dates between different calendar systems.
-		- Syntax: `KDC.ConvertDate(Date, fromCalendar, toCalendar, fromFormat, toFormat, targetDialect, isAddSuffix)` Default Dialect is Kurdish Central.
-			- Parameters
-				- Date: The date to convert.
-				- fromCalendar: The calendar system of the input date.
-				- toCalendar: The calendar system of the output date.
-				- fromFormat: The format of the input date.
-				- toFormat: The format of the output date.
-				- targetDialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
-				- isAddSuffix: A boolean value indicating whether to add suffixes to the output date.
-			- Example: `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Central)", true)` or `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Northern)", true)`
-			- Result: 
-				- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
-				- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
-			- Note: The function supports dates from 0002-01-01 to 9999-12-31.
+- The Kurdish Digital Calendar (KDC) provides a COM Library to facilitate the use of Kurdish date and number conversion in various Office applications through VBA. This guide explains how to use the KDC COM Library in VBA.
+	- Provides a set of functions for converting dates between different calendar systems.
+	- Syntax: `KDC.ConvertDate(Date, fromCalendar, toCalendar, fromFormat, toFormat, targetDialect, isAddSuffix)` Default Dialect is Kurdish Central.
+		- Parameters
+			- Date: The date to convert.
+			- fromCalendar: The calendar system of the input date.
+			- toCalendar: The calendar system of the output date.
+			- fromFormat: The format of the input date.
+			- toFormat: The format of the output date.
+			- targetDialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
+			- isAddSuffix: A boolean value indicating whether to add suffixes to the output date.
+		- Example: `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Central)", true)` or `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Northern)", true)`
+		- Result: 
+			- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
+			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
+		- Note: The function supports dates from 0002-01-01 to 9999-12-31.
+
+#### Prerequisites
+- Ensure you have the KDC COM Library installed and registered on your system.
+- Add a reference to the KDC COM Library in your VBA editor.
+
+#### Adding Reference to KDC COM Library
+1. Open your VBA editor in Excel (or any other Office application).
+2. Go to `Tools` > `References`.
+3. Check the box for `Kurdish Digital Calendar Library`.
+
+#### Using KDC COM Library in VBA
+```
+' Declare a reference to the .NET class
+Dim kdcService As Object
+
+' Insert Now Kurdish Date
+Function ToKurdish(formatChoice As Integer, dialect As String, isAddSuffix As Boolean) As String
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ToKurdish = kdcService.ToKurdish(formatChoice, dialect, isAddSuffix)
+    Exit Function
+
+ErrorHandler:
+    ToKurdish = "Error: " & Err.Description
+End Function
+
+' Convert Date Based On User Selection
+Function ConvertDateBasedOnUserSelection(selectedText As String, isReverse As Boolean, targetDialect As String, fromFormat As String, toFormat As String, targetCalendar As String, isAddSuffix As Boolean) As String
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ConvertDateBasedOnUserSelection = kdcService.ConvertDateBasedOnUserSelection(selectedText, isReverse, targetDialect, fromFormat, toFormat, targetCalendar, isAddSuffix)
+    Exit Function
+
+ErrorHandler:
+    ConvertDateBasedOnUserSelection = "Error: " & Err.Description
+End Function
+
+' Convert Number To Kurdish Central Text
+Function ConvertNumberToKurdishCentralText(number As Long) As String
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ConvertNumberToKurdishCentralText = kdcService.ConvertNumberToKurdishCentralText(number)
+    Exit Function
+
+ErrorHandler:
+    ConvertNumberToKurdishCentralText = "Error: " & Err.Description
+End Function
+
+' Convert Number To Kurdish Northern Text
+Function ConvertNumberToKurdishNorthernText(number As Long) As String
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ConvertNumberToKurdishNorthernText = kdcService.ConvertNumberToKurdishNorthernText(number)
+    Exit Function
+
+ErrorHandler:
+    ConvertNumberToKurdishNorthernText = "Error: " & Err.Description
+End Function
+
+' Test the functions
+Sub ExampleUsage()
+    Dim number As Long
+    number = 12345
+    MsgBox "Kurdish Text (Central): " & ConvertNumberToKurdishCentralText(number)
+    MsgBox "Kurdish Text (Northern): " & ConvertNumberToKurdishNorthernText(number)
+    
+    Dim kurdishDate As String
+    kurdishDate = ToKurdish(1, "Kurdish (Central)", True)
+    MsgBox "Kurdish Date: " & kurdishDate
+    
+    Dim convertedDate As String
+    convertedDate = ConvertDateBasedOnUserSelection("01/01/2024", False, "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", True)
+    MsgBox "Converted Date: " & convertedDate
+End Sub
+
+```
+
 
 ### User-Defined Functions in MS Excel
  - Call custom functions like `ConvertNumberToKurdishText` and `ConvertDateToKurdish` directly from Excel cells.
