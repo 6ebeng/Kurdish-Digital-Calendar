@@ -5,7 +5,7 @@ Help keep the Kurdish Digital Calendar project alive and free! Your donation sup
 <a href="https://www.paypal.com/donate/?business=4U9ZWTGCL4XDG&amount=5&no_recurring=0&item_name=Support+the+Kurdish+Digital+Calendar%21+Your+donation+helps+keep+this+project+alive+and+free.+Thank+you+for+your+generosity%21&currency_code=USD">
 <img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="Donate" style="width:130px;height:auto;">
 </a>
-<a>
+<a href="#">
 <img src="https://img.shields.io/badge/7507270392-FastPay-red.svg" alt="Donate" style="width:175px;height:auto;"></a>
 </a>
 <a href="#">
