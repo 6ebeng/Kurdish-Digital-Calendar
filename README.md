@@ -168,7 +168,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 2. Go to `Tools` > `References`.
 3. Check the box for `Kurdish Digital Calendar Library`.
 
-#### Using KDC COM Library in VBA
+#### KDC COM Library Functions in VBA Code Example Usage in MS Excel
 ```
 ' Declare a reference to the .NET class
 Dim kdcService As Object
