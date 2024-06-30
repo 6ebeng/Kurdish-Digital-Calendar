@@ -160,8 +160,10 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 
 ### Prerequisites
 
-- Microsoft Office (Word, Excel, PowerPoint, Outlook, Visio, Project)
-- .NET Framework 4.8 or higher
+- Microsoft Office (Word, Excel, PowerPoint, Outlook, Access, Visio, Project)
+- .NET Framework 4.7.2 or higher
+- Visual Studio Tools for Office (VSTO) Runtime 2010 or higher
+
 
 ### Using the Installer
 
