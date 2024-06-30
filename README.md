@@ -11,9 +11,11 @@ Help keep the Kurdish Digital Calendar project alive and free! Your donation sup
 <a href="#">
 <img src="https://img.shields.io/badge/7507270392-FIB-cyan.svg" alt="Donate" style="width:140px;height:auto;">
 </a>
-</br>
-</br>
 
+Donate by Crypto USDT-TRC20 `TLd47kC1pfTTyiDsXuDjE8bYigFSRkjnNd`
+
+</br>
+</br>
 
 Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
 
