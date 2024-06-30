@@ -12,7 +12,7 @@ Help keep the Kurdish Digital Calendar project alive and free! Your donation sup
 <img src="https://img.shields.io/badge/7507270392-FIB-cyan.svg" alt="Donate" style="width:140px;height:auto;">
 </a>
 
-Donate by Crypto USDT-TRC20 `TLd47kC1pfTTyiDsXuDjE8bYigFSRkjnNd`
+Donate by Crypto USDT-TRC20: `TLd47kC1pfTTyiDsXuDjE8bYigFSRkjnNd`
 
 </br>
 </br>
