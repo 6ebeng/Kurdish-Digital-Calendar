@@ -21,8 +21,8 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 
 
 ## Supported Dialects
-- Kurdish (Central)
-- Kurdish (Northern)
+- Kurdish (Central) - Sorani
+- Kurdish (Northern) - Kurmanji
 
 ## Calendar Types
 ### Primary Calendars
@@ -47,6 +47,23 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 	- Umm al-Qura (Kurdish Northern)
 	- Kurdish (Central)
 	- Kurdish (Northern)
+
+## Supported Date Formats
+- dddd, dd MMMM, yyyy
+- dddd, dd/MM/yyyy
+- dd MMMM, yyyy
+- MMMM dd, yyyy
+- dd/MM/yyyy
+- MM/dd/yyyy
+- yyyy/MM/dd
+- MMMM yyyy
+- MM/yyyy
+- MMMM
+- yyyy
+
+## Icon themes
+- Light
+- Dark
 
 ## Features
 
@@ -128,10 +145,10 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
         - Syntax: `ConvertDateToKurdish(Date, targetDialect as Optional, fromFormat as Optional, toFormat as Optional, targetCalendar as Optional, isAddSuffix as Optional)` Default Dialect is Kurdish Central.
 		    - Parameters
 			    - Date: The date to convert to the Kurdish calendar.
-			    - targetDialect (optional): The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
-			    - fromFormat (optional): The format of the input date.
-			    - toFormat (optional): The format of the output date.
-			    - targetCalendar (optional): The calendar system to use for conversion.
+			    - targetDialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
+			    - fromFormat: The format of the input date.
+			    - toFormat: The format of the output date.
+			    - targetCalendar: The calendar system to use for conversion.
 			    - isAddSuffix (optional): A boolean value indicating whether to add suffixes to the output date.
             - Example: `ConvertDateToKurdish("01/01/2024", "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", true)` or `ConvertDateToKurdish(01/01/2024", "Kurdish (Northern)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", true)`
             - Result: 
