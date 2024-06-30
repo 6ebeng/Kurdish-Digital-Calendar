@@ -164,7 +164,6 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 - .NET Framework 4.7.2 or higher
 - Visual Studio Tools for Office (VSTO) Runtime 2010 or higher
 
-
 ### Using the Installer
 
 1. Download the latest release from the [GitHub releases page](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases).
