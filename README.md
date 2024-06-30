@@ -110,20 +110,54 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 ### COM Library Integration
 - The Kurdish Digital Calendar (KDC) provides a COM Library to facilitate the use of Kurdish date and number conversion in various Office applications through VBA. This guide explains how to use the KDC COM Library in VBA.
 	- Provides a set of functions for converting dates between different calendar systems.
-	- Syntax: `KDC.ConvertDate(Date, fromCalendar, toCalendar, fromFormat, toFormat, targetDialect, isAddSuffix)` Default Dialect is Kurdish Central.
-		- Parameters
-			- Date: The date to convert.
-			- fromCalendar: The calendar system of the input date.
-			- toCalendar: The calendar system of the output date.
-			- fromFormat: The format of the input date.
-			- toFormat: The format of the output date.
-			- targetDialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
-			- isAddSuffix: A boolean value indicating whether to add suffixes to the output date.
-		- Example: `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Central)", true)` or `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Northern)", true)`
-		- Result: 
-			- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
-			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
-		- Note: The function supports dates from 0002-01-01 to 9999-12-31.
+
+		- **ToKurdish** (Support both Kurdish Central and Kurdish Northern Dialects)
+			- Converts the current date to the Kurdish calendar.
+			- Syntax: `ToKurdish(formatChoice, dialect, isAddSuffix)` Default Dialect is Kurdish Central.
+				- Parameters
+					- formatChoice: The format of the output date.
+					- dialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
+					- isAddSuffix: A boolean value indicating whether to add suffixes to the output date.
+				- Example: `ToKurdish(1, "Kurdish (Central)", true)` or `ToKurdish(1, "Kurdish (Northern)", true)`
+				- Result: 
+					- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
+					- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
+				- Note: The function supports dates from 21/03/0001 to 31/12/9999.
+				
+		- **ConvertNumberToKurdishCentralText**
+			- Converts a number to Kurdish Central text.
+			- Syntax: `ConvertNumberToKurdishCentralText(Number)`
+				- Parameters
+					- Number: The number to convert to Kurdish text.
+				- Example: `ConvertNumberToKurdishCentralText(123456789)`
+				- Result: "سەد و بیست و سێ ملیۆن و چوار سەد و پەنجا و شەش هەزار و حەوت سه‌د و هه‌شتاو نۆ"
+				- Note: The function supports numbers up to 999,999,999,999,999,999.
+				
+		- **ConvertNumberToKurdishNorthernText**
+			- Converts a number to Kurdish Northern text.
+			- Syntax: `ConvertNumberToKurdishNorthernText(Number)`
+				- Parameters
+					- Number: The number to convert to Kurdish text.
+				- Example: `ConvertNumberToKurdishNorthernText(123456789)`
+				- Result: "sed û bîst û sê milyon û çar sed û pêncî û şeş hezar û heft sed û heştê û neh"
+				- Note: The function supports numbers up to 999,999,999,999,999,999.
+				
+		- **ConvertDateBasedOnUserSelection** (Support both Kurdish Central and Kurdish Northern Dialects)
+			- Converts a date based on user selection.
+			- Syntax: `ConvertDateBasedOnUserSelection(Date, fromCalendar, toCalendar, fromFormat, toFormat, targetDialect, isAddSuffix)` Default Dialect is Kurdish Central.
+			- Parameters
+				- Date: The date to convert.
+				- fromCalendar: The calendar system of the input date.
+				- toCalendar: The calendar system of the output date.
+				- fromFormat: The format of the input date.
+				- toFormat: The format of the output date.
+				- targetDialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
+				- isAddSuffix: A boolean value indicating whether to add suffixes to the output date.
+			- Example: `ConvertDateBasedOnUserSelection("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Central)", true)` or `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Northern)", true)`
+			- Result: 
+				- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
+				- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
+			- Note: The function supports dates from 0002-01-01 to 9999-12-31.
 
 #### Prerequisites
 - Ensure you have the KDC COM Library installed and registered on your system.
