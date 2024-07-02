@@ -79,7 +79,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 
 #### Settings
 - **Settings**
-  - Open the settings dialog to configure the calendar settings, such as selecting the dialect, icon theme, add suffix calendar name, and enabling/disabling automatic date updates.
+  - Open the settings dialog to configure the calendar settings, such as selecting the dialect, icon theme, add suffix calendar name, and enabling/disabling automatic date updates upon load document or open document.
 
 #### Update Dates
 - **Update Dates**
@@ -191,7 +191,7 @@ Dim kdcService As Object
 
 ' Insert Now Kurdish Date
 Function ToKurdish(formatChoice As Integer, dialect As String, isAddSuffix As Boolean) As String
-	On Error GoTo ErrorHandler
+	On Error GoTo ErrorHandle r
 	Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
 	ToKurdish = kdcService.ToKurdish(formatChoice, dialect, isAddSuffix)
 	Exit Function
