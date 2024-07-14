@@ -67,12 +67,11 @@ jobs:
       run: |
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
-        Move-Item -Path "AI Setup Project\Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" -Destination "Kurdish-Digital-Calendar-Release-SetupFiles\KDC Installer.exe"
 
     - name: Compress build artifacts
       run: |
         $zipPath = "Kurdish-Digital-Calendar-Release-SetupFiles.zip"
-        Compress-Archive -Path "Kurdish-Digital-Calendar-Release-SetupFiles/*" -DestinationPath $zipPath
+        Compress-Archive -Path "AI Setup Project\Kurdish Digital Calendar-Release-SetupFiles\*" -DestinationPath $zipPath
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
@@ -104,7 +103,7 @@ jobs:
 
     - name: Unzip build artifacts
       run: |
-        Expand-Archive -Path Kurdish-Digital-Calendar-Release-SetupFiles.zip -DestinationPath "AI Setup Project"
+        Expand-Archive -Path Kurdish-Digital-Calendar-Release-SetupFiles.zip -DestinationPath "Kurdish-Digital-Calendar-Release-SetupFiles"
 
     - name: Generate Changelog
       shell: pwsh
@@ -141,7 +140,7 @@ jobs:
         asset_path: ./Kurdish-Digital-Calendar-Release-SetupFiles/KDC Installer.exe
         asset_name: KDC Installer x64/x86.exe
         asset_content_type: application/octet-stream
-
+    
     - name: Upload updates.ini
       uses: actions/upload-release-asset@v1
       env:
