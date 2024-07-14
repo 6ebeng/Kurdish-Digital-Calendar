@@ -68,12 +68,16 @@ jobs:
         Write-Host "Using Advanced Installer Path: $env:AI_PATH"
         & $env:AI_PATH /rebuild "AI Setup Project/Kurdish Digital Calendar.aip"
 
+    - name: Compress build artifacts
+      run: |
+        $zipPath = "Kurdish-Digital-Calendar-Release-SetupFiles.zip"
+        Compress-Archive -Path "AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*" -DestinationPath $zipPath
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build-artifacts
-        path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
+        path: Kurdish-Digital-Calendar-Release-SetupFiles.zip
 
   release:
     runs-on: windows-latest
@@ -95,20 +99,19 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: build-artifacts
-        path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles
+        path: .
+
+    - name: Unzip build artifacts
+      run: |
+        Expand-Archive -Path Kurdish-Digital-Calendar-Release-SetupFiles.zip -DestinationPath "AI Setup Project"
 
     - name: Generate Changelog
       shell: pwsh
-      env:
-        VERSION: ${{ needs.build.outputs.version }}
       run: |
-        Write-Host "Generating changelog for version $env:VERSION"
-        github_changelog_generator `
-          --user ${{ github.repository_owner }} `
-          --project ${{ github.event.repository.name }} `
-          --token ${{ secrets.PAT_TOKEN }} `
-          --future-release $env:VERSION `
-          --output CHANGELOG.md
+        $lastTag = git describe --tags --abbrev=0 HEAD^
+        $currentTag = git describe --tags --abbrev=0
+        $commits = git log $lastTag..$currentTag --pretty=format:"* %s"
+        Set-Content -Path CHANGELOG.md -Value "## Changelog for version $currentTag`n`n$commits"
 
     - name: Remove Changelog Generator Line
       shell: pwsh
