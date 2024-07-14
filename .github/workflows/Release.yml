@@ -108,10 +108,10 @@ jobs:
     - name: Generate Changelog
       shell: pwsh
       run: |
-        $lastTag = git describe --tags --abbrev=0 HEAD^0
         $currentTag = git describe --tags --abbrev=0
-        $commits = git log $lastTag..$currentTag --pretty=format:"* %s"
+        $commits = git log -n 10 --pretty=format:"* %s" $currentTag
         Set-Content -Path CHANGELOG.md -Value "## Changelog for version $currentTag`n`n$commits"
+
 
     - name: Remove Changelog Generator Line
       shell: pwsh
