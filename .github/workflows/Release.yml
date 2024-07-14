@@ -108,7 +108,7 @@ jobs:
     - name: Generate Changelog
       shell: pwsh
       run: |
-        $lastTag = git describe --tags --abbrev=0 HEAD^
+        $lastTag = git describe --tags --abbrev=0 HEAD^0
         $currentTag = git describe --tags --abbrev=0
         $commits = git log $lastTag..$currentTag --pretty=format:"* %s"
         Set-Content -Path CHANGELOG.md -Value "## Changelog for version $currentTag`n`n$commits"
@@ -137,7 +137,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
+        asset_path: ./Kurdish-Digital-Calendar-Release-SetupFiles/KDC Installer.exe
         asset_name: KDC Installer x64/x86.exe
         asset_content_type: application/octet-stream
     
