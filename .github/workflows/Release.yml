@@ -137,4 +137,14 @@ jobs:
         asset_path: ./AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/KDC Installer.exe
         asset_name: KDC Installer x64/x86.exe
         asset_content_type: application/octet-stream
+    
+    - name: Upload updates.ini
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./updates.ini
+        asset_name: updates.ini
+        asset_content_type: text/plain
 

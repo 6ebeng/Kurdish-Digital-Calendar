@@ -6,7 +6,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
-    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_ADMIN_USER;AI_DETECTED_OFFICE_ACCESS_VERSION;AI_DETECTED_OFFICE_WORD_VERSION;AI_DETECTED_OFFICE_EXCEL_VERSION;AI_DETECTED_OFFICE_POWERPOINT_VERSION;AI_DETECTED_OFFICE_OUTLOOK_VERSION;AI_DETECTED_INTERNET_CONNECTION"/>
+    <ROW Property="AI_PREDEF_LCONDS_PROPS" Value="AI_DETECTED_ADMIN_USER;AI_DETECTED_OFFICE_ACCESS_VERSION;AI_DETECTED_OFFICE_WORD_VERSION;AI_DETECTED_OFFICE_EXCEL_VERSION;AI_DETECTED_OFFICE_POWERPOINT_VERSION;AI_DETECTED_OFFICE_OUTLOOK_VERSION"/>
     <ROW Property="AI_PRODUCTNAME_ARP" Value="Kurdish Digital Calendar"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
     <ROW Property="ALLUSERS" Value="1" MultiBuildValue="AnyCPU_Release_1:2"/>
@@ -26,10 +26,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release_1:Logo.png" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{7C6381A4-FB3C-48F3-9A5A-5A1822A517EA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{987C1F04-33AD-4F94-AD1F-274BE1CAC1E9} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Options="4"/>
+    <ROW Property="ProductVersion" Value="1.0.8" Options="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release_1:Windows 9x/ME" ValueLocId="-"/>
@@ -48,7 +48,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{0738C055-191C-4129-A495-2FE805A7126E}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{CA5D50F4-68C4-4C0B-8DE3-3C0D32E401CF}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{B0ECA4AE-A9D0-430A-AFD3-67B0939713D4}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
     <ROW Component="APPDIR" ComponentId="{AAFABF53-35A2-4F37-9AEE-A9A132D417BA}" Directory_="APPDIR" Attributes="0"/>
@@ -137,6 +137,7 @@
     <ROW Component="Software" ComponentId="{6577A95B-F4FB-4BD4-AA2D-B3DCB908F614}" Directory_="APPDIR" Attributes="4" KeyPath="Software"/>
     <ROW Component="Visio" ComponentId="{E5296629-18F3-46F4-B2BB-445FFA295C6C}" Directory_="APPDIR" Attributes="4" KeyPath="Visio_1"/>
     <ROW Component="Word" ComponentId="{302E0398-E278-4648-97A9-24CCAF709361}" Directory_="APPDIR" Attributes="4" KeyPath="Word_1"/>
+    <ROW Component="updater.exe" ComponentId="{207F12DB-1961-435E-8B2E-A4323A03A213}" Directory_="APPDIR" Attributes="0" KeyPath="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="App" Title="KDC" Description="Description" Display="0" Level="1" Directory_="APPDIR" Attributes="25"/>
@@ -189,6 +190,7 @@
     <ROW File="KDC_Visio.dll" Component_="KDC_Visio.dll" FileName="KDC_VI~1.DLL|KDC_Visio.dll" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.dll" SelfReg="false"/>
     <ROW File="KDC_Visio.dll.manifest" Component_="KDC_Visio.dll.manifest_1" FileName="KDC_VI~1.MAN|KDC_Visio.dll.manifest" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.dll.manifest" SelfReg="false"/>
     <ROW File="KDC_Visio.vsto" Component_="KDC_Visio.dll.manifest" FileName="KDC_VI~1.VST|KDC_Visio.vsto" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.vsto" SelfReg="false"/>
+    <ROW File="updater.exe" Component_="updater.exe" FileName="updater.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="&lt;AI_STUBS&gt;updater.exe" SelfReg="false" DigSign="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiPersistentPropComponent">
     <ROW Property="AI_INSTALLPERUSER" Registry="AI_INSTALLPERUSER" HklmSearch="AI_INSTALLPERUSER" HkcuSearch="AI_INSTALLPERUSER_1"/>
@@ -467,6 +469,7 @@
     <ROW Action="AI_SETPROGRAMFILES64" Type="51" Source="AI_ProgramFiles" Target="[ProgramFiles64Folder]"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_UPDATER_UNINSTALL" Type="82" Source="updater.exe" Target="/clean silent"/>
     <ROW Action="AI_VerifyPrePrereq" Type="1" Source="Prereq.dll" Target="VerifyPrePrereq"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
     <ROW Action="AddExcelDNA" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
@@ -569,6 +572,7 @@
     <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll.manifest"/>
     <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll"/>
     <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll.manifest_1"/>
+    <ROW Feature_="App" Component_="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
@@ -580,6 +584,18 @@
     <ROW Name="Project.exe" SourcePath="..\Assets\Project.ico" Index="0"/>
     <ROW Name="Visio.exe" SourcePath="..\Assets\Visio.ico" Index="0"/>
     <ROW Name="Word_128x128.exe" SourcePath="..\Assets\Word_128x128.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
+    <ROW IniFile="AppDir" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="AppDir" Value="[APPDIR]" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="ApplicationName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationName" Value="[ProductName]" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="ApplicationVersion" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationVersion" Value="[ProductVersion]" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="CheckFrequency" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CheckFrequency" Value="2" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="CompanyName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CompanyName" Value="[Manufacturer]" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="DefaultCommandLine" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DefaultCommandLine" Value="/checknow" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="DownloadsFolder" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DownloadsFolder" Value="[CommonAppDataFolder][Manufacturer]\[ProductName]\updates\" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="Flags" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="Flags" Value="NoDisableAutoCheck|PerMachine|ShowConfigOptionsButton|GitHubUpdates" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="ID" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ID" Value="[UpgradeCode]" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="URL" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="URL" Value="http://www.example.com/download/updates.txt" Action="0" Component_="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -614,6 +630,7 @@
     <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="AnyCPU_Release_1"/>
     <ROW Action="AI_ExtractFiles" Sequence="1399" Builds="AnyCPU_Release_1"/>
     <ROW Action="AI_DATA_SETTER" Sequence="1398"/>
+    <ROW Action="AI_UPDATER_UNINSTALL" Condition="($updater.exe = 2) AND (?updater.exe = 3) AND NOT (UPGRADINGPRODUCTCODE)" Sequence="1551"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
@@ -642,7 +659,6 @@
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="AnyCPU_Release_1"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="AnyCPU_Release_1"/>
     <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="AnyCPU_Release_1"/>
-    <ROW Condition="AI_DETECTED_INTERNET_CONNECTION" Description="[ProductName] requires an active Internet connection for installation. Please check your network configuration and proxy settings." DescriptionLocId="AI.LaunchCondition.Internet" IsPredefined="true" Builds="AnyCPU_Release_1"/>
     <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="AnyCPU_Release_1"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="AnyCPU_Release_1"/>
   </COMPONENT>
@@ -772,5 +788,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.PreReqSearchComponent">
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461813" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
     <ROW SearchKey="ABA121137E454F6C815A1647D0B2CF14Ver" Prereq="ABA121137E454F6C815A1647D0B2CF14" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\VSTO Runtime Setup\v4R\Version" VerMin="10.0.60828" Order="1" Property="PreReqSearch_ABA121137E454F6C815A16"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.UpdaterComponent">
+    <ROW Updater="updater.exe" URL="URL" SearchFreq="CheckFrequency" DownloadsFolder="DownloadsFolder" ID="ID" TargetDir="AppDir" AppName="ApplicationName" AppVersion="ApplicationVersion" CompanyName="CompanyName" DefCommandLine="DefaultCommandLine" Flags="Flags" IconPath="..\Assets\Logo update.ico" IconIndex="0" UnistallCASeq="AI_UPDATER_UNINSTALL" Description="[|UpdaterName] [|ProductVersion]"/>
   </COMPONENT>
 </DOCUMENT>

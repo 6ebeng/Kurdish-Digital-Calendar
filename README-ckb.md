@@ -1,23 +1,24 @@
+<div dir="rtl">
 # Kurdish Digital Calendar (KDC) 
 
-Help keep the Kurdish Digital Calendar project alive and free! Your donation supports the development and maintenance of this valuable resource for the Kurdish community. Every contribution, big or small, makes a difference. Thank you for your generosity!
+هاوکار بن بۆ ئەوەی پرۆژەی ساڵنامەی دیجیتاڵی کوردی بە زیندوویی و بەخۆڕایی بمێنێتەوە! بەخشینەکەت واته‌ پاڵپشتی پەرەپێدان و پاراستنی ئەم سەرچاوە بەنرخە بۆ کۆمەڵگای کوردیه‌. هەموو بەشدارییەک، گەورە بێت یان بچووک، جیاوازی دروست دەکات. سوپاس بۆ بەخشندەییتان!
 
 <a href="https://www.paypal.com/donate/?business=4U9ZWTGCL4XDG&amount=5&no_recurring=0&item_name=Support+the+Kurdish+Digital+Calendar%21+Your+donation+helps+keep+this+project+alive+and+free.+Thank+you+for+your+generosity%21&currency_code=USD">
-<img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="Donate" style="width:130px;height:auto;">
+<img src="https://img.shields.io/badge/Donate-PayPal-blue.svg" alt="پاڵپشتی" style="width:130px;height:auto;">
 </a>
 <a href="#">
-<img src="https://img.shields.io/badge/7507270392-FastPay-red.svg" alt="Donate" style="width:175px;height:auto;"></a>
+<img src="https://img.shields.io/badge/7507270392-FastPay-red.svg" alt="پاڵپشتی" style="width:175px;height:auto;"></a>
 </a>
 <a href="#">
-<img src="https://img.shields.io/badge/7507270392-FIB-cyan.svg" alt="Donate" style="width:140px;height:auto;">
+<img src="https://img.shields.io/badge/7507270392-FIB-cyan.svg" alt="پاڵپشتی" style="width:140px;height:auto;">
 </a>
 
-Donate by Crypto USDT-TRC20: `TWtHokKWbRGG5R4BahUoggCMA8rL1TFttW`
+یان بەخشین لە ڕێگەی کریپتۆ USDT-TRC20: `TWtHokKWbRGG5R4BahUoggCMA8rL1TFttW`
 
 </br>
 </br>
 
-Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
+دایبەزێنە و تاقی بکەرەوە [💾  كلیك لێره‌ بكه‌](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
 
 [![GitHub release](https://img.shields.io/github/v/release/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases) 
 [![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
@@ -25,22 +26,21 @@ Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Cal
 [![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/LICENSE) 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
 
-The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in designed for Microsoft Office applications. It allows users to seamlessly insert and convert dates between Gregorian, Hijri, Umm Al-Qura, and Kurdish calendars. The add-in supports various Office applications, including Word, Excel, PowerPoint, Outlook, COM Library for Access, Visio, and MS Project, ensuring consistency and accuracy in date handling across documents.
+ساڵنامەی دیجیتاڵی کوردی (KDC) زیادکراوەیەکی هەمەلایەنە و هاوڕێی به‌كارهێنه‌ره‌ و بۆ بەرنامەکانی مایکرۆسۆفت ئۆفیس داڕێژراوە. ڕێگە بە بەکارهێنەران دەدات بە شێوەیەکی بێ کێشە بەروارەکان لە نێوان ساڵنامەی زاینی، هیجری، ئوم القورا، و کوردیدا دابنێن و بیگۆڕن. زیادکراوەکە پشتگیری لە بەرنامە جیاوازەکانی ئۆفیس دەکات، لەوانە وۆرد، ئێکسڵ، پاوەرپۆینت، ئاوتلۆک،  COM Library بۆ ئه‌كسس، ڤیزیۆ و مایكرۆسۆفت پڕۆجێكت، دڵنیابوون لە ڕاستی و وردبینی لە دانان لەگەڵ بەروارەکان لە هه‌ر دۆكومێنتێكدا.
 
+## زاراوە پشتگیری کراوەکان
+- Kurdish (Central) - سۆرانی
+- Kurdish (Northern) - کرمانجی
 
-## Supported Dialects
-- Kurdish (Central) - Sorani
-- Kurdish (Northern) - Kurmanji
-
-## Calendar Types
-### Primary Calendars
-- KDC recognizes these primary calendars in Kurdish, Arabic, and English:
+## جۆری ساڵنامه‌كان
+### ساڵنامە سه‌ره‌كیه‌كان
+- KDC ئەم ساڵنامە سه‌ره‌كیانه‌ بە زمانی کوردی و عەرەبی و ئینگلیزی ده‌ناسێته‌وه‌:
 	- Gregorian
 	- Hijri
 	- Umm al-Qura
 
-### Reverse Conversion Calendars
-- These calendars are used for reverse conversion based on the chosen primary calendar:
+### گۆڕینی ساڵنامه‌ یه‌ پێچه‌وانه‌وه‌
+- ئەم ساڵنامانە بۆ گۆڕینی پێچەوانە بەکاردەهێنرێن لەسەر بنەمای ساڵنامەی سەرەکی هەڵبژێردراو:
 	- Gregorian (English)
 	- Gregorian (Arabic)
 	- Gregorian (Kurdish Central)
@@ -56,7 +56,7 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 	- Kurdish (Central)
 	- Kurdish (Northern)
 
-## Supported Date Formats
+## فۆرماتەکانی بەرواری پشتگیریکراو
 - dddd, dd MMMM, yyyy
 - dddd, dd/MM/yyyy
 - dd MMMM, yyyy
@@ -69,63 +69,63 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 - MMMM
 - yyyy
 
-## Icon themes
+## ستایلی ئایكۆنه‌كان
 - Light
 - Dark
 
-## Features
+## تایبتمەندیەکان
 
 ### KD Calendar Tab
 
 #### Settings
 - **Settings**
-  - Open the settings dialog to configure the calendar settings, such as selecting the dialect, icon theme, add suffix calendar name, and enabling/disabling automatic date updates upon load document or open document.
+  - دیالۆگی ڕێکخستنەکان بکەرەوە بۆ ڕێکخستنی ڕێکخستنەکانی ساڵنامە، وەک هەڵبژاردنی زاراوە، تەوەرەی ئایکۆن، زیادکردنی ناوی ساڵنامەی پاشگر، و چالاککردن/ناچالاککردنی نوێکردنەوەی بەرواری ئۆتۆماتیکی لە کاتی كردنه‌وه‌ی دۆكیومێنت.
 
 #### Update Dates
 - **Update Dates**
-  - Updates all date entries in the document to reflect changes in calendar settings or formats.
+  - هەموو نووسراوەکانی بەروار لە دۆكیومێنته‌كه‌دا نوێ دەکاتەوە بۆ ئەوەی گۆڕانکارییەکانی ڕێکخستن یان فۆرماتەکانی ساڵنامە نوێ بكاته‌وه‌.
 
 ### Converter (Selected Date)
 
 #### Calendar
 - **Calendar**
-  - Select the type of calendar system (e.g., Gregorian, Hijri, Umm Al-Qura).
+  - جۆری سیستەمی ساڵنامە هەڵبژێرە (بۆ نموونە گریگۆری، هیجری، ئوم القورە).
 
 #### Date Conversion
 - **From Source Date Format**
-  - Select the format of the input date.
+  - فۆرماتەکەی بەرواری سه‌رچاوه‌ هەڵبژێرە.
 
 - **Switch**
-  - Reverse the conversion between the selected calendar systems.
+  - گۆڕینی نێوان سیستەمی ساڵنامەی هەڵبژێردراو پێچەوانە بکەرەوە.
 
 - **To Target Date Format**
-  - Select the target format for conversion.
+  - فۆرماتی ئامانج هەڵبژێرە بۆ گۆڕین.
 
 - **Convert**
-  - Convert the selected date to the Kurdish calendar date or vice versa.
+  - بەرواری هەڵبژێردراو بگۆڕە بۆ بەرواری ساڵنامەی کوردی یان بە پێچەوانەوە.
 
 ### Insert Date
 
 #### Automatic Update
 - **Update Automatically**
-  - Automatically updates the date field when the document is opened or refreshed.
+  - کاتێک دۆكیومێنته‌كه‌ دەکرێتەوە یان نوێ دەکرێتەوە، بە شێوەیەکی ئۆتۆماتیکی  شوێنی بەروار نوێ دەکاتەوە.
 
 #### Date Format
 - **Format**
-  - Select a date format to use when inserting dates into your document.
+  - فۆرماتێکی بەروار هەڵبژێرە بۆ بەکارهێنان لە کاتی دانانی بەروارەکان بۆ ناو دۆكیومێنته‌كه‌ت.
 
 #### Insert Today's Date
 - **Today**
-  - Insert today's date into the selected field.
+  - بەرواری ئەمڕۆ بخەرە ناو شوێنی هەڵبژێردراوەوە.
 
 #### Date Picker
 - **Choose**
-  - Open a date picker to select and insert a specific Kurdish date based on Gregorian calendar.
+  - هەڵبژاردەی بەروار بکەرەوە بۆ هەڵبژاردن و دانانی بەروارێکی دیاریکراوی کوردی بە پشتبەستن بە ساڵنامەی زاینی.
 
 
 ### COM Library Integration
-- The Kurdish Digital Calendar (KDC) provides a COM Library to facilitate the use of Kurdish date and number conversion in various Office applications through VBA. This guide explains how to use the KDC COM Library in VBA.
-- The KDC COM Library provides a set of functions for converting dates between different calendar systems and formats and converting numbers to Kurdish text:
+- ساڵنامەی دیجیتاڵی کوردی (KDC) پشتگیری  COM Library دەکات بۆ ئاسانکاری لە بەکارهێنانی گۆڕینی بەروار و ژمارەی کوردی لە بەرنامە جۆراوجۆرەکانی ئۆفیس لە ڕێگەی ڤیزواڵ به‌یسك VBA. ئەم ڕێنماییە چۆنیەتی بەکارهێنانی KDC COM Library لە VBA ڕوون دەکاتەوە.
+- KDC COM Library پشتگیری کۆمەڵێک ئەرک بۆ گۆڕینی بەروارەکان لە نێوان سیستەم و فۆرماتە جیاوازەکانی ساڵنامە و گۆڕینی ژمارەکان بۆ دەقی کوردی دەکات:
 
 	- **ToKurdish** (Support both Kurdish Central and Kurdish Northern Dialects)
 		- Insert the current Kurdish date into the document.
@@ -175,16 +175,16 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
 		- Note: The function supports dates from 0002-01-01 to 9999-12-31.
 
-#### Prerequisites
-- Ensure you have the KDC COM Library installed and registered on your system.
-- Add a reference to the KDC COM Library in your VBA editor.
+#### مەرجەکانی پێشوەختە
+- دڵنیابە کە KDC COM Libraryـت لەسەر سیستەمەکەت داناوە و تۆمار کراوە.
+- Reference زیاد بکە بۆ KDC COM Library لە ئدیته‌ری VBA ـەکەتدا.
 
-#### Adding Reference to KDC COM Library
+#### زیادکردنی سه‌رچاوه‌ بۆ KDC COM Library
 1. Open your VBA editor in Excel (or any other Office application).
 2. Go to `Tools` > `References`.
 3. Check the box for `Kurdish Digital Calendar Library`.
 
-#### KDC COM Library Functions in VBA Code Example
+#### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
 ```
 ' Declare a reference to the .NET class
 Dim kdcService As Object
@@ -282,39 +282,41 @@ End Sub
 				- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
             - Note: The function supports dates from 21/03/0001 to 31/12/9999.
 
-## Installation
+## دامەزراندن
 
-### Prerequisites
+### پێش مه‌رجه‌كان
 
 - Microsoft Office (Word, Excel, PowerPoint, Outlook, Access, Visio, Project)
 - .NET Framework 4.7.2 or higher
 - Visual Studio Tools for Office (VSTO) Runtime 2010 or higher
 
-### Using the Installer
+### بەکارهێنانی Installer
 
 1. Download the latest release from the [GitHub releases page](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases).
 2. Run the installer and select the components you wish to install.
 3. Follow the on-screen instructions to complete the installation.
 
-## Contributing
+## بەشداریکردن
 
-To contribute to the Kurdish Digital Calendar project:
+بۆ بەشداریکردن لە پرۆژەی ساڵنامەی دیجیتاڵی کوردی:
 
 1. Fork the repository on GitHub.
 2. Create a new branch for your feature or bug fix.
 3. Commit your changes and push your branch to GitHub.
 4. Open a pull request with a description of your changes.
 
-For more information, see our [contributing guidelines](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/CONTRIBUTING.md).
+بۆ زانیاری زیاتر سەیری... [ڕێنماییەکانی بەشداریکردن](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/CONTRIBUTING.md).
 
-## License
+## مۆڵەت
 
-The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/LICENSE) file for details.
+ساڵنامەی دیجیتاڵی کوردی بەپێی مۆڵەتی MIT مۆڵەتی هەیە. سەیری فایلی [مۆڵەت](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/LICENSE) بكه‌ بۆ زانیاری زیاتر.
 
 ## Credits
 
-Developed and maintained by Tishko Rasoul ([Rekbin Devs](https://github.com/Rekbin-Devs)). Thanks to all contributors and supporters.
+پەرەپێدان و پاراستنی لەلایەن تیشکۆ ڕەسوڵ ([ڕێکبین دیڤس](https://github.com/Rekbin-Devs)). سوپاس بۆ هەموو بەشداربووان و لایەنگران.
 
-## Support
+## پشتیوانی
 
-For issues or questions, open an issue on the [Kurish Digital Calendar](https://github.com/6ebeng/kurdish-digital-calendar/issues) or contact us at [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
+بۆ پرس یان پرسیار، كێشه‌یه‌ك لەسەر [ساڵنامه‌ی دیجیتاڵی كوردی](https://github.com/6ebeng/kurdish-digital-calendar/issues) یان پەیوەندیمان پێوە بکەن لە [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
+
+</div>
