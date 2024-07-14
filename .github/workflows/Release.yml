@@ -109,7 +109,7 @@ jobs:
       shell: pwsh
       run: |
         $currentTag = git describe --tags --abbrev=0
-        $commits = git log -n 10 --pretty=format:"* %s" | Out-String
+        $commits = git log -n 5 --pretty=format:"* %s" | Out-String
         $formattedCommits = $commits -replace "\n", "`n"
         Set-Content -Path CHANGELOG.md -Value "## Changelog`n`n$formattedCommits"
 
