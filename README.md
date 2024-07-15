@@ -26,11 +26,14 @@
 
 دایبەزێنە و تاقی بکەرەوە [💾  كلیك لێره‌ بكه‌](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
 
+<div align="right">
+
 [![GitHub release](https://img.shields.io/github/v/release/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases) 
 [![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
 [![GitHub forks](https://img.shields.io/github/forks/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/network) 
 [![GitHub license](https://img.shields.io/github/license/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/LICENSE) 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
+</div>
 
 ساڵنامەی دیجیتاڵی کوردی (KDC) زیادکراوەیەکی هەمەلایەنە و هاوڕێی به‌كارهێنه‌ره‌ و بۆ بەرنامەکانی مایکرۆسۆفت ئۆفیس داڕێژراوە. ڕێگە بە بەکارهێنەران دەدات بە شێوەیەکی بێ کێشە بەروارەکان لە نێوان ساڵنامەی زاینی، هیجری، ئوم القورا، و کوردیدا دابنێن و بیگۆڕن. زیادکراوەکە پشتگیری لە بەرنامە جیاوازەکانی ئۆفیس دەکات، لەوانە وۆرد، ئێکسڵ، پاوەرپۆینت، ئاوتلۆک،  COM Library بۆ ئه‌كسس، ڤیزیۆ و مایكرۆسۆفت پڕۆجێكت، دڵنیابوون لە ڕاستی و وردبینی لە دانان لەگەڵ بەروارەکان لە هه‌ر دۆكومێنتێكدا.
 
