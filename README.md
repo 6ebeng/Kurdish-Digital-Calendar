@@ -198,6 +198,7 @@
 <div dir="rtl">
 
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
+
 </div>
 
 <span dir="ltr">
