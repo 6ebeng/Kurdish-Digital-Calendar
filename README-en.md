@@ -1,3 +1,7 @@
+<div align="center">
+    <img src="https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/Assets/Positive%20Logo%20Only.png" alt="KDC" style="width:200px;height:auto;">
+</div>
+
 # Kurdish Digital Calendar (KDC) 
 
 Help keep the Kurdish Digital Calendar project alive and free! Your donation supports the development and maintenance of this valuable resource for the Kurdish community. Every contribution, big or small, makes a difference. Thank you for your generosity!
