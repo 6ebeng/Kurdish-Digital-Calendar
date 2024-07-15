@@ -345,7 +345,7 @@ End Sub
 
 پەرەپێدان و پاراستنی لەلایەن تیشکۆ ڕەسوڵ ([ڕێکبین دیڤس](https://github.com/Rekbin-Devs)). سوپاس بۆ هەموو بەشداربووان و لایەنگران.
 
-## پشتیوانی
+## په‌یوه‌ندی
 
 بۆ پرس یان پرسیار، كێشه‌یه‌ك لەسەر [ساڵنامه‌ی دیجیتاڵی كوردی](https://github.com/6ebeng/kurdish-digital-calendar/issues) یان پەیوەندیمان پێوە بکەن لە [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
 
