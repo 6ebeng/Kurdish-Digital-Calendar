@@ -309,7 +309,12 @@ For more information, see our [contributing guidelines](https://github.com/6eben
 
 ## License
 
-The Kurdish Digital Calendar is licensed under the MIT License. See the [LICENSE](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/LICENSE) file for details.
+This project is licensed under the Custom License for Kurdish Digital Calendar (KDC).
+
+You are free to use this software for personal, educational, or internal business purposes only. Redistribution, publication, and commercial use are strictly prohibited without express written permission from the author. For more details, please refer to the [LICENSE](https://github.com/6ebeng/kurdish-digital-calendar/blob/master/LICENSE) file.
+
+For permissions beyond the scope of this license, please contact [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
+
 
 ## Credits
 
