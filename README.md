@@ -40,7 +40,11 @@
 	- Umm al-Qura
 
 ### گۆڕینی ساڵنامه‌ یه‌ پێچه‌وانه‌وه‌
+
+<span dir="rtl">
+
 - ئەم ساڵنامانە بۆ گۆڕینی پێچەوانە بەکاردەهێنرێن لەسەر بنەمای ساڵنامەی سەرەکی هەڵبژێردراو:
+</span>
 
 	- Gregorian (English)
 	- Gregorian (Arabic)
@@ -186,11 +190,7 @@
 2. Go to `Tools` > `References`.
 3. Check the box for `Kurdish Digital Calendar Library`.
 
-<span dir="ltr">
-
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
-
-</span>
 
 <span dir="ltr">
 
