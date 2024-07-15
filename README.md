@@ -1,6 +1,9 @@
 <div dir="rtl">
 
-<img src="https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/Assets/Positive%20Logo%20Only.png" alt="KDC" style="width:140px;height:auto;">
+<div align="center">
+    <img src="https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/Assets/Positive%20Logo%20Only.png" alt="KDC" style="width:200px;height:auto;">
+</div>
+
 
 # ساڵنامه‌ی دیجیتاڵی كوردی (KDC) 
 
