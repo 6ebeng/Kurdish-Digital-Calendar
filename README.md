@@ -188,7 +188,7 @@
 
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
 
-<span dir="rtl">
+<span dir="ltr">
 
 ```
 ' Declare a reference to the .NET class
