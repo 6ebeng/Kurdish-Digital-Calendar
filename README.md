@@ -196,6 +196,7 @@
 3. Check the box for `Kurdish Digital Calendar Library`.
 
 <div dir="rtl">
+
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
 </div>
 
