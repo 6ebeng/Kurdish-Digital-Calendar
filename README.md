@@ -195,9 +195,7 @@
 2. Go to `Tools` > `References`.
 3. Check the box for `Kurdish Digital Calendar Library`.
 
-<span dir="rtl">
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
-</span>
 
 <span dir="ltr">
 
