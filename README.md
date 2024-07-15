@@ -41,7 +41,7 @@
 
 ### گۆڕینی ساڵنامه‌ یه‌ پێچه‌وانه‌وه‌
 - ئەم ساڵنامانە بۆ گۆڕینی پێچەوانە بەکاردەهێنرێن لەسەر بنەمای ساڵنامەی سەرەکی هەڵبژێردراو:
-	<div dir="ltr">
+
 	- Gregorian (English)
 	- Gregorian (Arabic)
 	- Gregorian (Kurdish Central)
@@ -56,7 +56,7 @@
 	- Umm al-Qura (Kurdish Northern)
 	- Kurdish (Central)
 	- Kurdish (Northern)
-<div dir="rtl">
+
 
 ## فۆرماتەکانی بەرواری پشتگیریکراو
 - dddd, dd MMMM, yyyy
