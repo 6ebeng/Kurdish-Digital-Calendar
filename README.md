@@ -19,10 +19,8 @@
 <img src="https://img.shields.io/badge/7507270392-FIB-cyan.svg" alt="پاڵپشتی" style="width:140px;height:auto;">
 </a>
 
-<div dir="rtl">
-
 یان بەخشین لە ڕێگەی کریپتۆ USDT-TRC20: `TWtHokKWbRGG5R4BahUoggCMA8rL1TFttW`
-</div>
+
 </br>
 </br>
 
