@@ -186,7 +186,7 @@
 			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
 		- Note: The function supports dates from 0002-01-01 to 9999-12-31.
 
-#### مەرجەکانی پێشوەختە
+#### پێش مه‌رجه‌كان
 - دڵنیابە کە KDC COM Libraryـت لەسەر سیستەمەکەت داناوە و تۆمار کراوە.
 - Reference زیاد بکە بۆ KDC COM Library لە ئدیته‌ری VBA ـەکەتدا.
 
