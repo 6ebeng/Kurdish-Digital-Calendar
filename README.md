@@ -20,6 +20,7 @@
 </a>
 
 یان بەخشین لە ڕێگەی کریپتۆ USDT-TRC20: 
+
 `TWtHokKWbRGG5R4BahUoggCMA8rL1TFttW`
 
 </br>
