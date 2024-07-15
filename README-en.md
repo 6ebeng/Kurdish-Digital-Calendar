@@ -32,6 +32,8 @@ Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Cal
 The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in designed for Microsoft Office applications. It allows users to seamlessly insert and convert dates between Gregorian, Hijri, Umm Al-Qura, and Kurdish calendars. The add-in supports various Office applications, including Word, Excel, PowerPoint, Outlook, COM Library for Access, Visio, and MS Project, ensuring consistency and accuracy in date handling across documents.
 
 
+<img src="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/Assets/Screenshots/Screenshot%20MS%20Word%202024-07-16%20010355.png" alt="Screenshot1" style="width:auto;height:auto;">
+
 ## Supported Dialects
 - Kurdish (Central) - Sorani
 - Kurdish (Northern) - Kurmanji
