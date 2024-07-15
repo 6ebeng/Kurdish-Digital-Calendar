@@ -1,6 +1,8 @@
 <div dir="rtl">
 
-# <img src="https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/Assets/Positive%20Logo%20Only.png" alt="KDC" style="width:140px;height:auto;"> ساڵنامه‌ی دیجیتاڵی كوردی (KDC) 
+<img src="https://github.com/6ebeng/Kurdish-Digital-Calendar/blob/master/Assets/Positive%20Logo%20Only.png" alt="KDC" style="width:140px;height:auto;">
+
+# ساڵنامه‌ی دیجیتاڵی كوردی (KDC) 
 
 هاوکار بن بۆ ئەوەی پرۆژەی ساڵنامەی دیجیتاڵی کوردی بە زیندوویی و بەخۆڕایی بمێنێتەوە! بەخشینەکەت واته‌ پاڵپشتی پەرەپێدان و پاراستنی ئەم سەرچاوە بەنرخە بۆ کۆمەڵگای کوردیه‌. هەموو بەشدارییەک، گەورە بێت یان بچووک، جیاوازی دروست دەکات. سوپاس بۆ بەخشندەییتان!
 
