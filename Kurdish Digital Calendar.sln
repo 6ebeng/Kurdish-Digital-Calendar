@@ -51,15 +51,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.github\workflows\Release.yml = .github\workflows\Release.yml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meds_AI", "Meds_AI", "{ECB6DD46-90AA-4554-90C1-7144C0FA6C88}"
-	ProjectSection(SolutionItems) = preProject
-		Meds_AI\advinst.exe = Meds_AI\advinst.exe
-		Meds_AI\cert.pfx = Meds_AI\cert.pfx
-		Meds_AI\license80.dat = Meds_AI\license80.dat
-		Meds_AI\reg.reg = Meds_AI\reg.reg
-		Meds_AI\Settings.AIS = Meds_AI\Settings.AIS
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDC Visio", "KDC Visio\KDC Visio.csproj", "{786FE1B9-FEC9-48E9-9A11-64314C82E953}"
 EndProject
 Global
