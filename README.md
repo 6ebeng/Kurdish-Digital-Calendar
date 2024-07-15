@@ -187,6 +187,9 @@
 3. Check the box for `Kurdish Digital Calendar Library`.
 
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
+
+<span dir="rtl">
+
 ```
 ' Declare a reference to the .NET class
 Dim kdcService As Object
@@ -252,6 +255,8 @@ Sub ExampleUsage()
 End Sub
 
 ```
+
+</span>
 
 
 ### User-Defined Functions in MS Excel
