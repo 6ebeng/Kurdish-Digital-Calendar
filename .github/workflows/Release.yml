@@ -130,7 +130,7 @@ jobs:
       id: create-config-file
       run: |
         echo "[General]" > config
-        echo "URL=https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe" >> config
+        echo "URL=https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe" >> config
         echo "Version=${{ needs.build.outputs.version }}" >> config
 
     - name: Create GitHub Release

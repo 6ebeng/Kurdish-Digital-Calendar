@@ -24,7 +24,7 @@
 </br>
 </br>
 
-دایبەزێنە و تاقی بکەرەوە [💾  كلیك لێره‌ بكه‌](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
+دایبەزێنە و تاقی بکەرەوە [💾  كلیك لێره‌ بكه‌](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe).
 
 <div align="right">
 

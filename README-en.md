@@ -21,7 +21,7 @@ Donate by Crypto USDT-TRC20: `TWtHokKWbRGG5R4BahUoggCMA8rL1TFttW`
 </br>
 </br>
 
-Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe).
+Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe).
 
 [![GitHub release](https://img.shields.io/github/v/release/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/Kurdish-Digital-Calendar/releases) 
 [![GitHub issues](https://img.shields.io/github/issues/6ebeng/kurdish-digital-calendar.svg)](https://github.com/6ebeng/kurdish-digital-calendar/issues) 
