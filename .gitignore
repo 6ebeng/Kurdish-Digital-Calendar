@@ -375,12 +375,13 @@ publish
 /KDC Project/bin/Release/*
 /KDC Viso/bin/Release/*
 /Meds_AI
-!/AI Setup Project/Updates-SetupFiles/*.txt
+
 
 
 [Cc]erts/*
 
 # Allow specific release directory
+!AI Setup Project/Updates-SetupFiles/*
 !KDCLibrary/bin/Release/
 !*.vsto
 !*.xll
