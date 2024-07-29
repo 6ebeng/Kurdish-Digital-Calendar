@@ -9,7 +9,6 @@
     <ROW Section="Update" Key="ProductVersion" Value="1.0.10" ValueLocId="-"/>
     <ROW Section="Update" Key="URL" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Size" Value="Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" ValueLocId="-"/>
-    <ROW Section="Update" Key="MD5" Value="Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="ServerFileName" Value="KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version" ValueLocId="-"/>
     <ROW Section="Update" Key="Version" Value="1.0.10.0" ValueLocId="-"/>
