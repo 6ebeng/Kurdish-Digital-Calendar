@@ -366,6 +366,8 @@ FodyWeavers.xsd
 
 # exclude publish folder
 publish
+/AI Setup Project/Kurdish Digital Calendar-cache/*
+/AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*
 /KDC Excel/bin/Release/*
 /KDC Outlook/bin/Release/*
 /KDC Word/bin/Release/*
