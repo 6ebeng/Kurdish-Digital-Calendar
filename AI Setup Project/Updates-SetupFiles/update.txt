@@ -2,7 +2,7 @@
 
 [Update]
 Name = Kurdish Digital Calendar
-ProductVersion = 1.0.10.0
+ProductVersion = 1.0.10
 URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe
 Size = 43260168
 ServerFileName = KDC Installer.exe
