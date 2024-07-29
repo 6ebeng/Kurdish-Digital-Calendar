@@ -4,9 +4,9 @@
 Name = Kurdish Digital Calendar
 ProductVersion = 1.0.10.0
 URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.x64.x86.exe
-Size = 43018328
-SHA256 = 20963741EEBA6093A6128BF934E252B6327C3F402CF0BAC1616F78A83C2BF257
-MD5 = cf00363d4907e2d984054f37be1ffae9
+Size = 43259984
+SHA256 = 78FCE6435D221CDBFF67E855DCDC6DEA27770BCE07B75E2B9890B3A3B73EAD17
+MD5 = 821f9460a427ef97dd53c145222e115e
 ServerFileName = KDC Installer.exe
 RegistryKey = HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version
 Version = 1.0.10.0
