@@ -45,6 +45,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
@@ -134,6 +135,7 @@
     <ROW Component="Outlook" ComponentId="{E0FCB6AB-6425-43D3-A006-1931BE49450E}" Directory_="APPDIR" Attributes="4" KeyPath="Outlook_1"/>
     <ROW Component="PowerPoint" ComponentId="{9F593B0A-D38F-4A8D-AA4B-37029BB8DF64}" Directory_="APPDIR" Attributes="4" KeyPath="PowerPoint_1"/>
     <ROW Component="ProductName" ComponentId="{CC3B5ED3-033F-42FE-85BE-46AFDC024A5D}" Directory_="APPDIR" Attributes="4" KeyPath="ProductName"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{60E1CC6B-02BA-41C5-B322-615F5987AB91}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="Software" ComponentId="{6577A95B-F4FB-4BD4-AA2D-B3DCB908F614}" Directory_="APPDIR" Attributes="4" KeyPath="Software"/>
     <ROW Component="Visio" ComponentId="{E5296629-18F3-46F4-B2BB-445FFA295C6C}" Directory_="APPDIR" Attributes="4" KeyPath="Visio_1"/>
     <ROW Component="Word" ComponentId="{302E0398-E278-4648-97A9-24CCAF709361}" Directory_="APPDIR" Attributes="4" KeyPath="Word_1"/>
@@ -426,6 +428,7 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -573,6 +576,7 @@
     <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll"/>
     <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll.manifest_1"/>
     <ROW Feature_="App" Component_="updater.exe"/>
+    <ROW Feature_="App" Component_="SHORTCUTDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
@@ -584,6 +588,7 @@
     <ROW Name="Project.exe" SourcePath="..\Assets\Project.ico" Index="0"/>
     <ROW Name="Visio.exe" SourcePath="..\Assets\Visio.ico" Index="0"/>
     <ROW Name="Word_128x128.exe" SourcePath="..\Assets\Word_128x128.ico" Index="0"/>
+    <ROW Name="updater.exe" SourcePath="..\Assets\Logo update.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
     <ROW IniFile="AppDir" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="AppDir" Value="[APPDIR]" Action="0" Component_="updater.exe"/>
@@ -595,7 +600,7 @@
     <ROW IniFile="DownloadsFolder" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DownloadsFolder" Value="[CommonAppDataFolder][Manufacturer]\[ProductName]\updates\" Action="0" Component_="updater.exe"/>
     <ROW IniFile="Flags" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="Flags" Value="NoDisableAutoCheck|PerMachine|ShowConfigOptionsButton|GitHubUpdates" Action="0" Component_="updater.exe"/>
     <ROW IniFile="ID" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ID" Value="[UpgradeCode]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="URL" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="URL" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/config" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="URL" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="URL" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/update.txt" Action="0" Component_="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -755,6 +760,9 @@
     <ROW Registry="Visio_1" Root="1" Key="Software\Microsoft\Office\Visio" Name="+" Component_="Visio"/>
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
     <ROW Registry="Word_1" Root="1" Key="Software\Microsoft\Office\Word" Name="+" Component_="Word"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="KDCUpdater" Directory_="SHORTCUTDIR" Name="KDCUPD~1|KDC Updater" Component_="updater.exe" Target="[#updater.exe]" Hotkey="0" Icon_="updater.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiSignatureComponent">
     <ROW Signature="FileSearchSign" FileName="VISIO.EXE" Languages="0"/>
