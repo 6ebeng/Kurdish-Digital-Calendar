@@ -51,6 +51,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meds_AI", "Meds_AI", "{3E42
 		Meds_AI\Settings.AIS = Meds_AI\Settings.AIS
 	EndProjectSection
 EndProject
+Project("{840C416C-B8F3-42BC-B0DD-F6BB14C9F8CB}") = "AI Setup Project", "AI Setup Project\AI Setup Project.aiproj", "{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +102,12 @@ Global
 		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{786FE1B9-FEC9-48E9-9A11-64314C82E953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.Debug|Any CPU.ActiveCfg = Release
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.Debug|Any CPU.Build.0 = Release
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.DefaultBuild|Any CPU.ActiveCfg = Release
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.DefaultBuild|Any CPU.Build.0 = Release
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.Release|Any CPU.ActiveCfg = Release
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
