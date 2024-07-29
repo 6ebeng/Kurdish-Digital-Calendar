@@ -7,6 +7,6 @@ URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/downloa
 Size = 43260168
 ServerFileName = KDC Installer.exe
 RegistryKey = HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version
-Version = 1.0.10.0
+Version = 1.0.10
 Enhancement = Fix and improvements
 BugFix = Fix Kurdish Central months index (Galawezh)
