@@ -134,9 +134,9 @@
     <ROW Component="Microsoft_2" ComponentId="{5DA1DC43-336E-417E-9388-3E4C7B8FFAFF}" Directory_="APPDIR" Attributes="4" KeyPath="Microsoft_1"/>
     <ROW Component="Outlook" ComponentId="{E0FCB6AB-6425-43D3-A006-1931BE49450E}" Directory_="APPDIR" Attributes="4" KeyPath="Outlook_1"/>
     <ROW Component="PowerPoint" ComponentId="{9F593B0A-D38F-4A8D-AA4B-37029BB8DF64}" Directory_="APPDIR" Attributes="4" KeyPath="PowerPoint_1"/>
-    <ROW Component="ProductName" ComponentId="{CC3B5ED3-033F-42FE-85BE-46AFDC024A5D}" Directory_="APPDIR" Attributes="4" KeyPath="ProductName"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{60E1CC6B-02BA-41C5-B322-615F5987AB91}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="Software" ComponentId="{6577A95B-F4FB-4BD4-AA2D-B3DCB908F614}" Directory_="APPDIR" Attributes="4" KeyPath="Software"/>
+    <ROW Component="Version" ComponentId="{F8646EC1-734D-4F34-AE16-66E61B864D77}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="Visio" ComponentId="{E5296629-18F3-46F4-B2BB-445FFA295C6C}" Directory_="APPDIR" Attributes="4" KeyPath="Visio_1"/>
     <ROW Component="Word" ComponentId="{302E0398-E278-4648-97A9-24CCAF709361}" Directory_="APPDIR" Attributes="4" KeyPath="Word_1"/>
     <ROW Component="updater.exe" ComponentId="{207F12DB-1961-435E-8B2E-A4323A03A213}" Directory_="APPDIR" Attributes="0" KeyPath="updater.exe"/>
@@ -529,7 +529,6 @@
     <ROW Feature_="ExcelAddin" Component_="Excel"/>
     <ROW Feature_="App" Component_="Software"/>
     <ROW Feature_="App" Component_="APPDIR"/>
-    <ROW Feature_="App" Component_="ProductName"/>
     <ROW Feature_="ExcelAddin" Component_="Description_6"/>
     <ROW Feature_="App" Component_="AI_INSTALLPERUSER"/>
     <ROW Feature_="App" Component_="Microsoft_2"/>
@@ -577,6 +576,7 @@
     <ROW Feature_="VisioAddin" Component_="KDC_Visio.dll.manifest_1"/>
     <ROW Feature_="App" Component_="updater.exe"/>
     <ROW Feature_="App" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="App" Component_="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
@@ -743,7 +743,7 @@
     <ROW Registry="Outlook_1" Root="1" Key="Software\Microsoft\Office\Outlook" Name="+" Component_="Outlook"/>
     <ROW Registry="PowerPoint_1" Root="1" Key="Software\Microsoft\Office\PowerPoint" Name="+" Component_="PowerPoint"/>
     <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]" Name="\"/>
-    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="*" Component_="ProductName"/>
+    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
     <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
@@ -756,6 +756,7 @@
     <ROW Registry="UninstallPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallPath" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UninstallString" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="UninstallString" Value="[AI_UNINSTALLER] /x [ProductCode] AI_UNINSTALLER_CTP=1" Component_="AI_CustomARPName"/>
     <ROW Registry="UpgradeCode" Root="-1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="\"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="Version"/>
     <ROW Registry="VersionMajor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMajor" Value="#1" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName" VirtualValue="#"/>
     <ROW Registry="Visio_1" Root="1" Key="Software\Microsoft\Office\Visio" Name="+" Component_="Visio"/>
