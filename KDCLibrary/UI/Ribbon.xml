@@ -8,6 +8,7 @@
             <button id="splitButton1__btn" enabled="false" label="Help" showImage="true" getImage="OnGetImage" />
             <menu id="splitButton1__mnu">
               <button id="button1" onAction="OnButtonAction_Click" label="Credits" showImage="true" getImage="OnGetImage" />
+              <button id="button7" onAction="OnButtonAction_Click" label="Check For Update" showImage="true" getImage="OnGetImage" />
             </menu>
           </splitButton>
           <button id="button6" supertip="Open the settings dialog to configure the calendar settings." label="Settings" onAction="OnButtonAction_Click" showImage="true" getImage="OnGetImage" size="large" />
