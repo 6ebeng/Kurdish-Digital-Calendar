@@ -6,13 +6,13 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
     <ROW Section="Update" Key="Name" Value="Kurdish Digital Calendar"/>
-    <ROW Section="Update" Key="ProductVersion" Value="1.0.11.0" ValueLocId="-"/>
+    <ROW Section="Update" Key="ProductVersion" Value="1.0.10.0" ValueLocId="-"/>
     <ROW Section="Update" Key="URL" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Size" Value="Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="MD5" Value="Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="ServerFileName" Value="KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version" ValueLocId="-"/>
-    <ROW Section="Update" Key="Version" Value="1.0.11.0" ValueLocId="-"/>
+    <ROW Section="Update" Key="Version" Value="1.0.10.0" ValueLocId="-"/>
     <ROW Section="Update" Key="Feature" Value="Add new feature software updater."/>
     <ROW Section="Update" Key="Enhancement" Value="Fix and improvements"/>
     <ROW Section="Update" Key="BugFix" Value="Fix Kurdish Central months index (Galawezh)&#13;&#10;"/>
