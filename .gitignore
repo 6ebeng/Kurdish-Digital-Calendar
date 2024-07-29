@@ -368,7 +368,6 @@ FodyWeavers.xsd
 publish
 /AI Setup Project/Kurdish Digital Calendar-cache/*
 /AI Setup Project/Kurdish Digital Calendar-Release-SetupFiles/*
-!AI Setup Project/Updates-SetupFiles/updates.txt
 /KDC Excel/bin/Release/*
 /KDC Outlook/bin/Release/*
 /KDC Word/bin/Release/*
@@ -376,6 +375,7 @@ publish
 /KDC Project/bin/Release/*
 /KDC Viso/bin/Release/*
 /Meds_AI
+!/AI Setup Project/Updates-SetupFiles/*.txt
 
 
 [Cc]erts/*
@@ -393,6 +393,7 @@ publish
 !/KDC PowerPoint/bin/Release/KDC_PowerPoint.dll
 !/KDC Project/bin/Release/KDC_Project.dll
 !/KDC Visio/bin/Release/KDC_Viso.dll
+
 
 
 !Meds_AI/cert.pfx
