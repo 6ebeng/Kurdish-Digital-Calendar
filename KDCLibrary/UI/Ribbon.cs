@@ -246,11 +246,11 @@ namespace KDCLibrary
                 case "button1":
                     return SelectedTheme == "Dark"
                         ? Properties.Resources.Credits_Black
-                        : Properties.Resources.Credits_White;
+                        : Properties.Resources.Credits_Black;
                 case "button7":
                     return SelectedTheme == "Dark"
                         ? Properties.Resources.Update_Black
-                        : Properties.Resources.Update_White;
+                        : Properties.Resources.Update_Black;
                 default:
                     return null;
             }
