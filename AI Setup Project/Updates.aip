@@ -13,9 +13,7 @@
     <ROW Section="Update" Key="ServerFileName" Value="KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version" ValueLocId="-"/>
     <ROW Section="Update" Key="Version" Value="1.0.11.0" ValueLocId="-"/>
-    <ROW Section="Update" Key="Feature" Value="Add new feature software updater."/>
-    <ROW Section="Update" Key="Enhancement" Value="Fix and improvements"/>
-    <ROW Section="Update" Key="BugFix" Value="Fix Kurdish Central months index (Galawezh)&#13;&#10;"/>
+    <ROW Section="Update" Key="Description" Value="- Hot fix icon theme&#13;&#10;- Add new feature software updater.&#13;&#10;- Fix Kurdish Central months index (Galawezh).&#13;&#10;- Fix and improvements."/>
     <ATTRIBUTE name="OutputFileName" value="update.txt"/>
   </COMPONENT>
 </DOCUMENT>
