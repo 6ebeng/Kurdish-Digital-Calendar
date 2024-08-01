@@ -499,6 +499,27 @@
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDialogComponent">
+    <ROW Dialog="AdminBrowseDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="OK" Control_Cancel="Cancel" MsiKey="AdminBrowseDlg"/>
+    <ROW Dialog="AdminInstallPointDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="AdminInstallPointDlg"/>
+    <ROW Dialog="AdminWelcomeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="AdminWelcomeDlg"/>
+    <ROW Dialog="CustomizeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="35" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="CustomizeDlg"/>
+    <ROW Dialog="ExitDialog" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Finish" Control_Cancel="Finish" MsiKey="ExitDialog"/>
+    <ROW Dialog="InstallTypeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="InstallTypeDlg"/>
+    <ROW Dialog="MaintenanceTypeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="ChangeButton" Control_Cancel="Cancel" MsiKey="MaintenanceTypeDlg"/>
+    <ROW Dialog="MaintenanceWelcomeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="MaintenanceWelcomeDlg"/>
+    <ROW Dialog="OptionalFeatsDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="OptionalFeatsDlg"/>
+    <ROW Dialog="PatchWelcomeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PatchWelcomeDlg"/>
+    <ROW Dialog="PrepareDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Cancel" Control_Cancel="Cancel" MsiKey="PrepareDlg"/>
+    <ROW Dialog="PreparePrereqDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PreparePrereqDlg"/>
+    <ROW Dialog="PrerequisitesDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PrerequisitesDlg"/>
+    <ROW Dialog="ProgressDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Cancel" Control_Cancel="Cancel" MsiKey="ProgressDlg"/>
+    <ROW Dialog="ProgressPrereqDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="ProgressPrereqDlg"/>
+    <ROW Dialog="ResumeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Install" Control_Cancel="Cancel" MsiKey="ResumeDlg"/>
+    <ROW Dialog="SetupTypeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="TypicalButton" Control_Cancel="Cancel" MsiKey="SetupTypeDlg"/>
+    <ROW Dialog="VerifyReadyDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="35" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Install" Control_Cancel="Cancel" MsiKey="VerifyReadyDlg"/>
+    <ROW Dialog="WelcomePrereqDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="WelcomePrereqDlg"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDrLocatorComponent">
     <ROW Signature_="FileSearchSign" Path="[ProgramFiles64Folder]" Depth="3"/>
     <ROW Signature_="FileSearchSign_1" Path="[ProgramFiles64Folder]" Depth="3"/>
