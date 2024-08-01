@@ -14,6 +14,7 @@
     <ROW Property="ALLUSERS" Value="1" MultiBuildValue="AnyCPU_Release_1:2"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="ARPCONTACT" Value="rekbin.devs@gmail.com"/>
+    <ROW Property="ARPHELPLINK" Value="https://www.facebook.com/rekbin.group/"/>
     <ROW Property="ARPNOREPAIR" Value="1" MultiBuildValue="AnyCPU_Release_1:1"/>
     <ROW Property="ARPPRODUCTICON" Value="LogoInstaller.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
@@ -330,6 +331,7 @@
     <ROW Dialog_="FatalError" Control="Text_1" Type="Text" X="163" Y="129" Width="269" Height="32" Attributes="65539" Property="TEXT_1_PROP_10" Text="ساڵنامه&#8204;ی دیجیتاڵی كوردی" TextStyle="KurishCalibri18" Order="1000"/>
     <ROW Dialog_="FilesInUse" Control="Bitmap" Type="Bitmap" X="1" Y="1" Width="520" Height="320" Attributes="1" Text="[BannerBitmap]" Order="100" MsiKey="FilesInUse#Bitmap"/>
     <ROW Dialog_="InstallTypeDlg" Control="Bitmap" Type="Bitmap" X="1" Y="1" Width="520" Height="320" Attributes="1" Text="[BannerBitmap]" Order="100" MsiKey="InstallTypeDlg#Bitmap"/>
+    <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="71" Y="68" Width="378" Height="191" Attributes="7" Property="EulaRead" Text="Kurdish Digital Calendar-Release-SetupFiles\eula.rtf" TextStyle="DlgFont10" Order="400" TextLocId="_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="MaintenanceTypeDlg" Control="Bitmap" Type="Bitmap" X="1" Y="1" Width="520" Height="320" Attributes="1" Text="[BannerBitmap]" Order="300" MsiKey="MaintenanceTypeDlg#Bitmap"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control="Bitmap" Type="Bitmap" X="1" Y="1" Width="520" Height="320" Attributes="1" Text="[BannerBitmap]" Order="300" MsiKey="MaintenanceWelcomeDlg#Bitmap"/>
     <ROW Dialog_="MaintenanceWelcomeDlg" Control="ProductNameTitle" Type="Text" X="163" Y="95" Width="278" Height="49" Attributes="196611" Text="[ProductName]" TextStyle="AppNameSegoeUI28" Order="500" TextLocId="-" MsiKey="MaintenanceWelcomeDlg#ProductNameTitle"/>
@@ -506,6 +508,7 @@
     <ROW Dialog="CustomizeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="35" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="CustomizeDlg"/>
     <ROW Dialog="ExitDialog" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Finish" Control_Cancel="Finish" MsiKey="ExitDialog"/>
     <ROW Dialog="InstallTypeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="InstallTypeDlg"/>
+    <ROW Dialog="LicenseAgreementDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="LicenseAgreementDlg"/>
     <ROW Dialog="MaintenanceTypeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="ChangeButton" Control_Cancel="Cancel" MsiKey="MaintenanceTypeDlg"/>
     <ROW Dialog="MaintenanceWelcomeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="MaintenanceWelcomeDlg"/>
     <ROW Dialog="OptionalFeatsDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="OptionalFeatsDlg"/>
@@ -514,7 +517,6 @@
     <ROW Dialog="PreparePrereqDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PreparePrereqDlg"/>
     <ROW Dialog="PrerequisitesDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="PrerequisitesDlg"/>
     <ROW Dialog="ProgressDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Cancel" Control_Cancel="Cancel" MsiKey="ProgressDlg"/>
-    <ROW Dialog="ProgressPrereqDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="1" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Next" Control_Cancel="Cancel" MsiKey="ProgressPrereqDlg"/>
     <ROW Dialog="ResumeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Install" Control_Cancel="Cancel" MsiKey="ResumeDlg"/>
     <ROW Dialog="SetupTypeDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="3" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="TypicalButton" Control_Cancel="Cancel" MsiKey="SetupTypeDlg"/>
     <ROW Dialog="VerifyReadyDlg" HCentering="50" VCentering="50" Width="520" Height="320" Attributes="35" Title="[ProductName] [Setup] [ProductVersion]" Control_Default="Install" Control_Cancel="Cancel" MsiKey="VerifyReadyDlg"/>
