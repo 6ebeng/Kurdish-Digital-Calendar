@@ -62,7 +62,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Source Sans Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(105, 125);
+            this.label3.Location = new System.Drawing.Point(102, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 15);
             this.label3.TabIndex = 2;
@@ -72,7 +72,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Source Sans Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(134, 142);
+            this.label4.Location = new System.Drawing.Point(131, 142);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 15);
             this.label4.TabIndex = 2;
@@ -134,9 +134,9 @@
             this.label10.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(116, 87);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 14);
+            this.label10.Size = new System.Drawing.Size(69, 14);
             this.label10.TabIndex = 2;
-            this.label10.Text = "version 0.1";
+            this.label10.Text = "version 1.0.12";
             // 
             // button1
             // 

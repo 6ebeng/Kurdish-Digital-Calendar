@@ -324,7 +324,9 @@ For permissions beyond the scope of this license, please contact [rekbin.devs@gm
 
 ## Credits
 
-Developed and maintained by Tishko Rasoul ([Rekbin Devs](https://github.com/Rekbin-Devs)). Thanks to all contributors and supporters.
+- Developed and maintained by Tishko Rasoul ([Rekbin Devs](https://github.com/Rekbin-Devs)). 
+- Inspired by Kurdish Academy Calendar (2009) by `Professor Dr. Warya Omar Amin`
+Thanks to all contributors and supporters.
 
 ## Support
 
