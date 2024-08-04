@@ -14,4 +14,3 @@ Description1 = - Fix detection of Office platform for 32-bit devices installed o
 Description2 = - Hot fix icon theme (Thanks to Yassen)
 Description3 = - Add new feature software updater.
 Description4 = - Fix Kurdish Central months index (Galawezh).
-Description5 = - Fix and improvements.
