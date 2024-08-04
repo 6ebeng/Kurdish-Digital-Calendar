@@ -13,7 +13,7 @@
     <ROW Section="Update" Key="ServerFileName" Value="KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version" ValueLocId="-"/>
     <ROW Section="Update" Key="Version" Value="1.0.13.0" ValueLocId="-"/>
-    <ROW Section="Update" Key="Description" Value="- Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit.&#13;&#10;- Hot fix icon theme (Thanks to Yassen)&#13;&#10;- Add new feature software updater.&#13;&#10;- Fix Kurdish Central months index (Galawezh).&#13;&#10;- Fix and improvements."/>
+    <ROW Section="Update" Key="Description" Value="- Fix index Galawezh month in Kurdish Central on Conversion&#13;&#10;- Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit.&#13;&#10;- Hot fix icon theme (Thanks to Yassen)&#13;&#10;- Add new feature software updater.&#13;&#10;- Fix Kurdish Central months index (Galawezh).&#13;&#10;- Fix and improvements."/>
     <ATTRIBUTE name="OutputFileName" value="update.txt"/>
   </COMPONENT>
 </DOCUMENT>
