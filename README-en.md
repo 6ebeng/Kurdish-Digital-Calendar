@@ -30,9 +30,10 @@ Download and try it out [💾here](https://github.com/6ebeng/Kurdish-Digital-Cal
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
 
 
-<a href="https://www.youtube.com/watch?v=gs6IB8x-jhY" target="_blank">
+<a href="https://www.youtube.com/watch?v=gs6IB8x-jhY" target="_blank" rel="noopener noreferrer">
     <img src="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/Assets/thumbnail_1.jpg" width="400" height="auto" />
 </a>
+
 
 </br>
 </br>
