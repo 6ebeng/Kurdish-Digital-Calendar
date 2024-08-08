@@ -37,7 +37,7 @@
 
 <div align="right">
 
-<a href="https://www.youtube.com/watch?v=gs6IB8x-jhY">
+<a href="https://www.youtube.com/watch?v=gs6IB8x-jhY" target="_blank">
     <img src="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/Assets/thumbnail_1.jpg" width="400" height="auto" />
 </a>
 
