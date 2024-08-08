@@ -35,8 +35,10 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/6ebeng/kurdish-digital-calendar)
 </div>
 
-[![Watch the video](https://img.youtube.com/vi/gs6IB8x-jhY/0.jpg)](https://www.youtube.com/watch?v=gs6IB8x-jhY)
+<div align="right">
 
+[![Watch the video](https://img.youtube.com/vi/gs6IB8x-jhY/0.jpg)](https://www.youtube.com/watch?v=gs6IB8x-jhY)
+</div>
 
 ساڵنامەی دیجیتاڵی کوردی (KDC) زیادکراوەیەکی هەمەلایەنە و هاوڕێی به‌كارهێنه‌ره‌ و بۆ بەرنامەکانی مایکرۆسۆفت ئۆفیس داڕێژراوە. ڕێگە بە بەکارهێنەران دەدات بە شێوەیەکی بێ کێشە ڕێكه‌وتەکان لە نێوان ساڵنامەی زاینی، هیجری، ئوم القورا، و کوردیدا دابنێن و بیگۆڕن. زیادکراوەکە پشتگیری لە بەرنامە جیاوازەکانی ئۆفیس دەکات، لەوانە وۆرد، ئێکسڵ، پاوەرپۆینت، ئاوتلۆک،  COM Library بۆ ئه‌كسس، ڤیزیۆ و مایكرۆسۆفت پڕۆجێكت، دڵنیابوون لە ڕاستی و وردبینی لە دانان لەگەڵ ڕێكه‌وتەکان لە هه‌ر دۆكومێنتێكدا.
 
