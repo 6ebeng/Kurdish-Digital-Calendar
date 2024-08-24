@@ -359,8 +359,8 @@ End Sub
 	- [ساڵنامەی ئەکادیمیای کوردی (٢٠٠٩)](https://www.kurdipedia.org/default.aspx?q=2013021510204775788&lng=5)
 	- [ڕۆژژمێری کوردی له‌ ویكیپێدیا](https://ckb.wikipedia.org/wiki/%DA%95%DB%86%DA%98%DA%98%D9%85%DB%8E%D8%B1%DB%8C_%DA%A9%D9%88%D8%B1%D8%AF%DB%8C#%D8%A8%DB%95%D8%B1%D8%A7%D9%88%D8%B1%D8%AF%DB%8C_%D8%B3%D8%A7%DA%B5%DB%8C_%DA%A9%D9%88%D8%B1%D8%AF%DB%8C_%D9%84%DB%95%DA%AF%DB%95%DA%B5_%D8%B3%D8%A7%DA%B5%DB%8C_%D8%B2%D8%A7%DB%8C%DB%8C%D9%86%DB%8C%D8%AF%D8%A7)
 	- [ڕۆژژمێری کۆچی له‌ ویكیپێدیا](https://ckb.wikipedia.org/wiki/%DA%95%DB%86%DA%98%DA%98%D9%85%DB%8E%D8%B1%DB%8C_%DA%A9%DB%86%DA%86%DB%8C)
-
-- سوپاس بۆ هەموو بەشداربووان و لایەنگران.
+	- [Salname](https://ku.wikipedia.org/wiki/Salname)
+	- سوپاس بۆ هەموو بەشداربووان و هاوكاران.
 
 ## په‌یوه‌ندی
 
