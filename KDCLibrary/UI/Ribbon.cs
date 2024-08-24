@@ -251,6 +251,10 @@ namespace KDCLibrary
                     return SelectedTheme == "Dark"
                         ? Properties.Resources.Update_Black
                         : Properties.Resources.Update_Black;
+                case "button8":
+                    return SelectedTheme == "Dark"
+                        ? Properties.Resources.Tutorials_Black
+                        : Properties.Resources.Tutorials_Black;
                 default:
                     return null;
             }
@@ -975,6 +979,11 @@ namespace KDCLibrary
                     Process.Start(
                         Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms)
                             + @"\Kurdish Digital Calendar\KDC Updater.lnk"
+                    );
+                    break;
+                case "button8":
+                    Process.Start(
+                        "https://www.youtube.com/playlist?list=PLaelId3TZAYEF75Pjwt56SuAMIs-5r3Pd"
                     );
                     break;
             }

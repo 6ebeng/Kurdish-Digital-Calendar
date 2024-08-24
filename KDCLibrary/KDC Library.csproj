@@ -141,6 +141,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Tutorials_White.png" />
+    <None Include="Resources\Tutorials_Black.png" />
     <None Include="Resources\Update_White.png" />
     <None Include="Resources\Update_Black.png" />
     <None Include="Resources\Settings_White.png" />

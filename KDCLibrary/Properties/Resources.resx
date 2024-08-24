@@ -172,6 +172,12 @@
   <data name="Settings_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Settings_White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Tutorials_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tutorials_Black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Tutorials_White" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Tutorials_White.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Update_Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Update_Black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

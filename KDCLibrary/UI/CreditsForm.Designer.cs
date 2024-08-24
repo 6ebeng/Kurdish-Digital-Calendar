@@ -34,9 +34,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -92,55 +89,26 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Source Sans Pro", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(73, 193);
+            this.label6.Location = new System.Drawing.Point(76, 193);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(137, 15);
+            this.label6.Size = new System.Drawing.Size(130, 15);
             this.label6.TabIndex = 2;
-            this.label6.Text = "tishko.rasoul@gmail.com";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(112, 246);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 14);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Inspired by";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(62, 266);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(159, 14);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Kurdish Academy Calendar (2009)";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(80, 286);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 14);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Prof. Dr. Wrya Omar Amin";
+            this.label6.Text = "rekbin.devs@gmail.com";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(107, 87);
+            this.label10.Location = new System.Drawing.Point(106, 87);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 14);
+            this.label10.Size = new System.Drawing.Size(70, 14);
             this.label10.TabIndex = 2;
-            this.label10.Text = "version 1.0.13";
+            this.label10.Text = "Version 1.0.14";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(104, 351);
+            this.button1.Location = new System.Drawing.Point(104, 256);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 3;
@@ -152,7 +120,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(106, 386);
+            this.label11.Location = new System.Drawing.Point(106, 291);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(71, 14);
             this.label11.TabIndex = 2;
@@ -162,7 +130,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(75, 331);
+            this.label12.Location = new System.Drawing.Point(75, 236);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(37, 69);
             this.label12.TabIndex = 4;
@@ -190,16 +158,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 416);
+            this.ClientSize = new System.Drawing.Size(283, 326);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.separatorControl1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -226,9 +191,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label11;

@@ -243,6 +243,26 @@ namespace KDCLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Tutorials_Black {
+            get {
+                object obj = ResourceManager.GetObject("Tutorials_Black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Tutorials_White {
+            get {
+                object obj = ResourceManager.GetObject("Tutorials_White", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Update_Black {
             get {
                 object obj = ResourceManager.GetObject("Update_Black", resourceCulture);

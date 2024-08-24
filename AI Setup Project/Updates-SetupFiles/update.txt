@@ -2,15 +2,13 @@
 
 [Update]
 Name = Kurdish Digital Calendar
-ProductVersion = 1.0.13.0
+ProductVersion = 1.0.14.0
 URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe
 Size = 45634824
-MD5 = 2a6d5da8ea24f4aa87194fcd4e6da8f5
+MD5 = 4b5be0b76b020582511372b7386f3164
 ServerFileName = KDC Installer.exe
 RegistryKey = HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version
-Version = 1.0.13.0
-Description = - Fix index Galawezh month in Kurdish Central on Conversion
-Description1 = - Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit.
-Description2 = - Hot fix icon theme (Thanks to Yassen)
-Description3 = - Add new feature software updater.
-Description4 = - Fix Kurdish Central months index (Galawezh).
+Version = 1.0.14.0
+Description = - Adding Tutorials on help button
+Description1 = - Fix index Galawezh month in Kurdish Central on Conversion
+Description2 = - Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit.
