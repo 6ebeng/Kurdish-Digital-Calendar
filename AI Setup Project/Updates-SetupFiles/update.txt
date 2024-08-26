@@ -2,13 +2,14 @@
 
 [Update]
 Name = Kurdish Digital Calendar
-ProductVersion = 1.0.14.0
+ProductVersion = 1.0.15.0
 URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe
-Size = 45636224
-MD5 = 02d4dbdae006016d789b509a6d8893f1
+Size = 45556008
+MD5 = 7763c8d0a1086fe4337212376a4dbd2f
 ServerFileName = KDC Installer.exe
 RegistryKey = HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version
-Version = 1.0.14.0
-Description = - Adding Tutorials on help button
-Description1 = - Fix index Galawezh month in Kurdish Central on Conversion
-Description2 = - Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit.
+Version = 1.0.15.0
+Description = - Fix non-active item issue KDC in Outlook causes crash the app "Null object exception"
+Description1 = - Adding Tutorials on help button
+Description2 = - Fix index Galawezh month in Kurdish Central on Conversion
+Description3 = - Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit.

@@ -504,8 +504,21 @@ namespace KDCLibrary
 
                     if (OutlookApp != null)
                     {
+                        Inspector item = OutlookApp.ActiveInspector();
+
+                        if (item == null)
+                        {
+                            MessageBox.Show(
+                                "No Item provided.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                            return;
+                        }
+
                         UpdateDatesFromCustomXmlPartsForWordOutlook(
-                            GetWordEditorItem(OutlookApp.ActiveInspector().CurrentItem)
+                            GetWordEditorItem(item.CurrentItem)
                         );
                     }
 
@@ -549,9 +562,20 @@ namespace KDCLibrary
 
                             if (OutlookApp != null)
                             {
-                                Document wordEditor = GetWordEditorItem(
-                                    OutlookApp.ActiveInspector().CurrentItem
-                                );
+                                Inspector item = OutlookApp.ActiveInspector();
+
+                                if (item == null)
+                                {
+                                    MessageBox.Show(
+                                        "No Item provided.",
+                                        "Error",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error
+                                    );
+                                    return;
+                                }
+
+                                Document wordEditor = GetWordEditorItem(item.CurrentItem);
                                 if (wordEditor != null && wordEditor.Application.Selection != null)
                                 {
                                     wordEditor.Application.Selection.Text =
@@ -746,9 +770,21 @@ namespace KDCLibrary
 
                     if (OutlookApp != null)
                     {
-                        Document wordEditor = GetWordEditorItem(
-                            OutlookApp.ActiveInspector().CurrentItem
-                        );
+                        Inspector item = OutlookApp.ActiveInspector();
+
+                        if (item == null)
+                        {
+                            MessageBox.Show(
+                                "No Item provided.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                            return;
+                        }
+
+                        Document wordEditor = item.CurrentItem;
+
                         if (wordEditor != null && wordEditor.Application.Selection != null)
                         {
                             wordEditor.Application.Selection.Text =

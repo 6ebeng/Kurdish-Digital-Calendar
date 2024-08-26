@@ -29,10 +29,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release_1:Logo.png" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{72B36DBC-3F53-4009-83B3-1B4D3EDD6BD1} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{39DB87CA-1869-48BB-9AB2-FA270B12A818} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.14" Options="4"/>
+    <ROW Property="ProductVersion" Value="1.0.15" Options="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release_1:Windows 9x/ME" ValueLocId="-"/>
@@ -52,7 +52,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{83ACC6FA-B0D0-460B-9D53-224C83F8AD32}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{B44BE1DA-7248-4318-B0D7-AECCBCF83DF9}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{B0ECA4AE-A9D0-430A-AFD3-67B0939713D4}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_IA_ENABLE" ComponentId="{2301321B-A3CA-40BC-B9D7-04E48E9FBD74}" Directory_="APPDIR" Attributes="260" KeyPath="AI_IA_ENABLE" Options="1"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
