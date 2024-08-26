@@ -13,7 +13,7 @@
     <ROW Section="Update" Key="ServerFileName" Value="KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version" ValueLocId="-"/>
     <ROW Section="Update" Key="Version" Value="1.0.15.0" ValueLocId="-"/>
-    <ROW Section="Update" Key="Description" Value="- Fix non-active item issue KDC in Outlook causes crash the app &quot;Null object exception&quot;&#13;&#10;- Adding Tutorials on help button&#13;&#10;- Fix index Galawezh month in Kurdish Central on Conversion&#13;&#10;- Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit."/>
+    <ROW Section="Update" Key="Description" Value="- Fix non-active item issue KDC in Outlook causes crash the app &quot;Object null exception&quot;&#13;&#10;- Adding Tutorials on help button&#13;&#10;- Fix index Galawezh month in Kurdish Central on Conversion&#13;&#10;- Fix detection of Office platform for 32-bit devices installed on x64 processors to ensure proper placement of Excel UDF as either 32-bit or 64-bit."/>
     <ATTRIBUTE name="OutputFileName" value="update.txt"/>
   </COMPONENT>
 </DOCUMENT>
