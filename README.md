@@ -222,69 +222,70 @@
 <span dir="ltr">
 
 ```
+Option Compare Database
+
 ' Declare a reference to the .NET class
 Dim kdcService As Object
 
 ' Insert Now Kurdish Date
 Function ToKurdish(formatChoice As Integer, dialect As String, isAddSuffix As Boolean) As String
-	On Error GoTo ErrorHandle r
-	Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
-	ToKurdish = kdcService.ToKurdish(formatChoice, dialect, isAddSuffix)
-	Exit Function
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ToKurdish = kdcService.ToKurdish(formatChoice, dialect, isAddSuffix)
+    Exit Function
 
 ErrorHandler:
-	ToKurdish = "Error: " & Err.Description
+    ToKurdish = "Error: " & Err.Description
 End Function
 
 ' Convert Date Based On User Selection
 Function ConvertDateBasedOnUserSelection(selectedText As String, isReverse As Boolean, targetDialect As String, fromFormat As String, toFormat As String, targetCalendar As String, isAddSuffix As Boolean) As String
-	On Error GoTo ErrorHandler
-	Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
-	ConvertDateBasedOnUserSelection = kdcService.ConvertDateBasedOnUserSelection(selectedText, isReverse, targetDialect, fromFormat, toFormat, targetCalendar, isAddSuffix)
-	Exit Function
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ConvertDateBasedOnUserSelection = kdcService.ConvertDateBasedOnUserSelection(selectedText, isReverse, targetDialect, fromFormat, toFormat, targetCalendar, isAddSuffix)
+    Exit Function
 
 ErrorHandler:
-	ConvertDateBasedOnUserSelection = "Error: " & Err.Description
+    ConvertDateBasedOnUserSelection = "Error: " & Err.Description
 End Function
 
 ' Convert Number To Kurdish Central Text
 Function ConvertNumberToKurdishCentralText(number As Long) As String
-	On Error GoTo ErrorHandler
-	Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
-	ConvertNumberToKurdishCentralText = kdcService.ConvertNumberToKurdishCentralText(number)
-	Exit Function
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ConvertNumberToKurdishCentralText = kdcService.ConvertNumberToKurdishCentralText(number)
+    Exit Function
 
 ErrorHandler:
-	ConvertNumberToKurdishCentralText = "Error: " & Err.Description
+    ConvertNumberToKurdishCentralText = "Error: " & Err.Description
 End Function
 
 ' Convert Number To Kurdish Northern Text
 Function ConvertNumberToKurdishNorthernText(number As Long) As String
-	On Error GoTo ErrorHandler
-	Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
-	ConvertNumberToKurdishNorthernText = kdcService.ConvertNumberToKurdishNorthernText(number)
-	Exit Function
+    On Error GoTo ErrorHandler
+    Set kdcService = CreateObject("KDCLibrary.KDCServiceImplementation")
+    ConvertNumberToKurdishNorthernText = kdcService.ConvertNumberToKurdishNorthernText(number)
+    Exit Function
 
 ErrorHandler:
-	ConvertNumberToKurdishNorthernText = "Error: " & Err.Description
+    ConvertNumberToKurdishNorthernText = "Error: " & Err.Description
 End Function
 
 ' Test the functions
 Sub ExampleUsage()
-	Dim number As Long
-	number = 12345
-	MsgBox "Kurdish Text (Central): " & ConvertNumberToKurdishCentralText(number)
-	MsgBox "Kurdish Text (Northern): " & ConvertNumberToKurdishNorthernText(number)
+    Dim number As Long
+    number = 12345
+    MsgBox "Kurdish Text (Central): " & ConvertNumberToKurdishCentralText(number)
+    MsgBox "Kurdish Text (Northern): " & ConvertNumberToKurdishNorthernText(number)
     
-	Dim kurdishDate As String
-	kurdishDate = ToKurdish(1, "Kurdish (Central)", True)
-	MsgBox "Kurdish Date: " & kurdishDate
+    Dim kurdishDate As String
+    kurdishDate = ToKurdish(1, "Kurdish (Central)", True)
+    MsgBox "Kurdish Date: " & kurdishDate
     
-	Dim convertedDate As String
-	convertedDate = ConvertDateBasedOnUserSelection("01/01/2024", False, "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", True)
-	MsgBox "Converted Date: " & convertedDate
+    Dim convertedDate As String
+    convertedDate = ConvertDateBasedOnUserSelection("01/01/2024", False, "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", True)
+    MsgBox "Converted Date: " & convertedDate
 End Sub
-
 ```
 
 </span>
