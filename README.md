@@ -222,8 +222,6 @@
 <span dir="ltr">
 
 ```
-Option Compare Database
-
 ' Declare a reference to the .NET class
 Dim kdcService As Object
 
