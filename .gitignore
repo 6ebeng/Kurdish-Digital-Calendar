@@ -394,6 +394,7 @@ publish
 !/KDC PowerPoint/bin/Release/KDC_PowerPoint.dll
 !/KDC Project/bin/Release/KDC_Project.dll
 !/KDC Visio/bin/Release/KDC_Viso.dll
+!/KDC Outlook/bin/Release/Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll
 
 
 

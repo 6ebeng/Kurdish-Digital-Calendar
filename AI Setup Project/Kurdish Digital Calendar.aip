@@ -29,10 +29,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release_1:Logo.png" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{39DB87CA-1869-48BB-9AB2-FA270B12A818} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{5212C713-F7C9-47B1-BC22-D6BDE3ED729F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.15" Options="4"/>
+    <ROW Property="ProductVersion" Value="1.0.16" Options="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release_1:Windows 9x/ME" ValueLocId="-"/>
@@ -52,7 +52,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{B44BE1DA-7248-4318-B0D7-AECCBCF83DF9}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{BFF213E2-6739-43F1-8CAD-0CD364949A46}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{B0ECA4AE-A9D0-430A-AFD3-67B0939713D4}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_IA_ENABLE" ComponentId="{2301321B-A3CA-40BC-B9D7-04E48E9FBD74}" Directory_="APPDIR" Attributes="260" KeyPath="AI_IA_ENABLE" Options="1"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
@@ -133,6 +133,7 @@
     <ROW Component="Manifest_9" ComponentId="{13E97E84-45DD-4F05-8906-AD0D7E48F3D8}" Directory_="APPDIR" Attributes="4" KeyPath="Manifest_9"/>
     <ROW Component="Manufacturer" ComponentId="{8C873C2F-2B44-4806-AD9B-D7899007738C}" Directory_="APPDIR" Attributes="4" KeyPath="Manufacturer"/>
     <ROW Component="Microsoft.Office.Tools.Common.v4.0.Utilities.dll" ComponentId="{6073886D-1F2C-4F29-ADCD-F54AF7BBBD0A}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Office.Tools.Common.v4.0.Utilities.dll"/>
+    <ROW Component="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" ComponentId="{E2AA8A81-1F67-4575-B186-4CB846C0675F}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"/>
     <ROW Component="Microsoft.Office.Tools.v4.0.Framework.dll" ComponentId="{B12F22F5-42ED-42E5-B517-92C5DD24561E}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.Office.Tools.v4.0.Framework.dll"/>
     <ROW Component="Microsoft.VisualStudio.Tools.Applications.Runtime.dll" ComponentId="{5DA40A14-7535-49AE-AB4E-9A47A2A40663}" Directory_="APPDIR" Attributes="0" KeyPath="Microsoft.VisualStudio.Tools.Applications.Runtime.dll"/>
     <ROW Component="Microsoft_2" ComponentId="{5DA1DC43-336E-417E-9388-3E4C7B8FFAFF}" Directory_="APPDIR" Attributes="4" KeyPath="Microsoft_1"/>
@@ -197,6 +198,7 @@
     <ROW File="KDC_Visio.dll.manifest" Component_="KDC_Visio.dll.manifest_1" FileName="KDC_VI~1.MAN|KDC_Visio.dll.manifest" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.dll.manifest" SelfReg="false"/>
     <ROW File="KDC_Visio.vsto" Component_="KDC_Visio.dll.manifest" FileName="KDC_VI~1.VST|KDC_Visio.vsto" Attributes="0" SourcePath="..\KDC Visio\bin\Release\KDC_Visio.vsto" SelfReg="false"/>
     <ROW File="updater.exe" Component_="updater.exe" FileName="updater.exe" Version="65535.65535.65535.65535" Attributes="0" SourcePath="&lt;AI_STUBS&gt;updater.exe" SelfReg="false" DigSign="true"/>
+    <ROW File="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Component_="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" FileName="MICROS~4.DLL|Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" Attributes="0" SourcePath="..\KDC Outlook\bin\Release\Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.custcomp.MsiEmbeddedUIComponent">
     <ROW MsiEmbeddedUI="embeddeduiproxy" FileName="embeddeduiproxy.dll" Attributes="3" MessageFilter="201359327" Data="&lt;AI_HOME&gt;bin\x86\embeddeduiproxy.dll"/>
@@ -629,6 +631,7 @@
     <ROW Feature_="App" Component_="SHORTCUTDIR"/>
     <ROW Feature_="App" Component_="Version"/>
     <ROW Feature_="App" Component_="AI_IA_ENABLE"/>
+    <ROW Feature_="OutlookAddin" Component_="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
