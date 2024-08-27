@@ -201,8 +201,6 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 
 #### KDC COM Library Functions in VBA Code Example
 ```
-Option Compare Database
-
 ' Declare a reference to the .NET class
 Dim kdcService As Object
 
