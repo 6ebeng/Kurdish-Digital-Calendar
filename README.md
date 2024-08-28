@@ -208,14 +208,6 @@
 			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
 		- Note: The function supports dates from 0002-01-01 to 9999-12-31.
 
-#### پێش مه‌رجه‌كان
-- دڵنیابە کە KDC COM Libraryـت لەسەر سیستەمەکەت داناوە و تۆمار کراوە.
-- Reference زیاد بکە بۆ KDC COM Library لە ئدیته‌ری VBA ـەکەتدا.
-
-#### زیادکردنی سه‌رچاوه‌ بۆ KDC COM Library
-1. Open your VBA editor in Excel (or any other Office application).
-2. Go to `Tools` > `References`.
-3. Check the box for `Kurdish Digital Calendar Library`.
 
 #### KDC COM Library ئەرکەکان لە نموونەی کۆدی VBA
 
