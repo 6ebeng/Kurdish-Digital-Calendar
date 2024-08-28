@@ -25,7 +25,6 @@ using Workbook = Microsoft.Office.Interop.Excel.Workbook;
 
 namespace KDCLibrary
 {
-    [ComVisible(true)]
     public class Ribbon : IRibbonExtensibility
     {
         #region Intializers
