@@ -190,14 +190,6 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
 		- Note: The function supports dates from 0002-01-01 to 9999-12-31.
 
-#### Prerequisites
-- Ensure you have the KDC COM Library installed and registered on your system.
-- Add a reference to the KDC COM Library in your VBA editor.
-
-#### Adding Reference to KDC COM Library
-1. Open your VBA editor in Excel (or any other Office application).
-2. Go to `Tools` > `References`.
-3. Check the box for `Kurdish Digital Calendar Library`.
 
 #### KDC COM Library Functions in VBA Code Example
 ```
