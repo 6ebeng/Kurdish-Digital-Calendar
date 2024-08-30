@@ -18,7 +18,7 @@
     <ROW Property="ARPURLINFOABOUT" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar"/>
     <ROW Property="AiFeatIcoApp" Value="KDCFramed.exe" Type="8"/>
     <ROW Property="AiFeatIcoExcelAddin" Value="Excel_128x128.exe" Type="8"/>
-    <ROW Property="AiFeatIcoFeature" Value="Access.exe" Type="8"/>
+    <ROW Property="AiFeatIcoFeature" Value="VBA.exe" Type="8"/>
     <ROW Property="AiFeatIcoOutlookAddin" Value="Outlook_128x128.exe" Type="8"/>
     <ROW Property="AiFeatIcoPowerPointAddin" Value="PowerPoint_128x128.exe" Type="8"/>
     <ROW Property="AiFeatIcoProjectAddin" Value="Project.exe" Type="8"/>
@@ -26,10 +26,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release_1:Logo.png" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{64076744-C72D-4D10-AD6E-E098AEF89EC0} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{798B4B63-1DC2-4DC9-86D4-FB72558AB3C9} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.17" Options="4"/>
+    <ROW Property="ProductVersion" Value="1.0.18" Options="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release_1:Windows 9x/ME" ValueLocId="-"/>
@@ -49,7 +49,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{A54785AE-51FC-4DE7-944F-7B58CEB88DBD}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{639E6B7F-A2FB-40B3-85AB-D76A9542B3FC}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{E88C68E4-F3B9-48C2-9081-D3892A5A49AD}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_IA_ENABLE" ComponentId="{2301321B-A3CA-40BC-B9D7-04E48E9FBD74}" Directory_="APPDIR" Attributes="260" KeyPath="AI_IA_ENABLE" Options="1"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
@@ -146,7 +146,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="App" Title="KDC" Description="Description" Display="0" Level="1" Directory_="APPDIR" Attributes="25"/>
     <ROW Feature="ExcelAddin" Title="Excel Add-in" Description="Description" Display="5" Level="4" Directory_="APPDIR" Attributes="33"/>
-    <ROW Feature="Feature" Title="COM Library for Access" Description="Description" Display="11" Level="4" Directory_="APPDIR" Attributes="33"/>
+    <ROW Feature="Feature" Title="COM Library for VBA" Description="Description" Display="11" Level="4" Directory_="APPDIR" Attributes="33"/>
     <ROW Feature="OutlookAddin" Title="Outlook Add-in" Description="Description" Display="9" Level="4" Directory_="APPDIR" Attributes="33"/>
     <ROW Feature="PowerPointAddin" Title="PowerPoint Add-in" Description="Description" Display="7" Level="4" Directory_="APPDIR" Attributes="33"/>
     <ROW Feature="ProjectAddin" Title="Project Add-in" Description="Description" Display="13" Level="4" Directory_="APPDIR" Attributes="33"/>
@@ -297,7 +297,7 @@
     <ROW Feature_="PowerPointAddin" Level="1" Condition="(AI_DETECTED_OFFICE_POWERPOINT_VERSION &gt;= &quot;2013&quot;) OR (Installed)"/>
     <ROW Feature_="ExcelAddin" Level="1" Condition="(AI_DETECTED_OFFICE_EXCEL_VERSION &gt;= &quot;2013&quot;) OR (Installed)"/>
     <ROW Feature_="WordAddin" Level="1" Condition="(AI_DETECTED_OFFICE_WORD_VERSION &gt;= &quot;2013&quot;) OR (Installed)"/>
-    <ROW Feature_="Feature" Level="1" Condition="(AI_DETECTED_OFFICE_ACCESS_VERSION &gt;= &quot;2013&quot;)"/>
+    <ROW Feature_="Feature" Level="0" Condition="MSIINSTALLPERUSER"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="Bitmap" Type="Bitmap" X="1" Y="1" Width="520" Height="320" Attributes="1" Text="[BannerBitmap]" Order="100" MsiKey="AdminBrowseDlg#Bitmap"/>
@@ -636,13 +636,13 @@
     <ROW Feature_="Feature" Component_="KDC_Library.tlb"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
-    <ROW Name="Access.exe" SourcePath="..\Assets\Access.ico" Index="0"/>
     <ROW Name="Excel_128x128.exe" SourcePath="..\Assets\Excel_128x128.ico" Index="0"/>
     <ROW Name="KDCFramed.exe" SourcePath="..\Assets\KDC Framed.ico" Index="0"/>
     <ROW Name="LogoInstaller.exe" SourcePath="..\Assets\Logo Installer.ico" Index="0"/>
     <ROW Name="Outlook_128x128.exe" SourcePath="..\Assets\Outlook_128x128.ico" Index="0"/>
     <ROW Name="PowerPoint_128x128.exe" SourcePath="..\Assets\PowerPoint_128x128.ico" Index="0"/>
     <ROW Name="Project.exe" SourcePath="..\Assets\Project.ico" Index="0"/>
+    <ROW Name="VBA.exe" SourcePath="..\Assets\VBA.ico" Index="0"/>
     <ROW Name="Visio.exe" SourcePath="..\Assets\Visio.ico" Index="0"/>
     <ROW Name="Word_128x128.exe" SourcePath="..\Assets\Word_128x128.ico" Index="0"/>
     <ROW Name="updater.exe" SourcePath="..\Assets\Logo update.ico" Index="0"/>

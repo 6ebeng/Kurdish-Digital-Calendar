@@ -2,15 +2,16 @@
 
 [Update]
 Name = Kurdish Digital Calendar
-ProductVersion = 1.0.17.0
+ProductVersion = 1.0.18.0
 URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe
-Size = 46934867
-MD5 = fde0b8e23bcd5d06c43ff23c11f928e2
+Size = 46951496
+MD5 = 98e016ca20011ef9f892415f611122b6
 ServerFileName = KDC Installer.exe
 RegistryKey = HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version
-Version = 1.0.17.0
-Description = ## What's Changed
-Description1 = - Fix Registry ClassID for COM Library Integration
-Description2 = - Added a missed library that affected KDC Outlook add-in not to load
-Description3 = - Fix non-active item issue KDC in Outlook causes crash the app "Object null exception"
-Description4 = - Adding Tutorials on help button
+Version = 1.0.18.0
+Description = What's Changed
+Description1 = - Fix installer only per-machine user has right to install COM Library
+Description2 = - Fix Registry ClassID for COM Library Integration
+Description3 = - Added a missed library that affected KDC Outlook add-in not to load
+Description4 = - Fix non-active item issue KDC in Outlook causes crash the app "Object null exception"
+Description5 = - Adding Tutorials on help button
