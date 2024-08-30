@@ -269,7 +269,7 @@ ErrorHandler:
     ConvertNumberToKurdishNorthernText = "Error: " & Err.Description
 End Function
 
-' Test the functions
+' Test the functions with KDC Object
 Sub ExampleUsage()
     Dim number As Long
     number = 12345
@@ -282,6 +282,23 @@ Sub ExampleUsage()
     
     Dim convertedDate As String
     convertedDate = ConvertDateBasedOnUserSelection("01/01/2024", False, "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", True)
+    MsgBox "Converted Date: " & convertedDate
+End Sub
+
+' Test the functions with KDC Library Reference
+Sub ExampleUsage2()
+    Dim kurdishDate As String
+    Dim number As Long
+    Dim convertedDate As String
+    Dim kdcService As New KDC_Library.KDCServiceImplementation
+        
+    number = 12345
+    kurdishDate = kdcService.ToKurdish(1, "Kurdish (Central)", True)
+    convertedDate = kdcService.ConvertDateBasedOnUserSelection("01/01/2024", False, "Kurdish (Central)", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Gregorian", True)
+
+    MsgBox "Kurdish Text (Central): " & kdcService.ConvertNumberToKurdishCentralText(number)
+    MsgBox "Kurdish Text (Northern): " & kdcService.ConvertNumberToKurdishNorthernText(number)
+    MsgBox "Kurdish Date: " & kurdishDate
     MsgBox "Converted Date: " & convertedDate
 End Sub
 ```
