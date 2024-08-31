@@ -54,12 +54,9 @@
 ## ڕووماڵی میدیا
 
 بینەری چاوپێکەوتنەکان بن دەربارەی ساڵنامەی دیجیتاڵی کوردی:
-<div align="right">
 	
 - [Kurdsat News](https://www.youtube.com/watch?v=3jVYHLhpP88)
 - [GK Television (06:12)](https://www.gksat.tv/barnamakan_details.aspx?jimare=65&barnama=15633)
-
-</div>
 
 
 ## زاراوە پشتگیری کراوەکان
