@@ -383,6 +383,3 @@ End Sub
 بۆ پرس یان پرسیار، كێشه‌یه‌ك لەسەر [ساڵنامه‌ی دیجیتاڵی كوردی](https://github.com/6ebeng/kurdish-digital-calendar/issues) یان پەیوەندیمان پێوە بکەن لە [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
 
 </div>
-
-
-#Kurdish_Calendar #Kurdish_Date #Kurdish_Community #Kurdish_Culture #ڕێكه‌وتی_كوردی #ڕۆژنێری_كوردی #رۆژمێری_كوردی #رۆزمیری_كوردی #رۆژمیری_كوردی #روزميري_كوردي #ساڵنامه‌ی_كوردی #سالنامه‌ی_كوردی #كلتووری_كوردی #كلتوری_كوردی #ڕێكه‌وتی_خودكار #به‌رواری_كوردی #چۆن_ڕێكه‌وت #how_to_write_Kurdish_date
