@@ -352,3 +352,5 @@ For permissions beyond the scope of this license, please contact [rekbin.devs@gm
 ## Support
 
 For issues or questions, open an issue on the [Kurish Digital Calendar](https://github.com/6ebeng/kurdish-digital-calendar/issues) or contact us at [rekbin.devs@gmail.com](mailto:rekbin.devs@gmail.com).
+
+#Kurdish_Calendar #Kurdish_Date #Kurdish_Community #Kurdish_Culture #ڕێكه‌وتی_كوردی #ڕۆژنێری_كوردی #رۆژمێری_كوردی #رۆزمیری_كوردی #رۆژمیری_كوردی #روزميري_كوردي #ساڵنامه‌ی_كوردی #سالنامه‌ی_كوردی #كلتووری_كوردی #كلتوری_كوردی #ڕێكه‌وتی_خودكار #به‌رواری_كوردی #چۆن_ڕێكه‌وت #how_to_write_Kurdish_date
