@@ -99,12 +99,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Source Sans Pro", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(106, 87);
+            this.label10.Location = new System.Drawing.Point(97, 87);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(70, 14);
+            this.label10.Size = new System.Drawing.Size(88, 14);
             this.label10.TabIndex = 2;
-            this.label10.Text = "Version 1.0.18";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
+            this.label10.Text = "Version Unknown";
             // 
             // button1
             // 
