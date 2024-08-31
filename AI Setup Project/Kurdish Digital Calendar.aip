@@ -136,6 +136,7 @@
     <ROW Component="Microsoft_2" ComponentId="{5DA1DC43-336E-417E-9388-3E4C7B8FFAFF}" Directory_="APPDIR" Attributes="4" KeyPath="Microsoft_1"/>
     <ROW Component="Outlook" ComponentId="{E0FCB6AB-6425-43D3-A006-1931BE49450E}" Directory_="APPDIR" Attributes="4" KeyPath="Outlook_1"/>
     <ROW Component="PowerPoint" ComponentId="{9F593B0A-D38F-4A8D-AA4B-37029BB8DF64}" Directory_="APPDIR" Attributes="4" KeyPath="PowerPoint_1"/>
+    <ROW Component="ProductName" ComponentId="{CF8CBB99-2A8A-436D-AA3A-5371D7EFAECD}" Directory_="APPDIR" Attributes="260" KeyPath="ProductName"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{60E1CC6B-02BA-41C5-B322-615F5987AB91}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="Software" ComponentId="{6577A95B-F4FB-4BD4-AA2D-B3DCB908F614}" Directory_="APPDIR" Attributes="4" KeyPath="Software"/>
     <ROW Component="Version" ComponentId="{F8646EC1-734D-4F34-AE16-66E61B864D77}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
@@ -202,7 +203,7 @@
     <ROW Property="AI_IA_ENABLE" Registry="AI_IA_ENABLE" HklmSearch="AI_IA_ENABLE" HkcuSearch="AI_IA_ENABLE_1" Hklm64Search="AI_IA_ENABLE_2" Hkcu64Search="AI_IA_ENABLE_3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
-    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="6" UpdatesUrl="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/AI%20Setup%20Project/Updates-SetupFiles/update.txt"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="249"/>
@@ -258,6 +259,11 @@
     <ROW Action="AI_InstallPostPrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_InstallPrePrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
     <ROW Action="AI_InstallPrerequisite" Description="Configuring prerequisite software" DescriptionLocId="ActionText.Description.AI_InstallPrerequisite" Template="[1]" TemplateLocId="ActionText.Template.AI_InstallPrerequisite"/>
+    <ROW Action="AI_ProcessTasks2" Description="Generating actions to schedule tasks on the local computer:" DescriptionLocId="ActionText.Description.AI_ProcessTasks" Template="Task Name: [1]" TemplateLocId="ActionText.Template.AI_ProcessTasks"/>
+    <ROW Action="AI_RemoveTasks2" Description="Removing scheduled task from the local computer" DescriptionLocId="ActionText.Description.AI_RemoveTasks" Template="Task Name: [1]" TemplateLocId="ActionText.Template.AI_RemoveTasks"/>
+    <ROW Action="AI_RollbackTasks2" Description="Rolling back scheduled task on the local computer" DescriptionLocId="ActionText.Description.AI_RollbackTasks" Template="Task Name: [1]" TemplateLocId="ActionText.Template.AI_RollbackTasks"/>
+    <ROW Action="AI_ScheduleTasks2" Description="Scheduling task on the local computer" DescriptionLocId="ActionText.Description.AI_ScheduleTasks" Template="Task Name: [1]" TemplateLocId="ActionText.Template.AI_ScheduleTasks"/>
+    <ROW Action="AI_UninstallTasks2" Description="Generating actions to remove scheduled tasks from the local computer:" DescriptionLocId="ActionText.Description.AI_UninstallTasks"/>
     <ROW Action="AI_VerifyPrePrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
     <ROW Action="AI_VerifyPrereq" Description="Verifying prerequisites" DescriptionLocId="ActionText.Description.AI_VerifyPrereq" Template="[1] was not installed correctly." TemplateLocId="ActionText.Template.AI_VerifyPrereq"/>
   </COMPONENT>
@@ -287,6 +293,7 @@
     <ROW Name="SoftwareDetector.dll" SourcePath="&lt;AI_CUSTACTS&gt;SoftwareDetector.dll"/>
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="aipackagechainer.exe" SourcePath="&lt;AI_CUSTACTS&gt;aipackagechainer.exe" DigSign="true"/>
+    <ROW Name="aischeduler2.dll" SourcePath="&lt;AI_CUSTACTS&gt;aischeduler2.dll"/>
     <ROW Name="file_deleter.ps1" SourcePath="&lt;AI_SCRIPTS&gt;file_deleter.ps1"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
   </COMPONENT>
@@ -298,6 +305,7 @@
     <ROW Feature_="ExcelAddin" Level="1" Condition="(AI_DETECTED_OFFICE_EXCEL_VERSION &gt;= &quot;2013&quot;) OR (Installed)"/>
     <ROW Feature_="WordAddin" Level="1" Condition="(AI_DETECTED_OFFICE_WORD_VERSION &gt;= &quot;2013&quot;) OR (Installed)"/>
     <ROW Feature_="Feature" Level="0" Condition="MSIINSTALLPERUSER"/>
+    <ROW Feature_="Feature" Level="1" Condition="(NOT MSIINSTALLPERUSER)"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="AdminBrowseDlg" Control="Bitmap" Type="Bitmap" X="1" Y="1" Width="520" Height="320" Attributes="1" Text="[BannerBitmap]" Order="100" MsiKey="AdminBrowseDlg#Bitmap"/>
@@ -479,18 +487,23 @@
     <ROW Action="AI_LaunchChainer" Type="3314" Source="AI_PREREQ_CHAINER"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
+    <ROW Action="AI_ProcessTasks2" Type="1" Source="aischeduler2.dll" Target="ProcessTasks"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_RemoveTasks2" Type="11265" Source="aischeduler2.dll" Target="DeleteTasks" WithoutSeq="true"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_ResolveLocalizedCredentials" Type="1" Source="aicustact.dll" Target="GetLocalizedCredentials"/>
     <ROW Action="AI_RollbackPrePrereq" Type="65" Source="Prereq.dll" Target="RollbackPrePrereq" WithoutSeq="true"/>
     <ROW Action="AI_RollbackPrereq" Type="65" Source="Prereq.dll" Target="RollbackPrereq" WithoutSeq="true"/>
+    <ROW Action="AI_RollbackTasks2" Type="11521" Source="aischeduler2.dll" Target="DeleteTasks" WithoutSeq="true"/>
     <ROW Action="AI_SETMIXINSTLOCATION" Type="1" Source="aicustact.dll" Target="MixedAllUsersInstallLocation"/>
     <ROW Action="AI_SETPROGRAMFILES" Type="51" Source="AI_ProgramFiles" Target="[ProgramFilesFolder]"/>
     <ROW Action="AI_SETPROGRAMFILES64" Type="51" Source="AI_ProgramFiles" Target="[ProgramFiles64Folder]"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="AI_ScheduleTasks2" Type="11265" Source="aischeduler2.dll" Target="ScheduleTasks" WithoutSeq="true"/>
     <ROW Action="AI_UPDATER_UNINSTALL" Type="82" Source="updater.exe" Target="/clean silent"/>
+    <ROW Action="AI_UninstallTasks2" Type="1" Source="aischeduler2.dll" Target="UninstallTasks"/>
     <ROW Action="AI_VerifyPrePrereq" Type="1" Source="Prereq.dll" Target="VerifyPrePrereq"/>
     <ROW Action="AI_VerifyPrereq" Type="1" Source="Prereq.dll" Target="VerifyPrereq"/>
     <ROW Action="AddExcelDNA" Type="65" Source="PowerShellScriptLauncher.dll" Target="RunPowerShellScript" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
@@ -634,6 +647,7 @@
     <ROW Feature_="OutlookAddin" Component_="Microsoft.Office.Tools.Outlook.v4.0.Utilities.dll"/>
     <ROW Feature_="App" Component_="AI_ExePath"/>
     <ROW Feature_="Feature" Component_="KDC_Library.tlb"/>
+    <ROW Feature_="App" Component_="ProductName"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Excel_128x128.exe" SourcePath="..\Assets\Excel_128x128.ico" Index="0"/>
@@ -707,6 +721,8 @@
     <ROW Action="AI_DATA_SETTER_3" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( !Feature )" Sequence="6403"/>
     <ROW Action="UnregisterCOMLibrary" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6402"/>
     <ROW Action="AI_DATA_SETTER_4" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) )" Sequence="6401"/>
+    <ROW Action="AI_ProcessTasks2" Condition="(VersionNT &gt;= 600) AND (REMOVE&lt;&gt;&quot;ALL&quot;)" Sequence="4001"/>
+    <ROW Action="AI_UninstallTasks2" Condition="(VersionNT &gt;= 600) AND (REMOVE=&quot;ALL&quot;)" Sequence="1699"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
@@ -763,7 +779,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AA378E25D683E5BA0063DAC2D958445" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}" Name="\"/>
-    <ROW Registry="ABDCDC70F2A13C51A136A1E4162FDB61" Root="0" Key="Record\{ABDCDC70-F2A1-3C51-A136-A1E4162FDB61}" Name="\"/>
     <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
     <ROW Registry="AI_IA_ENABLE" Root="-1" Key="Software\[Manufacturer]\[ProductCode]" Name="AI_IA_ENABLE" Value="[AI_IA_ENABLE]" Component_="AI_IA_ENABLE"/>
     <ROW Registry="AI_INSTALLPERUSER" Root="-1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="AI_INSTALLPERUSER" Value="[AI_INSTALLPERUSER]" Component_="AI_INSTALLPERUSER"/>
@@ -774,48 +789,15 @@
     <ROW Registry="Addins_5" Root="1" Key="Software\Microsoft\Office\Visio\Addins" Name="+" Component_="Addins_8"/>
     <ROW Registry="Addins_6" Root="1" Key="Software\Microsoft\Office\Word\Addins" Name="+" Component_="Addins_7"/>
     <ROW Registry="AdvancedInstaller" Root="-1" Key="Software\Caphyon\Advanced Installer" Name="\"/>
-    <ROW Registry="Assembly" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_1" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_2" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_3" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_4" Root="0" Key="Record\{2DEF3465-D4C4-369B-B91E-68C9711F3A6C}\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_5" Root="0" Key="Record\{68CF3B66-38FC-4CC7-88CA-07C394CC6A4A}\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_6" Root="0" Key="Record\{0BAA68E0-34BD-3378-9E52-31A26F370185}\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_7" Root="0" Key="Record\{ABDCDC70-F2A1-3C51-A136-A1E4162FDB61}\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="Assembly_8" Root="0" Key="Record\{C309A24B-C6E7-3D16-909D-0B8C44980DD9}\0.1.0.0" Name="Assembly" Value="KDC_Library, Version=0.1.0.0, Culture=neutral, PublicKeyToken=c87e3507c2b80c0e" Component_="KDC_Library.dll"/>
-    <ROW Registry="BAA68E034BD33789E5231A26F370185" Root="0" Key="Record\{0BAA68E0-34BD-3378-9E52-31A26F370185}" Name="\"/>
     <ROW Registry="C1663D179625B47C491BA060" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}" Name="\"/>
-    <ROW Registry="C309A24BC6E73D16909D0B8C44980DD9" Root="0" Key="Record\{C309A24B-C6E7-3D16-909D-0B8C44980DD9}" Name="\"/>
     <ROW Registry="C8FE654EBB45E7B4406E39B2CDBF29" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}" Name="+" Component_="KDC_Library.dll"/>
     <ROW Registry="C8FE654EBB45E7B4406E39B2CDBF29_1" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\Implemented Categories\{62C8FE65-4EBB-45E7-B440-6E39B2CDBF29}" Name="+" Component_="KDC_Library.dll"/>
-    <ROW Registry="CF3B6638FC4CC788CA07C394CC6A4A" Root="0" Key="Record\{68CF3B66-38FC-4CC7-88CA-07C394CC6A4A}" Name="\"/>
-    <ROW Registry="CLSID" Root="0" Key="KDCLibrary.KDCServiceImplementation\CLSID" Name="\"/>
-    <ROW Registry="CLSID_2" Root="0" Key="KDCLibrary.Ribbon\CLSID" Name="\"/>
     <ROW Registry="CLSID_3" Root="1" Key="Software\Classes\CLSID" Name="\"/>
     <ROW Registry="Caphyon" Root="-1" Key="Software\Caphyon" Name="\"/>
-    <ROW Registry="Class" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32" Name="Class" Value="KDCLibrary.KDCServiceImplementation" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_1" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32\0.1.0.0" Name="Class" Value="KDCLibrary.KDCServiceImplementation" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_2" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32" Name="Class" Value="KDCLibrary.Ribbon" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_3" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32\0.1.0.0" Name="Class" Value="KDCLibrary.Ribbon" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_4" Root="0" Key="Record\{2DEF3465-D4C4-369B-B91E-68C9711F3A6C}\0.1.0.0" Name="Class" Value="Microsoft.Office.Interop.Word.WdCollapseDirection" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_5" Root="0" Key="Record\{68CF3B66-38FC-4CC7-88CA-07C394CC6A4A}\0.1.0.0" Name="Class" Value="Microsoft.Office.Interop.PowerPoint.PpSelectionType" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_6" Root="0" Key="Record\{0BAA68E0-34BD-3378-9E52-31A26F370185}\0.1.0.0" Name="Class" Value="Microsoft.Office.Core.MsoTriState" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_7" Root="0" Key="Record\{ABDCDC70-F2A1-3C51-A136-A1E4162FDB61}\0.1.0.0" Name="Class" Value="Microsoft.Office.Interop.Excel.Constants" Component_="KDC_Library.dll"/>
-    <ROW Registry="Class_8" Root="0" Key="Record\{C309A24B-C6E7-3D16-909D-0B8C44980DD9}\0.1.0.0" Name="Class" Value="Microsoft.Office.Interop.Excel.XlLineStyle" Component_="KDC_Library.dll"/>
     <ROW Registry="Classes_1" Root="1" Key="Software\Classes" Name="\"/>
-    <ROW Registry="CodeBase" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_1" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_2" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_3" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_4" Root="0" Key="Record\{2DEF3465-D4C4-369B-B91E-68C9711F3A6C}\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_5" Root="0" Key="Record\{68CF3B66-38FC-4CC7-88CA-07C394CC6A4A}\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_6" Root="0" Key="Record\{0BAA68E0-34BD-3378-9E52-31A26F370185}\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_7" Root="0" Key="Record\{ABDCDC70-F2A1-3C51-A136-A1E4162FDB61}\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
-    <ROW Registry="CodeBase_8" Root="0" Key="Record\{C309A24B-C6E7-3D16-909D-0B8C44980DD9}\0.1.0.0" Name="CodeBase" Value="file:///[#KDC_Library.dll]" Component_="KDC_Library.dll"/>
     <ROW Registry="Comments" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Comments" Value="[ARPCOMMENTS]" Component_="AI_CustomARPName"/>
     <ROW Registry="Contact" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Contact" Value="[ARPCONTACT]" Component_="AI_CustomARPName"/>
     <ROW Registry="CurrentVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion" Name="\"/>
-    <ROW Registry="DEF3465D4C4369BB91E68C9711F3A6C" Root="0" Key="Record\{2DEF3465-D4C4-369B-B91E-68C9711F3A6C}" Name="\"/>
     <ROW Registry="Description_10" Root="1" Key="Software\Microsoft\Office\Visio\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Viso that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_10"/>
     <ROW Registry="Description_11" Root="1" Key="Software\Microsoft\Office\Word\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Word that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_11"/>
     <ROW Registry="Description_6" Root="1" Key="Software\Microsoft\Office\Excel\Addins\[Manufacturer].[ProductName]" Name="Description" Value="A VSTO add-in for Excel that allows users to insert dates using the Kurdish calendar and convert between Gregorian, Hijri, and Umm al-Qura calendars." Component_="Description_6"/>
@@ -837,11 +819,7 @@
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="ImplementedCategories" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\Implemented Categories" Name="\"/>
     <ROW Registry="ImplementedCategories_1" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\Implemented Categories" Name="\"/>
-    <ROW Registry="InprocServer32" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32" Name="\"/>
-    <ROW Registry="InprocServer32_1" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32" Name="\"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
-    <ROW Registry="KDCLibrary.KDCServiceImplementation" Root="0" Key="KDCLibrary.KDCServiceImplementation" Name="\"/>
-    <ROW Registry="KDCLibrary.Ribbon" Root="0" Key="KDCLibrary.Ribbon" Name="\"/>
     <ROW Registry="KDC_Excel" Root="1" Key="Software\Microsoft\Office\Excel\Addins\[Manufacturer].[ProductName]" Name="*" Component_="KDC_Excel"/>
     <ROW Registry="KDC_Outlook" Root="1" Key="Software\Microsoft\Office\Outlook\Addins\[Manufacturer].[ProductName]" Name="*" Component_="KDC_Outlook"/>
     <ROW Registry="KDC_PowerPoint" Root="1" Key="Software\Microsoft\Office\PowerPoint\Addins\[Manufacturer].[ProductName]" Name="*" Component_="KDC_PowerPoint"/>
@@ -872,21 +850,11 @@
     <ROW Registry="PowerPoint_1" Root="1" Key="Software\Microsoft\Office\PowerPoint" Name="+" Component_="PowerPoint"/>
     <ROW Registry="ProductCode" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]" Name="\"/>
     <ROW Registry="ProductCode_1" Root="-1" Key="Software\[Manufacturer]\[ProductCode]" Name="\"/>
-    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="\"/>
+    <ROW Registry="ProductName" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="*" Component_="ProductName"/>
     <ROW Registry="ProductNameProductVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="\"/>
     <ROW Registry="ProductVersion" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="\"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="Readme" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Readme" Value="[ARPREADME]" Component_="AI_CustomARPName"/>
-    <ROW Registry="Record" Root="0" Key="Record" Name="\"/>
-    <ROW Registry="RuntimeVersion" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_1" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_2" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_3" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_4" Root="0" Key="Record\{2DEF3465-D4C4-369B-B91E-68C9711F3A6C}\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_5" Root="0" Key="Record\{68CF3B66-38FC-4CC7-88CA-07C394CC6A4A}\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_6" Root="0" Key="Record\{0BAA68E0-34BD-3378-9E52-31A26F370185}\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_7" Root="0" Key="Record\{ABDCDC70-F2A1-3C51-A136-A1E4162FDB61}\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
-    <ROW Registry="RuntimeVersion_8" Root="0" Key="Record\{C309A24B-C6E7-3D16-909D-0B8C44980DD9}\0.1.0.0" Name="RuntimeVersion" Value="v4.0.30319" Component_="KDC_Library.dll"/>
     <ROW Registry="Software" Root="-1" Key="Software" Name="+" Component_="Software"/>
     <ROW Registry="Software_2" Root="1" Key="Software" Name="\"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
@@ -901,17 +869,6 @@
     <ROW Registry="Visio_1" Root="1" Key="Software\Microsoft\Office\Visio" Name="+" Component_="Visio"/>
     <ROW Registry="Windows" Root="-1" Key="Software\Microsoft\Windows" Name="\"/>
     <ROW Registry="Word_1" Root="1" Key="Software\Microsoft\Office\Word" Name="+" Component_="Word"/>
-    <ROW Registry="_" Root="0" Key="KDCLibrary.KDCServiceImplementation" Value="KDCLibrary.KDCServiceImplementation" Component_="KDC_Library.dll"/>
-    <ROW Registry="__1" Root="0" Key="KDCLibrary.KDCServiceImplementation\CLSID" Value="[\{]7AA378E2-5D68-3E5B-A006-3DAC2D958445[\}]" Component_="KDC_Library.dll"/>
-    <ROW Registry="__10" Root="0" Key="KDCLibrary.Ribbon" Value="KDCLibrary.Ribbon" Component_="KDC_Library.dll"/>
-    <ROW Registry="__11" Root="0" Key="KDCLibrary.Ribbon\CLSID" Value="[\{]42165252-C166-3D17-9625-B47C491BA060[\}]" Component_="KDC_Library.dll"/>
-    <ROW Registry="__12" Root="0" Key="Record\{2DEF3465-D4C4-369B-B91E-68C9711F3A6C}\0.1.0.0" Name="\"/>
-    <ROW Registry="__13" Root="0" Key="Record\{68CF3B66-38FC-4CC7-88CA-07C394CC6A4A}\0.1.0.0" Name="\"/>
-    <ROW Registry="__14" Root="0" Key="Record\{0BAA68E0-34BD-3378-9E52-31A26F370185}\0.1.0.0" Name="\"/>
-    <ROW Registry="__15" Root="0" Key="Record\{ABDCDC70-F2A1-3C51-A136-A1E4162FDB61}\0.1.0.0" Name="\"/>
-    <ROW Registry="__16" Root="0" Key="Record\{C309A24B-C6E7-3D16-909D-0B8C44980DD9}\0.1.0.0" Name="\"/>
-    <ROW Registry="__4" Root="1" Key="Software\Classes\CLSID\{7AA378E2-5D68-3E5B-A006-3DAC2D958445}\InprocServer32\0.1.0.0" Name="\"/>
-    <ROW Registry="__8" Root="1" Key="Software\Classes\CLSID\{42165252-C166-3D17-9625-B47C491BA060}\InprocServer32\0.1.0.0" Name="\"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="KDCUpdater" Directory_="SHORTCUTDIR" Name="KDCUPD~1|KDC Updater" Component_="updater.exe" Target="[#updater.exe]" Hotkey="0" Icon_="updater.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
@@ -946,7 +903,10 @@
     <ROW SearchKey="A6D7F21EAEB4C4A901F0979CF110936Rele" Prereq="A6D7F21EAEB4C4A901F0979CF110936" SearchType="9" SearchString="HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\Release" RefContent="G461813" Order="1" Property="PreReqSearch_A6D7F21EAEB4C4A901F097"/>
     <ROW SearchKey="ABA121137E454F6C815A1647D0B2CF14Ver" Prereq="ABA121137E454F6C815A1647D0B2CF14" SearchType="2" SearchString="HKLM\SOFTWARE\Microsoft\VSTO Runtime Setup\v4R\Version" VerMin="10.0.60828" Order="1" Property="PreReqSearch_ABA121137E454F6C815A16"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.ScheduledTasksComponent">
+    <ROW TaskId="AI_updater" TaskName="KDC updater" Run="[#updater.exe]" WorkDir="[APPDIR]" UserProp="[%UserDomain]\[LogonUser]" Flags="9216" Trigger="1|1|1|1|0|0|0||0|0|0" Settings="2|4320" Condition="1" TaskVersion="2.0"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.UpdaterComponent">
-    <ROW Updater="updater.exe" URL="URL" SearchFreq="CheckFrequency" DownloadsFolder="DownloadsFolder" ID="ID" TargetDir="AppDir" AppName="ApplicationName" AppVersion="ApplicationVersion" CompanyName="CompanyName" DefCommandLine="DefaultCommandLine" Flags="Flags" IconPath="..\Assets\Logo update.ico" IconIndex="0" UnistallCASeq="AI_UPDATER_UNINSTALL" Description="[|UpdaterName] [|ProductVersion]"/>
+    <ROW Updater="updater.exe" URL="URL" SearchFreq="CheckFrequency" DownloadsFolder="DownloadsFolder" ID="ID" TargetDir="AppDir" AppName="ApplicationName" AppVersion="ApplicationVersion" CompanyName="CompanyName" DefCommandLine="DefaultCommandLine" Flags="Flags" IconPath="..\Assets\Logo update.ico" IconIndex="0" UnistallCASeq="AI_UPDATER_UNINSTALL" TaskId="AI_updater" Description="[|UpdaterName] [|ProductVersion]"/>
   </COMPONENT>
 </DOCUMENT>
