@@ -10,14 +10,11 @@ namespace KDCLibrary
         public CreditsForm()
         {
             InitializeComponent();
-
-            label10.Text =
-                "Version "
-                + new RegistryHelper().LoadSetting(
-                    "Version",
-                    "Unknown",
-                    "Kurdish Digital Calendar"
-                );
+            string version = new RegistryHelper().GetRegistryValueFromX6432Path(
+                @"SOFTWARE\Rekbin Devs\Kurdish Digital Calendar",
+                "Version"
+            );
+            label10.Text = "Version " + version;
         }
 
         private void button1_Click(object sender, EventArgs e)

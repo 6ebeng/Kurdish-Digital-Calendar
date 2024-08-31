@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System;
+using Microsoft.Win32;
 
 namespace KDCLibrary.Helpers
 {
@@ -26,6 +27,61 @@ namespace KDCLibrary.Helpers
                 }
                 return defaultValue;
             }
+        }
+
+        private string GetRegistryValue(string keyName, string valueName, RegistryView registryView)
+        {
+            try
+            {
+                using (
+                    RegistryKey baseKey = RegistryKey.OpenBaseKey(
+                        RegistryHive.LocalMachine,
+                        registryView
+                    )
+                )
+                using (RegistryKey key = baseKey.OpenSubKey(keyName))
+                {
+                    return key?.GetValue(valueName)?.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    using (
+                        RegistryKey baseKey = RegistryKey.OpenBaseKey(
+                            RegistryHive.CurrentUser,
+                            registryView
+                        )
+                    )
+                    using (RegistryKey key = baseKey.OpenSubKey(keyName))
+                    {
+                        return key?.GetValue(valueName)?.ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public string GetRegistryValueFromX6432Path(string keyName, string valueName)
+        {
+            if (string.IsNullOrEmpty(keyName) || string.IsNullOrEmpty(valueName))
+            {
+                return null;
+            }
+
+            string value =
+                GetRegistryValue(keyName, valueName, RegistryView.Registry64)
+                ?? GetRegistryValue(
+                    keyName.Replace("SOFTWARE", "SOFTWARE\\Wow6432Node"),
+                    valueName,
+                    RegistryView.Registry64
+                );
+
+            return value;
         }
     }
 }
