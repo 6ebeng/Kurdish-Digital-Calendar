@@ -43,6 +43,14 @@ The Kurdish Digital Calendar (KDC) is a versatile and user-friendly add-in desig
 </br>
 <img src="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/Assets/Screenshots/Screenshot%20MS%20Word%202024-07-16%20010355.png" alt="Screenshot1" style="width:auto;height:auto;">
 
+## Media Coverage
+
+Watch the interviews about the Kurdish Digital Calendar:
+
+- [Kurdsat News](https://www.youtube.com/watch?v=3jVYHLhpP88)
+- [GK Television (06:12)](https://www.gksat.tv/barnamakan_details.aspx?jimare=65&barnama=15633)
+
+
 ## Supported Dialects
 - Kurdish (Central) - Sorani
 - Kurdish (Northern) - Kurmanji
@@ -342,7 +350,7 @@ For permissions beyond the scope of this license, please contact [rekbin.devs@gm
 ## Credits
 
 - Developed and maintained by Tishko Rasoul ([Rekbin Devs](https://github.com/Rekbin-Devs)). 
-- The kurdish calendar algorithm is based on the following sources:
+- The Kurdish calendar algorithm is based on the following sources:
   - [Kurdish Academy Calendar (2009)](https://www.kurdipedia.org/default.aspx?q=2013021510204775788&lng=5)
   - [Kurdish Calendar from Wikipedia](https://ckb.wikipedia.org/wiki/%DA%95%DB%86%DA%98%DA%98%D9%85%DB%8E%D8%B1%DB%8C_%DA%A9%D9%88%D8%B1%D8%AF%DB%8C#%D8%A8%DB%95%D8%B1%D8%A7%D9%88%D8%B1%D8%AF%DB%8C_%D8%B3%D8%A7%DA%B5%DB%8C_%DA%A9%D9%88%D8%B1%D8%AF%DB%8C_%D9%84%DB%95%DA%AF%DB%95%DA%B5_%D8%B3%D8%A7%DA%B5%DB%8C_%D8%B2%D8%A7%DB%8C%DB%8C%D9%86%DB%8C%D8%AF%D8%A7)
   - [Hjri Calendar from Wikipedia](https://ckb.wikipedia.org/wiki/%DA%95%DB%86%DA%98%DA%98%D9%85%DB%8E%D8%B1%DB%8C_%DA%A9%DB%86%DA%86%DB%8C)
