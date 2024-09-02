@@ -1,0 +1,31 @@
+Custom License for Kurdish Digital Calendar (KDC)
+
+Copyright (c) 2024 Rekbin Devs. All rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use
+the Software for personal, educational, or internal business purposes only.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Restrictions:
+1. Redistribution of this software, with or without modification, is not
+   permitted without express written permission from the author.
+2. Publishing the source code or any part of the software on public
+   repositories or platforms is prohibited.
+3. Using the software for commercial purposes without a commercial license
+   agreement is prohibited.
+4. Any derivative works based on this software must include an attribution
+   to the original author and must not be published without express written 
+   permission from the author.
+
+Contact Information:
+For permissions beyond the scope of this license, please contact us at rekbin.devs@gmail.com.
+
+Rekbin Devs - 2024

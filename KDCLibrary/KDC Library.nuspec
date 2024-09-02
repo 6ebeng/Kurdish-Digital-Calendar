@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <projectUrl>https://github.com/6ebeng/Kurdish-Digital-Calendar/</projectUrl>
+    <description>$description$</description>
+    <releaseNotes>Intial release.</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>Kurdish Digital Calendar Library</tags>
+    <dependencies>
+      <group targetFramework="net472" />
+    </dependencies>
+    <repository type="git" url="https://github.com/6ebeng/Kurdish-Digital-Calendar/" />
+    <icon>content\Resources\KDC Framed.png</icon>
+    <license type="file">docs\LICENSE.txt</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <readme>docs\README-en.md</readme>
+  </metadata>
+  <files>
+    <!-- Add all library files -->
+    <file src="bin\Release\*.dll" target="lib\net472\" />
+
+    <file src="..\README-en.md" target="docs\" />
+    <file src="LICENSE.txt" target="docs\" />
+    <file src="..\Assets\KDC Framed.png" target="content\Resources" />
+  </files>
+</package>

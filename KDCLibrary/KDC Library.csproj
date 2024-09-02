@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{82053250-D09A-409F-A34C-8EFDDBF8C90F}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -141,6 +141,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="nuget.config" />
     <None Include="Resources\Tutorials_White.png" />
     <None Include="Resources\Tutorials_Black.png" />
     <None Include="Resources\Update_White.png" />

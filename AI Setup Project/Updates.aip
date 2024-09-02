@@ -6,14 +6,14 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.UpdaterEditorComponent">
     <ROW Section="Update" Key="Name" Value="Kurdish Digital Calendar"/>
-    <ROW Section="Update" Key="ProductVersion" Value="1.0.18.0" ValueLocId="-"/>
+    <ROW Section="Update" Key="ProductVersion" Value="1.0.19.0" ValueLocId="-"/>
     <ROW Section="Update" Key="URL" Value="https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="Size" Value="Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="MD5" Value="Kurdish Digital Calendar-Release-SetupFiles\KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="ServerFileName" Value="KDC Installer.exe" ValueLocId="-"/>
     <ROW Section="Update" Key="RegistryKey" Value="HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version" ValueLocId="-"/>
-    <ROW Section="Update" Key="Version" Value="1.0.18.0" ValueLocId="-"/>
-    <ROW Section="Update" Key="Description" Value="What&apos;s Changed&#13;&#10;&#13;&#10;- Fix installer only per-machine user has right to install COM Library&#13;&#10;- Fix Registry ClassID for COM Library Integration&#13;&#10;- Added a missed library that affected KDC Outlook add-in not to load&#13;&#10;- Fix non-active item issue KDC in Outlook causes crash the app &quot;Object null exception&quot;&#13;&#10;- Adding Tutorials on help button"/>
+    <ROW Section="Update" Key="Version" Value="1.0.19.0" ValueLocId="-"/>
+    <ROW Section="Update" Key="Description" Value="What&apos;s Changed&#13;&#10;&#13;&#10;- Configure and publish KDC Library to GitHub package and NuGet repository&#13;&#10;- Fix installer only per-machine user has right to install COM Library&#13;&#10;- Fix Registry ClassID for COM Library Integration&#13;&#10;- Added a missed library that affected KDC Outlook add-in not to load"/>
     <ATTRIBUTE name="OutputFileName" value="update.txt"/>
   </COMPONENT>
 </DOCUMENT>

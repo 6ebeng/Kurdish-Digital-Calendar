@@ -364,6 +364,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# NuGet Package Management settings
+NuGet.Config
+
 # exclude publish folder
 publish
 /AI Setup Project/Kurdish Digital Calendar-cache/*

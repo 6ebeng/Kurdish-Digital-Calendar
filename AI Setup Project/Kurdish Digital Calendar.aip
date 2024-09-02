@@ -26,10 +26,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release_1:Logo.png" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{798B4B63-1DC2-4DC9-86D4-FB72558AB3C9} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{7D03C0A3-DBA3-4E97-8E36-5D9C9075EE67} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.18" Options="4"/>
+    <ROW Property="ProductVersion" Value="1.0.19" Options="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release_1:Windows 9x/ME" ValueLocId="-"/>
@@ -49,7 +49,7 @@
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{639E6B7F-A2FB-40B3-85AB-D76A9542B3FC}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{288A3582-AEBA-44E3-BF16-9A8BF877F3A8}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{E88C68E4-F3B9-48C2-9081-D3892A5A49AD}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_IA_ENABLE" ComponentId="{2301321B-A3CA-40BC-B9D7-04E48E9FBD74}" Directory_="APPDIR" Attributes="260" KeyPath="AI_IA_ENABLE" Options="1"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
@@ -667,9 +667,9 @@
     <ROW IniFile="ApplicationVersion" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ApplicationVersion" Value="[ProductVersion]" Action="0" Component_="updater.exe"/>
     <ROW IniFile="CheckFrequency" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CheckFrequency" Value="2" Action="0" Component_="updater.exe"/>
     <ROW IniFile="CompanyName" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="CompanyName" Value="[Manufacturer]" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="DefaultCommandLine" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DefaultCommandLine" Value="/checknow" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="DefaultCommandLine" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DefaultCommandLine" Value="/silentall" Action="0" Component_="updater.exe"/>
     <ROW IniFile="DownloadsFolder" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="DownloadsFolder" Value="[CommonAppDataFolder][Manufacturer]\[ProductName]\updates\" Action="0" Component_="updater.exe"/>
-    <ROW IniFile="Flags" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="Flags" Value="NoDisableAutoCheck|PerMachine|ShowConfigOptionsButton" Action="0" Component_="updater.exe"/>
+    <ROW IniFile="Flags" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="Flags" Value="NoDisableAutoCheck|PerMachine|ShowConfigOptionsButton|NoUpdaterInstallGUI|InstallSummaryAlways" Action="0" Component_="updater.exe"/>
     <ROW IniFile="ID" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="ID" Value="[UpgradeCode]" Action="0" Component_="updater.exe"/>
     <ROW IniFile="URL" FileName="updater.ini" DirProperty="APPDIR" Section="General" Key="URL" Value="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/AI%20Setup%20Project/Updates-SetupFiles/update.txt" Action="0" Component_="updater.exe"/>
   </COMPONENT>

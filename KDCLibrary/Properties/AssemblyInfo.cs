@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Kurdish Digital Calendar")]
-[assembly: AssemblyDescription("Kurdish Digital Calendar Library")]
+[assembly: AssemblyDescription("A .NET library for Kurdish Digital Calendar functionalities")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Rekbin Devs")]
 [assembly: AssemblyProduct("KDC Library")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright © 2024 Rekbin Devs")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
