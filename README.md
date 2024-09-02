@@ -51,9 +51,7 @@
 <img src="https://raw.githubusercontent.com/6ebeng/Kurdish-Digital-Calendar/master/Assets/Screenshots/Screenshot%20MS%20Word%202024-07-16%20010355.png" alt="Screenshot1" style="width:auto;height:auto;">
 
 
-## ڕووماڵی میدیا
-
-بینەری چاوپێکەوتنەکان بن دەربارەی ساڵنامەی دیجیتاڵی کوردی:
+## بینەری چاوپێکەوتنەکان بن دەربارەی ساڵنامەی دیجیتاڵی کوردی له‌:
 	
 - [Kurdsat News](https://www.youtube.com/watch?v=3jVYHLhpP88)
 - [GK Television (06:12)](https://www.gksat.tv/barnamakan_details.aspx?jimare=65&barnama=15633)
