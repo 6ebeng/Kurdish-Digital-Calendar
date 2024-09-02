@@ -366,6 +366,7 @@ FodyWeavers.xsd
 
 # NuGet Package Management settings
 NuGet.Config
+nuget.exe
 
 # exclude publish folder
 publish
