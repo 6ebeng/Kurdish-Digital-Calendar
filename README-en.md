@@ -192,7 +192,7 @@ Watch the interviews about the Kurdish Digital Calendar:
 			- toFormat: The format of the output date.
 			- targetDialect: The dialect of Kurdish to use ("ckb" for Central or "ku" for Northern).
 			- isAddSuffix: A boolean value indicating whether to add suffixes to the output date.
-		- Example: `ConvertDateBasedOnUserSelection("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Central)", true)` or `KDC.ConvertDate("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Northern)", true)`
+		- Example: `ConvertDateBasedOnUserSelection("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Central)", true)` or `ConvertDateBasedOnUserSelection("01/01/2024", "Gregorian", "Kurdish", "dd/MM/yyyy", "dddd, dd MMMM, yyyy", "Kurdish (Northern)", true)`
 		- Result: 
 			- Kurdish Central Dialect : "دووشەممە، 11 بەفرانبار، 2723ی كوردی"
 			- Kurdish Northern Dialect : "Duşem, 11 Berfanbar, 2723 Kurdî"
