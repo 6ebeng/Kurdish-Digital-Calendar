@@ -2,15 +2,15 @@
 
 [Update]
 Name = Kurdish Digital Calendar
-ProductVersion = 1.0.19.0
+ProductVersion = 1.0.20.0
 URL = https://github.com/6ebeng/Kurdish-Digital-Calendar/releases/latest/download/KDC.Installer.exe
-Size = 47399248
-MD5 = 9bccde23c28c65487bc0adfc725c14f1
+Size = 47400272
+MD5 = 673769521487de0b55fb440d26e798dd
 ServerFileName = KDC Installer.exe
 RegistryKey = HKUD\Software\Rekbin Devs\Kurdish Digital Calendar\Version
-Version = 1.0.19.0
+Version = 1.0.20.0
 Description = What's Changed
-Description1 = - Configure and publish KDC Library to GitHub package and NuGet repository
-Description2 = - Fix installer only per-machine user has right to install COM Library
-Description3 = - Fix Registry ClassID for COM Library Integration
-Description4 = - Added a missed library that affected KDC Outlook add-in not to load
+Description1 = - fix bug a unicode charachter "?" causes invalid date on conversion
+Description2 = - Configure and publish KDC Library to GitHub package and NuGet repository
+Description3 = - Fix installer only per-machine user has right to install COM Library
+Description4 = - Fix Registry ClassID for COM Library Integration

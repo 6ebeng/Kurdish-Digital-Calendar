@@ -656,7 +656,7 @@ namespace KDCLibrary.Calendars
                     monthNames.Add("جۆزەردان", 3); // May
                     monthNames.Add("پووشپەڕ", 4); // June
                     monthNames.Add("خەرمانان", 5); // August
-                    monthNames.Add("گەلاوێژ", 6); // July
+                    monthNames.Add("گه‌لاوێژ", 6); // July
                     monthNames.Add("ڕەزبەر", 7); // September
                     monthNames.Add("گەڵاڕێزان", 8); // October
                     monthNames.Add("سەرماوەز", 9); // November

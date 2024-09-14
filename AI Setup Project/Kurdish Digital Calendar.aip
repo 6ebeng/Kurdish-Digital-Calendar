@@ -26,10 +26,10 @@
     <ROW Property="AiFeatIcoWordAddin" Value="Word_128x128.exe" Type="8"/>
     <ROW Property="AppLogo" Value="applogo.png" MultiBuildValue="AnyCPU_Release_1:Logo.png" Type="1" MsiKey="AppLogo"/>
     <ROW Property="Manufacturer" Value="Rekbin Devs"/>
-    <ROW Property="ProductCode" Value="1033:{7D03C0A3-DBA3-4E97-8E36-5D9C9075EE67} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{438393DD-EB62-4258-AE27-614EFA1D0C53} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Kurdish Digital Calendar"/>
-    <ROW Property="ProductVersion" Value="1.0.19" Options="4"/>
+    <ROW Property="ProductVersion" Value="1.0.20" Options="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{52874127-9330-4E78-934A-D033102026F3}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="AnyCPU_Release_1:Windows 9x/ME" ValueLocId="-"/>
@@ -47,9 +47,10 @@
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="updater_Dir" Directory_Parent="APPDIR" DefaultDir="updates"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
-    <ROW Component="AI_CustomARPName" ComponentId="{288A3582-AEBA-44E3-BF16-9A8BF877F3A8}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="AI_CustomARPName" ComponentId="{DA76F394-6931-43B3-94EA-0646020C5C1F}" Directory_="APPDIR" Attributes="260" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{E88C68E4-F3B9-48C2-9081-D3892A5A49AD}" Directory_="APPDIR" Attributes="260" KeyPath="AI_ExePath"/>
     <ROW Component="AI_IA_ENABLE" ComponentId="{2301321B-A3CA-40BC-B9D7-04E48E9FBD74}" Directory_="APPDIR" Attributes="260" KeyPath="AI_IA_ENABLE" Options="1"/>
     <ROW Component="AI_INSTALLPERUSER" ComponentId="{3286F8F9-85D8-4F18-AD3B-F36CD148F9F4}" Directory_="APPDIR" Attributes="4" KeyPath="AI_INSTALLPERUSER" Options="1"/>
@@ -142,6 +143,7 @@
     <ROW Component="Version" ComponentId="{F8646EC1-734D-4F34-AE16-66E61B864D77}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="Visio" ComponentId="{E5296629-18F3-46F4-B2BB-445FFA295C6C}" Directory_="APPDIR" Attributes="4" KeyPath="Visio_1"/>
     <ROW Component="Word" ComponentId="{302E0398-E278-4648-97A9-24CCAF709361}" Directory_="APPDIR" Attributes="4" KeyPath="Word_1"/>
+    <ROW Component="updater" ComponentId="{8B9194D5-D84E-4F23-B360-FB4BC86F7319}" Directory_="updater_Dir" Attributes="0"/>
     <ROW Component="updater.exe" ComponentId="{207F12DB-1961-435E-8B2E-A4323A03A213}" Directory_="APPDIR" Attributes="0" KeyPath="updater.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -444,6 +446,7 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+    <ROW Directory_="updater_Dir" Component_="updater" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_AppSearchEx" Type="1" Source="Prereq.dll" Target="DoAppSearchEx"/>
@@ -648,6 +651,7 @@
     <ROW Feature_="App" Component_="AI_ExePath"/>
     <ROW Feature_="Feature" Component_="KDC_Library.tlb"/>
     <ROW Feature_="App" Component_="ProductName"/>
+    <ROW Feature_="App" Component_="updater"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="Excel_128x128.exe" SourcePath="..\Assets\Excel_128x128.ico" Index="0"/>

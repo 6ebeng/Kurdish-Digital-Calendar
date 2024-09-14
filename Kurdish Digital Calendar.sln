@@ -107,6 +107,7 @@ Global
 		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.DefaultBuild|Any CPU.ActiveCfg = Release
 		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.DefaultBuild|Any CPU.Build.0 = Release
 		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.Release|Any CPU.ActiveCfg = Release
+		{1E76F8B8-75F4-4581-8514-BEBC7EF51BD6}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
